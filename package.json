@@ -1,0 +1,32 @@
+{
+  "name": "@ankhorage/paradox",
+  "version": "0.0.0",
+  "description": "Deterministic documentation generator for TypeScript packages.",
+  "type": "module",
+  "bin": {
+    "paradox": "./src/cli.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "changeset": "changeset",
+    "changeset:status": "changeset status --since=origin/main",
+    "docs": "bun src/cli.ts",
+    "docs:bunx": "bunx @ankhorage/paradox",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0",
+    "test": "bun test",
+    "typecheck": "bun x tsc --noEmit -p tsconfig.json",
+    "version-packages": "changeset version"
+  },
+  "dependencies": {
+    "ts-morph": "^24.0.0"
+  },
+  "devDependencies": {
+    "@ankhorage/devtools": "^1.0.0",
+    "@changesets/cli": "^2.31.0",
+    "@types/bun": "^1.1.14",
+    "typescript": "^5.6.3"
+  }
+}

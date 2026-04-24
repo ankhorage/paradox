@@ -1,0 +1,5 @@
+{
+  "name": "@fixture/basic",
+  "description": "Fixture package for Paradox tests.",
+  "type": "module"
+}

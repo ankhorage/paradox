@@ -1,0 +1,62 @@
+{
+  "packageName": "@ankhorage/paradox",
+  "description": "Deterministic documentation generator for TypeScript packages.",
+  "exports": [
+    {
+      "name": "analyze",
+      "description": "Runs the source analysis pipeline for a configured package.",
+      "kind": "function"
+    },
+    {
+      "name": "AnalysisComponent",
+      "description": "Describes one React component and its extracted props.",
+      "kind": "type"
+    },
+    {
+      "name": "AnalysisExport",
+      "description": "Describes one exported declaration discovered in a package.",
+      "kind": "type"
+    },
+    {
+      "name": "AnalysisResult",
+      "description": "Complete analysis output used to build the documentation model.",
+      "kind": "type"
+    },
+    {
+      "name": "defineParadoxConfig",
+      "description": "Defines a Paradox configuration object without changing its shape.",
+      "kind": "function"
+    },
+    {
+      "name": "ParadoxConfig",
+      "description": "Configuration for running Paradox against a TypeScript package.",
+      "kind": "type"
+    },
+    {
+      "name": "buildModel",
+      "description": "Converts analysis output into a serializable documentation model.",
+      "kind": "function"
+    },
+    {
+      "name": "DocumentationModel",
+      "description": "Serializable model consumed by renderers and writers.",
+      "kind": "type"
+    },
+    {
+      "name": "render",
+      "description": "Renders the documentation model into README and artifact files.",
+      "kind": "function"
+    },
+    {
+      "name": "RenderResult",
+      "description": "Rendered documentation files ready to be written to disk.",
+      "kind": "type"
+    },
+    {
+      "name": "write",
+      "description": "Writes generated documentation artifacts to the configured output paths.",
+      "kind": "function"
+    }
+  ],
+  "components": []
+}
