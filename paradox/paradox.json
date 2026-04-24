@@ -2,6 +2,20 @@
   "packageName": "@ankhorage/paradox",
   "packageId": "@ankhorage/paradox",
   "description": "Deterministic documentation generator for TypeScript packages.",
+  "usage": {
+    "packageName": "@ankhorage/paradox",
+    "commands": [
+      {
+        "name": "paradox",
+        "command": "bunx @ankhorage/paradox"
+      }
+    ]
+  },
+  "config": {
+    "exportName": "ParadoxConfig",
+    "configFile": "paradox.config.ts",
+    "factoryName": "defineParadoxConfig"
+  },
   "exports": [
     {
       "name": "defineParadoxConfig",
@@ -14,13 +28,5 @@
       "kind": "type"
     }
   ],
-  "components": [],
-  "usage": {
-    "command": "bunx @ankhorage/paradox"
-  },
-  "config": {
-    "exportName": "ParadoxConfig",
-    "configFile": "paradox.config.ts",
-    "factoryName": "defineParadoxConfig"
-  }
+  "components": []
 }

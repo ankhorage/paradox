@@ -4,10 +4,12 @@ import { join } from 'node:path';
 import { describe, expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
+import { createUsageFromPackageJson } from '../src/analyze/usage.js';
 import { buildModel } from '../src/model/buildModel.js';
 import { render } from '../src/render/render.js';
 
 const fixtureRoot = join(import.meta.dir, 'fixtures/basic');
+const multiBinFixtureRoot = join(import.meta.dir, 'fixtures/multi-bin');
 const snapshotRoot = join(import.meta.dir, '__snapshots__');
 
 describe('analyze', () => {
@@ -30,7 +32,13 @@ describe('analyze', () => {
     ]);
     expect(analysis.exports.map((item) => item.name)).not.toContain('internalHelper');
     expect(analysis.usage).toEqual({
-      command: 'bunx @fixture/basic',
+      packageName: '@fixture/basic',
+      commands: [
+        {
+          name: 'fixture-basic',
+          command: 'bunx @fixture/basic',
+        },
+      ],
     });
     expect(analysis.config).toEqual({
       exportName: 'ToolConfig',
@@ -62,6 +70,79 @@ describe('analyze', () => {
     await expectSnapshot('basic.readme.md', output.readme);
     await expectSnapshot('basic.exports.md', output.exportsMarkdown);
     await expectSnapshot('basic.components.md', output.components);
+  });
+
+  test('renders multiple bin commands deterministically', async () => {
+    const analysis = await analyze({
+      docs: {
+        title: 'Multi Bin Fixture',
+        description: 'Fixture docs for multiple binaries.',
+      },
+      package: {
+        root: multiBinFixtureRoot,
+        entrypoints: ['src/index.ts'],
+      },
+    });
+
+    expect(analysis.usage).toEqual({
+      packageName: 'fixture-multi-bin',
+      commands: [
+        {
+          name: 'alpha',
+          command: 'bunx fixture-multi-bin alpha',
+        },
+        {
+          name: 'beta',
+          command: 'bunx fixture-multi-bin beta',
+        },
+      ],
+    });
+
+    const output = render(buildModel(analysis));
+
+    await expectSnapshot('multi-bin.readme.md', output.readme);
+  });
+
+  test('normalizes string bin usage', () => {
+    expect(
+      createUsageFromPackageJson({
+        name: 'fixture-string-bin',
+        bin: './src/cli.ts',
+      }),
+    ).toEqual({
+      packageName: 'fixture-string-bin',
+      commands: [
+        {
+          name: 'fixture-string-bin',
+          command: 'bunx fixture-string-bin',
+        },
+      ],
+    });
+  });
+
+  test('normalizes missing bin usage', () => {
+    expect(
+      createUsageFromPackageJson({
+        name: 'fixture-no-bin',
+      }),
+    ).toBeNull();
+  });
+
+  test('normalizes scoped string bin usage', () => {
+    expect(
+      createUsageFromPackageJson({
+        name: '@fixture/string-bin',
+        bin: './src/cli.ts',
+      }),
+    ).toEqual({
+      packageName: '@fixture/string-bin',
+      commands: [
+        {
+          name: 'string-bin',
+          command: 'bunx @fixture/string-bin',
+        },
+      ],
+    });
   });
 });
 

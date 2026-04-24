@@ -28,10 +28,10 @@ export default config;
 
 Renders the fixture button component.
 
-### ToolConfig
-
-Configuration for the fixture package.
-
 ### ButtonProps
 
 Props accepted by the fixture button.
+
+### ToolConfig
+
+Configuration for the fixture package.

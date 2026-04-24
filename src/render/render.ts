@@ -24,7 +24,9 @@ function renderReadme(model: DocumentationModel): string {
   if (model.usage !== null) {
     lines.push('## Usage', '');
     lines.push('```bash');
-    lines.push(model.usage.command);
+    for (const command of model.usage.commands) {
+      lines.push(command.command);
+    }
     lines.push('```', '');
   }
 

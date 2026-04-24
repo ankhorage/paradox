@@ -1,7 +1,7 @@
 /***
  * Parsed representation of a Paradox doc comment.
  */
-export interface ParsedParadoxComment {
+interface ParsedParadoxComment {
   description: string | null;
   isConfig: boolean;
 }

@@ -6,6 +6,7 @@ import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { createProject } from './project.js';
 import type { AnalysisResult } from './types.js';
+import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
 /***
  * Runs the source analysis pipeline for a configured package.
@@ -14,11 +15,7 @@ export async function analyze(config: ParadoxConfig): Promise<AnalysisResult> {
   const root = config.package?.root ?? process.cwd();
 
   const pkg = await readPackageJson(root);
-  const usage = pkg.bin
-    ? {
-        command: `bunx ${pkg.name}`,
-      }
-    : null;
+  const usage = createUsageFromPackageJson(pkg);
 
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
@@ -41,16 +38,8 @@ export async function analyze(config: ParadoxConfig): Promise<AnalysisResult> {
   };
 }
 
-async function readPackageJson(root: string): Promise<{
-  name: string;
-  description?: string;
-  bin?: string | Record<string, string>;
-}> {
+async function readPackageJson(root: string): Promise<PackageJsonModel> {
   const raw = await readFile(join(root, 'package.json'), 'utf-8');
 
-  return JSON.parse(raw) as {
-    name: string;
-    description?: string;
-    bin?: string | Record<string, string>;
-  };
+  return JSON.parse(raw) as PackageJsonModel;
 }

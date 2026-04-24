@@ -24,6 +24,16 @@ export interface AnalysisComponent {
   }[];
 }
 
+export interface AnalysisUsage {
+  packageName: string;
+  commands: AnalysisUsageCommand[];
+}
+
+export interface AnalysisUsageCommand {
+  name: string;
+  command: string;
+}
+
 /***
  * Complete analysis output used to build the documentation model.
  */
@@ -35,9 +45,7 @@ export interface AnalysisResult {
   exports: AnalysisExport[];
   components: AnalysisComponent[];
 
-  usage: {
-    command: string;
-  } | null;
+  usage: AnalysisUsage | null;
 
   config: {
     exportName: string;

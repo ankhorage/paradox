@@ -1,0 +1,8 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["src/index.ts", "eslint.config.mjs", ".prettierrc.js", "paradox.config.ts"],
+  "project": ["src/**/*.ts", "tests/**/*.ts"],
+  "ignore": ["tests/fixtures/**"],
+  "ignoreBinaries": ["eslint", "prettier"],
+  "ignoreUnresolved": ["bun-types"]
+}

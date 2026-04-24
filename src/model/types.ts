@@ -1,5 +1,3 @@
-import type { AnalysisComponent, AnalysisResult } from '../analyze/types.js';
-
 /***
  * Serializable model consumed by renderers and writers.
  */
@@ -7,22 +5,45 @@ export interface DocumentationModel {
   packageName: string;
   packageId: string;
   description: string | null;
-  exports: {
-    name: string;
-    description: string | null;
-    kind: string;
-  }[];
-  components: AnalysisComponent[];
-  usage: {
-    command: string;
-  } | null;
-  config: {
-    exportName: string;
-    configFile: string;
-    factoryName: string | null;
-  } | null;
+  usage: UsageModel | null;
+  config: ConfigModel | null;
+  exports: ExportModel[];
+  components: ComponentModel[];
 }
 
-export type SerializableAnalysisResult = Omit<AnalysisResult, 'exports'> & {
-  exports: DocumentationModel['exports'];
-};
+export interface UsageModel {
+  packageName: string;
+  commands: UsageCommandModel[];
+}
+
+export interface UsageCommandModel {
+  name: string;
+  command: string;
+}
+
+export interface ConfigModel {
+  exportName: string;
+  configFile: string;
+  factoryName: string | null;
+}
+
+export interface ExportModel {
+  name: string;
+  description: string | null;
+  kind: ExportKind;
+}
+
+export type ExportKind = 'function' | 'type' | 'unknown';
+
+export interface ComponentModel {
+  name: string;
+  description: string | null;
+  props: PropModel[];
+}
+
+export interface PropModel {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+}

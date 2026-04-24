@@ -7,7 +7,7 @@ import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 import { resolveExportSymbol } from './utils/resolveExportSymbol.js';
 
-export interface AnalyzeExportsResult {
+interface AnalyzeExportsResult {
   exports: AnalysisExport[];
   config: {
     exportName: string;
