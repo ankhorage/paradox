@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.1
+
+### Patch Changes
+
+- 17729fb: Add generated README usage and configuration sections from package metadata and `@config` doc tags.
+
 ## 0.0.0
 
 ### Initial Changes
