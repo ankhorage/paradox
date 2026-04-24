@@ -29,8 +29,17 @@ export interface AnalysisComponent {
  */
 export interface AnalysisResult {
   packageName: string;
+  packageId: string;
   description: string | null;
 
   exports: AnalysisExport[];
   components: AnalysisComponent[];
+
+  usage: {
+    command: string;
+  } | null;
+
+  config: {
+    exportName: string;
+  } | null;
 }

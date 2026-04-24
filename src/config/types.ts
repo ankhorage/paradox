@@ -1,5 +1,7 @@
 /***
- * Configuration for running Paradox against a TypeScript package.
+ * Configuration for running Paradox.
+ *
+ * @config
  */
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';

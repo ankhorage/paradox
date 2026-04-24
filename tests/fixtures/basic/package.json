@@ -1,5 +1,8 @@
 {
   "name": "@fixture/basic",
   "description": "Fixture package for Paradox tests.",
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "fixture-basic": "./src/index.ts"
+  }
 }

@@ -18,8 +18,29 @@ export function buildModel(analysis: AnalysisResult): DocumentationModel {
 
   return {
     packageName: analysis.packageName,
+    packageId: analysis.packageId,
     description: analysis.description,
     exports: [...exportsByName.values()],
     components: analysis.components,
+    usage: analysis.usage,
+    config:
+      analysis.config !== null
+        ? {
+            exportName: analysis.config.exportName,
+            configFile: `${analysis.packageId.split('/').pop()}.config.ts`,
+            factoryName: findConfigFactoryName(analysis.config.exportName, [
+              ...exportsByName.keys(),
+            ]),
+          }
+        : null,
   };
+}
+
+function findConfigFactoryName(configExportName: string, exportNames: string[]): string | null {
+  const prefix = configExportName.endsWith('Config')
+    ? configExportName.slice(0, -'Config'.length)
+    : configExportName;
+  const expectedFactoryName = `define${prefix}Config`;
+
+  return exportNames.includes(expectedFactoryName) ? expectedFactoryName : null;
 }

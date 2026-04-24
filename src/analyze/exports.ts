@@ -7,6 +7,13 @@ import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 import { resolveExportSymbol } from './utils/resolveExportSymbol.js';
 
+export interface AnalyzeExportsResult {
+  exports: AnalysisExport[];
+  config: {
+    exportName: string;
+  } | null;
+}
+
 /***
  * Collects exported declarations from configured package entrypoints.
  */
@@ -16,8 +23,9 @@ export function analyzeExports(
     root: string;
     entrypoints: readonly string[];
   },
-): AnalysisExport[] {
+): AnalyzeExportsResult {
   const exports: AnalysisExport[] = [];
+  let config: AnalyzeExportsResult['config'] = null;
 
   for (const sourceFile of getEntryPointSourceFiles(project, options)) {
     const exported = sourceFile.getExportSymbols();
@@ -27,7 +35,15 @@ export function analyzeExports(
       const [decl] = resolved.getDeclarations();
 
       const rawComment = getParadoxComment(decl);
-      const parsed = rawComment ? parseParadoxComment(rawComment) : { description: null };
+      const parsed = rawComment
+        ? parseParadoxComment(rawComment)
+        : { description: null, isConfig: false };
+
+      if (parsed.isConfig) {
+        config = {
+          exportName: resolved.getName(),
+        };
+      }
 
       exports.push({
         name: resolved.getName(),
@@ -38,7 +54,10 @@ export function analyzeExports(
     }
   }
 
-  return exports;
+  return {
+    exports,
+    config,
+  };
 }
 
 function getEntryPointSourceFiles(

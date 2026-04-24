@@ -21,8 +21,39 @@ function renderReadme(model: DocumentationModel): string {
     lines.push(model.description, '');
   }
 
+  if (model.usage !== null) {
+    lines.push('## Usage', '');
+    lines.push('```bash');
+    lines.push(model.usage.command);
+    lines.push('```', '');
+  }
+
+  if (model.config !== null) {
+    lines.push('## Configuration', '');
+    lines.push(`Create a \`${model.config.configFile}\` file:`, '');
+    lines.push('```ts');
+
+    if (model.config.factoryName !== null) {
+      lines.push(`import { ${model.config.factoryName} } from '${model.packageId}';`);
+      lines.push('');
+      lines.push(`export default ${model.config.factoryName}({`);
+      lines.push('  // ...');
+      lines.push('});');
+    } else {
+      lines.push(`import type { ${model.config.exportName} } from '${model.packageId}';`);
+      lines.push('');
+      lines.push('const config = {');
+      lines.push('  // ...');
+      lines.push(`} satisfies ${model.config.exportName};`);
+      lines.push('');
+      lines.push('export default config;');
+    }
+
+    lines.push('```', '');
+  }
+
   if (model.exports.length > 0) {
-    lines.push('## Package Exports', '');
+    lines.push('## Public API', '');
 
     for (const item of model.exports) {
       lines.push(`### ${item.name}`, '');
@@ -34,7 +65,7 @@ function renderReadme(model: DocumentationModel): string {
 }
 
 function renderExports(model: DocumentationModel): string {
-  const lines = ['# Package Exports', ''];
+  const lines = ['# Public API', ''];
 
   for (const item of model.exports) {
     lines.push(`## ${item.name}`, '');

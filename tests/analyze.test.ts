@@ -3,7 +3,9 @@ import { join } from 'node:path';
 
 import { describe, expect, test } from 'bun:test';
 
-import { analyze, buildModel, render } from '../src/index.js';
+import { analyze } from '../src/analyze/analyze.js';
+import { buildModel } from '../src/model/buildModel.js';
+import { render } from '../src/render/render.js';
 
 const fixtureRoot = join(import.meta.dir, 'fixtures/basic');
 const snapshotRoot = join(import.meta.dir, '__snapshots__');
@@ -21,8 +23,18 @@ describe('analyze', () => {
       },
     });
 
-    expect(analysis.exports.map((item) => item.name)).toEqual(['Button', 'ButtonProps']);
+    expect(analysis.exports.map((item) => item.name)).toEqual([
+      'Button',
+      'ToolConfig',
+      'ButtonProps',
+    ]);
     expect(analysis.exports.map((item) => item.name)).not.toContain('internalHelper');
+    expect(analysis.usage).toEqual({
+      command: 'bunx @fixture/basic',
+    });
+    expect(analysis.config).toEqual({
+      exportName: 'ToolConfig',
+    });
 
     expect(analysis.components).toEqual([
       {

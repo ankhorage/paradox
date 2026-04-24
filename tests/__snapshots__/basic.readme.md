@@ -2,11 +2,35 @@
 
 Generated fixture docs.
 
-## Package Exports
+## Usage
+
+```bash
+bunx @fixture/basic
+```
+
+## Configuration
+
+Create a `basic.config.ts` file:
+
+```ts
+import type { ToolConfig } from '@fixture/basic';
+
+const config = {
+  // ...
+} satisfies ToolConfig;
+
+export default config;
+```
+
+## Public API
 
 ### Button
 
 Renders the fixture button component.
+
+### ToolConfig
+
+Configuration for the fixture package.
 
 ### ButtonProps
 
