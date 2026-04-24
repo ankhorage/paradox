@@ -2,6 +2,10 @@
   "name": "@ankhorage/paradox",
   "version": "0.0.0",
   "description": "Deterministic documentation generator for TypeScript packages.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "paradox": "./src/cli.ts"
