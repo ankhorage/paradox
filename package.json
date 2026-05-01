@@ -6,12 +6,35 @@
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "https://github.com/ankhorage/paradox#readme",
+  "bugs": {
+    "url": "https://github.com/ankhorage/paradox/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankhorage/paradox.git"
+  },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "bin": {
-    "paradox": "./src/cli.ts"
+    "paradox": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json",
     "changeset": "changeset",
     "changeset:status": "changeset status --since=origin/main",
     "docs": "bun src/cli.ts",
@@ -20,6 +43,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
+    "prepack": "bun run build",
     "test": "bun test",
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "changeset version"
