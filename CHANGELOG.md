@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+### Patch Changes
+
+- d9fb959: Stabilize usage metadata, documentation model serialization, deterministic output ordering, and package entrypoint exports.
+
 ## 0.0.1
 
 ### Patch Changes
