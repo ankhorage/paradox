@@ -1,5 +1,5 @@
 ---
-"@ankhorage/paradox": patch
+'@ankhorage/paradox': patch
 ---
 
 Render Mermaid diagrams visually in the generated static documentation app.
