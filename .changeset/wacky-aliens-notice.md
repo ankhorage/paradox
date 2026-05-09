@@ -1,5 +1,5 @@
 ---
-"@ankhorage/paradox": patch
+'@ankhorage/paradox': patch
 ---
 
 Generate deterministic README quality badges from local repository metadata.
