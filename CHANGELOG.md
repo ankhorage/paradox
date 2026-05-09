@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5
+
+### Patch Changes
+
+- 859c537: Standardize CI/release workflow files and update the Bun tooling baseline.
+
 ## 0.0.4
 
 ### Patch Changes
