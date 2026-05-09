@@ -108,6 +108,8 @@ export function renderHtml({
         padding: 1rem;
       }
       .empty { font-style: italic; color: #6f7f9c; }
+      .mermaid { margin: 1rem 0; overflow: auto; }
+      details > summary { cursor: pointer; color: #5e6d8c; font-size: 0.9rem; margin-top: 0.5rem; user-select: none; }
       @media (max-width: 900px) {
         .layout { grid-template-columns: 1fr; }
         .sidebar { position: static; max-height: none; border-right: 0; border-bottom: 1px solid #d8dfec; }
@@ -181,6 +183,10 @@ export function renderHtml({
           item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
         }
       });
+    </script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
     </script>
   </body>
 </html>
@@ -307,7 +313,11 @@ function renderDiagramCard(diagram: DiagramArtifact): string {
   return `<article class="item" data-search="${escapeAttribute(`${diagram.title} ${diagram.path}`)}">
     <h3>${escapeHtml(diagram.title)}</h3>
     <p class="muted"><code>${escapeHtml(diagram.path)}</code></p>
-    <pre>${escapeHtml(diagram.content)}</pre>
+    <div class="mermaid">${escapeHtml(diagram.content)}</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>${escapeHtml(diagram.content)}</pre>
+    </details>
   </article>`;
 }
 
