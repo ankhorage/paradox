@@ -60,10 +60,7 @@ interface CoverageSummaryModel {
 /***
  * Derives deterministic repository metadata badges from local repository files.
  */
-export async function analyzeBadges(
-  root: string,
-  pkg: PackageJsonModel,
-): Promise<AnalysisBadge[]> {
+export async function analyzeBadges(root: string, pkg: PackageJsonModel): Promise<AnalysisBadge[]> {
   const workflowFiles = await readWorkflowFiles(root);
   const badges: AnalysisBadge[] = [];
 
@@ -87,7 +84,8 @@ export async function analyzeBadges(
     scriptContains(pkg, 'format:check', 'prettier')
   ) {
     const prettierChecked =
-      workflowRunsScript(workflowFiles, 'format') || workflowRunsScript(workflowFiles, 'format:check');
+      workflowRunsScript(workflowFiles, 'format') ||
+      workflowRunsScript(workflowFiles, 'format:check');
     badges.push({
       id: 'prettier',
       label: 'prettier',
@@ -221,7 +219,9 @@ function supportsBun(pkg: PackageJsonModel, workflowFiles: readonly string[]): b
   }
 
   if (
-    Object.values(pkg.scripts ?? {}).some((script) => script.includes('bun') || script.includes('bunx'))
+    Object.values(pkg.scripts ?? {}).some(
+      (script) => script.includes('bun') || script.includes('bunx'),
+    )
   ) {
     return true;
   }

@@ -28,10 +28,7 @@ function renderReadme(
   if (badges.length > 0) {
     lines.push(
       badges
-        .map(
-          (badge) =>
-            `![${badgeLabel(model, badge.path)}](./${outputDir}/${badge.path})`,
-        )
+        .map((badge) => `![${badgeLabel(model, badge.path)}](./${outputDir}/${badge.path})`)
         .join(' '),
       '',
     );
@@ -227,7 +224,10 @@ function escapeTableCell(value: string): string {
 }
 
 function badgeLabel(model: DocumentationModel, badgePath: string): string {
-  const id = badgePath.split('/').pop()?.replace(/\.svg$/, '');
+  const id = badgePath
+    .split('/')
+    .pop()
+    ?.replace(/\.svg$/, '');
   const badge = model.badges.find((entry) => entry.id === id);
 
   return badge ? `${badge.label}: ${badge.value}` : badgePath;
