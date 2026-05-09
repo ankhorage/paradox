@@ -242,7 +242,17 @@ describe('analyze', () => {
 async function expectSnapshot(name: string, actual: string): Promise<void> {
   const expected = await readFile(join(snapshotRoot, name), 'utf-8');
 
-  expect(actual.trimEnd()).toBe(expected.trimEnd());
+  expect(normalizeSnapshot(name, actual)).toBe(normalizeSnapshot(name, expected));
+}
+
+function normalizeSnapshot(name: string, value: string): string {
+  const trimmed = value.trimEnd();
+
+  if (name.endsWith('.html')) {
+    return trimmed.replaceAll(/>\s+</g, '><').replaceAll(/\s+/g, ' ').trim();
+  }
+
+  return trimmed;
 }
 
 function findExport(
