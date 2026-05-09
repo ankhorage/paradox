@@ -82,6 +82,8 @@
         padding: 1rem;
       }
       .empty { font-style: italic; color: #6f7f9c; }
+      .mermaid { margin: 1rem 0; overflow: auto; }
+      details > summary { cursor: pointer; color: #5e6d8c; font-size: 0.9rem; margin-top: 0.5rem; user-select: none; }
       @media (max-width: 900px) {
         .layout { grid-template-columns: 1fr; }
         .sidebar { position: static; max-height: none; border-right: 0; border-bottom: 1px solid #d8dfec; }
@@ -344,7 +346,123 @@
           <article class="item" data-search="Architecture overview diagrams/architecture-overview.mmd">
     <h3>Architecture overview</h3>
     <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
-    <pre>graph TD
+    <div class="mermaid">graph TD
+  package__ankhorage_paradox[&quot;@ankhorage/paradox&quot;]
+  entrypoint_src_index_ts[&quot;src/index.ts&quot;]
+  package__ankhorage_paradox --&gt; entrypoint_src_index_ts
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_analyze_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_badges_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_exports_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_modules_ts
+  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_usage_ts
+  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_cli_ts
+  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_ts --&gt; module_src_render_render_ts
+  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_config_defineParadoxConfig_ts
+  module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_config_types_ts
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
+  module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_paths_policy_ts
+  module_src_paths_policy_ts --&gt; module_src_config_types_ts
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_render_ts
+  module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_badges_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_html_ts
+  module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_markdown_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_types_ts
+  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_write_write_ts
+  module_src_write_write_ts --&gt; module_src_config_types_ts
+  module_src_write_write_ts --&gt; module_src_render_types_ts
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph TD
   package__ankhorage_paradox[&quot;@ankhorage/paradox&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_paradox --&gt; entrypoint_src_index_ts
@@ -458,10 +576,96 @@
   module_src_write_write_ts --&gt; module_src_config_types_ts
   module_src_write_write_ts --&gt; module_src_render_types_ts
 </pre>
+    </details>
   </article><article class="item" data-search="Module relationships diagrams/module-relationships.mmd">
     <h3>Module relationships</h3>
     <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
-    <pre>graph LR
+    <div class="mermaid">graph LR
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_ts --&gt; module_src_render_render_ts
+  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
+  module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_paths_policy_ts --&gt; module_src_config_types_ts
+  module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
+  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_write_write_ts --&gt; module_src_config_types_ts
+  module_src_write_write_ts --&gt; module_src_render_types_ts
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph LR
   module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
@@ -544,10 +748,49 @@
   module_src_write_write_ts --&gt; module_src_config_types_ts
   module_src_write_write_ts --&gt; module_src_render_types_ts
 </pre>
+    </details>
   </article><article class="item" data-search="Export graph diagrams/export-graph.mmd">
     <h3>Export graph</h3>
     <p class="muted"><code>diagrams/export-graph.mmd</code></p>
-    <pre>graph LR
+    <div class="mermaid">graph LR
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  export_defineParadoxConfig[&quot;defineParadoxConfig&quot;]
+  module_src_config_defineParadoxConfig_ts --&gt; export_defineParadoxConfig
+  export_defineParadoxConfig -.-&gt; export_ParadoxConfig
+  export_ParadoxConfig[&quot;ParadoxConfig&quot;]
+  module_src_config_types_ts --&gt; export_ParadoxConfig
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>graph LR
   module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
@@ -583,10 +826,96 @@
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
   module_src_config_types_ts --&gt; export_ParadoxConfig
 </pre>
+    </details>
   </article><article class="item" data-search="Entrypoint sequence diagrams/entrypoint-sequence.mmd">
     <h3>Entrypoint sequence</h3>
     <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
-    <pre>sequenceDiagram
+    <div class="mermaid">sequenceDiagram
+participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_src_analyze_badges_ts as src/analyze/badges.ts
+participant participant_src_analyze_components_ts as src/analyze/components.ts
+participant participant_src_analyze_exports_ts as src/analyze/exports.ts
+participant participant_src_analyze_modules_ts as src/analyze/modules.ts
+participant participant_src_analyze_project_ts as src/analyze/project.ts
+participant participant_src_analyze_types_ts as src/analyze/types.ts
+participant participant_src_analyze_usage_ts as src/analyze/usage.ts
+participant participant_src_analyze_utils_getComponentPropsType_ts as src/analyze/utils/getComponentPropsType.ts
+participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
+participant participant_src_analyze_utils_getParadoxComment_ts as src/analyze/utils/getParadoxComment.ts
+participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
+participant participant_src_analyze_utils_isReactComponent_ts as src/analyze/utils/isReactComponent.ts
+participant participant_src_analyze_utils_parseParadoxComment_ts as src/analyze/utils/parseParadoxComment.ts
+participant participant_src_analyze_utils_resolveExportSymbol_ts as src/analyze/utils/resolveExportSymbol.ts
+participant participant_src_cli_ts as src/cli.ts
+participant participant_src_config_defineParadoxConfig_ts as src/config/defineParadoxConfig.ts
+participant participant_src_config_types_ts as src/config/types.ts
+participant participant_src_index_ts as src/index.ts
+participant participant_src_model_buildModel_ts as src/model/buildModel.ts
+participant participant_src_model_types_ts as src/model/types.ts
+participant participant_src_paths_policy_ts as src/paths/policy.ts
+participant participant_src_render_render_ts as src/render/render.ts
+participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
+participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
+participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
+participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
+participant participant_src_render_types_ts as src/render/types.ts
+participant participant_src_write_write_ts as src/write/write.ts
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_badges_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_components_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_exports_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_modules_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_project_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getComponentPropsType_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getPropsFromType_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_isReactComponent_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getExportMetadata_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_resolveExportSymbol_ts: imports
+  participant_src_analyze_modules_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_usage_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_analyze_analyze_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_model_buildModel_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_paths_policy_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_render_render_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_write_write_ts: imports
+  participant_src_config_defineParadoxConfig_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_model_buildModel_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_paths_policy_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_badges_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_diagrams_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_html_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_markdown_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_types_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_write_write_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_write_write_ts-&gt;&gt;participant_src_render_types_ts: imports
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
 participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
 participant participant_src_analyze_badges_ts as src/analyze/badges.ts
 participant participant_src_analyze_components_ts as src/analyze/components.ts
@@ -669,6 +998,7 @@ participant participant_src_write_write_ts as src/write/write.ts
   participant_src_write_write_ts-&gt;&gt;participant_src_config_types_ts: imports
   participant_src_write_write_ts-&gt;&gt;participant_src_render_types_ts: imports
 </pre>
+    </details>
   </article>
         </section>
       </main>
@@ -683,6 +1013,10 @@ participant participant_src_write_write_ts as src/write/write.ts
           item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
         }
       });
+    </script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
     </script>
   </body>
 </html>
