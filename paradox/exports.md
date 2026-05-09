@@ -24,9 +24,9 @@ Configuration for running Paradox.
 
 ### Members
 
-| Name    | Kind     | Type                                                      | Required | Description |
-| ------- | -------- | --------------------------------------------------------- | -------- | ----------- |
-| docs    | property | `{ title?: string; description?: string; } \| undefined`  | no       |             |
-| mode    | property | `"safe" \| "write" \| undefined`                          | no       |             |
-| output  | property | `{ dir?: string; } \| undefined`                          | no       |             |
-| package | property | `{ root?: string; entrypoints?: string[]; } \| undefined` | no       |             |
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| docs | property | `{ title?: string; description?: string; } \| undefined` | no |  |
+| mode | property | `"safe" \| "write" \| undefined` | no |  |
+| output | property | `{ dir?: string; } \| undefined` | no |  |
+| package | property | `{ root?: string; entrypoints?: string[]; } \| undefined` | no |  |

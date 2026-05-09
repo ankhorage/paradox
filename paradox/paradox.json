@@ -16,7 +16,9 @@
     "configFile": "paradox.config.ts",
     "factoryName": "defineParadoxConfig"
   },
-  "entrypoints": ["src/index.ts"],
+  "entrypoints": [
+    "src/index.ts"
+  ],
   "modules": [
     {
       "path": "src/analyze/analyze.ts",
@@ -30,7 +32,9 @@
         "src/analyze/usage.ts",
         "src/config/types.ts"
       ],
-      "exports": ["analyze"]
+      "exports": [
+        "analyze"
+      ]
     },
     {
       "path": "src/analyze/components.ts",
@@ -41,7 +45,9 @@
         "src/analyze/utils/getPropsFromType.ts",
         "src/analyze/utils/isReactComponent.ts"
       ],
-      "exports": ["analyzeComponents"]
+      "exports": [
+        "analyzeComponents"
+      ]
     },
     {
       "path": "src/analyze/exports.ts",
@@ -53,19 +59,27 @@
         "src/analyze/utils/parseParadoxComment.ts",
         "src/analyze/utils/resolveExportSymbol.ts"
       ],
-      "exports": ["analyzeExports"]
+      "exports": [
+        "analyzeExports"
+      ]
     },
     {
       "path": "src/analyze/modules.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/analyze/types.ts"],
-      "exports": ["analyzeModules"]
+      "dependencies": [
+        "src/analyze/types.ts"
+      ],
+      "exports": [
+        "analyzeModules"
+      ]
     },
     {
       "path": "src/analyze/project.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["createProject"]
+      "exports": [
+        "createProject"
+      ]
     },
     {
       "path": "src/analyze/types.ts",
@@ -87,14 +101,21 @@
     {
       "path": "src/analyze/usage.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/analyze/types.ts"],
-      "exports": ["createUsageFromPackageJson", "PackageJsonModel"]
+      "dependencies": [
+        "src/analyze/types.ts"
+      ],
+      "exports": [
+        "createUsageFromPackageJson",
+        "PackageJsonModel"
+      ]
     },
     {
       "path": "src/analyze/utils/getComponentPropsType.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["getComponentPropsType"]
+      "exports": [
+        "getComponentPropsType"
+      ]
     },
     {
       "path": "src/analyze/utils/getExportMetadata.ts",
@@ -104,13 +125,17 @@
         "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/parseParadoxComment.ts"
       ],
-      "exports": ["getExportMetadata"]
+      "exports": [
+        "getExportMetadata"
+      ]
     },
     {
       "path": "src/analyze/utils/getParadoxComment.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["getParadoxComment"]
+      "exports": [
+        "getParadoxComment"
+      ]
     },
     {
       "path": "src/analyze/utils/getPropsFromType.ts",
@@ -120,25 +145,33 @@
         "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/parseParadoxComment.ts"
       ],
-      "exports": ["getPropsFromType"]
+      "exports": [
+        "getPropsFromType"
+      ]
     },
     {
       "path": "src/analyze/utils/isReactComponent.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["isReactComponent"]
+      "exports": [
+        "isReactComponent"
+      ]
     },
     {
       "path": "src/analyze/utils/parseParadoxComment.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["parseParadoxComment"]
+      "exports": [
+        "parseParadoxComment"
+      ]
     },
     {
       "path": "src/analyze/utils/resolveExportSymbol.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["resolveExportSymbol"]
+      "exports": [
+        "resolveExportSymbol"
+      ]
     },
     {
       "path": "src/cli.ts",
@@ -155,26 +188,39 @@
     {
       "path": "src/config/defineParadoxConfig.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/config/types.ts"],
-      "exports": ["defineParadoxConfig"]
+      "dependencies": [
+        "src/config/types.ts"
+      ],
+      "exports": [
+        "defineParadoxConfig"
+      ]
     },
     {
       "path": "src/config/types.ts",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": ["ParadoxConfig"]
+      "exports": [
+        "ParadoxConfig"
+      ]
     },
     {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
-      "exports": ["defineParadoxConfig", "ParadoxConfig"]
+      "exports": [
+        "defineParadoxConfig",
+        "ParadoxConfig"
+      ]
     },
     {
       "path": "src/model/buildModel.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/model/types.ts"],
-      "exports": ["buildModel"]
+      "dependencies": [
+        "src/model/types.ts"
+      ],
+      "exports": [
+        "buildModel"
+      ]
     },
     {
       "path": "src/model/types.ts",
@@ -199,7 +245,9 @@
     {
       "path": "src/paths/policy.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/config/types.ts"],
+      "dependencies": [
+        "src/config/types.ts"
+      ],
       "exports": [
         "findParadoxConfigFile",
         "loadParadoxConfig",
@@ -219,37 +267,65 @@
         "src/render/renderers/markdown.ts",
         "src/render/types.ts"
       ],
-      "exports": ["render"]
+      "exports": [
+        "render"
+      ]
     },
     {
       "path": "src/render/renderers/diagrams.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/model/types.ts", "src/render/types.ts"],
-      "exports": ["renderDiagramArtifacts"]
+      "dependencies": [
+        "src/model/types.ts",
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderDiagramArtifacts"
+      ]
     },
     {
       "path": "src/render/renderers/html.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/model/types.ts", "src/render/types.ts"],
-      "exports": ["renderHtml"]
+      "dependencies": [
+        "src/model/types.ts",
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderHtml"
+      ]
     },
     {
       "path": "src/render/renderers/markdown.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/model/types.ts", "src/render/types.ts"],
-      "exports": ["renderMarkdown"]
+      "dependencies": [
+        "src/model/types.ts",
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderMarkdown"
+      ]
     },
     {
       "path": "src/render/types.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/model/types.ts"],
-      "exports": ["DiagramArtifact", "RenderContext", "RenderResult"]
+      "dependencies": [
+        "src/model/types.ts"
+      ],
+      "exports": [
+        "DiagramArtifact",
+        "RenderContext",
+        "RenderResult"
+      ]
     },
     {
       "path": "src/write/write.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/config/types.ts", "src/render/types.ts"],
-      "exports": ["write"]
+      "dependencies": [
+        "src/config/types.ts",
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "write"
+      ]
     }
   ],
   "exports": [
@@ -263,8 +339,12 @@
         "line": 6,
         "column": 1
       },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": ["ParadoxConfig"],
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ParadoxConfig"
+      ],
       "signatures": [
         {
           "label": "(config: ParadoxConfig) => ParadoxConfig",
@@ -292,7 +372,9 @@
         "line": 6,
         "column": 1
       },
-      "exportPaths": ["src/index.ts"],
+      "exportPaths": [
+        "src/index.ts"
+      ],
       "relatedSymbols": [],
       "signatures": [],
       "members": [
