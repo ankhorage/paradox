@@ -267,17 +267,29 @@ async function readWorkflowFiles(root: string): Promise<string[]> {
 async function readDirectory(path: string): Promise<string[]> {
   try {
     return await readdir(path);
-  } catch {
-    return [];
+  } catch (error: unknown) {
+    if (isNotFoundError(error)) {
+      return [];
+    }
+
+    throw error;
   }
+}
+
+function isNotFoundError(error: unknown): error is NodeJS.ErrnoException {
+  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
 }
 
 async function readJsonFile<T>(path: string): Promise<T | null> {
   try {
     const content = await readFile(path, 'utf-8');
     return JSON.parse(content) as T;
-  } catch {
-    return null;
+  } catch (error: unknown) {
+    if (isNotFoundError(error)) {
+      return null;
+    }
+
+    throw error;
   }
 }
 
@@ -285,8 +297,12 @@ async function fileExists(path: string): Promise<boolean> {
   try {
     await access(path);
     return true;
-  } catch {
-    return false;
+  } catch (error: unknown) {
+    if (isNotFoundError(error)) {
+      return false;
+    }
+
+    throw error;
   }
 }
 

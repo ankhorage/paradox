@@ -31,7 +31,7 @@ function renderBadgeSvg(badge: GeneratedBadge): string {
     )}</text>`,
     '</svg>',
     '',
-  ].join('');
+  ].join('\n');
 }
 
 function getTextWidth(value: string): number {
