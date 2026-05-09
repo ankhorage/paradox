@@ -1,27 +1,37 @@
 #!/usr/bin/env bun
-import { join } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { dirname } from 'node:path';
 
 import { analyze } from './analyze/analyze.js';
-import type { ParadoxConfig } from './config/types.js';
 import { buildModel } from './model/buildModel.js';
+import {
+  findParadoxConfigFile,
+  loadParadoxConfig,
+  resolveOutputRoot,
+  resolvePackageRoot,
+} from './paths/policy.js';
 import { render } from './render/render.js';
 import { write } from './write/write.js';
 
 async function main(): Promise<void> {
-  const config = await loadConfig(process.cwd());
-  const analysis = await analyze(config);
+  const cwd = process.cwd();
+  const configFilePath = await findParadoxConfigFile(cwd);
+  if (!configFilePath) {
+    throw new Error(
+      `Unable to find Paradox config. Looked for paradox.config.{ts,js,mjs,cjs} by searching upward from: ${cwd}`,
+    );
+  }
+
+  const configDir = dirname(configFilePath);
+  const config = await loadParadoxConfig(configFilePath);
+
+  const packageRoot = await resolvePackageRoot(config, configDir);
+  const { outputRoot } = resolveOutputRoot(config, packageRoot);
+
+  const analysis = await analyze(config, { packageRoot });
   const model = buildModel(analysis);
   const result = render(model);
 
-  await write(result, config);
-}
-
-async function loadConfig(root: string): Promise<ParadoxConfig> {
-  const configUrl = pathToFileURL(join(root, 'paradox.config.ts')).href;
-  const mod = (await import(configUrl)) as { default?: ParadoxConfig };
-
-  return mod.default ?? {};
+  await write(result, config, { packageRoot, outputRoot });
 }
 
 main().catch((error: unknown) => {

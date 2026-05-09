@@ -7,17 +7,21 @@ import type { RenderResult } from '../render/types.js';
 /***
  * Writes generated documentation artifacts to the configured output paths.
  */
-export async function write(result: RenderResult, config: ParadoxConfig): Promise<void> {
-  const root = config.package?.root ?? process.cwd();
-  const outputDir = config.output?.dir ?? 'paradox';
+export async function write(
+  result: RenderResult,
+  config: ParadoxConfig,
+  runtime: { packageRoot: string; outputRoot: string },
+): Promise<void> {
+  const root = runtime.packageRoot;
+  const { outputRoot } = runtime;
   const mode = config.mode ?? 'safe';
 
-  await mkdir(join(root, outputDir), { recursive: true });
+  await mkdir(outputRoot, { recursive: true });
 
-  await writeFile(join(root, outputDir, 'exports.md'), result.exportsMarkdown);
-  await writeFile(join(root, outputDir, 'components.md'), result.components);
-  await writeFile(join(root, outputDir, 'exports.json'), result.exportsJson);
-  await writeFile(join(root, outputDir, 'paradox.json'), result.paradoxJson);
+  await writeFile(join(outputRoot, 'exports.md'), result.exportsMarkdown);
+  await writeFile(join(outputRoot, 'components.md'), result.components);
+  await writeFile(join(outputRoot, 'exports.json'), result.exportsJson);
+  await writeFile(join(outputRoot, 'paradox.json'), result.paradoxJson);
 
   if (mode === 'write') {
     await writeFile(join(root, 'README.md'), result.readme);

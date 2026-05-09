@@ -14,16 +14,19 @@ const snapshotRoot = join(import.meta.dir, '__snapshots__');
 
 describe('analyze', () => {
   test('builds documentation from package entrypoints', async () => {
-    const analysis = await analyze({
-      docs: {
-        title: 'Fixture Docs',
-        description: 'Generated fixture docs.',
+    const analysis = await analyze(
+      {
+        docs: {
+          title: 'Fixture Docs',
+          description: 'Generated fixture docs.',
+        },
+        package: {
+          root: fixtureRoot,
+          entrypoints: ['src/index.ts'],
+        },
       },
-      package: {
-        root: fixtureRoot,
-        entrypoints: ['src/index.ts'],
-      },
-    });
+      { packageRoot: fixtureRoot },
+    );
 
     expect(analysis.exports.map((item) => item.name)).toEqual([
       'Button',
@@ -73,16 +76,19 @@ describe('analyze', () => {
   });
 
   test('renders multiple bin commands deterministically', async () => {
-    const analysis = await analyze({
-      docs: {
-        title: 'Multi Bin Fixture',
-        description: 'Fixture docs for multiple binaries.',
+    const analysis = await analyze(
+      {
+        docs: {
+          title: 'Multi Bin Fixture',
+          description: 'Fixture docs for multiple binaries.',
+        },
+        package: {
+          root: multiBinFixtureRoot,
+          entrypoints: ['src/index.ts'],
+        },
       },
-      package: {
-        root: multiBinFixtureRoot,
-        entrypoints: ['src/index.ts'],
-      },
-    });
+      { packageRoot: multiBinFixtureRoot },
+    );
 
     expect(analysis.usage).toEqual({
       packageName: 'fixture-multi-bin',
