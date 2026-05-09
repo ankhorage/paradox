@@ -258,7 +258,10 @@ function normalizeSnapshot(name: string, value: string): string {
 function normalizeHtmlSnapshot(value: string): string {
   return value
     .replaceAll('"', "'")
-    .replaceAll(/<p>\s*<strong>Related symbols:<\/strong>\s*(.*?)\s*<\/p>/gs, '<div><strong>Related symbols:</strong>$1</div>')
+    .replaceAll(
+      /<p>\s*<strong>Related symbols:<\/strong>\s*(.*?)\s*<\/p>/gs,
+      '<div><strong>Related symbols:</strong>$1</div>',
+    )
     .replaceAll(/<pre>\s+/g, '<pre>')
     .replaceAll(/\s+<\/pre\s*>/g, '</pre>')
     .replaceAll(/\s+>/g, '>')
