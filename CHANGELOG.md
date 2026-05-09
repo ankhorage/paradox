@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.4
+
+### Patch Changes
+
+- f5b89ce: Stabilize Paradox config discovery and output path resolution so generated artifacts are written under the resolved package output directory.
+
 ## 0.0.3
 
 ### Patch Changes

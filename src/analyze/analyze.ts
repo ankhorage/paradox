@@ -11,8 +11,11 @@ import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 /***
  * Runs the source analysis pipeline for a configured package.
  */
-export async function analyze(config: ParadoxConfig): Promise<AnalysisResult> {
-  const root = config.package?.root ?? process.cwd();
+export async function analyze(
+  config: ParadoxConfig,
+  runtime: { packageRoot: string },
+): Promise<AnalysisResult> {
+  const root = runtime.packageRoot;
 
   const pkg = await readPackageJson(root);
   const usage = createUsageFromPackageJson(pkg);
