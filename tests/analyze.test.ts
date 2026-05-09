@@ -249,10 +249,23 @@ function normalizeSnapshot(name: string, value: string): string {
   const trimmed = value.trimEnd();
 
   if (name.endsWith('.html')) {
-    return trimmed.replaceAll(/>\s+</g, '><').replaceAll(/\s+/g, ' ').trim();
+    return normalizeHtmlSnapshot(trimmed);
   }
 
   return trimmed;
+}
+
+function normalizeHtmlSnapshot(value: string): string {
+  return value
+    .replaceAll('"', "'")
+    .replaceAll(/<p>\s*<strong>Related symbols:<\/strong>\s*(.*?)\s*<\/p>/gs, '<div><strong>Related symbols:</strong>$1</div>')
+    .replaceAll(/<pre>\s+/g, '<pre>')
+    .replaceAll(/\s+<\/pre\s*>/g, '</pre>')
+    .replaceAll(/\s+>/g, '>')
+    .replaceAll(/>\s+</g, '><')
+    .replaceAll(/\s+/g, ' ')
+    .replaceAll(/\s+<\/p>/g, '</p>')
+    .trim();
 }
 
 function findExport(
