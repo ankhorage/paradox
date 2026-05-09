@@ -214,7 +214,7 @@ function renderExportCard(item: DocumentationModel['exports'][number]): string {
     <p class="muted">${escapeHtml(item.kind)} • <code>${escapeHtml(item.sourceLocation.filePath)}:${item.sourceLocation.line}:${item.sourceLocation.column}</code></p>
     ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
     <p><strong>Export paths:</strong> ${renderInlineCodeList(item.exportPaths)}</p>
-    <p><strong>Related symbols:</strong> ${item.relatedSymbols.length > 0 ? renderChipList(item.relatedSymbols) : '<span class="empty">None</span>'}</p>
+    <div><strong>Related symbols:</strong> ${item.relatedSymbols.length > 0 ? renderChipList(item.relatedSymbols) : '<span class="empty">None</span>'}</div>
     ${item.signatures.length > 0 ? renderSignatureBlock(item) : ''}
     ${item.members.length > 0 ? renderMemberTable(item) : ''}
   </article>`;
