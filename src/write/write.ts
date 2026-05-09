@@ -24,6 +24,12 @@ export async function write(
   await writeFile(join(outputRoot, 'paradox.json'), result.paradoxJson);
   await writeFile(join(outputRoot, 'index.html'), result.indexHtml);
 
+  for (const badge of result.badges) {
+    const badgePath = join(outputRoot, badge.path);
+    await mkdir(dirname(badgePath), { recursive: true });
+    await writeFile(badgePath, badge.content);
+  }
+
   for (const diagram of result.diagrams) {
     const diagramPath = join(outputRoot, diagram.path);
     await mkdir(dirname(diagramPath), { recursive: true });

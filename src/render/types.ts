@@ -9,6 +9,11 @@ export interface DiagramArtifact {
   content: string;
 }
 
+export interface BadgeArtifact {
+  path: string;
+  content: string;
+}
+
 export interface RenderResult {
   readme: string;
   exportsMarkdown: string;
@@ -17,11 +22,13 @@ export interface RenderResult {
   paradoxJson: string;
   indexHtml: string;
   diagrams: DiagramArtifact[];
+  badges: BadgeArtifact[];
 }
 
 export interface RenderContext {
   model: DocumentationModel;
   outputDir: string;
   diagrams: DiagramArtifact[];
+  badges: BadgeArtifact[];
   result: RenderResult;
 }

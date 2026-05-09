@@ -23,6 +23,9 @@ describe('cli e2e', () => {
 
       expect(result.exitCode).toBe(0);
       expectAddedFiles(before, after, [
+        'pkg/paradox/badges/docs.svg',
+        'pkg/paradox/badges/npm.svg',
+        'pkg/paradox/badges/typescript.svg',
         'pkg/paradox/exports.md',
         'pkg/paradox/components.md',
         'pkg/paradox/exports.json',
@@ -54,6 +57,9 @@ describe('cli e2e', () => {
 
       expect(result.exitCode).toBe(0);
       expectAddedFiles(before, after, [
+        'pkg/paradox/badges/docs.svg',
+        'pkg/paradox/badges/npm.svg',
+        'pkg/paradox/badges/typescript.svg',
         'pkg/paradox/exports.md',
         'pkg/paradox/components.md',
         'pkg/paradox/exports.json',
@@ -120,6 +126,9 @@ describe('cli e2e', () => {
 
       expect(result.exitCode).toBe(0);
       expectAddedFiles(before, after, [
+        'pkg/docs/paradox/badges/docs.svg',
+        'pkg/docs/paradox/badges/npm.svg',
+        'pkg/docs/paradox/badges/typescript.svg',
         'pkg/docs/paradox/exports.md',
         'pkg/docs/paradox/components.md',
         'pkg/docs/paradox/exports.json',

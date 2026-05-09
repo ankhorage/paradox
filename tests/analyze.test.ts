@@ -10,6 +10,7 @@ import { render } from '../src/render/render.js';
 
 const fixtureRoot = join(import.meta.dir, 'fixtures/basic');
 const multiBinFixtureRoot = join(import.meta.dir, 'fixtures/multi-bin');
+const qualityMetadataFixtureRoot = join(import.meta.dir, 'fixtures/quality-metadata');
 const snapshotRoot = join(import.meta.dir, '__snapshots__');
 
 describe('analyze', () => {
@@ -194,6 +195,103 @@ describe('analyze', () => {
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
     await expectSnapshot('multi-bin.readme.md', output.readme);
+  });
+
+  test('computes repository quality badges deterministically', async () => {
+    const analysis = await analyze(
+      {
+        docs: {
+          title: 'Quality Metadata Fixture',
+          description: 'Fixture docs for repository metadata badges.',
+        },
+        package: {
+          root: qualityMetadataFixtureRoot,
+          entrypoints: ['src/index.ts'],
+        },
+      },
+      { packageRoot: qualityMetadataFixtureRoot },
+    );
+
+    const model = buildModel(analysis);
+    expect(model.badges).toEqual([
+      {
+        id: 'license',
+        label: 'license',
+        value: 'MIT',
+        color: '2563eb',
+      },
+      {
+        id: 'npm',
+        label: 'npm',
+        value: 'v1.2.3',
+        color: 'cb3837',
+      },
+      {
+        id: 'runtime',
+        label: 'runtime',
+        value: 'bun',
+        color: 'f59e0b',
+      },
+      {
+        id: 'typescript',
+        label: 'typescript',
+        value: 'strict',
+        color: '2563eb',
+      },
+      {
+        id: 'eslint',
+        label: 'eslint',
+        value: 'checked',
+        color: '0a7f3f',
+      },
+      {
+        id: 'prettier',
+        label: 'prettier',
+        value: 'checked',
+        color: '0a7f3f',
+      },
+      {
+        id: 'build',
+        label: 'build',
+        value: 'checked',
+        color: '0a7f3f',
+      },
+      {
+        id: 'tests',
+        label: 'tests',
+        value: 'checked',
+        color: '0a7f3f',
+      },
+      {
+        id: 'coverage',
+        label: 'coverage',
+        value: '98.4%',
+        color: '0a7f3f',
+      },
+      {
+        id: 'docs',
+        label: 'docs',
+        value: 'paradox',
+        color: '0f766e',
+      },
+    ]);
+
+    const output = render(model, { outputDir: 'paradox' });
+
+    expect(output.badges.map((badge) => badge.path)).toEqual([
+      'badges/license.svg',
+      'badges/npm.svg',
+      'badges/runtime.svg',
+      'badges/typescript.svg',
+      'badges/eslint.svg',
+      'badges/prettier.svg',
+      'badges/build.svg',
+      'badges/tests.svg',
+      'badges/coverage.svg',
+      'badges/docs.svg',
+    ]);
+
+    await expectSnapshot('quality-metadata.readme.md', output.readme);
   });
 
   test('normalizes string bin usage', () => {

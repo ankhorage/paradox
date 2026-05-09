@@ -5,12 +5,20 @@ export interface DocumentationModel {
   packageName: string;
   packageId: string;
   description: string | null;
+  badges: GeneratedBadge[];
   usage: UsageModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
   modules: ModuleModel[];
   exports: ExportModel[];
   components: ComponentModel[];
+}
+
+export interface GeneratedBadge {
+  id: string;
+  label: string;
+  value: string;
+  color: string;
 }
 
 export interface UsageModel {

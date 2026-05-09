@@ -71,6 +71,13 @@ export interface AnalysisUsageCommand {
   command: string;
 }
 
+export interface AnalysisBadge {
+  id: string;
+  label: string;
+  value: string;
+  color: string;
+}
+
 export interface AnalysisModule {
   path: string;
   isEntrypoint: boolean;
@@ -90,6 +97,7 @@ export interface AnalysisResult {
   components: AnalysisComponent[];
   entrypoints: string[];
   modules: AnalysisModule[];
+  badges: AnalysisBadge[];
 
   usage: AnalysisUsage | null;
 
