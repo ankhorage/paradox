@@ -2,11 +2,80 @@
   {
     "name": "defineParadoxConfig",
     "description": "Defines a Paradox configuration object without changing its shape.",
-    "kind": "function"
+    "kind": "function",
+    "modulePath": "src/config/defineParadoxConfig.ts",
+    "sourceLocation": {
+      "filePath": "src/config/defineParadoxConfig.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ParadoxConfig"
+    ],
+    "signatures": [
+      {
+        "label": "(config: ParadoxConfig) => ParadoxConfig",
+        "parameters": [
+          {
+            "name": "config",
+            "type": "ParadoxConfig",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "ParadoxConfig",
+        "returnDescription": null
+      }
+    ],
+    "members": []
   },
   {
     "name": "ParadoxConfig",
     "description": "Configuration for running Paradox.",
-    "kind": "type"
+    "kind": "type",
+    "modulePath": "src/config/types.ts",
+    "sourceLocation": {
+      "filePath": "src/config/types.ts",
+      "line": 6,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "docs",
+        "kind": "property",
+        "type": "{ title?: string; description?: string; } | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "mode",
+        "kind": "property",
+        "type": "\"safe\" | \"write\" | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "output",
+        "kind": "property",
+        "type": "{ dir?: string; } | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "package",
+        "kind": "property",
+        "type": "{ root?: string; entrypoints?: string[]; } | undefined",
+        "required": false,
+        "description": null
+      }
+    ]
   }
 ]

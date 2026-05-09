@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fixture Docs • Paradox</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: #f5f7fb;
+        color: #11203b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: #2459d3;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code,
+      pre {
+        font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        padding: 1.5rem;
+        border-right: 1px solid #d8dfec;
+        background: #ffffff;
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow: auto;
+      }
+      .content {
+        padding: 2rem;
+      }
+      .panel,
+      .item {
+        background: #ffffff;
+        border: 1px solid #d8dfec;
+        border-radius: 0.9rem;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 8px 24px rgba(17, 32, 59, 0.06);
+      }
+      .summary {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      }
+      .summary strong {
+        display: block;
+        font-size: 1.5rem;
+      }
+      .search {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.75rem;
+        border: 1px solid #c7d2e5;
+        margin: 1rem 0 1.5rem;
+      }
+      .nav-list,
+      .meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .nav-list li + li {
+        margin-top: 0.8rem;
+      }
+      .muted {
+        color: #5e6d8c;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0;
+        list-style: none;
+      }
+      .chip {
+        border-radius: 999px;
+        background: #e8eefb;
+        color: #24427a;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.85rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.8rem;
+      }
+      th,
+      td {
+        padding: 0.6rem;
+        border-bottom: 1px solid #e2e7f2;
+        text-align: left;
+        vertical-align: top;
+      }
+      pre {
+        overflow: auto;
+        border-radius: 0.75rem;
+        background: #0f1729;
+        color: #e7edf7;
+        padding: 1rem;
+      }
+      .empty {
+        font-style: italic;
+        color: #6f7f9c;
+      }
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          max-height: none;
+          border-right: 0;
+          border-bottom: 1px solid #d8dfec;
+        }
+        .content {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="muted">Generated with Paradox</p>
+        <h1>Fixture Docs</h1>
+        <p>Generated fixture docs.</p>
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="Search symbols, files, and metadata"
+        />
+        <ul class="nav-list">
+          <li>
+            <a href="#symbol-button">Button</a>
+            <div class="muted">function • src/ui.ts</div>
+          </li>
+          <li>
+            <a href="#component-button">Button</a>
+            <div class="muted">component • src/ui.ts</div>
+          </li>
+          <li>
+            <a href="#symbol-buttonprops">ButtonProps</a>
+            <div class="muted">type • src/ui.ts</div>
+          </li>
+          <li>
+            <a href="#symbol-createbuttonstate">createButtonState</a>
+            <div class="muted">function • src/ui.ts</div>
+          </li>
+          <li>
+            <a href="#symbol-toolconfig">ToolConfig</a>
+            <div class="muted">type • src/config.ts</div>
+          </li>
+        </ul>
+      </aside>
+      <main class="content">
+        <section class="panel">
+          <h2>Package overview</h2>
+          <div class="summary">
+            <div><strong>4</strong><span class="muted">public exports</span></div>
+            <div><strong>1</strong><span class="muted">components</span></div>
+            <div><strong>4</strong><span class="muted">modules</span></div>
+            <div><strong>1</strong><span class="muted">entrypoints</span></div>
+          </div>
+          <h3>Entrypoints</h3>
+          <ul class="meta-list">
+            <li><code>src/index.ts</code></li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Modules</h2>
+          <article class="item" data-search="src/config.ts ToolConfig">
+            <h3>src/config.ts</h3>
+            <p class="muted">Referenced module</p>
+            <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+            <p><strong>Exports:</strong> <code>ToolConfig</code></p>
+          </article>
+          <article
+            class="item"
+            data-search="src/index.ts Button ButtonProps createButtonState ToolConfig"
+          >
+            <h3>src/index.ts</h3>
+            <p class="muted">Configured entrypoint</p>
+            <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+            <p>
+              <strong>Exports:</strong> <code>Button</code>, <code>ButtonProps</code>,
+              <code>createButtonState</code>, <code>ToolConfig</code>
+            </p>
+          </article>
+          <article class="item" data-search="src/internal.ts internalHelper">
+            <h3>src/internal.ts</h3>
+            <p class="muted">Referenced module</p>
+            <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+            <p><strong>Exports:</strong> <code>internalHelper</code></p>
+          </article>
+          <article class="item" data-search="src/ui.ts Button ButtonProps createButtonState">
+            <h3>src/ui.ts</h3>
+            <p class="muted">Referenced module</p>
+            <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+            <p>
+              <strong>Exports:</strong> <code>Button</code>, <code>ButtonProps</code>,
+              <code>createButtonState</code>
+            </p>
+          </article>
+        </section>
+        <section class="panel">
+          <h2>Exports by module</h2>
+
+          <section>
+            <h3>src/config.ts</h3>
+            <article
+              class="item"
+              id="symbol-toolconfig"
+              data-search="ToolConfig type src/config.ts Configuration for the fixture package."
+            >
+              <h4>ToolConfig</h4>
+              <p class="muted">type • <code>src/config.ts:6:1</code></p>
+              <p>Configuration for the fixture package.</p>
+              <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+              <p><strong>Related symbols:</strong> <span class="empty">None</span></p>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Member</th>
+                    <th>Kind</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>enabled</code></td>
+                    <td>property</td>
+                    <td><code>boolean</code></td>
+                    <td>yes</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </section>
+          <section>
+            <h3>src/ui.ts</h3>
+            <article
+              class="item"
+              id="symbol-button"
+              data-search="Button function src/ui.ts Renders the fixture button component. ButtonProps (props: ButtonProps) =&gt; JSX.Element"
+            >
+              <h4>Button</h4>
+              <p class="muted">function • <code>src/ui.ts:28:1</code></p>
+              <p>Renders the fixture button component.</p>
+              <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+              <div>
+                <strong>Related symbols:</strong>
+                <ul class="chips">
+                  <li class="chip">ButtonProps</li>
+                </ul>
+              </div>
+              <div>
+                <h5>Signature</h5>
+                <pre>(props: ButtonProps) =&gt; JSX.Element</pre>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>props</code></td>
+                      <td><code>ButtonProps</code></td>
+                      <td>yes</td>
+                      <td>Props that configure the rendered button state.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  <strong>Returns:</strong> <code>JSX.Element</code> — The rendered JSX element
+                  descriptor.
+                </p>
+              </div>
+            </article>
+            <article
+              class="item"
+              id="symbol-buttonprops"
+              data-search="ButtonProps type src/ui.ts Props accepted by the fixture button."
+            >
+              <h4>ButtonProps</h4>
+              <p class="muted">type • <code>src/ui.ts:10:1</code></p>
+              <p>Props accepted by the fixture button.</p>
+              <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+              <p><strong>Related symbols:</strong> <span class="empty">None</span></p>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Member</th>
+                    <th>Kind</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>disabled</code></td>
+                    <td>property</td>
+                    <td><code>boolean | undefined</code></td>
+                    <td>no</td>
+                    <td>Optional disabled state.</td>
+                  </tr>
+                  <tr>
+                    <td><code>label</code></td>
+                    <td>property</td>
+                    <td><code>string</code></td>
+                    <td>yes</td>
+                    <td>Visible button label.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+            <article
+              class="item"
+              id="symbol-createbuttonstate"
+              data-search="createButtonState function src/ui.ts Builds button props from raw inputs. ButtonProps (label: string) =&gt; ButtonProps (label: string, disabled: boolean) =&gt; ButtonProps (label: string, disabled?: boolean) =&gt; ButtonProps"
+            >
+              <h4>createButtonState</h4>
+              <p class="muted">function • <code>src/ui.ts:41:1</code></p>
+              <p>Builds button props from raw inputs.</p>
+              <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+              <div>
+                <strong>Related symbols:</strong>
+                <ul class="chips">
+                  <li class="chip">ButtonProps</li>
+                </ul>
+              </div>
+              <div>
+                <h5>Signature</h5>
+                <pre>(label: string) =&gt; ButtonProps</pre>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>label</code></td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td>Visible button label.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  <strong>Returns:</strong> <code>ButtonProps</code> — A normalized button props
+                  object.
+                </p>
+              </div>
+              <div>
+                <h5>Signature</h5>
+                <pre>(label: string, disabled: boolean) =&gt; ButtonProps</pre>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>disabled</code></td>
+                      <td><code>boolean</code></td>
+                      <td>yes</td>
+                      <td>Whether the button should be disabled.</td>
+                    </tr>
+                    <tr>
+                      <td><code>label</code></td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td>Visible button label.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  <strong>Returns:</strong> <code>ButtonProps</code> — A normalized button props
+                  object.
+                </p>
+              </div>
+              <div>
+                <h5>Signature</h5>
+                <pre>(label: string, disabled?: boolean) =&gt; ButtonProps</pre>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>disabled</code></td>
+                      <td><code>boolean</code></td>
+                      <td>no</td>
+                      <td>Whether the button should be disabled.</td>
+                    </tr>
+                    <tr>
+                      <td><code>label</code></td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td>Visible button label.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  <strong>Returns:</strong> <code>ButtonProps</code> — A normalized button props
+                  object.
+                </p>
+              </div>
+            </article>
+          </section>
+        </section>
+        <section class="panel">
+          <h2>Component registry</h2>
+          <article
+            class="item"
+            id="component-button"
+            data-search="Button src/ui.ts Renders the fixture button component. disabled boolean | undefined label string"
+          >
+            <h3>Button</h3>
+            <p class="muted"><code>src/ui.ts:28:1</code></p>
+            <p>Renders the fixture button component.</p>
+            <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Prop</th>
+                  <th>Type</th>
+                  <th>Required</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>disabled</code></td>
+                  <td><code>boolean | undefined</code></td>
+                  <td>no</td>
+                  <td>Optional disabled state.</td>
+                </tr>
+                <tr>
+                  <td><code>label</code></td>
+                  <td><code>string</code></td>
+                  <td>yes</td>
+                  <td>Visible button label.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+        <section class="panel">
+          <h2>Diagrams</h2>
+          <article
+            class="item"
+            data-search="Architecture overview diagrams/architecture-overview.mmd"
+          >
+            <h3>Architecture overview</h3>
+            <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
+            <pre>
+graph TD
+  package__fixture_basic[&quot;Fixture Docs&quot;]
+  entrypoint_src_index_ts[&quot;src/index.ts&quot;]
+  package__fixture_basic --&gt; entrypoint_src_index_ts
+  module_src_config_ts[&quot;src/config.ts&quot;]
+  package__fixture_basic -.-&gt; module_src_config_ts
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_internal_ts[&quot;src/internal.ts&quot;]
+  package__fixture_basic -.-&gt; module_src_internal_ts
+  module_src_ui_ts[&quot;src/ui.ts&quot;]
+  package__fixture_basic -.-&gt; module_src_ui_ts
+</pre
+            >
+          </article>
+          <article
+            class="item"
+            data-search="Module relationships diagrams/module-relationships.mmd"
+          >
+            <h3>Module relationships</h3>
+            <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
+            <pre>
+graph LR
+  module_src_config_ts[&quot;src/config.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_internal_ts[&quot;src/internal.ts&quot;]
+  module_src_ui_ts[&quot;src/ui.ts&quot;]
+  module_src_config_ts -.-&gt; module_src_index_ts
+  module_src_index_ts -.-&gt; module_src_internal_ts
+  module_src_internal_ts -.-&gt; module_src_ui_ts
+</pre
+            >
+          </article>
+          <article class="item" data-search="Export graph diagrams/export-graph.mmd">
+            <h3>Export graph</h3>
+            <p class="muted"><code>diagrams/export-graph.mmd</code></p>
+            <pre>
+graph LR
+  module_src_config_ts[&quot;src/config.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_internal_ts[&quot;src/internal.ts&quot;]
+  module_src_ui_ts[&quot;src/ui.ts&quot;]
+  export_Button[&quot;Button&quot;]
+  module_src_ui_ts --&gt; export_Button
+  export_Button -.-&gt; export_ButtonProps
+  export_ButtonProps[&quot;ButtonProps&quot;]
+  module_src_ui_ts --&gt; export_ButtonProps
+  export_createButtonState[&quot;createButtonState&quot;]
+  module_src_ui_ts --&gt; export_createButtonState
+  export_createButtonState -.-&gt; export_ButtonProps
+  export_ToolConfig[&quot;ToolConfig&quot;]
+  module_src_config_ts --&gt; export_ToolConfig
+</pre
+            >
+          </article>
+          <article class="item" data-search="Entrypoint sequence diagrams/entrypoint-sequence.mmd">
+            <h3>Entrypoint sequence</h3>
+            <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
+            <pre>
+sequenceDiagram
+participant participant_src_config_ts as src/config.ts
+participant participant_src_index_ts as src/index.ts
+participant participant_src_internal_ts as src/internal.ts
+participant participant_src_ui_ts as src/ui.ts
+  participant participant__fixture_basic as Fixture Docs
+  Note over participant__fixture_basic: No internal module relationships detected.
+</pre
+            >
+          </article>
+        </section>
+      </main>
+    </div>
+    <script>
+      const search = document.getElementById('search');
+      const items = Array.from(document.querySelectorAll('[data-search]'));
+      search?.addEventListener('input', () => {
+        const value = search.value.trim().toLowerCase();
+        for (const item of items) {
+          const haystack = (item.getAttribute('data-search') || '').toLowerCase();
+          item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -25,11 +25,11 @@ async function main(): Promise<void> {
   const config = await loadParadoxConfig(configFilePath);
 
   const packageRoot = await resolvePackageRoot(config, configDir);
-  const { outputRoot } = resolveOutputRoot(config, packageRoot);
+  const { outputDir, outputRoot } = resolveOutputRoot(config, packageRoot);
 
   const analysis = await analyze(config, { packageRoot });
   const model = buildModel(analysis);
-  const result = render(model);
+  const result = render(model, { outputDir });
 
   await write(result, config, { packageRoot, outputRoot });
 }

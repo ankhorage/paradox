@@ -12,7 +12,9 @@ export function getPropsFromType(type: Type): AnalysisComponent['props'] {
     const [declaration] = property.getDeclarations();
     const propertyType = property.getTypeAtLocation(declaration);
     const rawComment = getParadoxComment(declaration);
-    const parsed = rawComment ? parseParadoxComment(rawComment) : { description: null };
+    const parsed = rawComment
+      ? parseParadoxComment(rawComment)
+      : { description: null, isConfig: false, params: {}, returns: null };
 
     return {
       name: property.getName(),

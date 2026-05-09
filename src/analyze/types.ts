@@ -3,11 +3,45 @@ import type { Node } from 'ts-morph';
 /***
  * Describes one exported declaration discovered in a package.
  */
+export interface AnalysisSourceLocation {
+  filePath: string;
+  line: number;
+  column: number;
+}
+
+export interface AnalysisParameter {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+}
+
+export interface AnalysisSignature {
+  label: string;
+  parameters: AnalysisParameter[];
+  returnType: string | null;
+  returnDescription: string | null;
+}
+
+export interface AnalysisMember {
+  name: string;
+  kind: 'property' | 'method';
+  type: string;
+  required: boolean;
+  description: string | null;
+}
+
 export interface AnalysisExport {
   name: string;
   node: Node;
   description: string | null;
   kind: 'function' | 'type' | 'unknown';
+  modulePath: string;
+  sourceLocation: AnalysisSourceLocation;
+  exportPaths: string[];
+  relatedSymbols: string[];
+  signatures: AnalysisSignature[];
+  members: AnalysisMember[];
 }
 
 /***
@@ -16,6 +50,9 @@ export interface AnalysisExport {
 export interface AnalysisComponent {
   name: string;
   description: string | null;
+  modulePath: string;
+  sourceLocation: AnalysisSourceLocation;
+  exportPaths: string[];
   props: {
     name: string;
     type: string;
@@ -34,6 +71,13 @@ export interface AnalysisUsageCommand {
   command: string;
 }
 
+export interface AnalysisModule {
+  path: string;
+  isEntrypoint: boolean;
+  dependencies: string[];
+  exports: string[];
+}
+
 /***
  * Complete analysis output used to build the documentation model.
  */
@@ -44,6 +88,8 @@ export interface AnalysisResult {
 
   exports: AnalysisExport[];
   components: AnalysisComponent[];
+  entrypoints: string[];
+  modules: AnalysisModule[];
 
   usage: AnalysisUsage | null;
 

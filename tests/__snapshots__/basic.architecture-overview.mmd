@@ -1,0 +1,11 @@
+graph TD
+  package__fixture_basic["Fixture Docs"]
+  entrypoint_src_index_ts["src/index.ts"]
+  package__fixture_basic --> entrypoint_src_index_ts
+  module_src_config_ts["src/config.ts"]
+  package__fixture_basic -.-> module_src_config_ts
+  module_src_index_ts["src/index.ts"]
+  module_src_internal_ts["src/internal.ts"]
+  package__fixture_basic -.-> module_src_internal_ts
+  module_src_ui_ts["src/ui.ts"]
+  package__fixture_basic -.-> module_src_ui_ts

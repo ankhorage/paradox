@@ -30,6 +30,7 @@ describe('analyze', () => {
 
     expect(analysis.exports.map((item) => item.name)).toEqual([
       'Button',
+      'createButtonState',
       'ToolConfig',
       'ButtonProps',
     ]);
@@ -51,6 +52,13 @@ describe('analyze', () => {
       {
         name: 'Button',
         description: 'Renders the fixture button component.',
+        modulePath: 'src/ui.ts',
+        sourceLocation: {
+          filePath: 'src/ui.ts',
+          line: 28,
+          column: 1,
+        },
+        exportPaths: ['src/index.ts'],
         props: [
           {
             name: 'label',
@@ -68,11 +76,90 @@ describe('analyze', () => {
       },
     ]);
 
-    const output = render(buildModel(analysis));
+    const createButtonStateExport = findExport(analysis, 'createButtonState');
+    expect(createButtonStateExport.modulePath).toBe('src/ui.ts');
+    expect(createButtonStateExport.exportPaths).toEqual(['src/index.ts']);
+    expect(createButtonStateExport.relatedSymbols).toEqual(['ButtonProps']);
+    expect(createButtonStateExport.sourceLocation).toEqual({
+      filePath: 'src/ui.ts',
+      line: 41,
+      column: 1,
+    });
+    expect(createButtonStateExport.signatures).toEqual([
+      {
+        label: '(label: string) => ButtonProps',
+        parameters: [
+          {
+            name: 'label',
+            type: 'string',
+            required: true,
+            description: 'Visible button label.',
+          },
+        ],
+        returnType: 'ButtonProps',
+        returnDescription: 'A normalized button props object.',
+      },
+      {
+        label: '(label: string, disabled: boolean) => ButtonProps',
+        parameters: [
+          {
+            name: 'label',
+            type: 'string',
+            required: true,
+            description: 'Visible button label.',
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            required: true,
+            description: 'Whether the button should be disabled.',
+          },
+        ],
+        returnType: 'ButtonProps',
+        returnDescription: 'A normalized button props object.',
+      },
+      {
+        label: '(label: string, disabled?: boolean) => ButtonProps',
+        parameters: [
+          {
+            name: 'label',
+            type: 'string',
+            required: true,
+            description: 'Visible button label.',
+          },
+          {
+            name: 'disabled',
+            type: 'boolean',
+            required: false,
+            description: 'Whether the button should be disabled.',
+          },
+        ],
+        returnType: 'ButtonProps',
+        returnDescription: 'A normalized button props object.',
+      },
+    ]);
+
+    const toolConfigExport = findExport(analysis, 'ToolConfig');
+    expect(toolConfigExport.members).toEqual([
+      {
+        name: 'enabled',
+        kind: 'property',
+        type: 'boolean',
+        required: true,
+        description: null,
+      },
+    ]);
+
+    const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
     await expectSnapshot('basic.readme.md', output.readme);
     await expectSnapshot('basic.exports.md', output.exportsMarkdown);
     await expectSnapshot('basic.components.md', output.components);
+    await expectSnapshot('basic.index.html', output.indexHtml);
+    await expectSnapshot('basic.architecture-overview.mmd', output.diagrams[0]?.content ?? '');
+    await expectSnapshot('basic.module-relationships.mmd', output.diagrams[1]?.content ?? '');
+    await expectSnapshot('basic.export-graph.mmd', output.diagrams[2]?.content ?? '');
+    await expectSnapshot('basic.entrypoint-sequence.mmd', output.diagrams[3]?.content ?? '');
   });
 
   test('renders multiple bin commands deterministically', async () => {
@@ -104,7 +191,7 @@ describe('analyze', () => {
       ],
     });
 
-    const output = render(buildModel(analysis));
+    const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
     await expectSnapshot('multi-bin.readme.md', output.readme);
   });
@@ -155,5 +242,44 @@ describe('analyze', () => {
 async function expectSnapshot(name: string, actual: string): Promise<void> {
   const expected = await readFile(join(snapshotRoot, name), 'utf-8');
 
-  expect(actual.trimEnd()).toBe(expected.trimEnd());
+  expect(normalizeSnapshot(name, actual)).toBe(normalizeSnapshot(name, expected));
+}
+
+function normalizeSnapshot(name: string, value: string): string {
+  const trimmed = value.trimEnd();
+
+  if (name.endsWith('.html')) {
+    return normalizeHtmlSnapshot(trimmed);
+  }
+
+  return trimmed;
+}
+
+function normalizeHtmlSnapshot(value: string): string {
+  return value
+    .replaceAll('"', "'")
+    .replaceAll(
+      /<p>\s*<strong>Related symbols:<\/strong>\s*(.*?)\s*<\/p>/gs,
+      '<div><strong>Related symbols:</strong>$1</div>',
+    )
+    .replaceAll(/<pre>\s+/g, '<pre>')
+    .replaceAll(/\s+<\/pre\s*>/g, '</pre>')
+    .replaceAll(/\s+>/g, '>')
+    .replaceAll(/>\s+</g, '><')
+    .replaceAll(/\s+/g, ' ')
+    .replaceAll(/\s+<\/p>/g, '</p>')
+    .trim();
+}
+
+function findExport(
+  analysis: Awaited<ReturnType<typeof analyze>>,
+  name: string,
+): (typeof analysis.exports)[number] {
+  const item = analysis.exports.find((entry) => entry.name === name);
+  expect(item).toBeDefined();
+  if (!item) {
+    throw new Error(`Expected export ${name} to exist.`);
+  }
+
+  return item;
 }

@@ -26,6 +26,11 @@ describe('cli e2e', () => {
         'pkg/paradox/exports.md',
         'pkg/paradox/components.md',
         'pkg/paradox/exports.json',
+        'pkg/paradox/diagrams/architecture-overview.mmd',
+        'pkg/paradox/diagrams/entrypoint-sequence.mmd',
+        'pkg/paradox/diagrams/export-graph.mmd',
+        'pkg/paradox/diagrams/module-relationships.mmd',
+        'pkg/paradox/index.html',
         'pkg/paradox/paradox.json',
       ]);
     } finally {
@@ -52,6 +57,11 @@ describe('cli e2e', () => {
         'pkg/paradox/exports.md',
         'pkg/paradox/components.md',
         'pkg/paradox/exports.json',
+        'pkg/paradox/diagrams/architecture-overview.mmd',
+        'pkg/paradox/diagrams/entrypoint-sequence.mmd',
+        'pkg/paradox/diagrams/export-graph.mmd',
+        'pkg/paradox/diagrams/module-relationships.mmd',
+        'pkg/paradox/index.html',
         'pkg/paradox/paradox.json',
       ]);
     } finally {
@@ -113,6 +123,11 @@ describe('cli e2e', () => {
         'pkg/docs/paradox/exports.md',
         'pkg/docs/paradox/components.md',
         'pkg/docs/paradox/exports.json',
+        'pkg/docs/paradox/diagrams/architecture-overview.mmd',
+        'pkg/docs/paradox/diagrams/entrypoint-sequence.mmd',
+        'pkg/docs/paradox/diagrams/export-graph.mmd',
+        'pkg/docs/paradox/diagrams/module-relationships.mmd',
+        'pkg/docs/paradox/index.html',
         'pkg/docs/paradox/paradox.json',
       ]);
     } finally {

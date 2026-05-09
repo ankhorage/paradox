@@ -8,10 +8,43 @@ interface BuildModelInput {
     name: string;
     description: string | null;
     kind: ExportKind;
+    modulePath: string;
+    sourceLocation: {
+      filePath: string;
+      line: number;
+      column: number;
+    };
+    exportPaths: string[];
+    relatedSymbols: string[];
+    signatures: {
+      label: string;
+      parameters: {
+        name: string;
+        type: string;
+        required: boolean;
+        description: string | null;
+      }[];
+      returnType: string | null;
+      returnDescription: string | null;
+    }[];
+    members: {
+      name: string;
+      kind: 'property' | 'method';
+      type: string;
+      required: boolean;
+      description: string | null;
+    }[];
   }[];
   components: {
     name: string;
     description: string | null;
+    modulePath: string;
+    sourceLocation: {
+      filePath: string;
+      line: number;
+      column: number;
+    };
+    exportPaths: string[];
     props: {
       name: string;
       type: string;
@@ -29,13 +62,23 @@ interface BuildModelInput {
   config: {
     exportName: string;
   } | null;
+  entrypoints: string[];
+  modules: {
+    path: string;
+    isEntrypoint: boolean;
+    dependencies: string[];
+    exports: string[];
+  }[];
 }
 
 /***
  * Converts analysis output into a serializable documentation model.
  */
 export function buildModel(analysis: BuildModelInput): DocumentationModel {
-  const exportsByName = new Map(analysis.exports.map((item) => [item.name, mapExport(item)]));
+  const exportNames = new Set(analysis.exports.map((item) => item.name));
+  const exportsByName = new Map(
+    analysis.exports.map((item) => [item.name, mapExport(item, exportNames)]),
+  );
   const exports = sortByName([...exportsByName.values()]);
 
   return {
@@ -64,23 +107,82 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
             ]),
           }
         : null,
+    entrypoints: [...analysis.entrypoints].sort((a, b) => a.localeCompare(b)),
+    modules: [...analysis.modules]
+      .map((module) => ({
+        path: module.path,
+        isEntrypoint: module.isEntrypoint,
+        dependencies: [...module.dependencies].sort((a, b) => a.localeCompare(b)),
+        exports: [...module.exports].sort((a, b) => a.localeCompare(b)),
+      }))
+      .sort((left, right) => left.path.localeCompare(right.path)),
     exports,
-    components: sortByName(analysis.components.map(mapComponent)),
+    components: sortByName(
+      analysis.components.map((component) =>
+        mapComponent(component, exportsByName.get(component.name)),
+      ),
+    ),
   };
 }
 
-function mapExport(item: BuildModelInput['exports'][number]): ExportModel {
+function mapExport(
+  item: BuildModelInput['exports'][number],
+  exportNames: ReadonlySet<string>,
+): ExportModel {
   return {
     name: item.name,
     description: item.description,
     kind: item.kind,
+    modulePath: item.modulePath,
+    sourceLocation: {
+      filePath: item.sourceLocation.filePath,
+      line: item.sourceLocation.line,
+      column: item.sourceLocation.column,
+    },
+    exportPaths: [...item.exportPaths].sort((a, b) => a.localeCompare(b)),
+    relatedSymbols: item.relatedSymbols
+      .filter((symbol) => exportNames.has(symbol))
+      .sort((a, b) => a.localeCompare(b)),
+    signatures: item.signatures.map((signature) => ({
+      label: signature.label,
+      parameters: sortByName(
+        signature.parameters.map((parameter) => ({
+          name: parameter.name,
+          type: parameter.type,
+          required: parameter.required,
+          description: parameter.description,
+        })),
+      ),
+      returnType: signature.returnType,
+      returnDescription: signature.returnDescription,
+    })),
+    members: sortByName(
+      item.members.map((member) => ({
+        name: member.name,
+        kind: member.kind,
+        type: member.type,
+        required: member.required,
+        description: member.description,
+      })),
+    ),
   };
 }
 
-function mapComponent(component: BuildModelInput['components'][number]): ComponentModel {
+function mapComponent(
+  component: BuildModelInput['components'][number],
+  exportModel: ExportModel | undefined,
+): ComponentModel {
   return {
     name: component.name,
     description: component.description,
+    modulePath: component.modulePath,
+    sourceLocation: {
+      filePath: component.sourceLocation.filePath,
+      line: component.sourceLocation.line,
+      column: component.sourceLocation.column,
+    },
+    exportPaths:
+      exportModel?.exportPaths ?? [...component.exportPaths].sort((a, b) => a.localeCompare(b)),
     props: sortByName(
       component.props.map((prop) => ({
         name: prop.name,
