@@ -1,5 +1,7 @@
 # Fixture Docs
 
+![typescript: strict](./paradox/badges/typescript.svg) ![docs: paradox](./paradox/badges/docs.svg)
+
 Generated fixture docs.
 
 ## Usage

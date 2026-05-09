@@ -1,4 +1,5 @@
 import type { DocumentationModel } from '../model/types.js';
+import { renderBadgeArtifacts } from './renderers/badges.js';
 import { renderDiagramArtifacts } from './renderers/diagrams.js';
 import { renderHtml } from './renderers/html.js';
 import { renderMarkdown } from './renderers/markdown.js';
@@ -13,6 +14,7 @@ export function render(
     outputDir?: string;
   } = {},
 ): RenderResult {
+  const badges = renderBadgeArtifacts(model);
   const diagrams = renderDiagramArtifacts(model);
   const outputDir = options.outputDir ?? 'paradox';
   const result: RenderResult = {
@@ -22,11 +24,13 @@ export function render(
     exportsJson: `${JSON.stringify(model.exports, null, 2)}\n`,
     paradoxJson: `${JSON.stringify(model, null, 2)}\n`,
     indexHtml: '',
+    badges,
     diagrams,
   };
   const context: RenderContext = {
     model,
     outputDir,
+    badges,
     diagrams,
     result,
   };

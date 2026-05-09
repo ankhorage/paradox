@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import type { ParadoxConfig } from '../config/types.js';
+import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
@@ -20,6 +21,7 @@ export async function analyze(
 
   const pkg = await readPackageJson(root);
   const usage = createUsageFromPackageJson(pkg);
+  const badges = await analyzeBadges(root, pkg);
 
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
@@ -43,6 +45,7 @@ export async function analyze(
     components,
     entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
     modules,
+    badges,
     usage,
     config: configMetadata,
   };

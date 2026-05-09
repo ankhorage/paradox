@@ -1,15 +1,8 @@
-# Multi Bin Fixture
+# Quality Metadata Fixture
 
-![typescript: strict](./paradox/badges/typescript.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v1.2.3](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![coverage: 98.4%](./paradox/badges/coverage.svg) ![docs: paradox](./paradox/badges/docs.svg)
 
-Fixture docs for multiple binaries.
-
-## Usage
-
-```bash
-bunx fixture-multi-bin alpha
-bunx fixture-multi-bin beta
-```
+Fixture docs for repository metadata badges.
 
 ## Generated documentation
 
@@ -25,13 +18,9 @@ bunx fixture-multi-bin beta
 
 ```mermaid
 graph TD
-  package_fixture_multi_bin["Multi Bin Fixture"]
+  package__fixture_quality_metadata["Quality Metadata Fixture"]
   entrypoint_src_index_ts["src/index.ts"]
-  package_fixture_multi_bin --> entrypoint_src_index_ts
-  module_src_alpha_ts["src/alpha.ts"]
-  package_fixture_multi_bin -.-> module_src_alpha_ts
-  module_src_beta_ts["src/beta.ts"]
-  package_fixture_multi_bin -.-> module_src_beta_ts
+  package__fixture_quality_metadata --> entrypoint_src_index_ts
   module_src_index_ts["src/index.ts"]
 ```
 
@@ -48,7 +37,7 @@ graph TD
 
 ### example
 
-Example public function.
+Example export for badge fixture snapshots.
 
 - Kind: `function`
 - Module: `src/index.ts`

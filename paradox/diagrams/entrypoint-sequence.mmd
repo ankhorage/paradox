@@ -1,5 +1,6 @@
 sequenceDiagram
 participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_src_analyze_badges_ts as src/analyze/badges.ts
 participant participant_src_analyze_components_ts as src/analyze/components.ts
 participant participant_src_analyze_exports_ts as src/analyze/exports.ts
 participant participant_src_analyze_modules_ts as src/analyze/modules.ts
@@ -21,11 +22,13 @@ participant participant_src_model_buildModel_ts as src/model/buildModel.ts
 participant participant_src_model_types_ts as src/model/types.ts
 participant participant_src_paths_policy_ts as src/paths/policy.ts
 participant participant_src_render_render_ts as src/render/render.ts
+participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
 participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
 participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
 participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
 participant participant_src_render_types_ts as src/render/types.ts
 participant participant_src_write_write_ts as src/write/write.ts
+  participant_src_analyze_analyze_ts->>participant_src_analyze_badges_ts: imports
   participant_src_analyze_analyze_ts->>participant_src_analyze_components_ts: imports
   participant_src_analyze_analyze_ts->>participant_src_analyze_exports_ts: imports
   participant_src_analyze_analyze_ts->>participant_src_analyze_modules_ts: imports
@@ -33,6 +36,8 @@ participant participant_src_write_write_ts as src/write/write.ts
   participant_src_analyze_analyze_ts->>participant_src_analyze_types_ts: imports
   participant_src_analyze_analyze_ts->>participant_src_analyze_usage_ts: imports
   participant_src_analyze_analyze_ts->>participant_src_config_types_ts: imports
+  participant_src_analyze_badges_ts->>participant_src_analyze_types_ts: imports
+  participant_src_analyze_badges_ts->>participant_src_analyze_usage_ts: imports
   participant_src_analyze_components_ts->>participant_src_analyze_types_ts: imports
   participant_src_analyze_components_ts->>participant_src_analyze_utils_getComponentPropsType_ts: imports
   participant_src_analyze_components_ts->>participant_src_analyze_utils_getPropsFromType_ts: imports
@@ -59,10 +64,13 @@ participant participant_src_write_write_ts as src/write/write.ts
   participant_src_model_buildModel_ts->>participant_src_model_types_ts: imports
   participant_src_paths_policy_ts->>participant_src_config_types_ts: imports
   participant_src_render_render_ts->>participant_src_model_types_ts: imports
+  participant_src_render_render_ts->>participant_src_render_renderers_badges_ts: imports
   participant_src_render_render_ts->>participant_src_render_renderers_diagrams_ts: imports
   participant_src_render_render_ts->>participant_src_render_renderers_html_ts: imports
   participant_src_render_render_ts->>participant_src_render_renderers_markdown_ts: imports
   participant_src_render_render_ts->>participant_src_render_types_ts: imports
+  participant_src_render_renderers_badges_ts->>participant_src_model_types_ts: imports
+  participant_src_render_renderers_badges_ts->>participant_src_render_types_ts: imports
   participant_src_render_renderers_diagrams_ts->>participant_src_model_types_ts: imports
   participant_src_render_renderers_diagrams_ts->>participant_src_render_types_ts: imports
   participant_src_render_renderers_html_ts->>participant_src_model_types_ts: imports

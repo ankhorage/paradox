@@ -4,6 +4,12 @@ interface BuildModelInput {
   packageName: string;
   packageId: string;
   description: string | null;
+  badges: {
+    id: string;
+    label: string;
+    value: string;
+    color: string;
+  }[];
   exports: {
     name: string;
     description: string | null;
@@ -85,6 +91,12 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
     packageName: analysis.packageName,
     packageId: analysis.packageId,
     description: analysis.description,
+    badges: analysis.badges.map((badge) => ({
+      id: badge.id,
+      label: badge.label,
+      value: badge.value,
+      color: badge.color,
+    })),
     usage:
       analysis.usage !== null
         ? {

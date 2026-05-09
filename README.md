@@ -1,5 +1,7 @@
 # @ankhorage/paradox
 
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.0.6](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+
 Deterministic documentation generator for TypeScript packages.
 
 ## Usage
@@ -39,6 +41,7 @@ graph TD
   package__ankhorage_paradox --> entrypoint_src_index_ts
   module_src_analyze_analyze_ts["src/analyze/analyze.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_analyze_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --> module_src_analyze_components_ts
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
@@ -46,6 +49,10 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
+  module_src_analyze_badges_ts["src/analyze/badges.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_badges_ts
+  module_src_analyze_badges_ts --> module_src_analyze_types_ts
+  module_src_analyze_badges_ts --> module_src_analyze_usage_ts
   module_src_analyze_components_ts["src/analyze/components.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_components_ts
   module_src_analyze_components_ts --> module_src_analyze_types_ts
@@ -113,10 +120,15 @@ graph TD
   module_src_render_render_ts["src/render/render.ts"]
   package__ankhorage_paradox -.-> module_src_render_render_ts
   module_src_render_render_ts --> module_src_model_types_ts
+  module_src_render_render_ts --> module_src_render_renderers_badges_ts
   module_src_render_render_ts --> module_src_render_renderers_diagrams_ts
   module_src_render_render_ts --> module_src_render_renderers_html_ts
   module_src_render_render_ts --> module_src_render_renderers_markdown_ts
   module_src_render_render_ts --> module_src_render_types_ts
+  module_src_render_renderers_badges_ts["src/render/renderers/badges.ts"]
+  package__ankhorage_paradox -.-> module_src_render_renderers_badges_ts
+  module_src_render_renderers_badges_ts --> module_src_model_types_ts
+  module_src_render_renderers_badges_ts --> module_src_render_types_ts
   module_src_render_renderers_diagrams_ts["src/render/renderers/diagrams.ts"]
   package__ankhorage_paradox -.-> module_src_render_renderers_diagrams_ts
   module_src_render_renderers_diagrams_ts --> module_src_model_types_ts

@@ -2,6 +2,62 @@
   "packageName": "@ankhorage/paradox",
   "packageId": "@ankhorage/paradox",
   "description": "Deterministic documentation generator for TypeScript packages.",
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.0.6",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "docs",
+      "value": "paradox",
+      "color": "0f766e"
+    }
+  ],
   "usage": {
     "packageName": "@ankhorage/paradox",
     "commands": [
@@ -24,6 +80,7 @@
       "path": "src/analyze/analyze.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/analyze/badges.ts",
         "src/analyze/components.ts",
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
@@ -34,6 +91,17 @@
       ],
       "exports": [
         "analyze"
+      ]
+    },
+    {
+      "path": "src/analyze/badges.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/types.ts",
+        "src/analyze/usage.ts"
+      ],
+      "exports": [
+        "analyzeBadges"
       ]
     },
     {
@@ -86,6 +154,7 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
+        "AnalysisBadge",
         "AnalysisComponent",
         "AnalysisExport",
         "AnalysisMember",
@@ -232,6 +301,7 @@
         "DocumentationModel",
         "ExportKind",
         "ExportModel",
+        "GeneratedBadge",
         "MemberModel",
         "ModuleModel",
         "ParameterModel",
@@ -262,6 +332,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
+        "src/render/renderers/badges.ts",
         "src/render/renderers/diagrams.ts",
         "src/render/renderers/html.ts",
         "src/render/renderers/markdown.ts",
@@ -269,6 +340,17 @@
       ],
       "exports": [
         "render"
+      ]
+    },
+    {
+      "path": "src/render/renderers/badges.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/model/types.ts",
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderBadgeArtifacts"
       ]
     },
     {
@@ -311,6 +393,7 @@
         "src/model/types.ts"
       ],
       "exports": [
+        "BadgeArtifact",
         "DiagramArtifact",
         "RenderContext",
         "RenderResult"

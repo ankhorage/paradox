@@ -5,12 +5,13 @@ import type { RenderContext } from '../types.js';
  * Renders markdown artifacts from the documentation model.
  */
 export function renderMarkdown({
+  badges,
   diagrams,
   model,
   outputDir,
 }: RenderContext): Pick<RenderContext['result'], 'components' | 'exportsMarkdown' | 'readme'> {
   return {
-    readme: renderReadme(model, outputDir, diagrams),
+    readme: renderReadme(model, outputDir, badges, diagrams),
     exportsMarkdown: renderExports(model),
     components: renderComponents(model),
   };
@@ -19,9 +20,19 @@ export function renderMarkdown({
 function renderReadme(
   model: DocumentationModel,
   outputDir: string,
+  badges: RenderContext['badges'],
   diagrams: RenderContext['diagrams'],
 ): string {
   const lines = [`# ${model.packageName}`, ''];
+
+  if (badges.length > 0) {
+    lines.push(
+      badges
+        .map((badge) => `![${badgeLabel(model, badge.path)}](./${outputDir}/${badge.path})`)
+        .join(' '),
+      '',
+    );
+  }
 
   if (model.description) {
     lines.push(model.description, '');
@@ -210,4 +221,16 @@ function renderComponents(model: DocumentationModel): string {
 
 function escapeTableCell(value: string): string {
   return value.replaceAll('|', '\\|');
+}
+
+function badgeLabel(model: DocumentationModel, badgePath: string): string {
+  const fileName = badgePath.split('/').pop();
+  if (!fileName) {
+    return badgePath;
+  }
+
+  const id = fileName.replace(/\.svg$/, '');
+  const badge = model.badges.find((entry) => entry.id === id);
+
+  return badge ? `${badge.label}: ${badge.value}` : badgePath;
 }

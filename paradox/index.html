@@ -106,7 +106,7 @@
           <div class="summary">
             <div><strong>2</strong><span class="muted">public exports</span></div>
             <div><strong>0</strong><span class="muted">components</span></div>
-            <div><strong>27</strong><span class="muted">modules</span></div>
+            <div><strong>29</strong><span class="muted">modules</span></div>
             <div><strong>1</strong><span class="muted">entrypoints</span></div>
           </div>
           <h3>Entrypoints</h3>
@@ -116,11 +116,16 @@
         </section>
         <section class="panel">
           <h2>Modules</h2>
-          <article class="item" data-search="src/analyze/analyze.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+          <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
+  </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
+    <h3>src/analyze/badges.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeBadges</code></p>
   </article><article class="item" data-search="src/analyze/components.ts src/analyze/types.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts analyzeComponents">
     <h3>src/analyze/components.ts</h3>
     <p class="muted">Referenced module</p>
@@ -141,11 +146,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
-  </article><article class="item" data-search="src/analyze/types.ts AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSignature AnalysisSourceLocation AnalysisUsage AnalysisUsageCommand">
+  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSignature AnalysisSourceLocation AnalysisUsage AnalysisUsageCommand">
     <h3>src/analyze/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code>, <code>AnalysisUsageCommand</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code>, <code>AnalysisUsageCommand</code></p>
   </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
     <h3>src/analyze/usage.ts</h3>
     <p class="muted">Referenced module</p>
@@ -211,21 +216,26 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
     <p><strong>Exports:</strong> <code>buildModel</code></p>
-  </article><article class="item" data-search="src/model/types.ts ComponentModel ConfigModel DocumentationModel ExportKind ExportModel MemberModel ModuleModel ParameterModel PropModel SignatureModel SourceLocationModel UsageCommandModel UsageModel">
+  </article><article class="item" data-search="src/model/types.ts ComponentModel ConfigModel DocumentationModel ExportKind ExportModel GeneratedBadge MemberModel ModuleModel ParameterModel PropModel SignatureModel SourceLocationModel UsageCommandModel UsageModel">
     <h3>src/model/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>ConfigModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>MemberModel</code>, <code>ModuleModel</code>, <code>ParameterModel</code>, <code>PropModel</code>, <code>SignatureModel</code>, <code>SourceLocationModel</code>, <code>UsageCommandModel</code>, <code>UsageModel</code></p>
+    <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>ConfigModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>GeneratedBadge</code>, <code>MemberModel</code>, <code>ModuleModel</code>, <code>ParameterModel</code>, <code>PropModel</code>, <code>SignatureModel</code>, <code>SourceLocationModel</code>, <code>UsageCommandModel</code>, <code>UsageModel</code></p>
   </article><article class="item" data-search="src/paths/policy.ts src/config/types.ts findParadoxConfigFile loadParadoxConfig ResolvedRuntimePaths resolveOutputRoot resolvePackageRoot resolveWriteTargets">
     <h3>src/paths/policy.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>findParadoxConfigFile</code>, <code>loadParadoxConfig</code>, <code>ResolvedRuntimePaths</code>, <code>resolveOutputRoot</code>, <code>resolvePackageRoot</code>, <code>resolveWriteTargets</code></p>
-  </article><article class="item" data-search="src/render/render.ts src/model/types.ts src/render/renderers/diagrams.ts src/render/renderers/html.ts src/render/renderers/markdown.ts src/render/types.ts render">
+  </article><article class="item" data-search="src/render/render.ts src/model/types.ts src/render/renderers/badges.ts src/render/renderers/diagrams.ts src/render/renderers/html.ts src/render/renderers/markdown.ts src/render/types.ts render">
     <h3>src/render/render.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/renderers/diagrams.ts</code>, <code>src/render/renderers/html.ts</code>, <code>src/render/renderers/markdown.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/renderers/badges.ts</code>, <code>src/render/renderers/diagrams.ts</code>, <code>src/render/renderers/html.ts</code>, <code>src/render/renderers/markdown.ts</code>, <code>src/render/types.ts</code></p>
     <p><strong>Exports:</strong> <code>render</code></p>
+  </article><article class="item" data-search="src/render/renderers/badges.ts src/model/types.ts src/render/types.ts renderBadgeArtifacts">
+    <h3>src/render/renderers/badges.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>renderBadgeArtifacts</code></p>
   </article><article class="item" data-search="src/render/renderers/diagrams.ts src/model/types.ts src/render/types.ts renderDiagramArtifacts">
     <h3>src/render/renderers/diagrams.ts</h3>
     <p class="muted">Referenced module</p>
@@ -241,11 +251,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
     <p><strong>Exports:</strong> <code>renderMarkdown</code></p>
-  </article><article class="item" data-search="src/render/types.ts src/model/types.ts DiagramArtifact RenderContext RenderResult">
+  </article><article class="item" data-search="src/render/types.ts src/model/types.ts BadgeArtifact DiagramArtifact RenderContext RenderResult">
     <h3>src/render/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
-    <p><strong>Exports:</strong> <code>DiagramArtifact</code>, <code>RenderContext</code>, <code>RenderResult</code></p>
+    <p><strong>Exports:</strong> <code>BadgeArtifact</code>, <code>DiagramArtifact</code>, <code>RenderContext</code>, <code>RenderResult</code></p>
   </article><article class="item" data-search="src/write/write.ts src/config/types.ts src/render/types.ts write">
     <h3>src/write/write.ts</h3>
     <p class="muted">Referenced module</p>
@@ -340,6 +350,7 @@
   package__ankhorage_paradox --&gt; entrypoint_src_index_ts
   module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_analyze_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
@@ -347,6 +358,10 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_badges_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
@@ -414,10 +429,15 @@
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_render_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
   module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_badges_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
   module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_diagrams_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
@@ -443,6 +463,7 @@
     <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
     <pre>graph LR
   module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
@@ -464,11 +485,13 @@
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
   module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
   module_src_render_types_ts[&quot;src/render/types.ts&quot;]
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
@@ -476,6 +499,8 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
@@ -502,10 +527,13 @@
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
   module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
   module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
@@ -521,6 +549,7 @@
     <p class="muted"><code>diagrams/export-graph.mmd</code></p>
     <pre>graph LR
   module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
@@ -542,6 +571,7 @@
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
   module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
@@ -558,6 +588,7 @@
     <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
     <pre>sequenceDiagram
 participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_src_analyze_badges_ts as src/analyze/badges.ts
 participant participant_src_analyze_components_ts as src/analyze/components.ts
 participant participant_src_analyze_exports_ts as src/analyze/exports.ts
 participant participant_src_analyze_modules_ts as src/analyze/modules.ts
@@ -579,11 +610,13 @@ participant participant_src_model_buildModel_ts as src/model/buildModel.ts
 participant participant_src_model_types_ts as src/model/types.ts
 participant participant_src_paths_policy_ts as src/paths/policy.ts
 participant participant_src_render_render_ts as src/render/render.ts
+participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
 participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
 participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
 participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
 participant participant_src_render_types_ts as src/render/types.ts
 participant participant_src_write_write_ts as src/write/write.ts
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_badges_ts: imports
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_components_ts: imports
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_exports_ts: imports
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_modules_ts: imports
@@ -591,6 +624,8 @@ participant participant_src_write_write_ts as src/write/write.ts
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_types_ts: imports
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
   participant_src_analyze_analyze_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
   participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_types_ts: imports
   participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getComponentPropsType_ts: imports
   participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getPropsFromType_ts: imports
@@ -617,10 +652,13 @@ participant participant_src_write_write_ts as src/write/write.ts
   participant_src_model_buildModel_ts-&gt;&gt;participant_src_model_types_ts: imports
   participant_src_paths_policy_ts-&gt;&gt;participant_src_config_types_ts: imports
   participant_src_render_render_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_badges_ts: imports
   participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_diagrams_ts: imports
   participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_html_ts: imports
   participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_markdown_ts: imports
   participant_src_render_render_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_render_types_ts: imports
   participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_model_types_ts: imports
   participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_render_types_ts: imports
   participant_src_render_renderers_html_ts-&gt;&gt;participant_src_model_types_ts: imports
