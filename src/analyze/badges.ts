@@ -272,7 +272,7 @@ async function readDirectory(path: string): Promise<string[]> {
       return [];
     }
 
-    throw error;
+    throw new Error(`Unable to read workflow directory: ${path}`, { cause: error });
   }
 }
 
@@ -281,15 +281,21 @@ function isNotFoundError(error: unknown): error is NodeJS.ErrnoException {
 }
 
 async function readJsonFile<T>(path: string): Promise<T | null> {
+  let content: string;
   try {
-    const content = await readFile(path, 'utf-8');
-    return JSON.parse(content) as T;
+    content = await readFile(path, 'utf-8');
   } catch (error: unknown) {
     if (isNotFoundError(error)) {
       return null;
     }
 
-    throw error;
+    throw new Error(`Unable to read JSON metadata file: ${path}`, { cause: error });
+  }
+
+  try {
+    return JSON.parse(content) as T;
+  } catch (error: unknown) {
+    throw new Error(`Unable to parse JSON metadata file: ${path}`, { cause: error });
   }
 }
 

@@ -224,10 +224,12 @@ function escapeTableCell(value: string): string {
 }
 
 function badgeLabel(model: DocumentationModel, badgePath: string): string {
-  const id = badgePath
-    .split('/')
-    .pop()
-    ?.replace(/\.svg$/, '');
+  const fileName = badgePath.split('/').pop();
+  if (!fileName) {
+    return badgePath;
+  }
+
+  const id = fileName.replace(/\.svg$/, '');
   const badge = model.badges.find((entry) => entry.id === id);
 
   return badge ? `${badge.label}: ${badge.value}` : badgePath;
