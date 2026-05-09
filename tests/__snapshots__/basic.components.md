@@ -2,7 +2,11 @@
 
 ## Button
 
+Source: `src/ui.ts:28:1`
+
 Renders the fixture button component.
+
+Export paths: `src/index.ts`
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |

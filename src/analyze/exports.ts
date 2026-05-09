@@ -1,8 +1,9 @@
-import { isAbsolute, join, normalize } from 'node:path';
+import { isAbsolute, join, normalize, relative } from 'node:path';
 
 import type { Node, Project } from 'ts-morph';
 
 import type { AnalysisExport } from './types.js';
+import { getExportMetadata } from './utils/getExportMetadata.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 import { resolveExportSymbol } from './utils/resolveExportSymbol.js';
@@ -24,10 +25,11 @@ export function analyzeExports(
     entrypoints: readonly string[];
   },
 ): AnalyzeExportsResult {
-  const exports: AnalysisExport[] = [];
+  const exportsByName = new Map<string, AnalysisExport>();
   let config: AnalyzeExportsResult['config'] = null;
 
   for (const sourceFile of getEntryPointSourceFiles(project, options)) {
+    const entrypointPath = toPosixPath(relative(options.root, sourceFile.getFilePath()));
     const exported = sourceFile.getExportSymbols();
 
     for (const symbol of exported) {
@@ -37,25 +39,52 @@ export function analyzeExports(
       const rawComment = getParadoxComment(decl);
       const parsed = rawComment
         ? parseParadoxComment(rawComment)
-        : { description: null, isConfig: false };
+        : { description: null, isConfig: false, params: {}, returns: null };
+      const name = resolved.getName();
 
       if (parsed.isConfig) {
         config = {
-          exportName: resolved.getName(),
+          exportName: name,
         };
       }
 
-      exports.push({
-        name: resolved.getName(),
+      const metadata = getExportMetadata({
+        name,
         node: decl,
-        description: parsed.description,
-        kind: inferKind(decl),
+        root: options.root,
+        entrypointPath,
+        symbol: resolved,
       });
+      const existing = exportsByName.get(name);
+
+      exportsByName.set(
+        name,
+        existing
+          ? {
+              ...existing,
+              description: existing.description ?? parsed.description,
+              exportPaths: uniqueSorted([...existing.exportPaths, ...metadata.exportPaths]),
+              relatedSymbols: uniqueSorted([
+                ...existing.relatedSymbols,
+                ...metadata.relatedSymbols,
+              ]),
+              signatures:
+                existing.signatures.length > 0 ? existing.signatures : metadata.signatures,
+              members: existing.members.length > 0 ? existing.members : metadata.members,
+            }
+          : {
+              name,
+              node: decl,
+              description: parsed.description,
+              kind: inferKind(decl),
+              ...metadata,
+            },
+      );
     }
   }
 
   return {
-    exports,
+    exports: [...exportsByName.values()],
     config,
   };
 }
@@ -84,4 +113,12 @@ function inferKind(node: Node): AnalysisExport['kind'] {
   if ('getParameters' in node) return 'function';
   if ('getProperties' in node || 'getMembers' in node) return 'type';
   return 'unknown';
+}
+
+function uniqueSorted(values: readonly string[]): string[] {
+  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
+}
+
+function toPosixPath(path: string): string {
+  return path.replaceAll('\\', '/');
 }

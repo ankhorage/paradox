@@ -1,0 +1,74 @@
+graph LR
+  module_src_analyze_analyze_ts["src/analyze/analyze.ts"]
+  module_src_analyze_components_ts["src/analyze/components.ts"]
+  module_src_analyze_exports_ts["src/analyze/exports.ts"]
+  module_src_analyze_modules_ts["src/analyze/modules.ts"]
+  module_src_analyze_project_ts["src/analyze/project.ts"]
+  module_src_analyze_types_ts["src/analyze/types.ts"]
+  module_src_analyze_usage_ts["src/analyze/usage.ts"]
+  module_src_analyze_utils_getComponentPropsType_ts["src/analyze/utils/getComponentPropsType.ts"]
+  module_src_analyze_utils_getExportMetadata_ts["src/analyze/utils/getExportMetadata.ts"]
+  module_src_analyze_utils_getParadoxComment_ts["src/analyze/utils/getParadoxComment.ts"]
+  module_src_analyze_utils_getPropsFromType_ts["src/analyze/utils/getPropsFromType.ts"]
+  module_src_analyze_utils_isReactComponent_ts["src/analyze/utils/isReactComponent.ts"]
+  module_src_analyze_utils_parseParadoxComment_ts["src/analyze/utils/parseParadoxComment.ts"]
+  module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]
+  module_src_cli_ts["src/cli.ts"]
+  module_src_config_defineParadoxConfig_ts["src/config/defineParadoxConfig.ts"]
+  module_src_config_types_ts["src/config/types.ts"]
+  module_src_index_ts["src/index.ts"]
+  module_src_model_buildModel_ts["src/model/buildModel.ts"]
+  module_src_model_types_ts["src/model/types.ts"]
+  module_src_paths_policy_ts["src/paths/policy.ts"]
+  module_src_render_render_ts["src/render/render.ts"]
+  module_src_render_renderers_diagrams_ts["src/render/renderers/diagrams.ts"]
+  module_src_render_renderers_html_ts["src/render/renderers/html.ts"]
+  module_src_render_renderers_markdown_ts["src/render/renderers/markdown.ts"]
+  module_src_render_types_ts["src/render/types.ts"]
+  module_src_write_write_ts["src/write/write.ts"]
+  module_src_analyze_analyze_ts --> module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_types_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
+  module_src_analyze_analyze_ts --> module_src_config_types_ts
+  module_src_analyze_components_ts --> module_src_analyze_types_ts
+  module_src_analyze_components_ts --> module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_components_ts --> module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_components_ts --> module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_exports_ts --> module_src_analyze_types_ts
+  module_src_analyze_exports_ts --> module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_exports_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_exports_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_exports_ts --> module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_modules_ts --> module_src_analyze_types_ts
+  module_src_analyze_usage_ts --> module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_types_ts
+  module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_cli_ts --> module_src_analyze_analyze_ts
+  module_src_cli_ts --> module_src_model_buildModel_ts
+  module_src_cli_ts --> module_src_paths_policy_ts
+  module_src_cli_ts --> module_src_render_render_ts
+  module_src_cli_ts --> module_src_write_write_ts
+  module_src_config_defineParadoxConfig_ts --> module_src_config_types_ts
+  module_src_model_buildModel_ts --> module_src_model_types_ts
+  module_src_paths_policy_ts --> module_src_config_types_ts
+  module_src_render_render_ts --> module_src_model_types_ts
+  module_src_render_render_ts --> module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --> module_src_render_renderers_html_ts
+  module_src_render_render_ts --> module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --> module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --> module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --> module_src_render_types_ts
+  module_src_render_renderers_html_ts --> module_src_model_types_ts
+  module_src_render_renderers_html_ts --> module_src_render_types_ts
+  module_src_render_renderers_markdown_ts --> module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --> module_src_render_types_ts
+  module_src_render_types_ts --> module_src_model_types_ts
+  module_src_write_write_ts --> module_src_config_types_ts
+  module_src_write_write_ts --> module_src_render_types_ts

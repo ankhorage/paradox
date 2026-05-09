@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import type { ParadoxConfig } from '../config/types.js';
 import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
+import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
@@ -28,6 +29,10 @@ export async function analyze(
     entrypoints,
   });
   const components = analyzeComponents(exports);
+  const modules = analyzeModules(project, {
+    root,
+    entrypoints,
+  });
 
   return {
     packageName: config.docs?.title ?? pkg.name,
@@ -36,6 +41,8 @@ export async function analyze(
 
     exports,
     components,
+    entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
+    modules,
     usage,
     config: configMetadata,
   };

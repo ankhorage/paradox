@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ankhorage/paradox • Paradox</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f5f7fb;
+        color: #11203b;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      a { color: #2459d3; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code, pre { font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        padding: 1.5rem;
+        border-right: 1px solid #d8dfec;
+        background: #ffffff;
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow: auto;
+      }
+      .content {
+        padding: 2rem;
+      }
+      .panel, .item {
+        background: #ffffff;
+        border: 1px solid #d8dfec;
+        border-radius: 0.9rem;
+        padding: 1rem 1.2rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 8px 24px rgba(17, 32, 59, 0.06);
+      }
+      .summary {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      }
+      .summary strong {
+        display: block;
+        font-size: 1.5rem;
+      }
+      .search {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.75rem;
+        border: 1px solid #c7d2e5;
+        margin: 1rem 0 1.5rem;
+      }
+      .nav-list, .meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .nav-list li + li { margin-top: 0.8rem; }
+      .muted { color: #5e6d8c; }
+      .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; list-style: none; }
+      .chip {
+        border-radius: 999px;
+        background: #e8eefb;
+        color: #24427a;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.85rem;
+      }
+      table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
+      th, td { padding: 0.6rem; border-bottom: 1px solid #e2e7f2; text-align: left; vertical-align: top; }
+      pre {
+        overflow: auto;
+        border-radius: 0.75rem;
+        background: #0f1729;
+        color: #e7edf7;
+        padding: 1rem;
+      }
+      .empty { font-style: italic; color: #6f7f9c; }
+      @media (max-width: 900px) {
+        .layout { grid-template-columns: 1fr; }
+        .sidebar { position: static; max-height: none; border-right: 0; border-bottom: 1px solid #d8dfec; }
+        .content { padding: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="muted">Generated with Paradox</p>
+        <h1>@ankhorage/paradox</h1>
+        <p>Deterministic documentation generator for TypeScript packages.</p>
+        <input id="search" class="search" type="search" placeholder="Search symbols, files, and metadata" />
+        <ul class="nav-list">
+          <li><a href="#symbol-defineparadoxconfig">defineParadoxConfig</a><div class="muted">function • src/config/defineParadoxConfig.ts</div></li><li><a href="#symbol-paradoxconfig">ParadoxConfig</a><div class="muted">type • src/config/types.ts</div></li>
+        </ul>
+      </aside>
+      <main class="content">
+        <section class="panel">
+          <h2>Package overview</h2>
+          <div class="summary">
+            <div><strong>2</strong><span class="muted">public exports</span></div>
+            <div><strong>0</strong><span class="muted">components</span></div>
+            <div><strong>27</strong><span class="muted">modules</span></div>
+            <div><strong>1</strong><span class="muted">entrypoints</span></div>
+          </div>
+          <h3>Entrypoints</h3>
+          <ul class="meta-list">
+            <li><code>src/index.ts</code></li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Modules</h2>
+          <article class="item" data-search="src/analyze/analyze.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+    <h3>src/analyze/analyze.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyze</code></p>
+  </article><article class="item" data-search="src/analyze/components.ts src/analyze/types.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts analyzeComponents">
+    <h3>src/analyze/components.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getComponentPropsType.ts</code>, <code>src/analyze/utils/getPropsFromType.ts</code>, <code>src/analyze/utils/isReactComponent.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeComponents</code></p>
+  </article><article class="item" data-search="src/analyze/exports.ts src/analyze/types.ts src/analyze/utils/getExportMetadata.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/analyze/utils/resolveExportSymbol.ts analyzeExports">
+    <h3>src/analyze/exports.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getExportMetadata.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/analyze/utils/resolveExportSymbol.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeExports</code></p>
+  </article><article class="item" data-search="src/analyze/modules.ts src/analyze/types.ts analyzeModules">
+    <h3>src/analyze/modules.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeModules</code></p>
+  </article><article class="item" data-search="src/analyze/project.ts createProject">
+    <h3>src/analyze/project.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>createProject</code></p>
+  </article><article class="item" data-search="src/analyze/types.ts AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSignature AnalysisSourceLocation AnalysisUsage AnalysisUsageCommand">
+    <h3>src/analyze/types.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code>, <code>AnalysisUsageCommand</code></p>
+  </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
+    <h3>src/analyze/usage.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>createUsageFromPackageJson</code>, <code>PackageJsonModel</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getComponentPropsType.ts getComponentPropsType">
+    <h3>src/analyze/utils/getComponentPropsType.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>getComponentPropsType</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getExportMetadata.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts getExportMetadata">
+    <h3>src/analyze/utils/getExportMetadata.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>getExportMetadata</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getParadoxComment.ts getParadoxComment">
+    <h3>src/analyze/utils/getParadoxComment.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>getParadoxComment</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getPropsFromType.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts getPropsFromType">
+    <h3>src/analyze/utils/getPropsFromType.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>getPropsFromType</code></p>
+  </article><article class="item" data-search="src/analyze/utils/isReactComponent.ts isReactComponent">
+    <h3>src/analyze/utils/isReactComponent.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>isReactComponent</code></p>
+  </article><article class="item" data-search="src/analyze/utils/parseParadoxComment.ts parseParadoxComment">
+    <h3>src/analyze/utils/parseParadoxComment.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>parseParadoxComment</code></p>
+  </article><article class="item" data-search="src/analyze/utils/resolveExportSymbol.ts resolveExportSymbol">
+    <h3>src/analyze/utils/resolveExportSymbol.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>resolveExportSymbol</code></p>
+  </article><article class="item" data-search="src/cli.ts src/analyze/analyze.ts src/model/buildModel.ts src/paths/policy.ts src/render/render.ts src/write/write.ts">
+    <h3>src/cli.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/analyze.ts</code>, <code>src/model/buildModel.ts</code>, <code>src/paths/policy.ts</code>, <code>src/render/render.ts</code>, <code>src/write/write.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/config/defineParadoxConfig.ts src/config/types.ts defineParadoxConfig">
+    <h3>src/config/defineParadoxConfig.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/config/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>defineParadoxConfig</code></p>
+  </article><article class="item" data-search="src/config/types.ts ParadoxConfig">
+    <h3>src/config/types.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ParadoxConfig</code></p>
+  </article><article class="item" data-search="src/index.ts defineParadoxConfig ParadoxConfig">
+    <h3>src/index.ts</h3>
+    <p class="muted">Configured entrypoint</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>defineParadoxConfig</code>, <code>ParadoxConfig</code></p>
+  </article><article class="item" data-search="src/model/buildModel.ts src/model/types.ts buildModel">
+    <h3>src/model/buildModel.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>buildModel</code></p>
+  </article><article class="item" data-search="src/model/types.ts ComponentModel ConfigModel DocumentationModel ExportKind ExportModel MemberModel ModuleModel ParameterModel PropModel SignatureModel SourceLocationModel UsageCommandModel UsageModel">
+    <h3>src/model/types.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>ConfigModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>MemberModel</code>, <code>ModuleModel</code>, <code>ParameterModel</code>, <code>PropModel</code>, <code>SignatureModel</code>, <code>SourceLocationModel</code>, <code>UsageCommandModel</code>, <code>UsageModel</code></p>
+  </article><article class="item" data-search="src/paths/policy.ts src/config/types.ts findParadoxConfigFile loadParadoxConfig ResolvedRuntimePaths resolveOutputRoot resolvePackageRoot resolveWriteTargets">
+    <h3>src/paths/policy.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/config/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>findParadoxConfigFile</code>, <code>loadParadoxConfig</code>, <code>ResolvedRuntimePaths</code>, <code>resolveOutputRoot</code>, <code>resolvePackageRoot</code>, <code>resolveWriteTargets</code></p>
+  </article><article class="item" data-search="src/render/render.ts src/model/types.ts src/render/renderers/diagrams.ts src/render/renderers/html.ts src/render/renderers/markdown.ts src/render/types.ts render">
+    <h3>src/render/render.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/renderers/diagrams.ts</code>, <code>src/render/renderers/html.ts</code>, <code>src/render/renderers/markdown.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>render</code></p>
+  </article><article class="item" data-search="src/render/renderers/diagrams.ts src/model/types.ts src/render/types.ts renderDiagramArtifacts">
+    <h3>src/render/renderers/diagrams.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>renderDiagramArtifacts</code></p>
+  </article><article class="item" data-search="src/render/renderers/html.ts src/model/types.ts src/render/types.ts renderHtml">
+    <h3>src/render/renderers/html.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>renderHtml</code></p>
+  </article><article class="item" data-search="src/render/renderers/markdown.ts src/model/types.ts src/render/types.ts renderMarkdown">
+    <h3>src/render/renderers/markdown.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>renderMarkdown</code></p>
+  </article><article class="item" data-search="src/render/types.ts src/model/types.ts DiagramArtifact RenderContext RenderResult">
+    <h3>src/render/types.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>DiagramArtifact</code>, <code>RenderContext</code>, <code>RenderResult</code></p>
+  </article><article class="item" data-search="src/write/write.ts src/config/types.ts src/render/types.ts write">
+    <h3>src/write/write.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/config/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>write</code></p>
+  </article>
+        </section>
+        <section class="panel">
+          <h2>Exports by module</h2>
+          
+                <section>
+                  <h3>src/config/defineParadoxConfig.ts</h3>
+                  <article class="item" id="symbol-defineparadoxconfig" data-search="defineParadoxConfig function src/config/defineParadoxConfig.ts Defines a Paradox configuration object without changing its shape. ParadoxConfig (config: ParadoxConfig) =&gt; ParadoxConfig">
+    <h4>defineParadoxConfig</h4>
+    <p class="muted">function • <code>src/config/defineParadoxConfig.ts:6:1</code></p>
+    <p>Defines a Paradox configuration object without changing its shape.</p>
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <p><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ParadoxConfig</li></ul></p>
+    <div>
+        <h5>Signature</h5>
+        <pre>(config: ParadoxConfig) =&gt; ParadoxConfig</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>config</code></td>
+                        <td><code>ParadoxConfig</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>ParadoxConfig</code></p>
+      </div>
+    
+  </article>
+                </section>
+                <section>
+                  <h3>src/config/types.ts</h3>
+                  <article class="item" id="symbol-paradoxconfig" data-search="ParadoxConfig type src/config/types.ts Configuration for running Paradox.">
+    <h4>ParadoxConfig</h4>
+    <p class="muted">type • <code>src/config/types.ts:6:1</code></p>
+    <p>Configuration for running Paradox.</p>
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <p><strong>Related symbols:</strong> <span class="empty">None</span></p>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>docs</code></td>
+            <td>property</td>
+            <td><code>{ title?: string; description?: string; } | undefined</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>mode</code></td>
+            <td>property</td>
+            <td><code>&quot;safe&quot; | &quot;write&quot; | undefined</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>output</code></td>
+            <td>property</td>
+            <td><code>{ dir?: string; } | undefined</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
+            <td><code>package</code></td>
+            <td>property</td>
+            <td><code>{ root?: string; entrypoints?: string[]; } | undefined</code></td>
+            <td>no</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article>
+                </section>
+        </section>
+        <section class="panel">
+          <h2>Component registry</h2>
+          <p class="empty">No components were detected.</p>
+        </section>
+        <section class="panel">
+          <h2>Diagrams</h2>
+          <article class="item" data-search="Architecture overview diagrams/architecture-overview.mmd">
+    <h3>Architecture overview</h3>
+    <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
+    <pre>graph TD
+  package__ankhorage_paradox[&quot;@ankhorage/paradox&quot;]
+  entrypoint_src_index_ts[&quot;src/index.ts&quot;]
+  package__ankhorage_paradox --&gt; entrypoint_src_index_ts
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_analyze_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_exports_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_modules_ts
+  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_usage_ts
+  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_cli_ts
+  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_ts --&gt; module_src_render_render_ts
+  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_config_defineParadoxConfig_ts
+  module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_config_types_ts
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
+  module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_paths_policy_ts
+  module_src_paths_policy_ts --&gt; module_src_config_types_ts
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_render_ts
+  module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_html_ts
+  module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_renderers_markdown_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_render_types_ts
+  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_write_write_ts
+  module_src_write_write_ts --&gt; module_src_config_types_ts
+  module_src_write_write_ts --&gt; module_src_render_types_ts
+</pre>
+  </article><article class="item" data-search="Module relationships diagrams/module-relationships.mmd">
+    <h3>Module relationships</h3>
+    <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
+    <pre>graph LR
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_ts --&gt; module_src_render_render_ts
+  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
+  module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_paths_policy_ts --&gt; module_src_config_types_ts
+  module_src_render_render_ts --&gt; module_src_model_types_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
+  module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
+  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_write_write_ts --&gt; module_src_config_types_ts
+  module_src_write_write_ts --&gt; module_src_render_types_ts
+</pre>
+  </article><article class="item" data-search="Export graph diagrams/export-graph.mmd">
+    <h3>Export graph</h3>
+    <p class="muted"><code>diagrams/export-graph.mmd</code></p>
+    <pre>graph LR
+  module_src_analyze_analyze_ts[&quot;src/analyze/analyze.ts&quot;]
+  module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
+  module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
+  module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
+  module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
+  module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
+  module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
+  module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
+  module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
+  module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
+  module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
+  module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
+  module_src_cli_ts[&quot;src/cli.ts&quot;]
+  module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
+  module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_index_ts[&quot;src/index.ts&quot;]
+  module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
+  module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
+  module_src_render_render_ts[&quot;src/render/render.ts&quot;]
+  module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
+  module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
+  module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
+  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_write_write_ts[&quot;src/write/write.ts&quot;]
+  export_defineParadoxConfig[&quot;defineParadoxConfig&quot;]
+  module_src_config_defineParadoxConfig_ts --&gt; export_defineParadoxConfig
+  export_defineParadoxConfig -.-&gt; export_ParadoxConfig
+  export_ParadoxConfig[&quot;ParadoxConfig&quot;]
+  module_src_config_types_ts --&gt; export_ParadoxConfig
+</pre>
+  </article><article class="item" data-search="Entrypoint sequence diagrams/entrypoint-sequence.mmd">
+    <h3>Entrypoint sequence</h3>
+    <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
+    <pre>sequenceDiagram
+participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_src_analyze_components_ts as src/analyze/components.ts
+participant participant_src_analyze_exports_ts as src/analyze/exports.ts
+participant participant_src_analyze_modules_ts as src/analyze/modules.ts
+participant participant_src_analyze_project_ts as src/analyze/project.ts
+participant participant_src_analyze_types_ts as src/analyze/types.ts
+participant participant_src_analyze_usage_ts as src/analyze/usage.ts
+participant participant_src_analyze_utils_getComponentPropsType_ts as src/analyze/utils/getComponentPropsType.ts
+participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
+participant participant_src_analyze_utils_getParadoxComment_ts as src/analyze/utils/getParadoxComment.ts
+participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
+participant participant_src_analyze_utils_isReactComponent_ts as src/analyze/utils/isReactComponent.ts
+participant participant_src_analyze_utils_parseParadoxComment_ts as src/analyze/utils/parseParadoxComment.ts
+participant participant_src_analyze_utils_resolveExportSymbol_ts as src/analyze/utils/resolveExportSymbol.ts
+participant participant_src_cli_ts as src/cli.ts
+participant participant_src_config_defineParadoxConfig_ts as src/config/defineParadoxConfig.ts
+participant participant_src_config_types_ts as src/config/types.ts
+participant participant_src_index_ts as src/index.ts
+participant participant_src_model_buildModel_ts as src/model/buildModel.ts
+participant participant_src_model_types_ts as src/model/types.ts
+participant participant_src_paths_policy_ts as src/paths/policy.ts
+participant participant_src_render_render_ts as src/render/render.ts
+participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
+participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
+participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
+participant participant_src_render_types_ts as src/render/types.ts
+participant participant_src_write_write_ts as src/write/write.ts
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_components_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_exports_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_modules_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_project_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getComponentPropsType_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getPropsFromType_ts: imports
+  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_isReactComponent_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getExportMetadata_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_resolveExportSymbol_ts: imports
+  participant_src_analyze_modules_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_usage_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_types_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_analyze_analyze_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_model_buildModel_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_paths_policy_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_render_render_ts: imports
+  participant_src_cli_ts-&gt;&gt;participant_src_write_write_ts: imports
+  participant_src_config_defineParadoxConfig_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_model_buildModel_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_paths_policy_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_diagrams_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_html_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_markdown_ts: imports
+  participant_src_render_render_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_render_types_ts: imports
+  participant_src_render_types_ts-&gt;&gt;participant_src_model_types_ts: imports
+  participant_src_write_write_ts-&gt;&gt;participant_src_config_types_ts: imports
+  participant_src_write_write_ts-&gt;&gt;participant_src_render_types_ts: imports
+</pre>
+  </article>
+        </section>
+      </main>
+    </div>
+    <script>
+      const search = document.getElementById('search');
+      const items = Array.from(document.querySelectorAll('[data-search]'));
+      search?.addEventListener('input', () => {
+        const value = search.value.trim().toLowerCase();
+        for (const item of items) {
+          const haystack = (item.getAttribute('data-search') || '').toLowerCase();
+          item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

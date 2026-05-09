@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
 import type { ParadoxConfig } from '../config/types.js';
 import type { RenderResult } from '../render/types.js';
@@ -22,6 +22,13 @@ export async function write(
   await writeFile(join(outputRoot, 'components.md'), result.components);
   await writeFile(join(outputRoot, 'exports.json'), result.exportsJson);
   await writeFile(join(outputRoot, 'paradox.json'), result.paradoxJson);
+  await writeFile(join(outputRoot, 'index.html'), result.indexHtml);
+
+  for (const diagram of result.diagrams) {
+    const diagramPath = join(outputRoot, diagram.path);
+    await mkdir(dirname(diagramPath), { recursive: true });
+    await writeFile(diagramPath, diagram.content);
+  }
 
   if (mode === 'write') {
     await writeFile(join(root, 'README.md'), result.readme);

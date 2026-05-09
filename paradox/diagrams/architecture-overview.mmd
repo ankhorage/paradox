@@ -1,38 +1,3 @@
-# @ankhorage/paradox
-
-Deterministic documentation generator for TypeScript packages.
-
-## Usage
-
-```bash
-bunx @ankhorage/paradox
-```
-
-## Configuration
-
-Create a `paradox.config.ts` file:
-
-```ts
-import { defineParadoxConfig } from '@ankhorage/paradox';
-
-export default defineParadoxConfig({
-  // ...
-});
-```
-
-## Generated documentation
-
-- [Interactive documentation app](./paradox/index.html)
-- [Public API reference](./paradox/exports.md)
-- [Component registry](./paradox/components.md)
-- [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
-- [Module relationships](./paradox/diagrams/module-relationships.mmd)
-- [Export graph](./paradox/diagrams/export-graph.mmd)
-- [Entrypoint sequence](./paradox/diagrams/entrypoint-sequence.mmd)
-
-## Architecture preview
-
-```mermaid
 graph TD
   package__ankhorage_paradox["@ankhorage/paradox"]
   entrypoint_src_index_ts["src/index.ts"]
@@ -136,34 +101,3 @@ graph TD
   package__ankhorage_paradox -.-> module_src_write_write_ts
   module_src_write_write_ts --> module_src_config_types_ts
   module_src_write_write_ts --> module_src_render_types_ts
-```
-
-## Path resolution
-
-- Config discovery: searches upward from `process.cwd()` for `paradox.config.ts/js/mjs/cjs` (required; no fallback).
-- Package root: defaults to the directory containing `paradox.config.*`; `package.root` (when relative) resolves relative to that directory.
-- Output directory: defaults to `paradox/`; `output.dir` (when relative) resolves relative to the resolved package root and must stay inside it.
-- Modes:
-  - `safe`: writes generated artifacts only under the output directory
-  - `write`: additionally updates `<packageRoot>/README.md`
-
-## Public API
-
-### defineParadoxConfig
-
-Defines a Paradox configuration object without changing its shape.
-
-- Kind: `function`
-- Module: `src/config/defineParadoxConfig.ts`
-- Source: `src/config/defineParadoxConfig.ts:6:1`
-- Export paths: `src/index.ts`
-- Related symbols: `ParadoxConfig`
-
-### ParadoxConfig
-
-Configuration for running Paradox.
-
-- Kind: `type`
-- Module: `src/config/types.ts`
-- Source: `src/config/types.ts:6:1`
-- Export paths: `src/index.ts`

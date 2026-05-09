@@ -19,6 +19,9 @@ export function analyzeComponents(exports: readonly AnalysisExport[]): AnalysisC
     components.push({
       name: e.name,
       description: e.description,
+      modulePath: e.modulePath,
+      sourceLocation: e.sourceLocation,
+      exportPaths: e.exportPaths,
       props,
     });
   }
