@@ -127,20 +127,27 @@ function getMembers(node: Node): AnalysisMember[] {
   return node
     .getType()
     .getProperties()
-    .map((property) => {
+    .flatMap((property): AnalysisMember[] => {
       const [declaration] = property.getDeclarations();
+
+      if (!declaration) {
+        return [];
+      }
+
       const rawComment = getParadoxComment(declaration);
       const parsed = rawComment
         ? parseParadoxComment(rawComment)
         : { description: null, isConfig: false, params: {}, returns: null };
 
-      return {
-        name: property.getName(),
-        kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
-        type: property.getTypeAtLocation(declaration).getText(declaration),
-        required: !property.isOptional(),
-        description: parsed.description,
-      } satisfies AnalysisMember;
+      return [
+        {
+          name: property.getName(),
+          kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
+          type: property.getTypeAtLocation(declaration).getText(declaration),
+          required: !property.isOptional(),
+          description: parsed.description,
+        } satisfies AnalysisMember,
+      ];
     });
 }
 
