@@ -1,0 +1,5 @@
+{
+  "name": "fixture-declarationless",
+  "description": "Fixture for declarationless type members.",
+  "type": "module"
+}
