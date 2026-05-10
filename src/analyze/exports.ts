@@ -36,6 +36,10 @@ export function analyzeExports(
       const resolved = resolveExportSymbol(symbol);
       const [decl] = resolved.getDeclarations();
 
+      if (!decl) {
+        continue;
+      }
+
       const rawComment = getParadoxComment(decl);
       const parsed = rawComment
         ? parseParadoxComment(rawComment)
