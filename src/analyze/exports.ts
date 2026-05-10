@@ -34,12 +34,13 @@ export function analyzeExports(
 
     for (const symbol of exported) {
       const resolved = resolveExportSymbol(symbol);
-      const [decl] = resolved.getDeclarations();
+      const declarations = resolved.getDeclarations();
 
-      if (!decl) {
+      if (declarations.length === 0) {
         continue;
       }
 
+      const decl = declarations[0];
       const rawComment = getParadoxComment(decl);
       const parsed = rawComment
         ? parseParadoxComment(rawComment)
