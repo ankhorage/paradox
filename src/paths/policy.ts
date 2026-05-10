@@ -11,15 +11,6 @@ const CONFIG_FILENAMES = [
   'paradox.config.cjs',
 ] as const;
 
-export interface ResolvedRuntimePaths {
-  cwd: string;
-  configFilePath: string;
-  configDir: string;
-  packageRoot: string;
-  outputDir: string;
-  outputRoot: string;
-}
-
 export async function findParadoxConfigFile(startDir: string): Promise<string | null> {
   let current = resolve(startDir);
   let parent = dirname(current);
@@ -82,25 +73,6 @@ export function resolveOutputRoot(
   );
 
   return { outputDir, outputRoot };
-}
-
-export function resolveWriteTargets(
-  packageRoot: string,
-  outputRoot: string,
-): {
-  exportsMarkdown: string;
-  componentsMarkdown: string;
-  exportsJson: string;
-  paradoxJson: string;
-  readme: string;
-} {
-  return {
-    exportsMarkdown: join(outputRoot, 'exports.md'),
-    componentsMarkdown: join(outputRoot, 'components.md'),
-    exportsJson: join(outputRoot, 'exports.json'),
-    paradoxJson: join(outputRoot, 'paradox.json'),
-    readme: join(packageRoot, 'README.md'),
-  };
 }
 
 async function pathExists(path: string): Promise<boolean> {

@@ -66,7 +66,7 @@ export interface AnalysisUsage {
   commands: AnalysisUsageCommand[];
 }
 
-export interface AnalysisUsageCommand {
+interface AnalysisUsageCommand {
   name: string;
   command: string;
 }

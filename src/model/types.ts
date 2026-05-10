@@ -21,17 +21,17 @@ export interface GeneratedBadge {
   color: string;
 }
 
-export interface UsageModel {
+interface UsageModel {
   packageName: string;
   commands: UsageCommandModel[];
 }
 
-export interface UsageCommandModel {
+interface UsageCommandModel {
   name: string;
   command: string;
 }
 
-export interface ConfigModel {
+interface ConfigModel {
   exportName: string;
   configFile: string;
   factoryName: string | null;
@@ -60,27 +60,27 @@ export interface ComponentModel {
   props: PropModel[];
 }
 
-export interface SourceLocationModel {
+interface SourceLocationModel {
   filePath: string;
   line: number;
   column: number;
 }
 
-export interface SignatureModel {
+interface SignatureModel {
   label: string;
   parameters: ParameterModel[];
   returnType: string | null;
   returnDescription: string | null;
 }
 
-export interface ParameterModel {
+interface ParameterModel {
   name: string;
   type: string;
   required: boolean;
   description: string | null;
 }
 
-export interface MemberModel {
+interface MemberModel {
   name: string;
   kind: 'property' | 'method';
   type: string;
@@ -95,7 +95,7 @@ export interface ModuleModel {
   exports: string[];
 }
 
-export interface PropModel {
+interface PropModel {
   name: string;
   type: string;
   required: boolean;

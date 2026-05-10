@@ -163,8 +163,7 @@
         "AnalysisResult",
         "AnalysisSignature",
         "AnalysisSourceLocation",
-        "AnalysisUsage",
-        "AnalysisUsageCommand"
+        "AnalysisUsage"
       ]
     },
     {
@@ -297,19 +296,11 @@
       "dependencies": [],
       "exports": [
         "ComponentModel",
-        "ConfigModel",
         "DocumentationModel",
         "ExportKind",
         "ExportModel",
         "GeneratedBadge",
-        "MemberModel",
-        "ModuleModel",
-        "ParameterModel",
-        "PropModel",
-        "SignatureModel",
-        "SourceLocationModel",
-        "UsageCommandModel",
-        "UsageModel"
+        "ModuleModel"
       ]
     },
     {
@@ -321,10 +312,8 @@
       "exports": [
         "findParadoxConfigFile",
         "loadParadoxConfig",
-        "ResolvedRuntimePaths",
         "resolveOutputRoot",
-        "resolvePackageRoot",
-        "resolveWriteTargets"
+        "resolvePackageRoot"
       ]
     },
     {
