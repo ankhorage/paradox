@@ -124,24 +124,47 @@ function getSignature(
 function getMembers(node: Node): AnalysisMember[] {
   if (getCallableNode(node) !== null) return [];
 
-  return node
-    .getType()
-    .getProperties()
-    .map((property) => {
-      const [declaration] = property.getDeclarations();
-      const rawComment = getParadoxComment(declaration);
-      const parsed = rawComment
-        ? parseParadoxComment(rawComment)
-        : { description: null, isConfig: false, params: {}, returns: null };
+  if (Node.isInterfaceDeclaration(node)) {
+    return getMembersFromProperties(node.getType().getProperties());
+  }
 
-      return {
+  if (Node.isTypeAliasDeclaration(node)) {
+    const typeNode = node.getTypeNode();
+    if (!typeNode || !Node.isTypeLiteral(typeNode)) return [];
+    return getMembersFromProperties(node.getType().getProperties());
+  }
+
+  return [];
+}
+
+function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisMember[] {
+  return properties.flatMap((property): AnalysisMember[] => {
+    const declaration = getFirstDeclaration(property.getDeclarations());
+
+    if (declaration === null) {
+      return [];
+    }
+
+    const rawComment = getParadoxComment(declaration);
+    const parsed = rawComment
+      ? parseParadoxComment(rawComment)
+      : { description: null, isConfig: false, params: {}, returns: null };
+
+    return [
+      {
         name: property.getName(),
         kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
         type: property.getTypeAtLocation(declaration).getText(declaration),
         required: !property.isOptional(),
         description: parsed.description,
-      } satisfies AnalysisMember;
-    });
+      } satisfies AnalysisMember,
+    ];
+  });
+}
+
+function getFirstDeclaration(declarations: readonly Node[]): Node | null {
+  const [declaration = null] = declarations;
+  return declaration;
 }
 
 function getCallableDeclarations(symbol: MorphSymbol, node: Node): CallableDeclaration[] {

@@ -34,7 +34,11 @@ export function analyzeExports(
 
     for (const symbol of exported) {
       const resolved = resolveExportSymbol(symbol);
-      const [decl] = resolved.getDeclarations();
+      const decl = getFirstDeclaration(resolved.getDeclarations());
+
+      if (decl === null) {
+        continue;
+      }
 
       const rawComment = getParadoxComment(decl);
       const parsed = rawComment
@@ -107,6 +111,11 @@ function getEntryPointSourceFiles(
       );
     })
     .filter((sourceFile) => sourceFile != null);
+}
+
+function getFirstDeclaration(declarations: readonly Node[]): Node | null {
+  const [declaration = null] = declarations;
+  return declaration;
 }
 
 function inferKind(node: Node): AnalysisExport['kind'] {

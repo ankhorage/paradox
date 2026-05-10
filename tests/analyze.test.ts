@@ -11,6 +11,7 @@ import { render } from '../src/render/render.js';
 const fixtureRoot = join(import.meta.dir, 'fixtures/basic');
 const multiBinFixtureRoot = join(import.meta.dir, 'fixtures/multi-bin');
 const qualityMetadataFixtureRoot = join(import.meta.dir, 'fixtures/quality-metadata');
+const declarationlessFixtureRoot = join(import.meta.dir, 'fixtures/declarationless');
 const snapshotRoot = join(import.meta.dir, '__snapshots__');
 
 describe('analyze', () => {
@@ -161,6 +162,39 @@ describe('analyze', () => {
     await expectSnapshot('basic.module-relationships.mmd', output.diagrams[1]?.content ?? '');
     await expectSnapshot('basic.export-graph.mmd', output.diagrams[2]?.content ?? '');
     await expectSnapshot('basic.entrypoint-sequence.mmd', output.diagrams[3]?.content ?? '');
+  });
+
+  test('analyzes branded primitive exports without declarationless member crashes', async () => {
+    const analysis = await analyze(
+      {
+        docs: {
+          title: 'Declarationless Fixture',
+          description: 'Fixture docs for declarationless type members.',
+        },
+        package: {
+          root: declarationlessFixtureRoot,
+          entrypoints: ['src/index.ts'],
+        },
+      },
+      { packageRoot: declarationlessFixtureRoot },
+    );
+
+    expect(analysis.exports.map((item) => item.name).sort()).toEqual([
+      'DeclaredOptions',
+      'HexColor',
+      'parseHexColor',
+    ]);
+    expect(findExport(analysis, 'HexColor').members).toEqual([]);
+    expect(findExport(analysis, 'DeclaredOptions').members).toEqual([
+      {
+        name: 'enabled',
+        kind: 'property',
+        type: 'boolean',
+        required: true,
+        description: null,
+      },
+    ]);
+    expect(findExport(analysis, 'parseHexColor').description).toBe('Parses a hex color value.');
   });
 
   test('renders multiple bin commands deterministically', async () => {

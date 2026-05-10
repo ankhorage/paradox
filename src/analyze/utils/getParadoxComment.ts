@@ -3,7 +3,9 @@ import type { Node } from 'ts-morph';
 /***
  * Reads the nearest Paradox doc comment attached to a declaration.
  */
-export function getParadoxComment(node: Node): string | null {
+export function getParadoxComment(node: Node | undefined): string | null {
+  if (!node) return null;
+
   const sourceFile = node.getSourceFile();
   const text = sourceFile.getFullText();
   const nodeStart = node.getStart(false);
