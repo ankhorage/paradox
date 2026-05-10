@@ -124,31 +124,43 @@ function getSignature(
 function getMembers(node: Node): AnalysisMember[] {
   if (getCallableNode(node) !== null) return [];
 
-  return node
-    .getType()
-    .getProperties()
-    .flatMap((property): AnalysisMember[] => {
-      const [declaration] = property.getDeclarations();
+  if (Node.isInterfaceDeclaration(node)) {
+    return getMembersFromProperties(node.getType().getProperties());
+  }
 
-      if (!declaration) {
-        return [];
-      }
+  if (Node.isTypeAliasDeclaration(node)) {
+    const typeNode = node.getTypeNode();
+    if (!typeNode || !Node.isTypeLiteral(typeNode)) return [];
+    return getMembersFromProperties(node.getType().getProperties());
+  }
 
-      const rawComment = getParadoxComment(declaration);
-      const parsed = rawComment
-        ? parseParadoxComment(rawComment)
-        : { description: null, isConfig: false, params: {}, returns: null };
+  return [];
+}
 
-      return [
-        {
-          name: property.getName(),
-          kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
-          type: property.getTypeAtLocation(declaration).getText(declaration),
-          required: !property.isOptional(),
-          description: parsed.description,
-        } satisfies AnalysisMember,
-      ];
-    });
+function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisMember[] {
+  return properties.flatMap((property): AnalysisMember[] => {
+    const declarations = property.getDeclarations();
+
+    if (declarations.length === 0) {
+      return [];
+    }
+
+    const declaration = declarations[0];
+    const rawComment = getParadoxComment(declaration);
+    const parsed = rawComment
+      ? parseParadoxComment(rawComment)
+      : { description: null, isConfig: false, params: {}, returns: null };
+
+    return [
+      {
+        name: property.getName(),
+        kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
+        type: property.getTypeAtLocation(declaration).getText(declaration),
+        required: !property.isOptional(),
+        description: parsed.description,
+      } satisfies AnalysisMember,
+    ];
+  });
 }
 
 function getCallableDeclarations(symbol: MorphSymbol, node: Node): CallableDeclaration[] {
