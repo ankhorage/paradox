@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.9
+
+### Patch Changes
+
+- 8904673: Handle exports and type members without declaration nodes defensively during analysis.
+
 ## 0.0.8
 
 ### Patch Changes
