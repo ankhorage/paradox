@@ -139,13 +139,12 @@ function getMembers(node: Node): AnalysisMember[] {
 
 function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisMember[] {
   return properties.flatMap((property): AnalysisMember[] => {
-    const declarations = property.getDeclarations();
+    const declaration = getFirstDeclaration(property.getDeclarations());
 
-    if (declarations.length === 0) {
+    if (declaration === null) {
       return [];
     }
 
-    const declaration = declarations[0];
     const rawComment = getParadoxComment(declaration);
     const parsed = rawComment
       ? parseParadoxComment(rawComment)
@@ -161,6 +160,11 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
       } satisfies AnalysisMember,
     ];
   });
+}
+
+function getFirstDeclaration(declarations: readonly Node[]): Node | null {
+  const [declaration = null] = declarations;
+  return declaration;
 }
 
 function getCallableDeclarations(symbol: MorphSymbol, node: Node): CallableDeclaration[] {
