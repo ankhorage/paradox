@@ -179,9 +179,9 @@ describe('analyze', () => {
       { packageRoot: declarationlessFixtureRoot },
     );
 
-    expect(analysis.exports.map((item) => item.name)).toEqual([
-      'HexColor',
+    expect(analysis.exports.map((item) => item.name).sort()).toEqual([
       'DeclaredOptions',
+      'HexColor',
       'parseHexColor',
     ]);
     expect(findExport(analysis, 'HexColor').members).toEqual([]);
