@@ -99,6 +99,33 @@ function renderExportGraph(model: DocumentationModel): string {
 
 function renderEntrypointSequence(model: DocumentationModel): string {
   const lines = ['sequenceDiagram'];
+  const callEdges = model.graphs.calls;
+
+  if (callEdges.length > 0) {
+    const participants = new Map<string, string>();
+    for (const edge of callEdges) {
+      participants.set(
+        edge.fromSymbol,
+        `participant ${toMermaidId(`participant-${edge.fromSymbol}`)} as ${edge.fromSymbol}`,
+      );
+      participants.set(
+        edge.toSymbol,
+        `participant ${toMermaidId(`participant-${edge.toSymbol}`)} as ${edge.toSymbol}`,
+      );
+    }
+    lines.push(...participants.values());
+    lines.push(
+      ...callEdges.map(
+        (edge) =>
+          `  ${toMermaidId(`participant-${edge.fromSymbol}`)}->>${toMermaidId(
+            `participant-${edge.toSymbol}`,
+          )}: ${edge.callExpression}()`,
+      ),
+    );
+
+    return `${lines.join('\n')}\n`;
+  }
+
   const participants = new Map<string, string>();
 
   for (const module of model.modules) {

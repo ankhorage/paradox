@@ -48,6 +48,14 @@ describe('analyze', () => {
     });
     expect(analysis.config).toEqual({
       exportName: 'ToolConfig',
+      members: [
+        {
+          name: 'enabled',
+          type: 'boolean',
+          required: true,
+          description: null,
+        },
+      ],
     });
 
     expect(analysis.components).toEqual([

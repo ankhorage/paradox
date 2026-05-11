@@ -1,6 +1,8 @@
 import type { DocumentationModel } from '../../model/types.js';
 import type { RenderContext } from '../types.js';
 
+type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
+
 /***
  * Renders markdown artifacts from the documentation model.
  */
@@ -69,6 +71,24 @@ function renderReadme(
     }
 
     lines.push('```', '');
+
+    if (model.config.members.length > 0) {
+      lines.push('### Configuration options', '');
+      lines.push('| Field | Type | Required | Default | Description |');
+      lines.push('| --- | --- | --- | --- | --- |');
+
+      for (const member of flattenConfigMembers(model.config.members)) {
+        lines.push(
+          `| ${escapeTableCell(member.path)} | \`${escapeTableCell(member.type)}\` | ${
+            member.required ? 'yes' : 'no'
+          } | ${escapeTableCell(member.defaultValue ?? '')} | ${escapeTableCell(
+            member.description ?? '',
+          )} |`,
+        );
+      }
+
+      lines.push('');
+    }
   }
 
   lines.push('## Generated documentation', '');
@@ -221,6 +241,30 @@ function renderComponents(model: DocumentationModel): string {
 
 function escapeTableCell(value: string): string {
   return value.replaceAll('|', '\\|');
+}
+
+function flattenConfigMembers(
+  members: ConfigMembers,
+  prefix = '',
+): {
+  path: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+}[] {
+  return members.flatMap((member) => {
+    const path = prefix ? `${prefix}.${member.name}` : member.name;
+    const current = {
+      path,
+      type: member.type,
+      required: member.required,
+      description: member.description,
+      defaultValue: member.defaultValue,
+    };
+    const children = member.children ? flattenConfigMembers(member.children, path) : [];
+    return [current, ...children];
+  });
 }
 
 function badgeLabel(model: DocumentationModel, badgePath: string): string {

@@ -12,6 +12,7 @@ export interface DocumentationModel {
   modules: ModuleModel[];
   exports: ExportModel[];
   components: ComponentModel[];
+  graphs: GraphModel;
 }
 
 export interface GeneratedBadge {
@@ -35,6 +36,7 @@ interface ConfigModel {
   exportName: string;
   configFile: string;
   factoryName: string | null;
+  members: ConfigMemberModel[];
 }
 
 export interface ExportModel {
@@ -86,6 +88,9 @@ interface MemberModel {
   type: string;
   required: boolean;
   description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: MemberModel[];
 }
 
 export interface ModuleModel {
@@ -100,4 +105,47 @@ interface PropModel {
   type: string;
   required: boolean;
   description: string | null;
+}
+
+interface ConfigMemberModel {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: ConfigMemberModel[];
+}
+
+export interface GraphModel {
+  imports: ImportEdgeModel[];
+  calls: CallEdgeModel[];
+  typeReferences: TypeReferenceEdgeModel[];
+  componentComposition: ComponentCompositionEdgeModel[];
+}
+
+export interface ImportEdgeModel {
+  fromPath: string;
+  toPath: string;
+  sourcePath: string;
+}
+
+export interface CallEdgeModel {
+  fromSymbol: string;
+  toSymbol: string;
+  callExpression: string;
+  sourcePath: string;
+}
+
+export interface TypeReferenceEdgeModel {
+  fromSymbol: string;
+  toType: string;
+  sourcePath: string;
+}
+
+export interface ComponentCompositionEdgeModel {
+  fromComponent: string;
+  toComponent: string;
+  jsxElement: string;
+  sourcePath: string;
 }

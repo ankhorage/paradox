@@ -1,5 +1,26 @@
 import type { ComponentModel, DocumentationModel, ExportKind, ExportModel } from './types.js';
 
+interface ExportMemberInput {
+  name: string;
+  kind: 'property' | 'method';
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: ExportMemberInput[];
+}
+
+interface ConfigMemberInput {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: ConfigMemberInput[];
+}
+
 interface BuildModelInput {
   packageName: string;
   packageId: string;
@@ -33,13 +54,7 @@ interface BuildModelInput {
       returnType: string | null;
       returnDescription: string | null;
     }[];
-    members: {
-      name: string;
-      kind: 'property' | 'method';
-      type: string;
-      required: boolean;
-      description: string | null;
-    }[];
+    members: ExportMemberInput[];
   }[];
   components: {
     name: string;
@@ -67,6 +82,7 @@ interface BuildModelInput {
   } | null;
   config: {
     exportName: string;
+    members: ConfigMemberInput[];
   } | null;
   entrypoints: string[];
   modules: {
@@ -75,6 +91,30 @@ interface BuildModelInput {
     dependencies: string[];
     exports: string[];
   }[];
+  graphs: {
+    imports: {
+      fromPath: string;
+      toPath: string;
+      sourcePath: string;
+    }[];
+    calls: {
+      fromSymbol: string;
+      toSymbol: string;
+      callExpression: string;
+      sourcePath: string;
+    }[];
+    typeReferences: {
+      fromSymbol: string;
+      toType: string;
+      sourcePath: string;
+    }[];
+    componentComposition: {
+      fromComponent: string;
+      toComponent: string;
+      jsxElement: string;
+      sourcePath: string;
+    }[];
+  };
 }
 
 /***
@@ -117,6 +157,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
             factoryName: findConfigFactoryName(analysis.config.exportName, [
               ...exportsByName.keys(),
             ]),
+            members: mapConfigMembers(analysis.config.members),
           }
         : null,
     entrypoints: [...analysis.entrypoints].sort((a, b) => a.localeCompare(b)),
@@ -134,6 +175,12 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
         mapComponent(component, exportsByName.get(component.name)),
       ),
     ),
+    graphs: {
+      imports: [...analysis.graphs.imports],
+      calls: [...analysis.graphs.calls],
+      typeReferences: [...analysis.graphs.typeReferences],
+      componentComposition: [...analysis.graphs.componentComposition],
+    },
   };
 }
 
@@ -175,6 +222,9 @@ function mapExport(
         type: member.type,
         required: member.required,
         description: member.description,
+        defaultValue: member.defaultValue,
+        inheritedFrom: member.inheritedFrom,
+        children: member.children,
       })),
     ),
   };
@@ -204,6 +254,18 @@ function mapComponent(
       })),
     ),
   };
+}
+
+function mapConfigMembers(members: ConfigMemberInput[]): ConfigMemberInput[] {
+  return members.map((member) => ({
+    name: member.name,
+    type: member.type,
+    required: member.required,
+    description: member.description,
+    defaultValue: member.defaultValue,
+    inheritedFrom: member.inheritedFrom,
+    children: member.children ? mapConfigMembers(member.children) : undefined,
+  }));
 }
 
 function findConfigFactoryName(configExportName: string, exportNames: string[]): string | null {
