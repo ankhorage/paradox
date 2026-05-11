@@ -32,7 +32,6 @@ const PRETTIER_CONFIG_FILES = [
 
 const BADGE_ORDER = [
   'license',
-  'npm',
   'runtime',
   'typescript',
   'eslint',
@@ -148,15 +147,6 @@ export async function analyzeBadges(root: string, pkg: PackageJsonModel): Promis
       label: 'license',
       value: pkg.license,
       color: '2563eb',
-    });
-  }
-
-  if (typeof pkg.version === 'string' && pkg.version.length > 0) {
-    badges.push({
-      id: 'npm',
-      label: 'npm',
-      value: `v${pkg.version}`,
-      color: 'cb3837',
     });
   }
 
