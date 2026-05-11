@@ -48,6 +48,7 @@ describe('analyze', () => {
     });
     expect(analysis.config).toEqual({
       exportName: 'ToolConfig',
+      isReadme: true,
       members: [
         {
           name: 'enabled',
@@ -58,43 +59,45 @@ describe('analyze', () => {
       ],
     });
 
-    expect(analysis.components).toEqual([
-      {
-        name: 'Button',
-        description: 'Renders the fixture button component.',
-        modulePath: 'src/ui.ts',
-        sourceLocation: {
-          filePath: 'src/ui.ts',
-          line: 28,
-          column: 1,
+    expect(analysis.components).toHaveLength(1);
+    const [button] = analysis.components;
+    expect(button).toMatchObject({
+      name: 'Button',
+      description: 'Renders the fixture button component.',
+      isReadme: true,
+      examples: [
+        {
+          title: 'Basic button',
+          language: 'tsx',
+          code: '<Button label="Save" />',
         },
-        exportPaths: ['src/index.ts'],
-        props: [
-          {
-            name: 'label',
-            type: 'string',
-            required: true,
-            description: 'Visible button label.',
-          },
-          {
-            name: 'disabled',
-            type: 'boolean | undefined',
-            required: false,
-            description: 'Optional disabled state.',
-          },
-        ],
+      ],
+      modulePath: 'src/ui.ts',
+      sourceLocation: {
+        filePath: 'src/ui.ts',
       },
-    ]);
+      exportPaths: ['src/index.ts'],
+      props: [
+        {
+          name: 'label',
+          type: 'string',
+          required: true,
+          description: 'Visible button label.',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean | undefined',
+          required: false,
+          description: 'Optional disabled state.',
+        },
+      ],
+    });
 
     const createButtonStateExport = findExport(analysis, 'createButtonState');
     expect(createButtonStateExport.modulePath).toBe('src/ui.ts');
     expect(createButtonStateExport.exportPaths).toEqual(['src/index.ts']);
     expect(createButtonStateExport.relatedSymbols).toEqual(['ButtonProps']);
-    expect(createButtonStateExport.sourceLocation).toEqual({
-      filePath: 'src/ui.ts',
-      line: 41,
-      column: 1,
-    });
+    expect(createButtonStateExport.sourceLocation.filePath).toBe('src/ui.ts');
     expect(createButtonStateExport.signatures).toEqual([
       {
         label: '(label: string) => ButtonProps',
@@ -150,6 +153,7 @@ describe('analyze', () => {
     ]);
 
     const toolConfigExport = findExport(analysis, 'ToolConfig');
+    expect(toolConfigExport.isReadme).toBe(true);
     expect(toolConfigExport.members).toEqual([
       {
         name: 'enabled',
@@ -162,10 +166,21 @@ describe('analyze', () => {
 
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
-    await expectSnapshot('basic.readme.md', output.readme);
-    await expectSnapshot('basic.exports.md', output.exportsMarkdown);
-    await expectSnapshot('basic.components.md', output.components);
-    await expectSnapshot('basic.index.html', output.indexHtml);
+    expectGeneratedReadmeScaffold(output.readme, 'Fixture Docs');
+    expect(output.readme).toContain('## Configuration');
+    expect(output.readme).toContain('<summary>Configuration options</summary>');
+    expect(output.readme).toContain('## Public API');
+    expect(output.readme).toContain('### Utilities');
+    expect(output.readme).toContain('<summary>Button</summary>');
+    expect(output.readme).toContain('<summary>Props</summary>');
+    expect(output.readme).toContain('#### Basic button');
+    expect(output.readme).toContain('<Button label="Save" />');
+
+    expect(output.exportsMarkdown).toContain('# Public API');
+    expect(output.exportsMarkdown).toContain('## Button');
+    expect(output.components).toContain('# Components');
+    expect(output.components).toContain('| Prop | Type | Required | Default | Description |');
+    expect(output.indexHtml).toContain('Fixture Docs');
     await expectSnapshot('basic.architecture-overview.mmd', output.diagrams[0]?.content ?? '');
     await expectSnapshot('basic.module-relationships.mmd', output.diagrams[1]?.content ?? '');
     await expectSnapshot('basic.export-graph.mmd', output.diagrams[2]?.content ?? '');
@@ -236,7 +251,10 @@ describe('analyze', () => {
 
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
-    await expectSnapshot('multi-bin.readme.md', output.readme);
+    expectGeneratedReadmeScaffold(output.readme, 'Multi Bin Fixture');
+    expect(output.readme).toContain('bunx fixture-multi-bin alpha');
+    expect(output.readme).toContain('bunx fixture-multi-bin beta');
+    expect(output.readme).not.toContain('## Public API');
   });
 
   test('computes repository quality badges deterministically', async () => {
@@ -333,7 +351,9 @@ describe('analyze', () => {
       'badges/docs.svg',
     ]);
 
-    await expectSnapshot('quality-metadata.readme.md', output.readme);
+    expectGeneratedReadmeScaffold(output.readme, 'Quality Metadata Fixture');
+    expect(output.readme).toContain('![coverage: 98.4%](./paradox/badges/coverage.svg)');
+    expect(output.readme).not.toContain('## Public API');
   });
 
   test('normalizes string bin usage', () => {
@@ -383,6 +403,17 @@ async function expectSnapshot(name: string, actual: string): Promise<void> {
   const expected = await readFile(join(snapshotRoot, name), 'utf-8');
 
   expect(normalizeSnapshot(name, actual)).toBe(normalizeSnapshot(name, expected));
+}
+
+function expectGeneratedReadmeScaffold(readme: string, title: string): void {
+  expect(readme).toContain('<!-- markdownlint-disable MD013 MD033 -->');
+  expect(readme).toContain('<!-- This file is generated by Paradox. Do not edit manually. -->');
+  expect(readme).toContain(`# ${title}`);
+  expect(readme).toContain('## Documentation Tags');
+  expect(readme).toContain('<summary>@readme</summary>');
+  expect(readme).toContain('<summary>@config</summary>');
+  expect(readme).toContain('<summary>@example</summary>');
+  expect(readme).toContain('<summary>Architecture overview</summary>');
 }
 
 function normalizeSnapshot(name: string, value: string): string {

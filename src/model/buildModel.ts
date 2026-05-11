@@ -1,5 +1,11 @@
 import type { ComponentModel, DocumentationModel, ExportKind, ExportModel } from './types.js';
 
+interface ExampleInput {
+  title: string | null;
+  language: string | null;
+  code: string;
+}
+
 interface ExportMemberInput {
   name: string;
   kind: 'property' | 'method';
@@ -34,6 +40,8 @@ interface BuildModelInput {
   exports: {
     name: string;
     description: string | null;
+    isReadme: boolean;
+    examples: ExampleInput[];
     kind: ExportKind;
     modulePath: string;
     sourceLocation: {
@@ -59,6 +67,8 @@ interface BuildModelInput {
   components: {
     name: string;
     description: string | null;
+    isReadme: boolean;
+    examples: ExampleInput[];
     modulePath: string;
     sourceLocation: {
       filePath: string;
@@ -70,6 +80,7 @@ interface BuildModelInput {
       name: string;
       type: string;
       required: boolean;
+      defaultValue?: string;
       description: string | null;
     }[];
   }[];
@@ -82,6 +93,7 @@ interface BuildModelInput {
   } | null;
   config: {
     exportName: string;
+    isReadme: boolean;
     members: ConfigMemberInput[];
   } | null;
   entrypoints: string[];
@@ -153,6 +165,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
       analysis.config !== null
         ? {
             exportName: analysis.config.exportName,
+            isReadme: analysis.config.isReadme,
             configFile: getDefaultConfigFileName(analysis.packageId),
             factoryName: findConfigFactoryName(analysis.config.exportName, [
               ...exportsByName.keys(),
@@ -191,6 +204,8 @@ function mapExport(
   return {
     name: item.name,
     description: item.description,
+    isReadme: item.isReadme,
+    examples: item.examples.map((example) => ({ ...example })),
     kind: item.kind,
     modulePath: item.modulePath,
     sourceLocation: {
@@ -237,6 +252,8 @@ function mapComponent(
   return {
     name: component.name,
     description: component.description,
+    isReadme: component.isReadme,
+    examples: component.examples.map((example) => ({ ...example })),
     modulePath: component.modulePath,
     sourceLocation: {
       filePath: component.sourceLocation.filePath,
@@ -250,6 +267,7 @@ function mapComponent(
         name: prop.name,
         type: prop.type,
         required: prop.required,
+        defaultValue: prop.defaultValue,
         description: prop.description,
       })),
     ),

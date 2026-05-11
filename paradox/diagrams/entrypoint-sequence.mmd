@@ -58,6 +58,7 @@ participant participant_resolveExportSymbol as resolveExportSymbol
 participant participant_getFirstDeclaration as getFirstDeclaration
 participant participant_getParadoxComment as getParadoxComment
 participant participant_parseParadoxComment as parseParadoxComment
+participant participant_createEmptyMetadata as createEmptyMetadata
 participant participant_getExportMetadata as getExportMetadata
 participant participant_uniqueSorted as uniqueSorted
 participant participant_inferKind as inferKind
@@ -133,6 +134,8 @@ participant participant_uniqueBy as uniqueBy
 participant participant_getMembersFromProperties as getMembersFromProperties
 participant participant_isMemberMethodDeclaration as isMemberMethodDeclaration
 participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
+participant participant_normalizeCommentLines as normalizeCommentLines
+participant participant_parseExample as parseExample
 participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
 participant participant_renderBadgeSvg as renderBadgeSvg
 participant participant_getTextWidth as getTextWidth
@@ -165,8 +168,24 @@ participant participant_renderExports as renderExports
 participant participant_renderComponents as renderComponents
 participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
 participant participant_badgeLabel as badgeLabel
+participant participant_renderDocumentationTags as renderDocumentationTags
+participant participant_renderConfiguration as renderConfiguration
+participant participant_renderGeneratedDocumentation as renderGeneratedDocumentation
+participant participant_renderArchitecturePreview as renderArchitecturePreview
+participant participant_renderPathResolution as renderPathResolution
+participant participant_renderReadmeApi as renderReadmeApi
 participant participant_flattenConfigMembers as flattenConfigMembers
 participant participant_escapeTableCell as escapeTableCell
+participant participant_renderDefault as renderDefault
+participant participant_getReadmeGroups as getReadmeGroups
+participant participant_renderComponentAccordion as renderComponentAccordion
+participant participant_renderExportAccordion as renderExportAccordion
+participant participant_renderSignature as renderSignature
+participant participant_renderExamples as renderExamples
+participant participant_addReadmeItem as addReadmeItem
+participant participant_getReadmeCategory as getReadmeCategory
+participant participant_sortReadmeItems as sortReadmeItems
+participant participant_getReadmeItemName as getReadmeItemName
   participant_main->>participant_findParadoxConfigFile: findParadoxConfigFile
   participant_main->>participant_dirname: dirname
   participant_main->>participant_loadParadoxConfig: loadParadoxConfig
@@ -234,6 +253,7 @@ participant participant_escapeTableCell as escapeTableCell
   participant_analyzeExports->>participant_getFirstDeclaration: getFirstDeclaration
   participant_analyzeExports->>participant_getParadoxComment: getParadoxComment
   participant_analyzeExports->>participant_parseParadoxComment: parseParadoxComment
+  participant_analyzeExports->>participant_createEmptyMetadata: createEmptyMetadata
   participant_analyzeExports->>participant_getExportMetadata: getExportMetadata
   participant_analyzeExports->>participant_uniqueSorted: uniqueSorted
   participant_analyzeExports->>participant_inferKind: inferKind
@@ -394,6 +414,8 @@ participant participant_escapeTableCell as escapeTableCell
   participant_src_analyze_utils_getPropsFromType_ts->>participant_parseParadoxComment: parseParadoxComment
   participant_isReactComponent->>participant_getDeclarationName: getDeclarationName
   participant_isReactComponent->>participant_getCallSignature: getCallSignature
+  participant_parseParadoxComment->>participant_normalizeCommentLines: normalizeCommentLines
+  participant_parseParadoxComment->>participant_parseExample: parseExample
   participant_src_render_renderers_badges_ts->>participant_renderBadgeSvg: renderBadgeSvg
   participant_renderBadgeSvg->>participant_getTextWidth: getTextWidth
   participant_renderBadgeSvg->>participant_escapeXml: escapeXml
@@ -438,8 +460,30 @@ participant participant_escapeTableCell as escapeTableCell
   participant_renderMarkdown->>participant_renderExports: renderExports
   participant_renderMarkdown->>participant_renderComponents: renderComponents
   participant_src_render_renderers_markdown_ts->>participant_badgeLabel: badgeLabel
-  participant_renderReadme->>participant_flattenConfigMembers: flattenConfigMembers
-  participant_renderReadme->>participant_escapeTableCell: escapeTableCell
+  participant_renderReadme->>participant_renderDocumentationTags: renderDocumentationTags
+  participant_renderReadme->>participant_renderConfiguration: renderConfiguration
+  participant_renderReadme->>participant_renderGeneratedDocumentation: renderGeneratedDocumentation
+  participant_renderReadme->>participant_renderArchitecturePreview: renderArchitecturePreview
+  participant_renderReadme->>participant_renderPathResolution: renderPathResolution
+  participant_renderReadme->>participant_renderReadmeApi: renderReadmeApi
+  participant_renderConfiguration->>participant_flattenConfigMembers: flattenConfigMembers
+  participant_renderConfiguration->>participant_escapeTableCell: escapeTableCell
+  participant_renderConfiguration->>participant_renderDefault: renderDefault
+  participant_renderReadmeApi->>participant_getReadmeGroups: getReadmeGroups
+  participant_renderReadmeApi->>participant_renderComponentAccordion: renderComponentAccordion
+  participant_renderReadmeApi->>participant_renderExportAccordion: renderExportAccordion
+  participant_renderComponentAccordion->>participant_renderSignature: renderSignature
+  participant_renderComponentAccordion->>participant_renderExamples: renderExamples
+  participant_renderComponentAccordion->>participant_escapeTableCell: escapeTableCell
+  participant_renderComponentAccordion->>participant_renderDefault: renderDefault
+  participant_renderExportAccordion->>participant_renderSignature: renderSignature
+  participant_renderExportAccordion->>participant_renderExamples: renderExamples
+  participant_getReadmeGroups->>participant_addReadmeItem: addReadmeItem
+  participant_getReadmeGroups->>participant_getReadmeCategory: getReadmeCategory
+  participant_src_render_renderers_markdown_ts->>participant_sortReadmeItems: sortReadmeItems
+  participant_src_render_renderers_markdown_ts->>participant_getReadmeItemName: getReadmeItemName
   participant_renderExports->>participant_escapeTableCell: escapeTableCell
   participant_renderComponents->>participant_escapeTableCell: escapeTableCell
+  participant_renderComponents->>participant_renderDefault: renderDefault
+  participant_renderDefault->>participant_escapeTableCell: escapeTableCell
   participant_src_render_renderers_markdown_ts->>participant_flattenConfigMembers: flattenConfigMembers

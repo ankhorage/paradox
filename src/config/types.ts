@@ -2,6 +2,7 @@
  * Configuration for running Paradox.
  *
  * @config
+ * @readme
  */
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';

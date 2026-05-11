@@ -17,32 +17,20 @@ import {
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
-/***
- * Runs the source analysis pipeline for a configured package.
- */
 export async function analyze(
   config: ParadoxConfig,
   runtime: { packageRoot: string },
 ): Promise<AnalysisResult> {
   const root = runtime.packageRoot;
-
   const pkg = await readPackageJson(root);
   const usage = createUsageFromPackageJson(pkg);
   const badges = await analyzeBadges(root, pkg);
-
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
   const program = createTypeScriptProgram({ root, entrypoints, project });
-
-  const { config: configMetadata, exports } = analyzeExports(project, {
-    root,
-    entrypoints,
-  });
+  const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
-  const modules = analyzeModules(project, {
-    root,
-    entrypoints,
-  });
+  const modules = analyzeModules(project, { root, entrypoints });
   const configExport = configMetadata
     ? (exports.find((entry) => entry.name === configMetadata.exportName) ?? null)
     : null;
@@ -75,7 +63,6 @@ export async function analyze(
     packageName: config.docs?.title ?? pkg.name,
     packageId: pkg.name,
     description: config.docs?.description ?? pkg.description ?? null,
-
     exports,
     components,
     entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
@@ -85,6 +72,7 @@ export async function analyze(
     config: configMetadata
       ? {
           exportName: configMetadata.exportName,
+          isReadme: configMetadata.isReadme,
           members: mapTypeMembers(configMembers),
         }
       : null,
@@ -118,6 +106,5 @@ function mapTypeMembers(
 
 async function readPackageJson(root: string): Promise<PackageJsonModel> {
   const raw = await readFile(join(root, 'package.json'), 'utf-8');
-
   return JSON.parse(raw) as PackageJsonModel;
 }
