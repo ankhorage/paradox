@@ -85,22 +85,14 @@ export async function analyze(
     config: configMetadata
       ? {
           exportName: configMetadata.exportName,
-          members: configMembers.map((member) => ({
-            name: member.name,
-            type: member.type,
-            required: member.required,
-            description: member.description ?? null,
-            defaultValue: member.defaultValue,
-            inheritedFrom: member.inheritedFrom,
-            children: member.children ? mapTypeMembers(member.children) : undefined,
-          })),
+          members: mapTypeMembers(configMembers),
         }
       : null,
     graphs,
   };
 }
 
-function mapTypeMembers(members: readonly ReturnType<typeof collectTypeMembers>[number][]): {
+interface AnalysisTypeMemberOutput {
   name: string;
   type: string;
   required: boolean;
@@ -108,7 +100,11 @@ function mapTypeMembers(members: readonly ReturnType<typeof collectTypeMembers>[
   defaultValue?: string;
   inheritedFrom?: string;
   children?: ReturnType<typeof mapTypeMembers>;
-}[] {
+}
+
+function mapTypeMembers(
+  members: readonly ReturnType<typeof collectTypeMembers>[number][],
+): AnalysisTypeMemberOutput[] {
   return members.map((member) => ({
     name: member.name,
     type: member.type,

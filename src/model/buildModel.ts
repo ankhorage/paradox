@@ -157,7 +157,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
             factoryName: findConfigFactoryName(analysis.config.exportName, [
               ...exportsByName.keys(),
             ]),
-            members: mapConfigMembers(analysis.config.members),
+            members: analysis.config.members,
           }
         : null,
     entrypoints: [...analysis.entrypoints].sort((a, b) => a.localeCompare(b)),
@@ -254,18 +254,6 @@ function mapComponent(
       })),
     ),
   };
-}
-
-function mapConfigMembers(members: ConfigMemberInput[]): ConfigMemberInput[] {
-  return members.map((member) => ({
-    name: member.name,
-    type: member.type,
-    required: member.required,
-    description: member.description,
-    defaultValue: member.defaultValue,
-    inheritedFrom: member.inheritedFrom,
-    children: member.children ? mapConfigMembers(member.children) : undefined,
-  }));
 }
 
 function findConfigFactoryName(configExportName: string, exportNames: string[]): string | null {
