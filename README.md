@@ -22,6 +22,15 @@ export default defineParadoxConfig({
 });
 ```
 
+### Configuration options
+
+| Field   | Type                                                      | Required | Default | Description |
+| ------- | --------------------------------------------------------- | -------- | ------- | ----------- |
+| mode    | `'safe' \| 'write' \| undefined`                          | no       |         |             |
+| docs    | `{ title?: string; description?: string; } \| undefined`  | no       |         |             |
+| package | `{ root?: string; entrypoints?: string[]; } \| undefined` | no       |         |             |
+| output  | `{ dir?: string; } \| undefined`                          | no       |         |             |
+
 ## Generated documentation
 
 - [Interactive documentation app](./paradox/index.html)
@@ -46,6 +55,9 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --> module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
@@ -55,6 +67,8 @@ graph TD
   module_src_analyze_badges_ts --> module_src_analyze_usage_ts
   module_src_analyze_components_ts["src/analyze/components.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_components_ts
+  module_src_analyze_components_ts --> module_src_analyze_semantic_exports_ts
+  module_src_analyze_components_ts --> module_src_analyze_semantic_model_ts
   module_src_analyze_components_ts --> module_src_analyze_types_ts
   module_src_analyze_components_ts --> module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --> module_src_analyze_utils_getPropsFromType_ts
@@ -71,6 +85,54 @@ graph TD
   module_src_analyze_modules_ts --> module_src_analyze_types_ts
   module_src_analyze_project_ts["src/analyze/project.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_project_ts
+  module_src_analyze_semantic_analyzeProject_ts["src/analyze/semantic/analyzeProject.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_analyzeProject_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts["src/analyze/semantic/associateDocBlocksWithSymbols.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_collectSourceFiles_ts["src/analyze/semantic/collectSourceFiles.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts["src/analyze/semantic/createTypeScriptProgram.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_docBlocks_ts["src/analyze/semantic/docBlocks.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_docBlocks_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_docBlocks_ts --> module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_docBlocks_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_exports_ts["src/analyze/semantic/exports.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_exports_ts --> module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_exports_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_exports_ts --> module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_exports_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_graphs_ts["src/analyze/semantic/graphs.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_isReactComponent_ts["src/analyze/semantic/isReactComponent.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_model_ts["src/analyze/semantic/model.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_paradoxComment_ts["src/analyze/semantic/paradoxComment.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_tagRegistry_ts["src/analyze/semantic/tagRegistry.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_utils_ts["src/analyze/semantic/utils.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_semantic_utils_ts
   module_src_analyze_types_ts["src/analyze/types.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_types_ts
   module_src_analyze_usage_ts["src/analyze/usage.ts"]
