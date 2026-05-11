@@ -68,8 +68,7 @@ export function analyzeExports(
               ...existing,
               description: existing.description ?? parsed.description,
               isReadme: existing.isReadme || parsed.isReadme,
-              examples:
-                existing.examples.length > 0 ? existing.examples : parsed.examples,
+              examples: existing.examples.length > 0 ? existing.examples : parsed.examples,
               exportPaths: uniqueSorted([...existing.exportPaths, ...metadata.exportPaths]),
               relatedSymbols: uniqueSorted([
                 ...existing.relatedSymbols,
