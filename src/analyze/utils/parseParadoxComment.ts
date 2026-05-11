@@ -10,7 +10,7 @@ interface ParsedParadoxComment {
   returns: string | null;
 }
 
-export interface ParsedExample {
+interface ParsedExample {
   title: string | null;
   language: string | null;
   code: string;
