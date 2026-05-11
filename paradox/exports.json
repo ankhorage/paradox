@@ -2,11 +2,13 @@
   {
     "name": "defineParadoxConfig",
     "description": "Defines a Paradox configuration object without changing its shape.",
+    "isReadme": true,
+    "examples": [],
     "kind": "function",
     "modulePath": "src/config/defineParadoxConfig.ts",
     "sourceLocation": {
       "filePath": "src/config/defineParadoxConfig.ts",
-      "line": 6,
+      "line": 8,
       "column": 1
     },
     "exportPaths": [
@@ -35,11 +37,13 @@
   {
     "name": "ParadoxConfig",
     "description": "Configuration for running Paradox.",
+    "isReadme": true,
+    "examples": [],
     "kind": "type",
     "modulePath": "src/config/types.ts",
     "sourceLocation": {
       "filePath": "src/config/types.ts",
-      "line": 6,
+      "line": 7,
       "column": 1
     },
     "exportPaths": [

@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/config/defineParadoxConfig.ts`
-Source: `src/config/defineParadoxConfig.ts:6:1`
+Source: `src/config/defineParadoxConfig.ts:8:1`
 
 Defines a Paradox configuration object without changing its shape.
 
@@ -18,7 +18,7 @@ Defines a Paradox configuration object without changing its shape.
 
 Kind: `type`
 Module: `src/config/types.ts`
-Source: `src/config/types.ts:6:1`
+Source: `src/config/types.ts:7:1`
 
 Configuration for running Paradox.
 
