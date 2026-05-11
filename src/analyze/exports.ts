@@ -12,6 +12,7 @@ interface AnalyzeExportsResult {
   exports: AnalysisExport[];
   config: {
     exportName: string;
+    isReadme: boolean;
   } | null;
 }
 
@@ -41,14 +42,13 @@ export function analyzeExports(
       }
 
       const rawComment = getParadoxComment(decl);
-      const parsed = rawComment
-        ? parseParadoxComment(rawComment)
-        : { description: null, isConfig: false, params: {}, returns: null };
+      const parsed = rawComment ? parseParadoxComment(rawComment) : createEmptyMetadata();
       const name = resolved.getName();
 
       if (parsed.isConfig) {
         config = {
           exportName: name,
+          isReadme: parsed.isReadme,
         };
       }
 
@@ -67,6 +67,9 @@ export function analyzeExports(
           ? {
               ...existing,
               description: existing.description ?? parsed.description,
+              isReadme: existing.isReadme || parsed.isReadme,
+              examples:
+                existing.examples.length > 0 ? existing.examples : parsed.examples,
               exportPaths: uniqueSorted([...existing.exportPaths, ...metadata.exportPaths]),
               relatedSymbols: uniqueSorted([
                 ...existing.relatedSymbols,
@@ -80,6 +83,8 @@ export function analyzeExports(
               name,
               node: decl,
               description: parsed.description,
+              isReadme: parsed.isReadme,
+              examples: parsed.examples,
               kind: inferKind(decl),
               ...metadata,
             },
@@ -130,4 +135,15 @@ function uniqueSorted(values: readonly string[]): string[] {
 
 function toPosixPath(path: string): string {
   return path.replaceAll('\\', '/');
+}
+
+function createEmptyMetadata() {
+  return {
+    description: null,
+    isConfig: false,
+    isReadme: false,
+    examples: [],
+    params: {},
+    returns: null,
+  };
 }
