@@ -117,33 +117,33 @@ interface ConfigMemberModel {
   children?: ConfigMemberModel[];
 }
 
-export interface GraphModel {
+interface GraphModel {
   imports: ImportEdgeModel[];
   calls: CallEdgeModel[];
   typeReferences: TypeReferenceEdgeModel[];
   componentComposition: ComponentCompositionEdgeModel[];
 }
 
-export interface ImportEdgeModel {
+interface ImportEdgeModel {
   fromPath: string;
   toPath: string;
   sourcePath: string;
 }
 
-export interface CallEdgeModel {
+interface CallEdgeModel {
   fromSymbol: string;
   toSymbol: string;
   callExpression: string;
   sourcePath: string;
 }
 
-export interface TypeReferenceEdgeModel {
+interface TypeReferenceEdgeModel {
   fromSymbol: string;
   toType: string;
   sourcePath: string;
 }
 
-export interface ComponentCompositionEdgeModel {
+interface ComponentCompositionEdgeModel {
   fromComponent: string;
   toComponent: string;
   jsxElement: string;
