@@ -88,7 +88,7 @@ export interface AnalysisModule {
   exports: string[];
 }
 
-export interface AnalysisTypeMember {
+interface AnalysisTypeMember {
   name: string;
   type: string;
   required: boolean;
@@ -98,33 +98,33 @@ export interface AnalysisTypeMember {
   children?: AnalysisTypeMember[];
 }
 
-export interface ImportEdge {
+interface ImportEdge {
   fromPath: string;
   toPath: string;
   sourcePath: string;
 }
 
-export interface CallEdge {
+interface CallEdge {
   fromSymbol: string;
   toSymbol: string;
   callExpression: string;
   sourcePath: string;
 }
 
-export interface TypeReferenceEdge {
+interface TypeReferenceEdge {
   fromSymbol: string;
   toType: string;
   sourcePath: string;
 }
 
-export interface ComponentCompositionEdge {
+interface ComponentCompositionEdge {
   fromComponent: string;
   toComponent: string;
   jsxElement: string;
   sourcePath: string;
 }
 
-export interface AnalysisGraphs {
+interface AnalysisGraphs {
   imports: ImportEdge[];
   calls: CallEdge[];
   typeReferences: TypeReferenceEdge[];
