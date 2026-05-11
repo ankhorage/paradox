@@ -153,10 +153,7 @@ function visitCallEdges(
   }
 }
 
-function renderCallFlow(
-  lines: string[],
-  callEdges: DocumentationModel['graphs']['calls'],
-): void {
+function renderCallFlow(lines: string[], callEdges: DocumentationModel['graphs']['calls']): void {
   const outgoing = groupCallsBySource(callEdges);
   const roots = getCallFlowRoots(callEdges);
   const visited = new Set<string>();
