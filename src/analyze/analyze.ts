@@ -7,6 +7,13 @@ import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
+import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
+import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
+import {
+  collectCallGraph,
+  collectComponentCompositionGraph,
+  collectImportGraph,
+} from './semantic/graphs.js';
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
@@ -25,16 +32,44 @@ export async function analyze(
 
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
+  const program = createTypeScriptProgram({ root, entrypoints, project });
 
   const { config: configMetadata, exports } = analyzeExports(project, {
     root,
     entrypoints,
   });
-  const components = analyzeComponents(exports);
+  const components = analyzeComponents(exports, { program });
   const modules = analyzeModules(project, {
     root,
     entrypoints,
   });
+  const configExport = configMetadata
+    ? (exports.find((entry) => entry.name === configMetadata.exportName) ?? null)
+    : null;
+  const configMembers =
+    configExport && (configExport.kind === 'type' || configExport.kind === 'unknown')
+      ? collectTypeMembers(
+          program,
+          resolveTypeReference(program, configExport.node) ?? {
+            type: configExport.node.getType(),
+            name: configExport.name,
+            sourcePath: configExport.modulePath,
+            symbol: configExport.node.getSymbol() ?? null,
+          },
+        )
+      : [];
+  const graphs = {
+    imports: collectImportGraph(program),
+    calls: collectCallGraph(program),
+    typeReferences: exports.flatMap((entry) =>
+      entry.relatedSymbols.map((symbol) => ({
+        fromSymbol: entry.name,
+        toType: symbol,
+        sourcePath: entry.modulePath,
+      })),
+    ),
+    componentComposition: collectComponentCompositionGraph(program),
+  };
 
   return {
     packageName: config.docs?.title ?? pkg.name,
@@ -47,8 +82,38 @@ export async function analyze(
     modules,
     badges,
     usage,
-    config: configMetadata,
+    config: configMetadata
+      ? {
+          exportName: configMetadata.exportName,
+          members: mapTypeMembers(configMembers),
+        }
+      : null,
+    graphs,
   };
+}
+
+interface AnalysisTypeMemberOutput {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: ReturnType<typeof mapTypeMembers>;
+}
+
+function mapTypeMembers(
+  members: readonly ReturnType<typeof collectTypeMembers>[number][],
+): AnalysisTypeMemberOutput[] {
+  return members.map((member) => ({
+    name: member.name,
+    type: member.type,
+    required: member.required,
+    description: member.description ?? null,
+    ...(member.defaultValue !== undefined ? { defaultValue: member.defaultValue } : {}),
+    ...(member.inheritedFrom !== undefined ? { inheritedFrom: member.inheritedFrom } : {}),
+    ...(member.children ? { children: mapTypeMembers(member.children) } : {}),
+  }));
 }
 
 async function readPackageJson(root: string): Promise<PackageJsonModel> {

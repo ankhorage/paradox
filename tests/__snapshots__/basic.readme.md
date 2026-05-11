@@ -24,6 +24,12 @@ const config = {
 export default config;
 ```
 
+### Configuration options
+
+| Field | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| enabled | `boolean` | yes |  |  |
+
 ## Generated documentation
 
 - [Interactive documentation app](./paradox/index.html)

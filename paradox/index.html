@@ -108,7 +108,7 @@
           <div class="summary">
             <div><strong>2</strong><span class="muted">public exports</span></div>
             <div><strong>0</strong><span class="muted">components</span></div>
-            <div><strong>29</strong><span class="muted">modules</span></div>
+            <div><strong>41</strong><span class="muted">modules</span></div>
             <div><strong>1</strong><span class="muted">entrypoints</span></div>
           </div>
           <h3>Entrypoints</h3>
@@ -118,20 +118,20 @@
         </section>
         <section class="panel">
           <h2>Modules</h2>
-          <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+          <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeBadges</code></p>
-  </article><article class="item" data-search="src/analyze/components.ts src/analyze/types.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts analyzeComponents">
+  </article><article class="item" data-search="src/analyze/components.ts src/analyze/semantic/exports.ts src/analyze/semantic/model.ts src/analyze/types.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts analyzeComponents">
     <h3>src/analyze/components.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getComponentPropsType.ts</code>, <code>src/analyze/utils/getPropsFromType.ts</code>, <code>src/analyze/utils/isReactComponent.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getComponentPropsType.ts</code>, <code>src/analyze/utils/getPropsFromType.ts</code>, <code>src/analyze/utils/isReactComponent.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeComponents</code></p>
   </article><article class="item" data-search="src/analyze/exports.ts src/analyze/types.ts src/analyze/utils/getExportMetadata.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/analyze/utils/resolveExportSymbol.ts analyzeExports">
     <h3>src/analyze/exports.ts</h3>
@@ -148,6 +148,66 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/analyzeProject.ts src/analyze/semantic/associateDocBlocksWithSymbols.ts src/analyze/semantic/collectSourceFiles.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/docBlocks.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/semantic/model.ts src/analyze/semantic/tagRegistry.ts analyzeProject">
+    <h3>src/analyze/semantic/analyzeProject.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/associateDocBlocksWithSymbols.ts</code>, <code>src/analyze/semantic/collectSourceFiles.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/docBlocks.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/tagRegistry.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeProject</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/associateDocBlocksWithSymbols.ts src/analyze/semantic/model.ts src/analyze/semantic/utils.ts associateDocBlocksWithSymbols">
+    <h3>src/analyze/semantic/associateDocBlocksWithSymbols.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>associateDocBlocksWithSymbols</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/collectSourceFiles.ts src/analyze/semantic/model.ts src/analyze/semantic/utils.ts collectSourceFiles">
+    <h3>src/analyze/semantic/collectSourceFiles.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>collectSourceFiles</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/model.ts src/analyze/semantic/utils.ts createTypeScriptProgram">
+    <h3>src/analyze/semantic/createTypeScriptProgram.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>createTypeScriptProgram</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/docBlocks.ts src/analyze/semantic/model.ts src/analyze/semantic/tagRegistry.ts src/analyze/semantic/utils.ts collectDocBlocks">
+    <h3>src/analyze/semantic/docBlocks.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/tagRegistry.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>collectDocBlocks</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/exports.ts src/analyze/semantic/isReactComponent.ts src/analyze/semantic/model.ts src/analyze/semantic/paradoxComment.ts src/analyze/semantic/utils.ts collectExports collectPropsForExport collectRelatedTypes collectTypeMembers getExportSignature resolveTypeReference">
+    <h3>src/analyze/semantic/exports.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/isReactComponent.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/paradoxComment.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>collectExports</code>, <code>collectPropsForExport</code>, <code>collectRelatedTypes</code>, <code>collectTypeMembers</code>, <code>getExportSignature</code>, <code>resolveTypeReference</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/graphs.ts src/analyze/semantic/exports.ts src/analyze/semantic/model.ts src/analyze/semantic/utils.ts collectCallGraph collectComponentCompositionGraph collectImportGraph">
+    <h3>src/analyze/semantic/graphs.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/semantic/utils.ts</code></p>
+    <p><strong>Exports:</strong> <code>collectCallGraph</code>, <code>collectComponentCompositionGraph</code>, <code>collectImportGraph</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/isReactComponent.ts isReactComponent">
+    <h3>src/analyze/semantic/isReactComponent.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>isReactComponent</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/model.ts AnalyzedDocBlock AnalyzedExport AnalyzedExportKind AnalyzedFile AnalyzedProgram AnalyzedProject AnalyzedProp AnalyzedProps AnalyzedTag AnalyzedTypeMember CallEdge ComponentCompositionEdge ImportEdge ResolvedTypeReference">
+    <h3>src/analyze/semantic/model.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>AnalyzedDocBlock</code>, <code>AnalyzedExport</code>, <code>AnalyzedExportKind</code>, <code>AnalyzedFile</code>, <code>AnalyzedProgram</code>, <code>AnalyzedProject</code>, <code>AnalyzedProp</code>, <code>AnalyzedProps</code>, <code>AnalyzedTag</code>, <code>AnalyzedTypeMember</code>, <code>CallEdge</code>, <code>ComponentCompositionEdge</code>, <code>ImportEdge</code>, <code>ResolvedTypeReference</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/paradoxComment.ts getParadoxComment parseParadoxComment">
+    <h3>src/analyze/semantic/paradoxComment.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>getParadoxComment</code>, <code>parseParadoxComment</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/tagRegistry.ts defaultTagRegistry TagRegistry">
+    <h3>src/analyze/semantic/tagRegistry.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>defaultTagRegistry</code>, <code>TagRegistry</code></p>
+  </article><article class="item" data-search="src/analyze/semantic/utils.ts isNodeModulePath isPathInsideRoot relativeToRoot toPosixPath">
+    <h3>src/analyze/semantic/utils.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>isNodeModulePath</code>, <code>isPathInsideRoot</code>, <code>relativeToRoot</code>, <code>toPosixPath</code></p>
   </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSignature AnalysisSourceLocation AnalysisUsage">
     <h3>src/analyze/types.ts</h3>
     <p class="muted">Referenced module</p>
@@ -357,6 +417,9 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -366,6 +429,8 @@
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
@@ -382,6 +447,54 @@
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -473,6 +586,9 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -482,6 +598,8 @@
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
@@ -498,6 +616,54 @@
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -587,6 +753,18 @@
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -615,11 +793,16 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
@@ -630,6 +813,30 @@
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
@@ -672,6 +879,18 @@
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -700,11 +919,16 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
@@ -715,6 +939,30 @@
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_docBlocks_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_collectSourceFiles_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_createTypeScriptProgram_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_tagRegistry_ts
+  module_src_analyze_semantic_docBlocks_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_isReactComponent_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_paradoxComment_ts
+  module_src_analyze_semantic_exports_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
+  module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
@@ -759,6 +1007,18 @@
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -797,6 +1057,18 @@
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
+  module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
+  module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
+  module_src_analyze_semantic_createTypeScriptProgram_ts[&quot;src/analyze/semantic/createTypeScriptProgram.ts&quot;]
+  module_src_analyze_semantic_docBlocks_ts[&quot;src/analyze/semantic/docBlocks.ts&quot;]
+  module_src_analyze_semantic_exports_ts[&quot;src/analyze/semantic/exports.ts&quot;]
+  module_src_analyze_semantic_graphs_ts[&quot;src/analyze/semantic/graphs.ts&quot;]
+  module_src_analyze_semantic_isReactComponent_ts[&quot;src/analyze/semantic/isReactComponent.ts&quot;]
+  module_src_analyze_semantic_model_ts[&quot;src/analyze/semantic/model.ts&quot;]
+  module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
+  module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
+  module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -831,172 +1103,898 @@
     <h3>Entrypoint sequence</h3>
     <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
     <div class="mermaid">sequenceDiagram
-participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
-participant participant_src_analyze_badges_ts as src/analyze/badges.ts
-participant participant_src_analyze_components_ts as src/analyze/components.ts
-participant participant_src_analyze_exports_ts as src/analyze/exports.ts
-participant participant_src_analyze_modules_ts as src/analyze/modules.ts
-participant participant_src_analyze_project_ts as src/analyze/project.ts
-participant participant_src_analyze_types_ts as src/analyze/types.ts
-participant participant_src_analyze_usage_ts as src/analyze/usage.ts
-participant participant_src_analyze_utils_getComponentPropsType_ts as src/analyze/utils/getComponentPropsType.ts
-participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
-participant participant_src_analyze_utils_getParadoxComment_ts as src/analyze/utils/getParadoxComment.ts
-participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
-participant participant_src_analyze_utils_isReactComponent_ts as src/analyze/utils/isReactComponent.ts
-participant participant_src_analyze_utils_parseParadoxComment_ts as src/analyze/utils/parseParadoxComment.ts
-participant participant_src_analyze_utils_resolveExportSymbol_ts as src/analyze/utils/resolveExportSymbol.ts
+participant participant_main as main
+participant participant_findParadoxConfigFile as findParadoxConfigFile
+participant participant_dirname as dirname
+participant participant_loadParadoxConfig as loadParadoxConfig
+participant participant_resolvePackageRoot as resolvePackageRoot
+participant participant_resolveOutputRoot as resolveOutputRoot
+participant participant_analyze as analyze
+participant participant_buildModel as buildModel
+participant participant_render as render
+participant participant_write as write
 participant participant_src_cli_ts as src/cli.ts
-participant participant_src_config_defineParadoxConfig_ts as src/config/defineParadoxConfig.ts
-participant participant_src_config_types_ts as src/config/types.ts
-participant participant_src_index_ts as src/index.ts
+participant participant_readPackageJson as readPackageJson
+participant participant_createUsageFromPackageJson as createUsageFromPackageJson
+participant participant_analyzeBadges as analyzeBadges
+participant participant_createProject as createProject
+participant participant_createTypeScriptProgram as createTypeScriptProgram
+participant participant_analyzeExports as analyzeExports
+participant participant_analyzeComponents as analyzeComponents
+participant participant_analyzeModules as analyzeModules
+participant participant_collectTypeMembers as collectTypeMembers
+participant participant_resolveTypeReference as resolveTypeReference
+participant participant_collectImportGraph as collectImportGraph
+participant participant_collectCallGraph as collectCallGraph
+participant participant_collectComponentCompositionGraph as collectComponentCompositionGraph
+participant participant_mapTypeMembers as mapTypeMembers
+participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_readFile as readFile
+participant participant_join as join
+participant participant_readWorkflowFiles as readWorkflowFiles
+participant participant_hasAnyFile as hasAnyFile
+participant participant_scriptContains as scriptContains
+participant participant_workflowRunsScript as workflowRunsScript
+participant participant_hasScript as hasScript
+participant participant_hasTypeScriptStrictMode as hasTypeScriptStrictMode
+participant participant_supportsBun as supportsBun
+participant participant_readCoveragePercent as readCoveragePercent
+participant participant_formatPercent as formatPercent
+participant participant_getCoverageColor as getCoverageColor
+participant participant_sortBadges as sortBadges
+participant participant_fileExists as fileExists
+participant participant_readJsonFile as readJsonFile
+participant participant_escapeRegExp as escapeRegExp
+participant participant_readDirectory as readDirectory
+participant participant_src_analyze_badges_ts as src/analyze/badges.ts
+participant participant_readdir as readdir
+participant participant_isNotFoundError as isNotFoundError
+participant participant_access as access
+participant participant_getBadgeOrder as getBadgeOrder
+participant participant_isReactComponent as isReactComponent
+participant participant_collectPropsForExport as collectPropsForExport
+participant participant_getComponentPropsType as getComponentPropsType
+participant participant_getPropsFromType as getPropsFromType
+participant participant_getEntryPointSourceFiles as getEntryPointSourceFiles
+participant participant_toPosixPath as toPosixPath
+participant participant_relative as relative
+participant participant_resolveExportSymbol as resolveExportSymbol
+participant participant_getFirstDeclaration as getFirstDeclaration
+participant participant_getParadoxComment as getParadoxComment
+participant participant_parseParadoxComment as parseParadoxComment
+participant participant_getExportMetadata as getExportMetadata
+participant participant_uniqueSorted as uniqueSorted
+participant participant_inferKind as inferKind
+participant participant_src_analyze_exports_ts as src/analyze/exports.ts
+participant participant_normalize as normalize
+participant participant_isAbsolute as isAbsolute
+participant participant_src_analyze_modules_ts as src/analyze/modules.ts
+participant participant_getPackageBaseName as getPackageBaseName
 participant participant_src_model_buildModel_ts as src/model/buildModel.ts
-participant participant_src_model_types_ts as src/model/types.ts
-participant participant_src_paths_policy_ts as src/paths/policy.ts
-participant participant_src_render_render_ts as src/render/render.ts
+participant participant_mapExport as mapExport
+participant participant_sortByName as sortByName
+participant participant_getDefaultConfigFileName as getDefaultConfigFileName
+participant participant_findConfigFactoryName as findConfigFactoryName
+participant participant_mapComponent as mapComponent
+participant participant_resolve as resolve
+participant participant_pathExists as pathExists
+participant participant_pathToFileURL as pathToFileURL
+participant participant_assertPathExists as assertPathExists
+participant participant_validateOutputDir as validateOutputDir
+participant participant_assertWithinRoot as assertWithinRoot
+participant participant_splitPathSegments as splitPathSegments
+participant participant_renderBadgeArtifacts as renderBadgeArtifacts
+participant participant_renderDiagramArtifacts as renderDiagramArtifacts
+participant participant_renderer as renderer
+participant participant_mkdir as mkdir
+participant participant_writeFile as writeFile
+participant participant_analyzeProject as analyzeProject
+participant participant_collectSourceFiles as collectSourceFiles
+participant participant_src_analyze_semantic_analyzeProject_ts as src/analyze/semantic/analyzeProject.ts
+participant participant_collectDocBlocks as collectDocBlocks
+participant participant_associateDocBlocksWithSymbols as associateDocBlocksWithSymbols
+participant participant_collectExports as collectExports
+participant participant_getExportSignature as getExportSignature
+participant participant_collectRelatedTypes as collectRelatedTypes
+participant participant_src_analyze_semantic_associateDocBlocksWithSymbols_ts as src/analyze/semantic/associateDocBlocksWithSymbols.ts
+participant participant_relativeToRoot as relativeToRoot
+participant participant_src_analyze_semantic_collectSourceFiles_ts as src/analyze/semantic/collectSourceFiles.ts
+participant participant_isPathInsideRoot as isPathInsideRoot
+participant participant_isNodeModulePath as isNodeModulePath
+participant participant_src_analyze_semantic_createTypeScriptProgram_ts as src/analyze/semantic/createTypeScriptProgram.ts
+participant participant_parseDocBlock as parseDocBlock
+participant participant_collectTags as collectTags
+participant participant_normalizeDocBlock as normalizeDocBlock
+participant participant_detectExportKind as detectExportKind
+participant participant_getDeclarationName as getDeclarationName
+participant participant_getCallableNode as getCallableNode
+participant participant_src_analyze_semantic_exports_ts as src/analyze/semantic/exports.ts
+participant participant_getParameterTypeText as getParameterTypeText
+participant participant_collectMembersFromType as collectMembersFromType
+participant participant_collectDefaultValuesFromBinding as collectDefaultValuesFromBinding
+participant participant_flattenMembers as flattenMembers
+participant participant_getDeclaredMembers as getDeclaredMembers
+participant participant_isUndefinedUnion as isUndefinedUnion
+participant participant_shouldExpandType as shouldExpandType
+participant participant_getDeclaredTypeText as getDeclaredTypeText
+participant participant_appendUndefinedIfOptional as appendUndefinedIfOptional
+participant participant_uniqueEdges as uniqueEdges
+participant participant_src_analyze_semantic_graphs_ts as src/analyze/semantic/graphs.ts
+participant participant_toCallEdge as toCallEdge
+participant participant_findJsxElements as findJsxElements
+participant participant_getEnclosingSymbolName as getEnclosingSymbolName
+participant participant_key as key
+participant participant_getCallSignature as getCallSignature
+participant participant_getSourceLocation as getSourceLocation
+participant participant_getSignatures as getSignatures
+participant participant_getMembers as getMembers
+participant participant_collectRelatedSymbols as collectRelatedSymbols
+participant participant_readParadoxMetadata as readParadoxMetadata
+participant participant_getCallableDeclarations as getCallableDeclarations
+participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
+participant participant_getSignature as getSignature
+participant participant_uniqueBy as uniqueBy
+participant participant_getMembersFromProperties as getMembersFromProperties
+participant participant_isMemberMethodDeclaration as isMemberMethodDeclaration
+participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
 participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
+participant participant_renderBadgeSvg as renderBadgeSvg
+participant participant_getTextWidth as getTextWidth
+participant participant_escapeXml as escapeXml
+participant participant_renderArchitectureOverview as renderArchitectureOverview
+participant participant_renderModuleRelationships as renderModuleRelationships
+participant participant_renderExportGraph as renderExportGraph
+participant participant_renderEntrypointSequence as renderEntrypointSequence
+participant participant_toMermaidId as toMermaidId
+participant participant_escapeLabel as escapeLabel
 participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
+participant participant_renderFallbackEdge as renderFallbackEdge
 participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
+participant participant_toAnchorId as toAnchorId
+participant participant_renderHtml as renderHtml
+participant participant_groupBy as groupBy
+participant participant_escapeHtml as escapeHtml
+participant participant_escapeAttribute as escapeAttribute
+participant participant_renderExportCard as renderExportCard
+participant participant_renderModuleCard as renderModuleCard
+participant participant_renderInlineCodeList as renderInlineCodeList
+participant participant_renderChipList as renderChipList
+participant participant_renderSignatureBlock as renderSignatureBlock
+participant participant_renderMemberTable as renderMemberTable
+participant participant_renderComponentCard as renderComponentCard
+participant participant_renderDiagramCard as renderDiagramCard
+participant participant_renderMarkdown as renderMarkdown
+participant participant_renderReadme as renderReadme
+participant participant_renderExports as renderExports
+participant participant_renderComponents as renderComponents
 participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
-participant participant_src_render_types_ts as src/render/types.ts
-participant participant_src_write_write_ts as src/write/write.ts
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_badges_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_components_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_exports_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_modules_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_project_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getComponentPropsType_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getPropsFromType_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_isReactComponent_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getExportMetadata_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_resolveExportSymbol_ts: imports
-  participant_src_analyze_modules_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_usage_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_analyze_analyze_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_model_buildModel_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_paths_policy_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_render_render_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_write_write_ts: imports
-  participant_src_config_defineParadoxConfig_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_model_buildModel_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_paths_policy_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_badges_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_diagrams_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_html_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_markdown_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_types_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_write_write_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_write_write_ts-&gt;&gt;participant_src_render_types_ts: imports
+participant participant_badgeLabel as badgeLabel
+participant participant_flattenConfigMembers as flattenConfigMembers
+participant participant_escapeTableCell as escapeTableCell
+  participant_main-&gt;&gt;participant_findParadoxConfigFile: findParadoxConfigFile
+  participant_main-&gt;&gt;participant_dirname: dirname
+  participant_main-&gt;&gt;participant_loadParadoxConfig: loadParadoxConfig
+  participant_main-&gt;&gt;participant_resolvePackageRoot: resolvePackageRoot
+  participant_main-&gt;&gt;participant_resolveOutputRoot: resolveOutputRoot
+  participant_main-&gt;&gt;participant_analyze: analyze
+  participant_main-&gt;&gt;participant_buildModel: buildModel
+  participant_main-&gt;&gt;participant_render: render
+  participant_main-&gt;&gt;participant_write: write
+  participant_src_cli_ts-&gt;&gt;participant_main: main
+  participant_analyze-&gt;&gt;participant_readPackageJson: readPackageJson
+  participant_analyze-&gt;&gt;participant_createUsageFromPackageJson: createUsageFromPackageJson
+  participant_analyze-&gt;&gt;participant_analyzeBadges: analyzeBadges
+  participant_analyze-&gt;&gt;participant_createProject: createProject
+  participant_analyze-&gt;&gt;participant_createTypeScriptProgram: createTypeScriptProgram
+  participant_analyze-&gt;&gt;participant_analyzeExports: analyzeExports
+  participant_analyze-&gt;&gt;participant_analyzeComponents: analyzeComponents
+  participant_analyze-&gt;&gt;participant_analyzeModules: analyzeModules
+  participant_analyze-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_analyze-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_analyze-&gt;&gt;participant_collectImportGraph: collectImportGraph
+  participant_analyze-&gt;&gt;participant_collectCallGraph: collectCallGraph
+  participant_analyze-&gt;&gt;participant_collectComponentCompositionGraph: collectComponentCompositionGraph
+  participant_analyze-&gt;&gt;participant_mapTypeMembers: mapTypeMembers
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_mapTypeMembers: mapTypeMembers
+  participant_readPackageJson-&gt;&gt;participant_readFile: readFile
+  participant_readPackageJson-&gt;&gt;participant_join: join
+  participant_analyzeBadges-&gt;&gt;participant_readWorkflowFiles: readWorkflowFiles
+  participant_analyzeBadges-&gt;&gt;participant_hasAnyFile: hasAnyFile
+  participant_analyzeBadges-&gt;&gt;participant_scriptContains: scriptContains
+  participant_analyzeBadges-&gt;&gt;participant_workflowRunsScript: workflowRunsScript
+  participant_analyzeBadges-&gt;&gt;participant_hasScript: hasScript
+  participant_analyzeBadges-&gt;&gt;participant_hasTypeScriptStrictMode: hasTypeScriptStrictMode
+  participant_analyzeBadges-&gt;&gt;participant_supportsBun: supportsBun
+  participant_analyzeBadges-&gt;&gt;participant_readCoveragePercent: readCoveragePercent
+  participant_analyzeBadges-&gt;&gt;participant_formatPercent: formatPercent
+  participant_analyzeBadges-&gt;&gt;participant_getCoverageColor: getCoverageColor
+  participant_analyzeBadges-&gt;&gt;participant_sortBadges: sortBadges
+  participant_hasAnyFile-&gt;&gt;participant_fileExists: fileExists
+  participant_hasAnyFile-&gt;&gt;participant_join: join
+  participant_hasTypeScriptStrictMode-&gt;&gt;participant_readJsonFile: readJsonFile
+  participant_hasTypeScriptStrictMode-&gt;&gt;participant_join: join
+  participant_readCoveragePercent-&gt;&gt;participant_readJsonFile: readJsonFile
+  participant_readCoveragePercent-&gt;&gt;participant_join: join
+  participant_workflowRunsScript-&gt;&gt;participant_escapeRegExp: escapeRegExp
+  participant_readWorkflowFiles-&gt;&gt;participant_join: join
+  participant_readWorkflowFiles-&gt;&gt;participant_readDirectory: readDirectory
+  participant_src_analyze_badges_ts-&gt;&gt;participant_readFile: readFile
+  participant_src_analyze_badges_ts-&gt;&gt;participant_join: join
+  participant_readDirectory-&gt;&gt;participant_readdir: readdir
+  participant_readDirectory-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_readJsonFile-&gt;&gt;participant_readFile: readFile
+  participant_readJsonFile-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_fileExists-&gt;&gt;participant_access: access
+  participant_fileExists-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_src_analyze_badges_ts-&gt;&gt;participant_getBadgeOrder: getBadgeOrder
+  participant_analyzeComponents-&gt;&gt;participant_isReactComponent: isReactComponent
+  participant_analyzeComponents-&gt;&gt;participant_collectPropsForExport: collectPropsForExport
+  participant_analyzeComponents-&gt;&gt;participant_getComponentPropsType: getComponentPropsType
+  participant_analyzeComponents-&gt;&gt;participant_getPropsFromType: getPropsFromType
+  participant_analyzeExports-&gt;&gt;participant_getEntryPointSourceFiles: getEntryPointSourceFiles
+  participant_analyzeExports-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_analyzeExports-&gt;&gt;participant_relative: relative
+  participant_analyzeExports-&gt;&gt;participant_resolveExportSymbol: resolveExportSymbol
+  participant_analyzeExports-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_analyzeExports-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_analyzeExports-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_analyzeExports-&gt;&gt;participant_getExportMetadata: getExportMetadata
+  participant_analyzeExports-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_analyzeExports-&gt;&gt;participant_inferKind: inferKind
+  participant_src_analyze_exports_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_exports_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_exports_ts-&gt;&gt;participant_join: join
+  participant_analyzeModules-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_modules_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_modules_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_modules_ts-&gt;&gt;participant_join: join
+  participant_src_analyze_modules_ts-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_src_analyze_modules_ts-&gt;&gt;participant_relative: relative
+  participant_src_analyze_modules_ts-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_createUsageFromPackageJson-&gt;&gt;participant_getPackageBaseName: getPackageBaseName
+  participant_src_model_buildModel_ts-&gt;&gt;participant_mapExport: mapExport
+  participant_buildModel-&gt;&gt;participant_sortByName: sortByName
+  participant_buildModel-&gt;&gt;participant_getDefaultConfigFileName: getDefaultConfigFileName
+  participant_buildModel-&gt;&gt;participant_findConfigFactoryName: findConfigFactoryName
+  participant_src_model_buildModel_ts-&gt;&gt;participant_mapComponent: mapComponent
+  participant_src_model_buildModel_ts-&gt;&gt;participant_sortByName: sortByName
+  participant_mapExport-&gt;&gt;participant_sortByName: sortByName
+  participant_mapComponent-&gt;&gt;participant_sortByName: sortByName
+  participant_findParadoxConfigFile-&gt;&gt;participant_resolve: resolve
+  participant_findParadoxConfigFile-&gt;&gt;participant_dirname: dirname
+  participant_findParadoxConfigFile-&gt;&gt;participant_join: join
+  participant_findParadoxConfigFile-&gt;&gt;participant_pathExists: pathExists
+  participant_loadParadoxConfig-&gt;&gt;participant_pathToFileURL: pathToFileURL
+  participant_resolvePackageRoot-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_resolvePackageRoot-&gt;&gt;participant_resolve: resolve
+  participant_resolvePackageRoot-&gt;&gt;participant_assertPathExists: assertPathExists
+  participant_resolvePackageRoot-&gt;&gt;participant_join: join
+  participant_resolveOutputRoot-&gt;&gt;participant_validateOutputDir: validateOutputDir
+  participant_resolveOutputRoot-&gt;&gt;participant_resolve: resolve
+  participant_resolveOutputRoot-&gt;&gt;participant_assertWithinRoot: assertWithinRoot
+  participant_pathExists-&gt;&gt;participant_access: access
+  participant_assertPathExists-&gt;&gt;participant_pathExists: pathExists
+  participant_validateOutputDir-&gt;&gt;participant_normalize: normalize
+  participant_validateOutputDir-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_validateOutputDir-&gt;&gt;participant_splitPathSegments: splitPathSegments
+  participant_assertWithinRoot-&gt;&gt;participant_relative: relative
+  participant_render-&gt;&gt;participant_renderBadgeArtifacts: renderBadgeArtifacts
+  participant_render-&gt;&gt;participant_renderDiagramArtifacts: renderDiagramArtifacts
+  participant_render-&gt;&gt;participant_renderer: renderer
+  participant_write-&gt;&gt;participant_mkdir: mkdir
+  participant_write-&gt;&gt;participant_writeFile: writeFile
+  participant_write-&gt;&gt;participant_join: join
+  participant_write-&gt;&gt;participant_dirname: dirname
+  participant_analyzeProject-&gt;&gt;participant_createTypeScriptProgram: createTypeScriptProgram
+  participant_analyzeProject-&gt;&gt;participant_collectSourceFiles: collectSourceFiles
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectDocBlocks: collectDocBlocks
+  participant_analyzeProject-&gt;&gt;participant_associateDocBlocksWithSymbols: associateDocBlocksWithSymbols
+  participant_analyzeProject-&gt;&gt;participant_collectExports: collectExports
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_getExportSignature: getExportSignature
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectPropsForExport: collectPropsForExport
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectRelatedTypes: collectRelatedTypes
+  participant_analyzeProject-&gt;&gt;participant_collectImportGraph: collectImportGraph
+  participant_analyzeProject-&gt;&gt;participant_collectCallGraph: collectCallGraph
+  participant_analyzeProject-&gt;&gt;participant_collectComponentCompositionGraph: collectComponentCompositionGraph
+  participant_src_analyze_semantic_associateDocBlocksWithSymbols_ts-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_createTypeScriptProgram-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_join: join
+  participant_createTypeScriptProgram-&gt;&gt;participant_join: join
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_collectDocBlocks-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectDocBlocks-&gt;&gt;participant_parseDocBlock: parseDocBlock
+  participant_collectTags-&gt;&gt;participant_normalizeDocBlock: normalizeDocBlock
+  participant_parseDocBlock-&gt;&gt;participant_normalizeDocBlock: normalizeDocBlock
+  participant_parseDocBlock-&gt;&gt;participant_collectTags: collectTags
+  participant_collectExports-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectExports-&gt;&gt;participant_resolveExportSymbol: resolveExportSymbol
+  participant_collectExports-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_collectExports-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_collectExports-&gt;&gt;participant_detectExportKind: detectExportKind
+  participant_detectExportKind-&gt;&gt;participant_isReactComponent: isReactComponent
+  participant_detectExportKind-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_getExportSignature-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getParameterTypeText: getParameterTypeText
+  participant_resolveTypeReference-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_resolveTypeReference-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectTypeMembers-&gt;&gt;participant_collectMembersFromType: collectMembersFromType
+  participant_collectTypeMembers-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_collectTypeMembers-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_collectPropsForExport-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_collectPropsForExport-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_collectPropsForExport-&gt;&gt;participant_collectDefaultValuesFromBinding: collectDefaultValuesFromBinding
+  participant_collectPropsForExport-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_collectRelatedTypes-&gt;&gt;participant_flattenMembers: flattenMembers
+  participant_collectMembersFromType-&gt;&gt;participant_getDeclaredMembers: getDeclaredMembers
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isUndefinedUnion: isUndefinedUnion
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_shouldExpandType: shouldExpandType
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getDeclaredTypeText: getDeclaredTypeText
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_appendUndefinedIfOptional: appendUndefinedIfOptional
+  participant_shouldExpandType-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_shouldExpandType-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_flattenMembers: flattenMembers
+  participant_collectImportGraph-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_collectImportGraph-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_collectImportGraph-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectImportGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_collectCallGraph-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_collectCallGraph-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_collectCallGraph-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_graphs_ts-&gt;&gt;participant_toCallEdge: toCallEdge
+  participant_collectCallGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_collectExports: collectExports
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_findJsxElements: findJsxElements
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_toCallEdge-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_toCallEdge-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_toCallEdge-&gt;&gt;participant_getEnclosingSymbolName: getEnclosingSymbolName
+  participant_src_analyze_semantic_graphs_ts-&gt;&gt;participant_key: key
+  participant_isReactComponent-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_isReactComponent-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_relativeToRoot-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_relativeToRoot-&gt;&gt;participant_relative: relative
+  participant_isPathInsideRoot-&gt;&gt;participant_normalize: normalize
+  participant_isNodeModulePath-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getComponentPropsType-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_getExportMetadata-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getExportMetadata-&gt;&gt;participant_relative: relative
+  participant_getExportMetadata-&gt;&gt;participant_getSourceLocation: getSourceLocation
+  participant_getExportMetadata-&gt;&gt;participant_getSignatures: getSignatures
+  participant_getExportMetadata-&gt;&gt;participant_getMembers: getMembers
+  participant_getExportMetadata-&gt;&gt;participant_collectRelatedSymbols: collectRelatedSymbols
+  participant_getSourceLocation-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getSourceLocation-&gt;&gt;participant_relative: relative
+  participant_getSignatures-&gt;&gt;participant_readParadoxMetadata: readParadoxMetadata
+  participant_getSignatures-&gt;&gt;participant_getCallableDeclarations: getCallableDeclarations
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getSignature: getSignature
+  participant_getSignatures-&gt;&gt;participant_uniqueBy: uniqueBy
+  participant_getMembers-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_getMembers-&gt;&gt;participant_getMembersFromProperties: getMembersFromProperties
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_isMemberMethodDeclaration: isMemberMethodDeclaration
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_getCallableDeclarations-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_readParadoxMetadata-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_readParadoxMetadata-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_key: key
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_isReactComponent-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_isReactComponent-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_renderBadgeSvg: renderBadgeSvg
+  participant_renderBadgeSvg-&gt;&gt;participant_getTextWidth: getTextWidth
+  participant_renderBadgeSvg-&gt;&gt;participant_escapeXml: escapeXml
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderArchitectureOverview: renderArchitectureOverview
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderModuleRelationships: renderModuleRelationships
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderExportGraph: renderExportGraph
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderEntrypointSequence: renderEntrypointSequence
+  participant_renderArchitectureOverview-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderArchitectureOverview-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_renderModuleRelationships-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderModuleRelationships-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderModuleRelationships-&gt;&gt;participant_renderFallbackEdge: renderFallbackEdge
+  participant_renderExportGraph-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderExportGraph-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_renderEntrypointSequence-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderHtml-&gt;&gt;participant_groupBy: groupBy
+  participant_renderHtml-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_renderExportCard: renderExportCard
+  participant_renderModuleCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderModuleCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderModuleCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderExportCard-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderExportCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderExportCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderExportCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderExportCard-&gt;&gt;participant_renderChipList: renderChipList
+  participant_renderExportCard-&gt;&gt;participant_renderSignatureBlock: renderSignatureBlock
+  participant_renderExportCard-&gt;&gt;participant_renderMemberTable: renderMemberTable
+  participant_renderComponentCard-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderComponentCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderComponentCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderComponentCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderDiagramCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderDiagramCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_groupBy-&gt;&gt;participant_key: key
+  participant_escapeAttribute-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderMarkdown-&gt;&gt;participant_renderReadme: renderReadme
+  participant_renderMarkdown-&gt;&gt;participant_renderExports: renderExports
+  participant_renderMarkdown-&gt;&gt;participant_renderComponents: renderComponents
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_badgeLabel: badgeLabel
+  participant_renderReadme-&gt;&gt;participant_flattenConfigMembers: flattenConfigMembers
+  participant_renderReadme-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_renderExports-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_renderComponents-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_flattenConfigMembers: flattenConfigMembers
 </div>
     <details>
       <summary>View Mermaid source</summary>
       <pre>sequenceDiagram
-participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
-participant participant_src_analyze_badges_ts as src/analyze/badges.ts
-participant participant_src_analyze_components_ts as src/analyze/components.ts
-participant participant_src_analyze_exports_ts as src/analyze/exports.ts
-participant participant_src_analyze_modules_ts as src/analyze/modules.ts
-participant participant_src_analyze_project_ts as src/analyze/project.ts
-participant participant_src_analyze_types_ts as src/analyze/types.ts
-participant participant_src_analyze_usage_ts as src/analyze/usage.ts
-participant participant_src_analyze_utils_getComponentPropsType_ts as src/analyze/utils/getComponentPropsType.ts
-participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
-participant participant_src_analyze_utils_getParadoxComment_ts as src/analyze/utils/getParadoxComment.ts
-participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
-participant participant_src_analyze_utils_isReactComponent_ts as src/analyze/utils/isReactComponent.ts
-participant participant_src_analyze_utils_parseParadoxComment_ts as src/analyze/utils/parseParadoxComment.ts
-participant participant_src_analyze_utils_resolveExportSymbol_ts as src/analyze/utils/resolveExportSymbol.ts
+participant participant_main as main
+participant participant_findParadoxConfigFile as findParadoxConfigFile
+participant participant_dirname as dirname
+participant participant_loadParadoxConfig as loadParadoxConfig
+participant participant_resolvePackageRoot as resolvePackageRoot
+participant participant_resolveOutputRoot as resolveOutputRoot
+participant participant_analyze as analyze
+participant participant_buildModel as buildModel
+participant participant_render as render
+participant participant_write as write
 participant participant_src_cli_ts as src/cli.ts
-participant participant_src_config_defineParadoxConfig_ts as src/config/defineParadoxConfig.ts
-participant participant_src_config_types_ts as src/config/types.ts
-participant participant_src_index_ts as src/index.ts
+participant participant_readPackageJson as readPackageJson
+participant participant_createUsageFromPackageJson as createUsageFromPackageJson
+participant participant_analyzeBadges as analyzeBadges
+participant participant_createProject as createProject
+participant participant_createTypeScriptProgram as createTypeScriptProgram
+participant participant_analyzeExports as analyzeExports
+participant participant_analyzeComponents as analyzeComponents
+participant participant_analyzeModules as analyzeModules
+participant participant_collectTypeMembers as collectTypeMembers
+participant participant_resolveTypeReference as resolveTypeReference
+participant participant_collectImportGraph as collectImportGraph
+participant participant_collectCallGraph as collectCallGraph
+participant participant_collectComponentCompositionGraph as collectComponentCompositionGraph
+participant participant_mapTypeMembers as mapTypeMembers
+participant participant_src_analyze_analyze_ts as src/analyze/analyze.ts
+participant participant_readFile as readFile
+participant participant_join as join
+participant participant_readWorkflowFiles as readWorkflowFiles
+participant participant_hasAnyFile as hasAnyFile
+participant participant_scriptContains as scriptContains
+participant participant_workflowRunsScript as workflowRunsScript
+participant participant_hasScript as hasScript
+participant participant_hasTypeScriptStrictMode as hasTypeScriptStrictMode
+participant participant_supportsBun as supportsBun
+participant participant_readCoveragePercent as readCoveragePercent
+participant participant_formatPercent as formatPercent
+participant participant_getCoverageColor as getCoverageColor
+participant participant_sortBadges as sortBadges
+participant participant_fileExists as fileExists
+participant participant_readJsonFile as readJsonFile
+participant participant_escapeRegExp as escapeRegExp
+participant participant_readDirectory as readDirectory
+participant participant_src_analyze_badges_ts as src/analyze/badges.ts
+participant participant_readdir as readdir
+participant participant_isNotFoundError as isNotFoundError
+participant participant_access as access
+participant participant_getBadgeOrder as getBadgeOrder
+participant participant_isReactComponent as isReactComponent
+participant participant_collectPropsForExport as collectPropsForExport
+participant participant_getComponentPropsType as getComponentPropsType
+participant participant_getPropsFromType as getPropsFromType
+participant participant_getEntryPointSourceFiles as getEntryPointSourceFiles
+participant participant_toPosixPath as toPosixPath
+participant participant_relative as relative
+participant participant_resolveExportSymbol as resolveExportSymbol
+participant participant_getFirstDeclaration as getFirstDeclaration
+participant participant_getParadoxComment as getParadoxComment
+participant participant_parseParadoxComment as parseParadoxComment
+participant participant_getExportMetadata as getExportMetadata
+participant participant_uniqueSorted as uniqueSorted
+participant participant_inferKind as inferKind
+participant participant_src_analyze_exports_ts as src/analyze/exports.ts
+participant participant_normalize as normalize
+participant participant_isAbsolute as isAbsolute
+participant participant_src_analyze_modules_ts as src/analyze/modules.ts
+participant participant_getPackageBaseName as getPackageBaseName
 participant participant_src_model_buildModel_ts as src/model/buildModel.ts
-participant participant_src_model_types_ts as src/model/types.ts
-participant participant_src_paths_policy_ts as src/paths/policy.ts
-participant participant_src_render_render_ts as src/render/render.ts
+participant participant_mapExport as mapExport
+participant participant_sortByName as sortByName
+participant participant_getDefaultConfigFileName as getDefaultConfigFileName
+participant participant_findConfigFactoryName as findConfigFactoryName
+participant participant_mapComponent as mapComponent
+participant participant_resolve as resolve
+participant participant_pathExists as pathExists
+participant participant_pathToFileURL as pathToFileURL
+participant participant_assertPathExists as assertPathExists
+participant participant_validateOutputDir as validateOutputDir
+participant participant_assertWithinRoot as assertWithinRoot
+participant participant_splitPathSegments as splitPathSegments
+participant participant_renderBadgeArtifacts as renderBadgeArtifacts
+participant participant_renderDiagramArtifacts as renderDiagramArtifacts
+participant participant_renderer as renderer
+participant participant_mkdir as mkdir
+participant participant_writeFile as writeFile
+participant participant_analyzeProject as analyzeProject
+participant participant_collectSourceFiles as collectSourceFiles
+participant participant_src_analyze_semantic_analyzeProject_ts as src/analyze/semantic/analyzeProject.ts
+participant participant_collectDocBlocks as collectDocBlocks
+participant participant_associateDocBlocksWithSymbols as associateDocBlocksWithSymbols
+participant participant_collectExports as collectExports
+participant participant_getExportSignature as getExportSignature
+participant participant_collectRelatedTypes as collectRelatedTypes
+participant participant_src_analyze_semantic_associateDocBlocksWithSymbols_ts as src/analyze/semantic/associateDocBlocksWithSymbols.ts
+participant participant_relativeToRoot as relativeToRoot
+participant participant_src_analyze_semantic_collectSourceFiles_ts as src/analyze/semantic/collectSourceFiles.ts
+participant participant_isPathInsideRoot as isPathInsideRoot
+participant participant_isNodeModulePath as isNodeModulePath
+participant participant_src_analyze_semantic_createTypeScriptProgram_ts as src/analyze/semantic/createTypeScriptProgram.ts
+participant participant_parseDocBlock as parseDocBlock
+participant participant_collectTags as collectTags
+participant participant_normalizeDocBlock as normalizeDocBlock
+participant participant_detectExportKind as detectExportKind
+participant participant_getDeclarationName as getDeclarationName
+participant participant_getCallableNode as getCallableNode
+participant participant_src_analyze_semantic_exports_ts as src/analyze/semantic/exports.ts
+participant participant_getParameterTypeText as getParameterTypeText
+participant participant_collectMembersFromType as collectMembersFromType
+participant participant_collectDefaultValuesFromBinding as collectDefaultValuesFromBinding
+participant participant_flattenMembers as flattenMembers
+participant participant_getDeclaredMembers as getDeclaredMembers
+participant participant_isUndefinedUnion as isUndefinedUnion
+participant participant_shouldExpandType as shouldExpandType
+participant participant_getDeclaredTypeText as getDeclaredTypeText
+participant participant_appendUndefinedIfOptional as appendUndefinedIfOptional
+participant participant_uniqueEdges as uniqueEdges
+participant participant_src_analyze_semantic_graphs_ts as src/analyze/semantic/graphs.ts
+participant participant_toCallEdge as toCallEdge
+participant participant_findJsxElements as findJsxElements
+participant participant_getEnclosingSymbolName as getEnclosingSymbolName
+participant participant_key as key
+participant participant_getCallSignature as getCallSignature
+participant participant_getSourceLocation as getSourceLocation
+participant participant_getSignatures as getSignatures
+participant participant_getMembers as getMembers
+participant participant_collectRelatedSymbols as collectRelatedSymbols
+participant participant_readParadoxMetadata as readParadoxMetadata
+participant participant_getCallableDeclarations as getCallableDeclarations
+participant participant_src_analyze_utils_getExportMetadata_ts as src/analyze/utils/getExportMetadata.ts
+participant participant_getSignature as getSignature
+participant participant_uniqueBy as uniqueBy
+participant participant_getMembersFromProperties as getMembersFromProperties
+participant participant_isMemberMethodDeclaration as isMemberMethodDeclaration
+participant participant_src_analyze_utils_getPropsFromType_ts as src/analyze/utils/getPropsFromType.ts
 participant participant_src_render_renderers_badges_ts as src/render/renderers/badges.ts
+participant participant_renderBadgeSvg as renderBadgeSvg
+participant participant_getTextWidth as getTextWidth
+participant participant_escapeXml as escapeXml
+participant participant_renderArchitectureOverview as renderArchitectureOverview
+participant participant_renderModuleRelationships as renderModuleRelationships
+participant participant_renderExportGraph as renderExportGraph
+participant participant_renderEntrypointSequence as renderEntrypointSequence
+participant participant_toMermaidId as toMermaidId
+participant participant_escapeLabel as escapeLabel
 participant participant_src_render_renderers_diagrams_ts as src/render/renderers/diagrams.ts
+participant participant_renderFallbackEdge as renderFallbackEdge
 participant participant_src_render_renderers_html_ts as src/render/renderers/html.ts
+participant participant_toAnchorId as toAnchorId
+participant participant_renderHtml as renderHtml
+participant participant_groupBy as groupBy
+participant participant_escapeHtml as escapeHtml
+participant participant_escapeAttribute as escapeAttribute
+participant participant_renderExportCard as renderExportCard
+participant participant_renderModuleCard as renderModuleCard
+participant participant_renderInlineCodeList as renderInlineCodeList
+participant participant_renderChipList as renderChipList
+participant participant_renderSignatureBlock as renderSignatureBlock
+participant participant_renderMemberTable as renderMemberTable
+participant participant_renderComponentCard as renderComponentCard
+participant participant_renderDiagramCard as renderDiagramCard
+participant participant_renderMarkdown as renderMarkdown
+participant participant_renderReadme as renderReadme
+participant participant_renderExports as renderExports
+participant participant_renderComponents as renderComponents
 participant participant_src_render_renderers_markdown_ts as src/render/renderers/markdown.ts
-participant participant_src_render_types_ts as src/render/types.ts
-participant participant_src_write_write_ts as src/write/write.ts
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_badges_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_components_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_exports_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_modules_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_project_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
-  participant_src_analyze_analyze_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_badges_ts-&gt;&gt;participant_src_analyze_usage_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getComponentPropsType_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_getPropsFromType_ts: imports
-  participant_src_analyze_components_ts-&gt;&gt;participant_src_analyze_utils_isReactComponent_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getExportMetadata_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_analyze_exports_ts-&gt;&gt;participant_src_analyze_utils_resolveExportSymbol_ts: imports
-  participant_src_analyze_modules_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_usage_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_types_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_getParadoxComment_ts: imports
-  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_src_analyze_utils_parseParadoxComment_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_analyze_analyze_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_model_buildModel_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_paths_policy_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_render_render_ts: imports
-  participant_src_cli_ts-&gt;&gt;participant_src_write_write_ts: imports
-  participant_src_config_defineParadoxConfig_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_model_buildModel_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_paths_policy_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_badges_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_diagrams_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_html_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_renderers_markdown_ts: imports
-  participant_src_render_render_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_badges_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_html_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_src_render_types_ts: imports
-  participant_src_render_types_ts-&gt;&gt;participant_src_model_types_ts: imports
-  participant_src_write_write_ts-&gt;&gt;participant_src_config_types_ts: imports
-  participant_src_write_write_ts-&gt;&gt;participant_src_render_types_ts: imports
+participant participant_badgeLabel as badgeLabel
+participant participant_flattenConfigMembers as flattenConfigMembers
+participant participant_escapeTableCell as escapeTableCell
+  participant_main-&gt;&gt;participant_findParadoxConfigFile: findParadoxConfigFile
+  participant_main-&gt;&gt;participant_dirname: dirname
+  participant_main-&gt;&gt;participant_loadParadoxConfig: loadParadoxConfig
+  participant_main-&gt;&gt;participant_resolvePackageRoot: resolvePackageRoot
+  participant_main-&gt;&gt;participant_resolveOutputRoot: resolveOutputRoot
+  participant_main-&gt;&gt;participant_analyze: analyze
+  participant_main-&gt;&gt;participant_buildModel: buildModel
+  participant_main-&gt;&gt;participant_render: render
+  participant_main-&gt;&gt;participant_write: write
+  participant_src_cli_ts-&gt;&gt;participant_main: main
+  participant_analyze-&gt;&gt;participant_readPackageJson: readPackageJson
+  participant_analyze-&gt;&gt;participant_createUsageFromPackageJson: createUsageFromPackageJson
+  participant_analyze-&gt;&gt;participant_analyzeBadges: analyzeBadges
+  participant_analyze-&gt;&gt;participant_createProject: createProject
+  participant_analyze-&gt;&gt;participant_createTypeScriptProgram: createTypeScriptProgram
+  participant_analyze-&gt;&gt;participant_analyzeExports: analyzeExports
+  participant_analyze-&gt;&gt;participant_analyzeComponents: analyzeComponents
+  participant_analyze-&gt;&gt;participant_analyzeModules: analyzeModules
+  participant_analyze-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_analyze-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_analyze-&gt;&gt;participant_collectImportGraph: collectImportGraph
+  participant_analyze-&gt;&gt;participant_collectCallGraph: collectCallGraph
+  participant_analyze-&gt;&gt;participant_collectComponentCompositionGraph: collectComponentCompositionGraph
+  participant_analyze-&gt;&gt;participant_mapTypeMembers: mapTypeMembers
+  participant_src_analyze_analyze_ts-&gt;&gt;participant_mapTypeMembers: mapTypeMembers
+  participant_readPackageJson-&gt;&gt;participant_readFile: readFile
+  participant_readPackageJson-&gt;&gt;participant_join: join
+  participant_analyzeBadges-&gt;&gt;participant_readWorkflowFiles: readWorkflowFiles
+  participant_analyzeBadges-&gt;&gt;participant_hasAnyFile: hasAnyFile
+  participant_analyzeBadges-&gt;&gt;participant_scriptContains: scriptContains
+  participant_analyzeBadges-&gt;&gt;participant_workflowRunsScript: workflowRunsScript
+  participant_analyzeBadges-&gt;&gt;participant_hasScript: hasScript
+  participant_analyzeBadges-&gt;&gt;participant_hasTypeScriptStrictMode: hasTypeScriptStrictMode
+  participant_analyzeBadges-&gt;&gt;participant_supportsBun: supportsBun
+  participant_analyzeBadges-&gt;&gt;participant_readCoveragePercent: readCoveragePercent
+  participant_analyzeBadges-&gt;&gt;participant_formatPercent: formatPercent
+  participant_analyzeBadges-&gt;&gt;participant_getCoverageColor: getCoverageColor
+  participant_analyzeBadges-&gt;&gt;participant_sortBadges: sortBadges
+  participant_hasAnyFile-&gt;&gt;participant_fileExists: fileExists
+  participant_hasAnyFile-&gt;&gt;participant_join: join
+  participant_hasTypeScriptStrictMode-&gt;&gt;participant_readJsonFile: readJsonFile
+  participant_hasTypeScriptStrictMode-&gt;&gt;participant_join: join
+  participant_readCoveragePercent-&gt;&gt;participant_readJsonFile: readJsonFile
+  participant_readCoveragePercent-&gt;&gt;participant_join: join
+  participant_workflowRunsScript-&gt;&gt;participant_escapeRegExp: escapeRegExp
+  participant_readWorkflowFiles-&gt;&gt;participant_join: join
+  participant_readWorkflowFiles-&gt;&gt;participant_readDirectory: readDirectory
+  participant_src_analyze_badges_ts-&gt;&gt;participant_readFile: readFile
+  participant_src_analyze_badges_ts-&gt;&gt;participant_join: join
+  participant_readDirectory-&gt;&gt;participant_readdir: readdir
+  participant_readDirectory-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_readJsonFile-&gt;&gt;participant_readFile: readFile
+  participant_readJsonFile-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_fileExists-&gt;&gt;participant_access: access
+  participant_fileExists-&gt;&gt;participant_isNotFoundError: isNotFoundError
+  participant_src_analyze_badges_ts-&gt;&gt;participant_getBadgeOrder: getBadgeOrder
+  participant_analyzeComponents-&gt;&gt;participant_isReactComponent: isReactComponent
+  participant_analyzeComponents-&gt;&gt;participant_collectPropsForExport: collectPropsForExport
+  participant_analyzeComponents-&gt;&gt;participant_getComponentPropsType: getComponentPropsType
+  participant_analyzeComponents-&gt;&gt;participant_getPropsFromType: getPropsFromType
+  participant_analyzeExports-&gt;&gt;participant_getEntryPointSourceFiles: getEntryPointSourceFiles
+  participant_analyzeExports-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_analyzeExports-&gt;&gt;participant_relative: relative
+  participant_analyzeExports-&gt;&gt;participant_resolveExportSymbol: resolveExportSymbol
+  participant_analyzeExports-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_analyzeExports-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_analyzeExports-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_analyzeExports-&gt;&gt;participant_getExportMetadata: getExportMetadata
+  participant_analyzeExports-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_analyzeExports-&gt;&gt;participant_inferKind: inferKind
+  participant_src_analyze_exports_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_exports_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_exports_ts-&gt;&gt;participant_join: join
+  participant_analyzeModules-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_modules_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_modules_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_modules_ts-&gt;&gt;participant_join: join
+  participant_src_analyze_modules_ts-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_src_analyze_modules_ts-&gt;&gt;participant_relative: relative
+  participant_src_analyze_modules_ts-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_createUsageFromPackageJson-&gt;&gt;participant_getPackageBaseName: getPackageBaseName
+  participant_src_model_buildModel_ts-&gt;&gt;participant_mapExport: mapExport
+  participant_buildModel-&gt;&gt;participant_sortByName: sortByName
+  participant_buildModel-&gt;&gt;participant_getDefaultConfigFileName: getDefaultConfigFileName
+  participant_buildModel-&gt;&gt;participant_findConfigFactoryName: findConfigFactoryName
+  participant_src_model_buildModel_ts-&gt;&gt;participant_mapComponent: mapComponent
+  participant_src_model_buildModel_ts-&gt;&gt;participant_sortByName: sortByName
+  participant_mapExport-&gt;&gt;participant_sortByName: sortByName
+  participant_mapComponent-&gt;&gt;participant_sortByName: sortByName
+  participant_findParadoxConfigFile-&gt;&gt;participant_resolve: resolve
+  participant_findParadoxConfigFile-&gt;&gt;participant_dirname: dirname
+  participant_findParadoxConfigFile-&gt;&gt;participant_join: join
+  participant_findParadoxConfigFile-&gt;&gt;participant_pathExists: pathExists
+  participant_loadParadoxConfig-&gt;&gt;participant_pathToFileURL: pathToFileURL
+  participant_resolvePackageRoot-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_resolvePackageRoot-&gt;&gt;participant_resolve: resolve
+  participant_resolvePackageRoot-&gt;&gt;participant_assertPathExists: assertPathExists
+  participant_resolvePackageRoot-&gt;&gt;participant_join: join
+  participant_resolveOutputRoot-&gt;&gt;participant_validateOutputDir: validateOutputDir
+  participant_resolveOutputRoot-&gt;&gt;participant_resolve: resolve
+  participant_resolveOutputRoot-&gt;&gt;participant_assertWithinRoot: assertWithinRoot
+  participant_pathExists-&gt;&gt;participant_access: access
+  participant_assertPathExists-&gt;&gt;participant_pathExists: pathExists
+  participant_validateOutputDir-&gt;&gt;participant_normalize: normalize
+  participant_validateOutputDir-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_validateOutputDir-&gt;&gt;participant_splitPathSegments: splitPathSegments
+  participant_assertWithinRoot-&gt;&gt;participant_relative: relative
+  participant_render-&gt;&gt;participant_renderBadgeArtifacts: renderBadgeArtifacts
+  participant_render-&gt;&gt;participant_renderDiagramArtifacts: renderDiagramArtifacts
+  participant_render-&gt;&gt;participant_renderer: renderer
+  participant_write-&gt;&gt;participant_mkdir: mkdir
+  participant_write-&gt;&gt;participant_writeFile: writeFile
+  participant_write-&gt;&gt;participant_join: join
+  participant_write-&gt;&gt;participant_dirname: dirname
+  participant_analyzeProject-&gt;&gt;participant_createTypeScriptProgram: createTypeScriptProgram
+  participant_analyzeProject-&gt;&gt;participant_collectSourceFiles: collectSourceFiles
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectDocBlocks: collectDocBlocks
+  participant_analyzeProject-&gt;&gt;participant_associateDocBlocksWithSymbols: associateDocBlocksWithSymbols
+  participant_analyzeProject-&gt;&gt;participant_collectExports: collectExports
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_getExportSignature: getExportSignature
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectPropsForExport: collectPropsForExport
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_src_analyze_semantic_analyzeProject_ts-&gt;&gt;participant_collectRelatedTypes: collectRelatedTypes
+  participant_analyzeProject-&gt;&gt;participant_collectImportGraph: collectImportGraph
+  participant_analyzeProject-&gt;&gt;participant_collectCallGraph: collectCallGraph
+  participant_analyzeProject-&gt;&gt;participant_collectComponentCompositionGraph: collectComponentCompositionGraph
+  participant_src_analyze_semantic_associateDocBlocksWithSymbols_ts-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_src_analyze_semantic_collectSourceFiles_ts-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_createTypeScriptProgram-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_normalize: normalize
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_isAbsolute: isAbsolute
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_join: join
+  participant_createTypeScriptProgram-&gt;&gt;participant_join: join
+  participant_src_analyze_semantic_createTypeScriptProgram_ts-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_collectDocBlocks-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectDocBlocks-&gt;&gt;participant_parseDocBlock: parseDocBlock
+  participant_collectTags-&gt;&gt;participant_normalizeDocBlock: normalizeDocBlock
+  participant_parseDocBlock-&gt;&gt;participant_normalizeDocBlock: normalizeDocBlock
+  participant_parseDocBlock-&gt;&gt;participant_collectTags: collectTags
+  participant_collectExports-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectExports-&gt;&gt;participant_resolveExportSymbol: resolveExportSymbol
+  participant_collectExports-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_collectExports-&gt;&gt;participant_uniqueSorted: uniqueSorted
+  participant_collectExports-&gt;&gt;participant_detectExportKind: detectExportKind
+  participant_detectExportKind-&gt;&gt;participant_isReactComponent: isReactComponent
+  participant_detectExportKind-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_getExportSignature-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getParameterTypeText: getParameterTypeText
+  participant_resolveTypeReference-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_resolveTypeReference-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectTypeMembers-&gt;&gt;participant_collectMembersFromType: collectMembersFromType
+  participant_collectTypeMembers-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_collectTypeMembers-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_collectPropsForExport-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_collectPropsForExport-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_collectPropsForExport-&gt;&gt;participant_collectDefaultValuesFromBinding: collectDefaultValuesFromBinding
+  participant_collectPropsForExport-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_collectRelatedTypes-&gt;&gt;participant_flattenMembers: flattenMembers
+  participant_collectMembersFromType-&gt;&gt;participant_getDeclaredMembers: getDeclaredMembers
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isUndefinedUnion: isUndefinedUnion
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_shouldExpandType: shouldExpandType
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_resolveTypeReference: resolveTypeReference
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_collectTypeMembers: collectTypeMembers
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_getDeclaredTypeText: getDeclaredTypeText
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_appendUndefinedIfOptional: appendUndefinedIfOptional
+  participant_shouldExpandType-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_shouldExpandType-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_src_analyze_semantic_exports_ts-&gt;&gt;participant_flattenMembers: flattenMembers
+  participant_collectImportGraph-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_collectImportGraph-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_collectImportGraph-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_collectImportGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_collectCallGraph-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_collectCallGraph-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_collectCallGraph-&gt;&gt;participant_relativeToRoot: relativeToRoot
+  participant_src_analyze_semantic_graphs_ts-&gt;&gt;participant_toCallEdge: toCallEdge
+  participant_collectCallGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_collectExports: collectExports
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_findJsxElements: findJsxElements
+  participant_collectComponentCompositionGraph-&gt;&gt;participant_uniqueEdges: uniqueEdges
+  participant_toCallEdge-&gt;&gt;participant_isPathInsideRoot: isPathInsideRoot
+  participant_toCallEdge-&gt;&gt;participant_isNodeModulePath: isNodeModulePath
+  participant_toCallEdge-&gt;&gt;participant_getEnclosingSymbolName: getEnclosingSymbolName
+  participant_src_analyze_semantic_graphs_ts-&gt;&gt;participant_key: key
+  participant_isReactComponent-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_isReactComponent-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_relativeToRoot-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_relativeToRoot-&gt;&gt;participant_relative: relative
+  participant_isPathInsideRoot-&gt;&gt;participant_normalize: normalize
+  participant_isNodeModulePath-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getComponentPropsType-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_getExportMetadata-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getExportMetadata-&gt;&gt;participant_relative: relative
+  participant_getExportMetadata-&gt;&gt;participant_getSourceLocation: getSourceLocation
+  participant_getExportMetadata-&gt;&gt;participant_getSignatures: getSignatures
+  participant_getExportMetadata-&gt;&gt;participant_getMembers: getMembers
+  participant_getExportMetadata-&gt;&gt;participant_collectRelatedSymbols: collectRelatedSymbols
+  participant_getSourceLocation-&gt;&gt;participant_toPosixPath: toPosixPath
+  participant_getSourceLocation-&gt;&gt;participant_relative: relative
+  participant_getSignatures-&gt;&gt;participant_readParadoxMetadata: readParadoxMetadata
+  participant_getSignatures-&gt;&gt;participant_getCallableDeclarations: getCallableDeclarations
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getSignature: getSignature
+  participant_getSignatures-&gt;&gt;participant_uniqueBy: uniqueBy
+  participant_getMembers-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_getMembers-&gt;&gt;participant_getMembersFromProperties: getMembersFromProperties
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getFirstDeclaration: getFirstDeclaration
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_isMemberMethodDeclaration: isMemberMethodDeclaration
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_getCallableDeclarations-&gt;&gt;participant_getCallableNode: getCallableNode
+  participant_readParadoxMetadata-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_readParadoxMetadata-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_src_analyze_utils_getExportMetadata_ts-&gt;&gt;participant_key: key
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_getParadoxComment: getParadoxComment
+  participant_src_analyze_utils_getPropsFromType_ts-&gt;&gt;participant_parseParadoxComment: parseParadoxComment
+  participant_isReactComponent-&gt;&gt;participant_getDeclarationName: getDeclarationName
+  participant_isReactComponent-&gt;&gt;participant_getCallSignature: getCallSignature
+  participant_src_render_renderers_badges_ts-&gt;&gt;participant_renderBadgeSvg: renderBadgeSvg
+  participant_renderBadgeSvg-&gt;&gt;participant_getTextWidth: getTextWidth
+  participant_renderBadgeSvg-&gt;&gt;participant_escapeXml: escapeXml
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderArchitectureOverview: renderArchitectureOverview
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderModuleRelationships: renderModuleRelationships
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderExportGraph: renderExportGraph
+  participant_renderDiagramArtifacts-&gt;&gt;participant_renderEntrypointSequence: renderEntrypointSequence
+  participant_renderArchitectureOverview-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderArchitectureOverview-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_renderModuleRelationships-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderModuleRelationships-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_src_render_renderers_diagrams_ts-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderModuleRelationships-&gt;&gt;participant_renderFallbackEdge: renderFallbackEdge
+  participant_renderExportGraph-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_renderExportGraph-&gt;&gt;participant_escapeLabel: escapeLabel
+  participant_renderEntrypointSequence-&gt;&gt;participant_toMermaidId: toMermaidId
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderHtml-&gt;&gt;participant_groupBy: groupBy
+  participant_renderHtml-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_src_render_renderers_html_ts-&gt;&gt;participant_renderExportCard: renderExportCard
+  participant_renderModuleCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderModuleCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderModuleCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderExportCard-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderExportCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderExportCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderExportCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderExportCard-&gt;&gt;participant_renderChipList: renderChipList
+  participant_renderExportCard-&gt;&gt;participant_renderSignatureBlock: renderSignatureBlock
+  participant_renderExportCard-&gt;&gt;participant_renderMemberTable: renderMemberTable
+  participant_renderComponentCard-&gt;&gt;participant_toAnchorId: toAnchorId
+  participant_renderComponentCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderComponentCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderComponentCard-&gt;&gt;participant_renderInlineCodeList: renderInlineCodeList
+  participant_renderDiagramCard-&gt;&gt;participant_escapeAttribute: escapeAttribute
+  participant_renderDiagramCard-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_groupBy-&gt;&gt;participant_key: key
+  participant_escapeAttribute-&gt;&gt;participant_escapeHtml: escapeHtml
+  participant_renderMarkdown-&gt;&gt;participant_renderReadme: renderReadme
+  participant_renderMarkdown-&gt;&gt;participant_renderExports: renderExports
+  participant_renderMarkdown-&gt;&gt;participant_renderComponents: renderComponents
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_badgeLabel: badgeLabel
+  participant_renderReadme-&gt;&gt;participant_flattenConfigMembers: flattenConfigMembers
+  participant_renderReadme-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_renderExports-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_renderComponents-&gt;&gt;participant_escapeTableCell: escapeTableCell
+  participant_src_render_renderers_markdown_ts-&gt;&gt;participant_flattenConfigMembers: flattenConfigMembers
 </pre>
     </details>
   </article>

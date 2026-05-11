@@ -1,0 +1,5 @@
+{
+  "name": "@fixture/analyzer",
+  "description": "Analyzer fixture package for Paradox tests.",
+  "type": "module"
+}

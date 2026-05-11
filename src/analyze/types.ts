@@ -29,6 +29,9 @@ export interface AnalysisMember {
   type: string;
   required: boolean;
   description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: AnalysisMember[];
 }
 
 export interface AnalysisExport {
@@ -85,6 +88,49 @@ export interface AnalysisModule {
   exports: string[];
 }
 
+interface AnalysisTypeMember {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+  inheritedFrom?: string;
+  children?: AnalysisTypeMember[];
+}
+
+interface ImportEdge {
+  fromPath: string;
+  toPath: string;
+  sourcePath: string;
+}
+
+interface CallEdge {
+  fromSymbol: string;
+  toSymbol: string;
+  callExpression: string;
+  sourcePath: string;
+}
+
+interface TypeReferenceEdge {
+  fromSymbol: string;
+  toType: string;
+  sourcePath: string;
+}
+
+interface ComponentCompositionEdge {
+  fromComponent: string;
+  toComponent: string;
+  jsxElement: string;
+  sourcePath: string;
+}
+
+interface AnalysisGraphs {
+  imports: ImportEdge[];
+  calls: CallEdge[];
+  typeReferences: TypeReferenceEdge[];
+  componentComposition: ComponentCompositionEdge[];
+}
+
 /***
  * Complete analysis output used to build the documentation model.
  */
@@ -103,5 +149,7 @@ export interface AnalysisResult {
 
   config: {
     exportName: string;
+    members: AnalysisTypeMember[];
   } | null;
+  graphs: AnalysisGraphs;
 }
