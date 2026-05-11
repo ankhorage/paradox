@@ -70,7 +70,33 @@
   "config": {
     "exportName": "ParadoxConfig",
     "configFile": "paradox.config.ts",
-    "factoryName": "defineParadoxConfig"
+    "factoryName": "defineParadoxConfig",
+    "members": [
+      {
+        "name": "mode",
+        "type": "'safe' | 'write' | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "docs",
+        "type": "{ title?: string; description?: string; } | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "package",
+        "type": "{ root?: string; entrypoints?: string[]; } | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "output",
+        "type": "{ dir?: string; } | undefined",
+        "required": false,
+        "description": null
+      }
+    ]
   },
   "entrypoints": [
     "src/index.ts"
@@ -85,6 +111,9 @@
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
         "src/analyze/project.ts",
+        "src/analyze/semantic/createTypeScriptProgram.ts",
+        "src/analyze/semantic/exports.ts",
+        "src/analyze/semantic/graphs.ts",
         "src/analyze/types.ts",
         "src/analyze/usage.ts",
         "src/config/types.ts"
@@ -108,6 +137,8 @@
       "path": "src/analyze/components.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/analyze/semantic/exports.ts",
+        "src/analyze/semantic/model.ts",
         "src/analyze/types.ts",
         "src/analyze/utils/getComponentPropsType.ts",
         "src/analyze/utils/getPropsFromType.ts",
@@ -147,6 +178,158 @@
       "dependencies": [],
       "exports": [
         "createProject"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/analyzeProject.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+        "src/analyze/semantic/collectSourceFiles.ts",
+        "src/analyze/semantic/createTypeScriptProgram.ts",
+        "src/analyze/semantic/docBlocks.ts",
+        "src/analyze/semantic/exports.ts",
+        "src/analyze/semantic/graphs.ts",
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/tagRegistry.ts"
+      ],
+      "exports": [
+        "analyzeProject"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "associateDocBlocksWithSymbols"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/collectSourceFiles.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "collectSourceFiles"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/createTypeScriptProgram.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "createTypeScriptProgram"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/docBlocks.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/tagRegistry.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "collectDocBlocks"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/exports.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/isReactComponent.ts",
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/paradoxComment.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "collectExports",
+        "collectPropsForExport",
+        "collectRelatedTypes",
+        "collectTypeMembers",
+        "getExportSignature",
+        "resolveTypeReference"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/graphs.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/exports.ts",
+        "src/analyze/semantic/model.ts",
+        "src/analyze/semantic/utils.ts"
+      ],
+      "exports": [
+        "collectCallGraph",
+        "collectComponentCompositionGraph",
+        "collectImportGraph"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/isReactComponent.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "isReactComponent"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/model.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "AnalyzedDocBlock",
+        "AnalyzedExport",
+        "AnalyzedExportKind",
+        "AnalyzedFile",
+        "AnalyzedProgram",
+        "AnalyzedProject",
+        "AnalyzedProp",
+        "AnalyzedProps",
+        "AnalyzedTag",
+        "AnalyzedTypeMember",
+        "CallEdge",
+        "ComponentCompositionEdge",
+        "ImportEdge",
+        "ResolvedTypeReference"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/paradoxComment.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "getParadoxComment",
+        "parseParadoxComment"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/tagRegistry.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "defaultTagRegistry",
+        "TagRegistry"
+      ]
+    },
+    {
+      "path": "src/analyze/semantic/utils.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "isNodeModulePath",
+        "isPathInsideRoot",
+        "relativeToRoot",
+        "toPosixPath"
       ]
     },
     {
@@ -481,5 +664,2090 @@
       ]
     }
   ],
-  "components": []
+  "components": [],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/cli.ts",
+        "toPath": "src/analyze/analyze.ts",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromPath": "src/cli.ts",
+        "toPath": "src/model/buildModel.ts",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromPath": "src/cli.ts",
+        "toPath": "src/paths/policy.ts",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromPath": "src/cli.ts",
+        "toPath": "src/render/render.ts",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromPath": "src/cli.ts",
+        "toPath": "src/write/write.ts",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/config/defineParadoxConfig.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/config/types.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/config/types.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/badges.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/components.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/exports.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/modules.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/project.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/semantic/exports.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/semantic/graphs.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/usage.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/badges.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromPath": "src/analyze/badges.ts",
+        "toPath": "src/analyze/usage.ts",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/semantic/exports.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/utils/getComponentPropsType.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/utils/getPropsFromType.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/analyze/utils/isReactComponent.ts",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromPath": "src/analyze/exports.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/exports.ts",
+        "toPath": "src/analyze/utils/getExportMetadata.ts",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/exports.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/exports.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/exports.ts",
+        "toPath": "src/analyze/utils/resolveExportSymbol.ts",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/modules.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromPath": "src/analyze/usage.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromPath": "src/config/defineParadoxConfig.ts",
+        "toPath": "src/config/types.ts",
+        "sourcePath": "src/config/defineParadoxConfig.ts"
+      },
+      {
+        "fromPath": "src/model/buildModel.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromPath": "src/paths/policy.ts",
+        "toPath": "src/config/types.ts",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/badges.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/diagrams.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/html.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/markdown.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/types.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/types.ts"
+      },
+      {
+        "fromPath": "src/write/write.ts",
+        "toPath": "src/config/types.ts",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/write/write.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/collectSourceFiles.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/docBlocks.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/exports.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/graphs.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/analyzeProject.ts",
+        "toPath": "src/analyze/semantic/tagRegistry.ts",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/collectSourceFiles.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/collectSourceFiles.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/docBlocks.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/docBlocks.ts",
+        "toPath": "src/analyze/semantic/tagRegistry.ts",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/docBlocks.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/exports.ts",
+        "toPath": "src/analyze/semantic/isReactComponent.ts",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/exports.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/exports.ts",
+        "toPath": "src/analyze/semantic/paradoxComment.ts",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/exports.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/graphs.ts",
+        "toPath": "src/analyze/semantic/exports.ts",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/graphs.ts",
+        "toPath": "src/analyze/semantic/model.ts",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromPath": "src/analyze/semantic/graphs.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getExportMetadata.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getExportMetadata.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getExportMetadata.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getPropsFromType.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getPropsFromType.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getPropsFromType.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/badges.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/badges.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/diagrams.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/diagrams.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/html.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/html.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/markdown.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/markdown.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "main",
+        "toSymbol": "findParadoxConfigFile",
+        "callExpression": "findParadoxConfigFile",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "loadParadoxConfig",
+        "callExpression": "loadParadoxConfig",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "resolvePackageRoot",
+        "callExpression": "resolvePackageRoot",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "resolveOutputRoot",
+        "callExpression": "resolveOutputRoot",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "analyze",
+        "callExpression": "analyze",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "buildModel",
+        "callExpression": "buildModel",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "render",
+        "callExpression": "render",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "write",
+        "callExpression": "write",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "src/cli.ts",
+        "toSymbol": "main",
+        "callExpression": "main",
+        "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "readPackageJson",
+        "callExpression": "readPackageJson",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "createUsageFromPackageJson",
+        "callExpression": "createUsageFromPackageJson",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeBadges",
+        "callExpression": "analyzeBadges",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "createProject",
+        "callExpression": "createProject",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "createTypeScriptProgram",
+        "callExpression": "createTypeScriptProgram",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeExports",
+        "callExpression": "analyzeExports",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeComponents",
+        "callExpression": "analyzeComponents",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeModules",
+        "callExpression": "analyzeModules",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectImportGraph",
+        "callExpression": "collectImportGraph",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectCallGraph",
+        "callExpression": "collectCallGraph",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectComponentCompositionGraph",
+        "callExpression": "collectComponentCompositionGraph",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "mapTypeMembers",
+        "callExpression": "mapTypeMembers",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/analyze.ts",
+        "toSymbol": "mapTypeMembers",
+        "callExpression": "mapTypeMembers",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "readPackageJson",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "readPackageJson",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "readWorkflowFiles",
+        "callExpression": "readWorkflowFiles",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "hasAnyFile",
+        "callExpression": "hasAnyFile",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "scriptContains",
+        "callExpression": "scriptContains",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "workflowRunsScript",
+        "callExpression": "workflowRunsScript",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "hasScript",
+        "callExpression": "hasScript",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "hasTypeScriptStrictMode",
+        "callExpression": "hasTypeScriptStrictMode",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "supportsBun",
+        "callExpression": "supportsBun",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "readCoveragePercent",
+        "callExpression": "readCoveragePercent",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "formatPercent",
+        "callExpression": "formatPercent",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "getCoverageColor",
+        "callExpression": "getCoverageColor",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "sortBadges",
+        "callExpression": "sortBadges",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "hasAnyFile",
+        "toSymbol": "fileExists",
+        "callExpression": "fileExists",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "hasAnyFile",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "hasTypeScriptStrictMode",
+        "toSymbol": "readJsonFile",
+        "callExpression": "readJsonFile",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "hasTypeScriptStrictMode",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readCoveragePercent",
+        "toSymbol": "readJsonFile",
+        "callExpression": "readJsonFile",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readCoveragePercent",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "workflowRunsScript",
+        "toSymbol": "escapeRegExp",
+        "callExpression": "escapeRegExp",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readWorkflowFiles",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readWorkflowFiles",
+        "toSymbol": "readDirectory",
+        "callExpression": "readDirectory",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/badges.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/badges.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readDirectory",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readDirectory",
+        "toSymbol": "isNotFoundError",
+        "callExpression": "isNotFoundError",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readJsonFile",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "readJsonFile",
+        "toSymbol": "isNotFoundError",
+        "callExpression": "isNotFoundError",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "fileExists",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "fileExists",
+        "toSymbol": "isNotFoundError",
+        "callExpression": "isNotFoundError",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/badges.ts",
+        "toSymbol": "getBadgeOrder",
+        "callExpression": "getBadgeOrder",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeComponents",
+        "toSymbol": "isReactComponent",
+        "callExpression": "isReactComponent",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromSymbol": "analyzeComponents",
+        "toSymbol": "collectPropsForExport",
+        "callExpression": "collectPropsForExport",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromSymbol": "analyzeComponents",
+        "toSymbol": "getComponentPropsType",
+        "callExpression": "getComponentPropsType",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromSymbol": "analyzeComponents",
+        "toSymbol": "getPropsFromType",
+        "callExpression": "getPropsFromType",
+        "sourcePath": "src/analyze/components.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "getEntryPointSourceFiles",
+        "callExpression": "getEntryPointSourceFiles",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "resolveExportSymbol",
+        "callExpression": "resolveExportSymbol",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "getExportMetadata",
+        "callExpression": "getExportMetadata",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "inferKind",
+        "callExpression": "inferKind",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/exports.ts",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/exports.ts",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/exports.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeModules",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/modules.ts",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "createUsageFromPackageJson",
+        "toSymbol": "getPackageBaseName",
+        "callExpression": "getPackageBaseName",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "src/model/buildModel.ts",
+        "toSymbol": "mapExport",
+        "callExpression": "mapExport",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "buildModel",
+        "toSymbol": "sortByName",
+        "callExpression": "sortByName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "buildModel",
+        "toSymbol": "getDefaultConfigFileName",
+        "callExpression": "getDefaultConfigFileName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "buildModel",
+        "toSymbol": "findConfigFactoryName",
+        "callExpression": "findConfigFactoryName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "src/model/buildModel.ts",
+        "toSymbol": "mapComponent",
+        "callExpression": "mapComponent",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "src/model/buildModel.ts",
+        "toSymbol": "sortByName",
+        "callExpression": "sortByName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "mapExport",
+        "toSymbol": "sortByName",
+        "callExpression": "sortByName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "mapComponent",
+        "toSymbol": "sortByName",
+        "callExpression": "sortByName",
+        "sourcePath": "src/model/buildModel.ts"
+      },
+      {
+        "fromSymbol": "findParadoxConfigFile",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "findParadoxConfigFile",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "findParadoxConfigFile",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "findParadoxConfigFile",
+        "toSymbol": "pathExists",
+        "callExpression": "pathExists",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "loadParadoxConfig",
+        "toSymbol": "pathToFileURL",
+        "callExpression": "pathToFileURL",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolvePackageRoot",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolvePackageRoot",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolvePackageRoot",
+        "toSymbol": "assertPathExists",
+        "callExpression": "assertPathExists",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolvePackageRoot",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolveOutputRoot",
+        "toSymbol": "validateOutputDir",
+        "callExpression": "validateOutputDir",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolveOutputRoot",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "resolveOutputRoot",
+        "toSymbol": "assertWithinRoot",
+        "callExpression": "assertWithinRoot",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "pathExists",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "assertPathExists",
+        "toSymbol": "pathExists",
+        "callExpression": "pathExists",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "validateOutputDir",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "validateOutputDir",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "validateOutputDir",
+        "toSymbol": "splitPathSegments",
+        "callExpression": "splitPathSegments",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "assertWithinRoot",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "renderBadgeArtifacts",
+        "callExpression": "renderBadgeArtifacts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "renderDiagramArtifacts",
+        "callExpression": "renderDiagramArtifacts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "renderer",
+        "callExpression": "renderer",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "createTypeScriptProgram",
+        "callExpression": "createTypeScriptProgram",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "collectSourceFiles",
+        "callExpression": "collectSourceFiles",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "collectDocBlocks",
+        "callExpression": "collectDocBlocks",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "associateDocBlocksWithSymbols",
+        "callExpression": "associateDocBlocksWithSymbols",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "collectExports",
+        "callExpression": "collectExports",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "getExportSignature",
+        "callExpression": "getExportSignature",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "collectPropsForExport",
+        "callExpression": "collectPropsForExport",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/analyzeProject.ts",
+        "toSymbol": "collectRelatedTypes",
+        "callExpression": "collectRelatedTypes",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "collectImportGraph",
+        "callExpression": "collectImportGraph",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "collectCallGraph",
+        "callExpression": "collectCallGraph",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "analyzeProject",
+        "toSymbol": "collectComponentCompositionGraph",
+        "callExpression": "collectComponentCompositionGraph",
+        "sourcePath": "src/analyze/semantic/analyzeProject.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/collectSourceFiles.ts",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/collectSourceFiles.ts",
+        "toSymbol": "isPathInsideRoot",
+        "callExpression": "isPathInsideRoot",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/collectSourceFiles.ts",
+        "toSymbol": "isNodeModulePath",
+        "callExpression": "isNodeModulePath",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/collectSourceFiles.ts",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/collectSourceFiles.ts"
+      },
+      {
+        "fromSymbol": "createTypeScriptProgram",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "createTypeScriptProgram",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/createTypeScriptProgram.ts",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
+      },
+      {
+        "fromSymbol": "collectDocBlocks",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromSymbol": "collectDocBlocks",
+        "toSymbol": "parseDocBlock",
+        "callExpression": "parseDocBlock",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromSymbol": "collectTags",
+        "toSymbol": "normalizeDocBlock",
+        "callExpression": "normalizeDocBlock",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromSymbol": "parseDocBlock",
+        "toSymbol": "normalizeDocBlock",
+        "callExpression": "normalizeDocBlock",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromSymbol": "parseDocBlock",
+        "toSymbol": "collectTags",
+        "callExpression": "collectTags",
+        "sourcePath": "src/analyze/semantic/docBlocks.ts"
+      },
+      {
+        "fromSymbol": "collectExports",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectExports",
+        "toSymbol": "resolveExportSymbol",
+        "callExpression": "resolveExportSymbol",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectExports",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectExports",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectExports",
+        "toSymbol": "detectExportKind",
+        "callExpression": "detectExportKind",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "detectExportKind",
+        "toSymbol": "isReactComponent",
+        "callExpression": "isReactComponent",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "detectExportKind",
+        "toSymbol": "getDeclarationName",
+        "callExpression": "getDeclarationName",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "getExportSignature",
+        "toSymbol": "getCallableNode",
+        "callExpression": "getCallableNode",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "getParameterTypeText",
+        "callExpression": "getParameterTypeText",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "resolveTypeReference",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "resolveTypeReference",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectTypeMembers",
+        "toSymbol": "collectMembersFromType",
+        "callExpression": "collectMembersFromType",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectTypeMembers",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectTypeMembers",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectPropsForExport",
+        "toSymbol": "getCallableNode",
+        "callExpression": "getCallableNode",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectPropsForExport",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectPropsForExport",
+        "toSymbol": "collectDefaultValuesFromBinding",
+        "callExpression": "collectDefaultValuesFromBinding",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectPropsForExport",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectRelatedTypes",
+        "toSymbol": "flattenMembers",
+        "callExpression": "flattenMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectMembersFromType",
+        "toSymbol": "getDeclaredMembers",
+        "callExpression": "getDeclaredMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "isUndefinedUnion",
+        "callExpression": "isUndefinedUnion",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "shouldExpandType",
+        "callExpression": "shouldExpandType",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "getDeclaredTypeText",
+        "callExpression": "getDeclaredTypeText",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "appendUndefinedIfOptional",
+        "callExpression": "appendUndefinedIfOptional",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "shouldExpandType",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "shouldExpandType",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "isPathInsideRoot",
+        "callExpression": "isPathInsideRoot",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "isNodeModulePath",
+        "callExpression": "isNodeModulePath",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/exports.ts",
+        "toSymbol": "flattenMembers",
+        "callExpression": "flattenMembers",
+        "sourcePath": "src/analyze/semantic/exports.ts"
+      },
+      {
+        "fromSymbol": "collectImportGraph",
+        "toSymbol": "isPathInsideRoot",
+        "callExpression": "isPathInsideRoot",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectImportGraph",
+        "toSymbol": "isNodeModulePath",
+        "callExpression": "isNodeModulePath",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectImportGraph",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectImportGraph",
+        "toSymbol": "uniqueEdges",
+        "callExpression": "uniqueEdges",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectCallGraph",
+        "toSymbol": "isPathInsideRoot",
+        "callExpression": "isPathInsideRoot",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectCallGraph",
+        "toSymbol": "isNodeModulePath",
+        "callExpression": "isNodeModulePath",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectCallGraph",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/graphs.ts",
+        "toSymbol": "toCallEdge",
+        "callExpression": "toCallEdge",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectCallGraph",
+        "toSymbol": "uniqueEdges",
+        "callExpression": "uniqueEdges",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectComponentCompositionGraph",
+        "toSymbol": "collectExports",
+        "callExpression": "collectExports",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectComponentCompositionGraph",
+        "toSymbol": "findJsxElements",
+        "callExpression": "findJsxElements",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "collectComponentCompositionGraph",
+        "toSymbol": "uniqueEdges",
+        "callExpression": "uniqueEdges",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "toCallEdge",
+        "toSymbol": "isPathInsideRoot",
+        "callExpression": "isPathInsideRoot",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "toCallEdge",
+        "toSymbol": "isNodeModulePath",
+        "callExpression": "isNodeModulePath",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "toCallEdge",
+        "toSymbol": "getEnclosingSymbolName",
+        "callExpression": "getEnclosingSymbolName",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/semantic/graphs.ts",
+        "toSymbol": "key",
+        "callExpression": "key",
+        "sourcePath": "src/analyze/semantic/graphs.ts"
+      },
+      {
+        "fromSymbol": "isReactComponent",
+        "toSymbol": "getDeclarationName",
+        "callExpression": "getDeclarationName",
+        "sourcePath": "src/analyze/semantic/isReactComponent.ts"
+      },
+      {
+        "fromSymbol": "isReactComponent",
+        "toSymbol": "getCallSignature",
+        "callExpression": "getCallSignature",
+        "sourcePath": "src/analyze/semantic/isReactComponent.ts"
+      },
+      {
+        "fromSymbol": "relativeToRoot",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/semantic/utils.ts"
+      },
+      {
+        "fromSymbol": "relativeToRoot",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/semantic/utils.ts"
+      },
+      {
+        "fromSymbol": "isPathInsideRoot",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/semantic/utils.ts"
+      },
+      {
+        "fromSymbol": "isNodeModulePath",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/semantic/utils.ts"
+      },
+      {
+        "fromSymbol": "getComponentPropsType",
+        "toSymbol": "getCallSignature",
+        "callExpression": "getCallSignature",
+        "sourcePath": "src/analyze/utils/getComponentPropsType.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "getSourceLocation",
+        "callExpression": "getSourceLocation",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "getSignatures",
+        "callExpression": "getSignatures",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "getMembers",
+        "callExpression": "getMembers",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
+        "toSymbol": "collectRelatedSymbols",
+        "callExpression": "collectRelatedSymbols",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSourceLocation",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSourceLocation",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSignatures",
+        "toSymbol": "readParadoxMetadata",
+        "callExpression": "readParadoxMetadata",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSignatures",
+        "toSymbol": "getCallableDeclarations",
+        "callExpression": "getCallableDeclarations",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getSignature",
+        "callExpression": "getSignature",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSignatures",
+        "toSymbol": "uniqueBy",
+        "callExpression": "uniqueBy",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getMembers",
+        "toSymbol": "getCallableNode",
+        "callExpression": "getCallableNode",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getMembers",
+        "toSymbol": "getMembersFromProperties",
+        "callExpression": "getMembersFromProperties",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getFirstDeclaration",
+        "callExpression": "getFirstDeclaration",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "isMemberMethodDeclaration",
+        "callExpression": "isMemberMethodDeclaration",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getCallableNode",
+        "callExpression": "getCallableNode",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getCallableDeclarations",
+        "toSymbol": "getCallableNode",
+        "callExpression": "getCallableNode",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "readParadoxMetadata",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "readParadoxMetadata",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "key",
+        "callExpression": "key",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getPropsFromType.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getPropsFromType.ts",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromSymbol": "isReactComponent",
+        "toSymbol": "getDeclarationName",
+        "callExpression": "getDeclarationName",
+        "sourcePath": "src/analyze/utils/isReactComponent.ts"
+      },
+      {
+        "fromSymbol": "isReactComponent",
+        "toSymbol": "getCallSignature",
+        "callExpression": "getCallSignature",
+        "sourcePath": "src/analyze/utils/isReactComponent.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/badges.ts",
+        "toSymbol": "renderBadgeSvg",
+        "callExpression": "renderBadgeSvg",
+        "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromSymbol": "renderBadgeSvg",
+        "toSymbol": "getTextWidth",
+        "callExpression": "getTextWidth",
+        "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromSymbol": "renderBadgeSvg",
+        "toSymbol": "escapeXml",
+        "callExpression": "escapeXml",
+        "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramArtifacts",
+        "toSymbol": "renderArchitectureOverview",
+        "callExpression": "renderArchitectureOverview",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramArtifacts",
+        "toSymbol": "renderModuleRelationships",
+        "callExpression": "renderModuleRelationships",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramArtifacts",
+        "toSymbol": "renderExportGraph",
+        "callExpression": "renderExportGraph",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramArtifacts",
+        "toSymbol": "renderEntrypointSequence",
+        "callExpression": "renderEntrypointSequence",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderArchitectureOverview",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderArchitectureOverview",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderModuleRelationships",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderModuleRelationships",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/diagrams.ts",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderModuleRelationships",
+        "toSymbol": "renderFallbackEdge",
+        "callExpression": "renderFallbackEdge",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderExportGraph",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderExportGraph",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderEntrypointSequence",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/html.ts",
+        "toSymbol": "toAnchorId",
+        "callExpression": "toAnchorId",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderHtml",
+        "toSymbol": "groupBy",
+        "callExpression": "groupBy",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderHtml",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/html.ts",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/html.ts",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/html.ts",
+        "toSymbol": "renderExportCard",
+        "callExpression": "renderExportCard",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderModuleCard",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderModuleCard",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderModuleCard",
+        "toSymbol": "renderInlineCodeList",
+        "callExpression": "renderInlineCodeList",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "toAnchorId",
+        "callExpression": "toAnchorId",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "renderInlineCodeList",
+        "callExpression": "renderInlineCodeList",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "renderChipList",
+        "callExpression": "renderChipList",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "renderSignatureBlock",
+        "callExpression": "renderSignatureBlock",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "renderMemberTable",
+        "callExpression": "renderMemberTable",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderComponentCard",
+        "toSymbol": "toAnchorId",
+        "callExpression": "toAnchorId",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderComponentCard",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderComponentCard",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderComponentCard",
+        "toSymbol": "renderInlineCodeList",
+        "callExpression": "renderInlineCodeList",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramCard",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderDiagramCard",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "groupBy",
+        "toSymbol": "key",
+        "callExpression": "key",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "escapeAttribute",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderMarkdown",
+        "toSymbol": "renderReadme",
+        "callExpression": "renderReadme",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderMarkdown",
+        "toSymbol": "renderExports",
+        "callExpression": "renderExports",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderMarkdown",
+        "toSymbol": "renderComponents",
+        "callExpression": "renderComponents",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "badgeLabel",
+        "callExpression": "badgeLabel",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "flattenConfigMembers",
+        "callExpression": "flattenConfigMembers",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExports",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponents",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "flattenConfigMembers",
+        "callExpression": "flattenConfigMembers",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "defineParadoxConfig",
+        "toType": "ParadoxConfig",
+        "sourcePath": "src/config/defineParadoxConfig.ts"
+      }
+    ],
+    "componentComposition": []
+  }
 }
