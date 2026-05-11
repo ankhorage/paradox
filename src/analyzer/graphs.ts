@@ -86,11 +86,11 @@ export function collectComponentCompositionGraph(
     const jsxElements = findJsxElements(component.node);
 
     for (const element of jsxElements) {
-      const tagName = element.getTagNameNode().getText();
-      if (!/^[A-Z]/.test(tagName)) continue;
+      const jsxTagName = element.getTagNameNode().getText();
+      if (!/^[A-Z]/.test(jsxTagName)) continue;
       edges.push({
         fromComponent: componentName,
-        toComponent: tagName,
+        toComponent: jsxTagName,
         jsxElement: element.getText(),
         sourcePath,
       });

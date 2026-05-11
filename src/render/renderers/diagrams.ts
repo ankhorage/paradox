@@ -119,7 +119,7 @@ function renderEntrypointSequence(model: DocumentationModel): string {
         (edge) =>
           `  ${toMermaidId(`participant-${edge.fromSymbol}`)}->>${toMermaidId(
             `participant-${edge.toSymbol}`,
-          )}: ${edge.callExpression}()`,
+          )}: ${edge.callExpression}`,
       ),
     );
 

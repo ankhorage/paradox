@@ -444,6 +444,7 @@ const IGNORED_RELATED_SYMBOLS = new Set([
   'Element',
   'JSX',
   'Map',
+  'Number',
   'Promise',
   'ReadonlyArray',
   'Record',
