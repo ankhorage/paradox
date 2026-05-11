@@ -230,6 +230,10 @@ function renderFallbackEdge(modules: readonly ModuleModel[], prefix: string): st
   });
 }
 
+function uniqueSorted(values: readonly string[]): string[] {
+  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
+}
+
 function toMermaidId(value: string): string {
   return value.replace(/[^A-Za-z0-9_]/g, '_');
 }
