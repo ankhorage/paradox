@@ -34,6 +34,7 @@ interface UsageCommandModel {
 
 interface ConfigModel {
   exportName: string;
+  isReadme: boolean;
   configFile: string;
   factoryName: string | null;
   members: ConfigMemberModel[];
@@ -42,6 +43,8 @@ interface ConfigModel {
 export interface ExportModel {
   name: string;
   description: string | null;
+  isReadme: boolean;
+  examples: ExampleModel[];
   kind: ExportKind;
   modulePath: string;
   sourceLocation: SourceLocationModel;
@@ -56,10 +59,18 @@ export type ExportKind = 'function' | 'type' | 'unknown';
 export interface ComponentModel {
   name: string;
   description: string | null;
+  isReadme: boolean;
+  examples: ExampleModel[];
   modulePath: string;
   sourceLocation: SourceLocationModel;
   exportPaths: string[];
   props: PropModel[];
+}
+
+interface ExampleModel {
+  title: string | null;
+  language: string | null;
+  code: string;
 }
 
 interface SourceLocationModel {
@@ -104,6 +115,7 @@ interface PropModel {
   name: string;
   type: string;
   required: boolean;
+  defaultValue?: string;
   description: string | null;
 }
 
