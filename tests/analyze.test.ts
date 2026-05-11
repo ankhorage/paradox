@@ -170,7 +170,7 @@ describe('analyze', () => {
     expect(output.readme).toContain('## Configuration');
     expect(output.readme).toContain('<summary>Configuration options</summary>');
     expect(output.readme).toContain('## Public API');
-    expect(output.readme).toContain('### Components');
+    expect(output.readme).toContain('### Utilities');
     expect(output.readme).toContain('<summary>Button</summary>');
     expect(output.readme).toContain('<summary>Props</summary>');
     expect(output.readme).toContain('#### Basic button');
