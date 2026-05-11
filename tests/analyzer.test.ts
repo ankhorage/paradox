@@ -2,7 +2,7 @@ import { join } from 'node:path';
 
 import { describe, expect, test } from 'bun:test';
 
-import { analyzeProject } from '../src/analyzer/analyzeProject.js';
+import { analyzeProject } from '../src/analyze/semantic/analyzeProject.js';
 
 const fixtureRoot = join(import.meta.dir, 'fixtures/analyzer');
 
