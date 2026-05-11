@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.10
+
+### Patch Changes
+
+- 46bc15e: Add a reusable semantic TypeScript analysis foundation for exports, props, type members, and graph metadata.
+
 ## 0.0.9
 
 ### Patch Changes
