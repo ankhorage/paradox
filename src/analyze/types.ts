@@ -1,5 +1,11 @@
 import type { Node } from 'ts-morph';
 
+export interface AnalysisExample {
+  title: string | null;
+  language: string | null;
+  code: string;
+}
+
 /***
  * Describes one exported declaration discovered in a package.
  */
@@ -38,6 +44,8 @@ export interface AnalysisExport {
   name: string;
   node: Node;
   description: string | null;
+  isReadme: boolean;
+  examples: AnalysisExample[];
   kind: 'function' | 'type' | 'unknown';
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
@@ -53,6 +61,8 @@ export interface AnalysisExport {
 export interface AnalysisComponent {
   name: string;
   description: string | null;
+  isReadme: boolean;
+  examples: AnalysisExample[];
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
   exportPaths: string[];
@@ -60,6 +70,7 @@ export interface AnalysisComponent {
     name: string;
     type: string;
     required: boolean;
+    defaultValue?: string;
     description: string | null;
   }[];
 }
@@ -149,6 +160,7 @@ export interface AnalysisResult {
 
   config: {
     exportName: string;
+    isReadme: boolean;
     members: AnalysisTypeMember[];
   } | null;
   graphs: AnalysisGraphs;
