@@ -18,6 +18,7 @@ export {
   collectComponentCompositionGraph,
   collectImportGraph,
 } from './graphs.js';
+export { isReactComponent } from './isReactComponent.js';
 export type {
   AnalyzedDocBlock,
   AnalyzedExport,
@@ -36,3 +37,4 @@ export type {
   ResolvedTypeReference,
   TypeReferenceEdge,
 } from './model.js';
+export { getParadoxComment, parseParadoxComment } from './paradoxComment.js';

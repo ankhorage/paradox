@@ -49,35 +49,37 @@ function renderReadme(
     lines.push('```', '');
   }
 
-  if (model.config !== null) {
+  const { config } = model;
+
+  if (config !== null) {
     lines.push('## Configuration', '');
-    lines.push(`Create a \`${model.config.configFile}\` file:`, '');
+    lines.push(`Create a \`${config.configFile}\` file:`, '');
     lines.push('```ts');
 
-    if (model.config.factoryName !== null) {
-      lines.push(`import { ${model.config.factoryName} } from '${model.packageId}';`);
+    if (config.factoryName !== null) {
+      lines.push(`import { ${config.factoryName} } from '${model.packageId}';`);
       lines.push('');
-      lines.push(`export default ${model.config.factoryName}({`);
+      lines.push(`export default ${config.factoryName}({`);
       lines.push('  // ...');
       lines.push('});');
     } else {
-      lines.push(`import type { ${model.config.exportName} } from '${model.packageId}';`);
+      lines.push(`import type { ${config.exportName} } from '${model.packageId}';`);
       lines.push('');
       lines.push('const config = {');
       lines.push('  // ...');
-      lines.push(`} satisfies ${model.config.exportName};`);
+      lines.push(`} satisfies ${config.exportName};`);
       lines.push('');
       lines.push('export default config;');
     }
 
     lines.push('```', '');
 
-    if (model.config.members.length > 0) {
+    if (config.members.length > 0) {
       lines.push('### Configuration options', '');
       lines.push('| Field | Type | Required | Default | Description |');
       lines.push('| --- | --- | --- | --- | --- |');
 
-      for (const member of flattenConfigMembers(model.config.members)) {
+      for (const member of flattenConfigMembers(config.members)) {
         lines.push(
           `| ${escapeTableCell(member.path)} | \`${escapeTableCell(member.type)}\` | ${
             member.required ? 'yes' : 'no'

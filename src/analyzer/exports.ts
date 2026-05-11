@@ -1,9 +1,7 @@
 import type { Node, ParameterDeclaration, Symbol as MorphSymbol, Type } from 'ts-morph';
 import { Node as MorphNode, TypeFormatFlags } from 'ts-morph';
 
-import { getParadoxComment } from '../analyze/utils/getParadoxComment.js';
-import { isReactComponent } from '../analyze/utils/isReactComponent.js';
-import { parseParadoxComment } from '../analyze/utils/parseParadoxComment.js';
+import { isReactComponent } from './isReactComponent.js';
 import type {
   AnalyzedExport,
   AnalyzedExportKind,
@@ -13,6 +11,7 @@ import type {
   AnalyzedTypeMember,
   ResolvedTypeReference,
 } from './model.js';
+import { getParadoxComment, parseParadoxComment } from './paradoxComment.js';
 import { isNodeModulePath, isPathInsideRoot, relativeToRoot } from './utils.js';
 
 /***
