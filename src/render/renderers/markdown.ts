@@ -79,12 +79,12 @@ function renderReadme(
       lines.push('| Field | Type | Required | Default | Description |');
       lines.push('| --- | --- | --- | --- | --- |');
 
-      for (const member of flattenConfigMembers(config.members)) {
+      for (const configMember of flattenConfigMembers(config.members)) {
         lines.push(
-          `| ${escapeTableCell(member.path)} | \`${escapeTableCell(member.type)}\` | ${
-            member.required ? 'yes' : 'no'
-          } | ${escapeTableCell(member.defaultValue ?? '')} | ${escapeTableCell(
-            member.description ?? '',
+          `| ${escapeTableCell(configMember.path)} | \`${escapeTableCell(configMember.type)}\` | ${
+            configMember.required ? 'yes' : 'no'
+          } | ${escapeTableCell(configMember.defaultValue ?? '')} | ${escapeTableCell(
+            configMember.description ?? '',
           )} |`,
         );
       }

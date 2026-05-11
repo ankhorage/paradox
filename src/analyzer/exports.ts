@@ -95,9 +95,7 @@ export function getExportSignature(
       declaration && MorphNode.isParameterDeclaration(declaration)
         ? declaration.isOptional()
         : false;
-    const type = declaration
-      ? parameter.getTypeAtLocation(declaration).getText(declaration)
-      : parameter.getTypeAtLocation(callableNode).getText(callableNode);
+    const type = getParameterTypeText(parameter, declaration, callableNode);
     return `${name}${isOptional ? '?' : ''}: ${type}`;
   });
   const returnType = callSignature.getReturnType().getText(callableNode);
@@ -300,10 +298,7 @@ function collectMembersFromType(
     const baseTypeText =
       declaredTypeText ??
       propertyType.getText(declaration, TypeFormatFlags.UseAliasDefinedOutsideCurrentScope);
-    const typeText =
-      !required && !baseTypeText.includes('undefined')
-        ? `${baseTypeText} | undefined`
-        : baseTypeText;
+    const typeText = appendUndefinedIfOptional(baseTypeText, required);
 
     return [
       {
@@ -410,6 +405,21 @@ function getDeclarationName(node: Node): string | null {
   if (MorphNode.isInterfaceDeclaration(node)) return node.getName();
   if (MorphNode.isTypeAliasDeclaration(node)) return node.getName();
   return null;
+}
+
+function getParameterTypeText(
+  parameter: MorphSymbol,
+  declaration: Node | null,
+  fallbackNode: Node,
+): string {
+  return declaration
+    ? parameter.getTypeAtLocation(declaration).getText(declaration)
+    : parameter.getTypeAtLocation(fallbackNode).getText(fallbackNode);
+}
+
+function appendUndefinedIfOptional(typeText: string, required: boolean): string {
+  if (required || typeText.includes('undefined')) return typeText;
+  return `${typeText} | undefined`;
 }
 
 function getCallableNode(node: Node) {

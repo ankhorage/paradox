@@ -11,7 +11,7 @@ export function isReactComponent(node: Node): boolean {
   const callSignature = getCallSignature(node);
   const returnType = callSignature?.getReturnType().getText() ?? null;
 
-  if (returnType == null) return false;
+  if (returnType === null) return false;
 
   return /JSX\.Element|ReactElement|ReactNode|Element/.test(returnType);
 }
