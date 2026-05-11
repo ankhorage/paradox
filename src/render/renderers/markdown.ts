@@ -152,10 +152,7 @@ function renderGeneratedDocumentation(
   lines.push('');
 }
 
-function renderArchitecturePreview(
-  lines: string[],
-  diagrams: RenderContext['diagrams'],
-): void {
+function renderArchitecturePreview(lines: string[], diagrams: RenderContext['diagrams']): void {
   lines.push('## Architecture preview', '');
   if (diagrams.length > 0) {
     lines.push('<details>');
