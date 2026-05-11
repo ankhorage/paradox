@@ -296,18 +296,16 @@ function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
   });
 }
 
-function addReadmeItem(
-  groups: Map<string, ReadmeItem[]>,
-  title: string,
-  item: ReadmeItem,
-): void {
+function addReadmeItem(groups: Map<string, ReadmeItem[]>, title: string, item: ReadmeItem): void {
   const existing = groups.get(title) ?? [];
   existing.push(item);
   groups.set(title, existing);
 }
 
 function sortReadmeItems(items: readonly ReadmeItem[]): ReadmeItem[] {
-  return [...items].sort((left, right) => getReadmeItemName(left).localeCompare(getReadmeItemName(right)));
+  return [...items].sort((left, right) =>
+    getReadmeItemName(left).localeCompare(getReadmeItemName(right)),
+  );
 }
 
 function getReadmeItemName(item: ReadmeItem): string {
