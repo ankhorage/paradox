@@ -1,19 +1,19 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { createTypeScriptProgram } from '../analyzer/createTypeScriptProgram.js';
-import { collectTypeMembers, resolveTypeReference } from '../analyzer/exports.js';
-import {
-  collectCallGraph,
-  collectComponentCompositionGraph,
-  collectImportGraph,
-} from '../analyzer/graphs.js';
 import type { ParadoxConfig } from '../config/types.js';
 import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
+import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
+import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
+import {
+  collectCallGraph,
+  collectComponentCompositionGraph,
+  collectImportGraph,
+} from './semantic/graphs.js';
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
