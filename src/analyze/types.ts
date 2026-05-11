@@ -1,6 +1,6 @@
 import type { Node } from 'ts-morph';
 
-export interface AnalysisExample {
+interface AnalysisExample {
   title: string | null;
   language: string | null;
   code: string;
