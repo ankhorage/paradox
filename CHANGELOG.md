@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0
+
+### Minor Changes
+
+- dd41897: Generate compact README docs from `@readme` symbols.
+
 ## 0.0.10
 
 ### Patch Changes
