@@ -69,6 +69,7 @@
   },
   "config": {
     "exportName": "ParadoxConfig",
+    "isReadme": true,
     "configFile": "paradox.config.ts",
     "factoryName": "defineParadoxConfig",
     "members": [
@@ -587,11 +588,13 @@
     {
       "name": "defineParadoxConfig",
       "description": "Defines a Paradox configuration object without changing its shape.",
+      "isReadme": true,
+      "examples": [],
       "kind": "function",
       "modulePath": "src/config/defineParadoxConfig.ts",
       "sourceLocation": {
         "filePath": "src/config/defineParadoxConfig.ts",
-        "line": 6,
+        "line": 8,
         "column": 1
       },
       "exportPaths": [
@@ -620,11 +623,13 @@
     {
       "name": "ParadoxConfig",
       "description": "Configuration for running Paradox.",
+      "isReadme": true,
+      "examples": [],
       "kind": "type",
       "modulePath": "src/config/types.ts",
       "sourceLocation": {
         "filePath": "src/config/types.ts",
-        "line": 6,
+        "line": 7,
         "column": 1
       },
       "exportPaths": [
@@ -1484,6 +1489,12 @@
         "fromSymbol": "analyzeExports",
         "toSymbol": "parseParadoxComment",
         "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/exports.ts"
+      },
+      {
+        "fromSymbol": "analyzeExports",
+        "toSymbol": "createEmptyMetadata",
+        "callExpression": "createEmptyMetadata",
         "sourcePath": "src/analyze/exports.ts"
       },
       {
@@ -2447,6 +2458,18 @@
         "sourcePath": "src/analyze/utils/isReactComponent.ts"
       },
       {
+        "fromSymbol": "parseParadoxComment",
+        "toSymbol": "normalizeCommentLines",
+        "callExpression": "normalizeCommentLines",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "parseParadoxComment",
+        "toSymbol": "parseExample",
+        "callExpression": "parseExample",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
         "fromSymbol": "src/render/renderers/badges.ts",
         "toSymbol": "renderBadgeSvg",
         "callExpression": "renderBadgeSvg",
@@ -2712,14 +2735,134 @@
       },
       {
         "fromSymbol": "renderReadme",
+        "toSymbol": "renderDocumentationTags",
+        "callExpression": "renderDocumentationTags",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "renderConfiguration",
+        "callExpression": "renderConfiguration",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "renderGeneratedDocumentation",
+        "callExpression": "renderGeneratedDocumentation",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "renderArchitecturePreview",
+        "callExpression": "renderArchitecturePreview",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "renderPathResolution",
+        "callExpression": "renderPathResolution",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
+        "toSymbol": "renderReadmeApi",
+        "callExpression": "renderReadmeApi",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderConfiguration",
         "toSymbol": "flattenConfigMembers",
         "callExpression": "flattenConfigMembers",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "renderReadme",
+        "fromSymbol": "renderConfiguration",
         "toSymbol": "escapeTableCell",
         "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderConfiguration",
+        "toSymbol": "renderDefault",
+        "callExpression": "renderDefault",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadmeApi",
+        "toSymbol": "getReadmeGroups",
+        "callExpression": "getReadmeGroups",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadmeApi",
+        "toSymbol": "renderComponentAccordion",
+        "callExpression": "renderComponentAccordion",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadmeApi",
+        "toSymbol": "renderExportAccordion",
+        "callExpression": "renderExportAccordion",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponentAccordion",
+        "toSymbol": "renderSignature",
+        "callExpression": "renderSignature",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponentAccordion",
+        "toSymbol": "renderExamples",
+        "callExpression": "renderExamples",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponentAccordion",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponentAccordion",
+        "toSymbol": "renderDefault",
+        "callExpression": "renderDefault",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExportAccordion",
+        "toSymbol": "renderSignature",
+        "callExpression": "renderSignature",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExportAccordion",
+        "toSymbol": "renderExamples",
+        "callExpression": "renderExamples",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "getReadmeGroups",
+        "toSymbol": "addReadmeItem",
+        "callExpression": "addReadmeItem",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "getReadmeGroups",
+        "toSymbol": "getReadmeCategory",
+        "callExpression": "getReadmeCategory",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "sortReadmeItems",
+        "callExpression": "sortReadmeItems",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "getReadmeItemName",
+        "callExpression": "getReadmeItemName",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -2730,6 +2873,18 @@
       },
       {
         "fromSymbol": "renderComponents",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponents",
+        "toSymbol": "renderDefault",
+        "callExpression": "renderDefault",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderDefault",
         "toSymbol": "escapeTableCell",
         "callExpression": "escapeTableCell",
         "sourcePath": "src/render/renderers/markdown.ts"

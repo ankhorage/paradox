@@ -22,6 +22,11 @@ export interface ButtonProps {
 /***
  * Renders the fixture button component.
  *
+ * @readme
+ * @example Basic button
+ * ```tsx
+ * <Button label="Save" />
+ * ```
  * @param props Props that configure the rendered button state.
  * @returns The rendered JSX element descriptor.
  */

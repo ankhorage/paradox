@@ -25,6 +25,7 @@ export function analyzeComponents(
         name: member.name,
         type: member.type,
         required: member.required,
+        ...(member.defaultValue !== undefined ? { defaultValue: member.defaultValue } : {}),
         description: member.description ?? null,
       })) ?? [];
     const propsType = getComponentPropsType(e.node);
@@ -34,6 +35,8 @@ export function analyzeComponents(
     components.push({
       name: e.name,
       description: e.description,
+      isReadme: e.isReadme,
+      examples: e.examples,
       modulePath: e.modulePath,
       sourceLocation: e.sourceLocation,
       exportPaths: e.exportPaths,
