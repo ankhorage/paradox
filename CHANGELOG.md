@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- 9dc0fd2: Add sequence diagram of bin script to README.md
+
 ## 0.1.1
 
 ### Patch Changes
