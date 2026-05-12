@@ -15,9 +15,13 @@ import {
   collectImportGraph,
 } from './semantic/graphs.js';
 import { analyzeSequenceScenarios } from './sequenceScenarios.js';
+import { analyzeSourceFunctions } from './sourceFunctions.js';
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
+/***
+ * Analyzes a package and returns the complete documentation input model.
+ */
 export async function analyze(
   config: ParadoxConfig,
   runtime: { packageRoot: string },
@@ -32,6 +36,7 @@ export async function analyze(
   const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
   const modules = analyzeModules(project, { root, entrypoints });
+  const sourceFunctions = analyzeSourceFunctions(project, root);
   const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
   const configExport = configMetadata
     ? (exports.find((entry) => entry.name === configMetadata.exportName) ?? null)
@@ -67,6 +72,7 @@ export async function analyze(
     description: config.docs?.description ?? pkg.description ?? null,
     exports,
     components,
+    sourceFunctions,
     entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
     modules,
     badges,
@@ -93,6 +99,9 @@ interface AnalysisTypeMemberOutput {
   children?: ReturnType<typeof mapTypeMembers>;
 }
 
+/***
+ * Converts semantic type members into serializable analysis output.
+ */
 function mapTypeMembers(
   members: readonly ReturnType<typeof collectTypeMembers>[number][],
 ): AnalysisTypeMemberOutput[] {
@@ -107,6 +116,9 @@ function mapTypeMembers(
   }));
 }
 
+/***
+ * Reads package metadata from the analyzed package root.
+ */
 async function readPackageJson(root: string): Promise<PackageJsonModel> {
   const raw = await readFile(join(root, 'package.json'), 'utf-8');
   return JSON.parse(raw) as PackageJsonModel;
