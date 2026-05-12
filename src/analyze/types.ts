@@ -40,19 +40,24 @@ export interface AnalysisMember {
   children?: AnalysisMember[];
 }
 
+export interface AnalysisStructuredRow {
+  values: Record<string, string>;
+}
+
 export interface AnalysisExport {
   name: string;
   node: Node;
   description: string | null;
   isReadme: boolean;
   examples: AnalysisExample[];
-  kind: 'function' | 'type' | 'unknown';
+  kind: 'function' | 'type' | 'value' | 'unknown';
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
   exportPaths: string[];
   relatedSymbols: string[];
   signatures: AnalysisSignature[];
   members: AnalysisMember[];
+  structuredRows: AnalysisStructuredRow[];
 }
 
 /***

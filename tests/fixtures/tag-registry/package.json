@@ -1,0 +1,5 @@
+{
+  "name": "@fixture/tag-registry",
+  "description": "Fixture package for structured tag registry docs.",
+  "type": "module"
+}

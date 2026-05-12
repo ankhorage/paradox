@@ -377,6 +377,7 @@
         "AnalysisSignature",
         "AnalysisSourceFunction",
         "AnalysisSourceLocation",
+        "AnalysisStructuredRow",
         "AnalysisUsage"
       ]
     },
@@ -486,12 +487,29 @@
       ]
     },
     {
+      "path": "src/doc-tags/registry.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "getParadoxDocTag",
+        "isParadoxDocTagName",
+        "PARADOX_DOC_TAGS",
+        "ParadoxDocTagHandlerId",
+        "ParadoxDocTagName"
+      ]
+    },
+    {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
         "defineParadoxConfig",
-        "ParadoxConfig"
+        "getParadoxDocTag",
+        "isParadoxDocTagName",
+        "PARADOX_DOC_TAGS",
+        "ParadoxConfig",
+        "ParadoxDocTagHandlerId",
+        "ParadoxDocTagName"
       ]
     },
     {
@@ -649,7 +667,127 @@
           "returnDescription": null
         }
       ],
-      "members": []
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "getParadoxDocTag",
+      "description": "Looks up documentation tag metadata by tag name.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/doc-tags/registry.ts",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 42,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(name: string) => { readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | null",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "{ readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | null",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "isParadoxDocTagName",
+      "description": "Checks whether a string is a supported Paradox documentation tag name.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/doc-tags/registry.ts",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 49,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(name: string) => boolean",
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "boolean",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "PARADOX_DOC_TAGS",
+      "description": "Supported Paradox documentation tags.\n\nParadox supports doc tags inside triple-star documentation comments.",
+      "isReadme": true,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/doc-tags/registry.ts",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 8,
+        "column": 14
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": [
+        {
+          "values": {
+            "name": "readme",
+            "syntax": "@readme",
+            "description": "Includes a documentation block or exported symbol in README output.",
+            "appliesTo": "block, symbol",
+            "repeatable": "false",
+            "handler": "markReadme"
+          }
+        },
+        {
+          "values": {
+            "name": "config",
+            "syntax": "@config",
+            "description": "Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.",
+            "appliesTo": "interface, type",
+            "repeatable": "false",
+            "handler": "markConfig"
+          }
+        },
+        {
+          "values": {
+            "name": "example",
+            "syntax": "@example",
+            "description": "Adds a titled fenced code example to the generated documentation for a symbol.",
+            "appliesTo": "symbol",
+            "repeatable": "true",
+            "handler": "parseExample"
+          }
+        }
+      ]
     },
     {
       "name": "ParadoxConfig",
@@ -697,7 +835,48 @@
           "required": false,
           "description": null
         }
-      ]
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ParadoxDocTagHandlerId",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/doc-tags/registry.ts",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 37,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ParadoxDocTagName",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/doc-tags/registry.ts",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 36,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
     }
   ],
   "components": [],
@@ -911,55 +1090,55 @@
     },
     {
       "name": "getEntryPointSourceFiles",
-      "description": null,
+      "description": "Resolves configured entrypoint paths to source files in the TypeScript project.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 100,
+        "line": 107,
         "column": 1
       }
     },
     {
       "name": "getFirstDeclaration",
-      "description": null,
+      "description": "Returns the first declaration for a symbol, or null when none exists.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 120,
+        "line": 130,
         "column": 1
       }
     },
     {
       "name": "inferKind",
-      "description": null,
+      "description": "Infers the public export kind from the declaration shape.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 125,
+        "line": 138,
         "column": 1
       }
     },
     {
       "name": "uniqueSorted",
-      "description": null,
+      "description": "Returns unique string values sorted for deterministic generated output.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 131,
+        "line": 148,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
-      "description": null,
+      "description": "Normalizes platform-specific path separators for generated documentation output.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 135,
+        "line": 155,
         "column": 1
       }
     },
     {
       "name": "createEmptyMetadata",
-      "description": null,
+      "description": "Creates empty documentation metadata for exports without Paradox comments.",
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 139,
+        "line": 162,
         "column": 1
       }
     },
@@ -1607,124 +1786,169 @@
       "description": "Extracts computed metadata for an exported declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 33,
+        "line": 37,
         "column": 1
       }
     },
     {
       "name": "getSourceLocation",
-      "description": null,
+      "description": "Resolves the source location for a declaration relative to the package root.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 68,
+        "line": 83,
         "column": 1
       }
     },
     {
       "name": "getSignatures",
-      "description": null,
+      "description": "Extracts callable signatures for exported functions and callable values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 79,
+        "line": 97,
         "column": 1
       }
     },
     {
       "name": "getSignature",
-      "description": null,
+      "description": "Builds one normalized call signature from a callable declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 96,
+        "line": 117,
         "column": 1
       }
     },
     {
       "name": "getMembers",
-      "description": null,
+      "description": "Extracts members for interface and type literal exports.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 124,
+        "line": 148,
         "column": 1
       }
     },
     {
       "name": "getMembersFromProperties",
-      "description": null,
+      "description": "Converts TypeScript properties into documented member metadata.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 140,
+        "line": 167,
+        "column": 1
+      }
+    },
+    {
+      "name": "getStructuredRows",
+      "description": "Extracts table-like rows from exported const arrays of object literals.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 202,
+        "column": 1
+      }
+    },
+    {
+      "name": "getStructuredArrayLiteral",
+      "description": "Resolves const assertions and returns the array literal used for structured docs.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 220,
+        "column": 1
+      }
+    },
+    {
+      "name": "getVariableDeclaration",
+      "description": "Resolves a variable declaration from declaration nodes used by export symbols.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 230,
+        "column": 1
+      }
+    },
+    {
+      "name": "getObjectLiteralValues",
+      "description": "Extracts primitive and string-array values from one object literal.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 254,
+        "column": 1
+      }
+    },
+    {
+      "name": "getLiteralValue",
+      "description": "Converts supported literal expressions into displayable string values.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 273,
         "column": 1
       }
     },
     {
       "name": "getFirstDeclaration",
-      "description": null,
+      "description": "Returns the first declaration for a symbol, or null when none exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 165,
+        "line": 293,
         "column": 1
       }
     },
     {
       "name": "getCallableDeclarations",
-      "description": null,
+      "description": "Finds callable declarations associated with an export symbol.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 170,
+        "line": 301,
         "column": 1
       }
     },
     {
       "name": "getCallableNode",
-      "description": null,
+      "description": "Returns the callable node represented by a declaration when one exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 185,
+        "line": 319,
         "column": 1
       }
     },
     {
       "name": "isMemberMethodDeclaration",
-      "description": null,
+      "description": "Checks whether a node is a method declaration or method signature.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 205,
+        "line": 342,
         "column": 1
       }
     },
     {
       "name": "readParadoxMetadata",
-      "description": null,
+      "description": "Reads Paradox comment metadata from a declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 209,
+        "line": 349,
         "column": 1
       }
     },
     {
       "name": "collectRelatedSymbols",
-      "description": null,
+      "description": "Finds related exported symbols mentioned in signature and member type text.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 216,
+        "line": 366,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
-      "description": null,
+      "description": "Normalizes platform-specific path separators for generated documentation output.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 235,
+        "line": 388,
         "column": 1
       }
     },
     {
       "name": "uniqueBy",
-      "description": null,
+      "description": "Returns unique items by a caller-provided key while preserving first occurrence order.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 239,
+        "line": 395,
         "column": 1
       }
     },
@@ -1734,6 +1958,24 @@
       "sourceLocation": {
         "filePath": "src/analyze/utils/getParadoxComment.ts",
         "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "getCommentTargetStarts",
+      "description": "Returns declaration positions that may own a leading Paradox comment.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getParadoxComment.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "readCommentBefore",
+      "description": "Reads a Paradox doc comment directly before a target position.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getParadoxComment.ts",
+        "line": 41,
         "column": 1
       }
     },
@@ -1828,11 +2070,29 @@
       }
     },
     {
+      "name": "getParadoxDocTag",
+      "description": "Looks up documentation tag metadata by tag name.",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 42,
+        "column": 1
+      }
+    },
+    {
+      "name": "isParadoxDocTagName",
+      "description": "Checks whether a string is a supported Paradox documentation tag name.",
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
       "name": "buildModel",
       "description": "Converts analysis output into a serializable documentation model.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 152,
+        "line": 153,
         "column": 1
       }
     },
@@ -1841,7 +2101,7 @@
       "description": "Maps one analyzed export into the serializable documentation shape.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 239,
+        "line": 240,
         "column": 1
       }
     },
@@ -1850,7 +2110,7 @@
       "description": "Maps an analyzed component while preserving export metadata when available.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 290,
+        "line": 292,
         "column": 1
       }
     },
@@ -1859,7 +2119,7 @@
       "description": "Finds the conventional config factory export for a config type when present.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 322,
+        "line": 324,
         "column": 1
       }
     },
@@ -1868,7 +2128,7 @@
       "description": "Derives the default config file name from a package id.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 334,
+        "line": 336,
         "column": 1
       }
     },
@@ -1877,7 +2137,7 @@
       "description": "Returns a copy of items sorted by their `name` property.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 343,
+        "line": 345,
         "column": 1
       }
     },
@@ -2426,7 +2686,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 86,
+        "line": 85,
         "column": 1
       }
     },
@@ -2435,16 +2695,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 126,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderDocumentationTags",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 135,
+        "line": 125,
         "column": 1
       }
     },
@@ -2453,7 +2704,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 145,
+        "line": 134,
         "column": 1
       }
     },
@@ -2462,7 +2713,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 191,
+        "line": 180,
         "column": 1
       }
     },
@@ -2471,7 +2722,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 206,
+        "line": 195,
         "column": 1
       }
     },
@@ -2480,7 +2731,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 218,
+        "line": 207,
         "column": 1
       }
     },
@@ -2489,7 +2740,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 234,
+        "line": 223,
         "column": 1
       }
     },
@@ -2498,7 +2749,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 251,
+        "line": 240,
         "column": 1
       }
     },
@@ -2507,7 +2758,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 284,
+        "line": 273,
         "column": 1
       }
     },
@@ -2516,7 +2767,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 302,
+        "line": 292,
         "column": 1
       }
     },
@@ -2525,7 +2776,43 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 310,
+        "line": 300,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderStructuredRows",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 309,
+        "column": 1
+      }
+    },
+    {
+      "name": "getStructuredColumns",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 331,
+        "column": 1
+      }
+    },
+    {
+      "name": "formatStructuredColumnHeader",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 342,
+        "column": 1
+      }
+    },
+    {
+      "name": "formatStructuredCell",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 346,
         "column": 1
       }
     },
@@ -2534,7 +2821,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 319,
+        "line": 358,
         "column": 1
       }
     },
@@ -2543,7 +2830,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 347,
+        "line": 386,
         "column": 1
       }
     },
@@ -2552,7 +2839,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 353,
+        "line": 392,
         "column": 1
       }
     },
@@ -2561,7 +2848,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 359,
+        "line": 398,
         "column": 1
       }
     },
@@ -2570,7 +2857,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 363,
+        "line": 402,
         "column": 1
       }
     },
@@ -2579,7 +2866,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 375,
+        "line": 415,
         "column": 1
       }
     },
@@ -2588,7 +2875,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 429,
+        "line": 471,
         "column": 1
       }
     },
@@ -2597,7 +2884,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 469,
+        "line": 511,
         "column": 1
       }
     },
@@ -2606,7 +2893,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 473,
+        "line": 515,
         "column": 1
       }
     },
@@ -2615,7 +2902,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 477,
+        "line": 519,
         "column": 1
       }
     },
@@ -2624,7 +2911,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 501,
+        "line": 543,
         "column": 1
       }
     },
@@ -2633,7 +2920,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 513,
+        "line": 555,
         "column": 1
       }
     },
@@ -2655,6 +2942,22 @@
       "symbolName": "defineParadoxConfig",
       "description": "Defines a Paradox configuration object without changing its shape.",
       "isReadme": true
+    },
+    {
+      "kind": "export",
+      "name": "getParadoxDocTag",
+      "sourcePath": "src/doc-tags/registry.ts",
+      "symbolName": "getParadoxDocTag",
+      "description": "Looks up documentation tag metadata by tag name.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "isParadoxDocTagName",
+      "sourcePath": "src/doc-tags/registry.ts",
+      "symbolName": "isParadoxDocTagName",
+      "description": "Checks whether a string is a supported Paradox documentation tag name.",
+      "isReadme": false
     },
     {
       "kind": "bin",
@@ -2700,6 +3003,11 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/config/types.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/doc-tags/registry.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -3807,6 +4115,12 @@
         "sourcePath": "src/analyze/usage.ts"
       },
       {
+        "fromSymbol": "isParadoxDocTagName",
+        "toSymbol": "getParadoxDocTag",
+        "callExpression": "getParadoxDocTag",
+        "sourcePath": "src/doc-tags/registry.ts"
+      },
+      {
         "fromSymbol": "src/model/buildModel.ts",
         "toSymbol": "mapExport",
         "callExpression": "mapExport",
@@ -4552,6 +4866,12 @@
       },
       {
         "fromSymbol": "getExportMetadata",
+        "toSymbol": "getStructuredRows",
+        "callExpression": "getStructuredRows",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getExportMetadata",
         "toSymbol": "collectRelatedSymbols",
         "callExpression": "collectRelatedSymbols",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
@@ -4629,6 +4949,42 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
+        "fromSymbol": "getStructuredRows",
+        "toSymbol": "getVariableDeclaration",
+        "callExpression": "getVariableDeclaration",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getStructuredRows",
+        "toSymbol": "getStructuredArrayLiteral",
+        "callExpression": "getStructuredArrayLiteral",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getObjectLiteralValues",
+        "callExpression": "getObjectLiteralValues",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getStructuredArrayLiteral",
+        "toSymbol": "getStructuredArrayLiteral",
+        "callExpression": "getStructuredArrayLiteral",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getObjectLiteralValues",
+        "toSymbol": "getLiteralValue",
+        "callExpression": "getLiteralValue",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "getLiteralValue",
+        "callExpression": "getLiteralValue",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
         "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
         "toSymbol": "getCallableNode",
         "callExpression": "getCallableNode",
@@ -4657,6 +5013,18 @@
         "toSymbol": "key",
         "callExpression": "key",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getParadoxComment",
+        "toSymbol": "getCommentTargetStarts",
+        "callExpression": "getCommentTargetStarts",
+        "sourcePath": "src/analyze/utils/getParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "getParadoxComment",
+        "toSymbol": "readCommentBefore",
+        "callExpression": "readCommentBefore",
+        "sourcePath": "src/analyze/utils/getParadoxComment.ts"
       },
       {
         "fromSymbol": "src/analyze/utils/getPropsFromType.ts",
@@ -5194,12 +5562,6 @@
       },
       {
         "fromSymbol": "renderReadme",
-        "toSymbol": "renderDocumentationTags",
-        "callExpression": "renderDocumentationTags",
-        "sourcePath": "src/render/renderers/markdown.ts"
-      },
-      {
-        "fromSymbol": "renderReadme",
         "toSymbol": "renderConfiguration",
         "callExpression": "renderConfiguration",
         "sourcePath": "src/render/renderers/markdown.ts"
@@ -5308,8 +5670,38 @@
       },
       {
         "fromSymbol": "renderExportAccordion",
+        "toSymbol": "renderStructuredRows",
+        "callExpression": "renderStructuredRows",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExportAccordion",
         "toSymbol": "renderExamples",
         "callExpression": "renderExamples",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderStructuredRows",
+        "toSymbol": "getStructuredColumns",
+        "callExpression": "getStructuredColumns",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "formatStructuredCell",
+        "callExpression": "formatStructuredCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "formatStructuredColumnHeader",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "formatStructuredCell",
+        "toSymbol": "escapeTableCell",
+        "callExpression": "escapeTableCell",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -5334,6 +5726,12 @@
         "fromSymbol": "src/render/renderers/markdown.ts",
         "toSymbol": "getReadmeItemName",
         "callExpression": "getReadmeItemName",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExports",
+        "toSymbol": "renderStructuredRows",
+        "callExpression": "renderStructuredRows",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -5372,6 +5770,31 @@
         "fromSymbol": "defineParadoxConfig",
         "toType": "ParadoxConfig",
         "sourcePath": "src/config/defineParadoxConfig.ts"
+      },
+      {
+        "fromSymbol": "getParadoxDocTag",
+        "toType": "Adds",
+        "sourcePath": "src/doc-tags/registry.ts"
+      },
+      {
+        "fromSymbol": "getParadoxDocTag",
+        "toType": "Includes",
+        "sourcePath": "src/doc-tags/registry.ts"
+      },
+      {
+        "fromSymbol": "getParadoxDocTag",
+        "toType": "Marks",
+        "sourcePath": "src/doc-tags/registry.ts"
+      },
+      {
+        "fromSymbol": "getParadoxDocTag",
+        "toType": "Paradox",
+        "sourcePath": "src/doc-tags/registry.ts"
+      },
+      {
+        "fromSymbol": "getParadoxDocTag",
+        "toType": "README",
+        "sourcePath": "src/doc-tags/registry.ts"
       }
     ],
     "componentComposition": []

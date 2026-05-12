@@ -54,9 +54,10 @@ export interface ExportModel {
   relatedSymbols: string[];
   signatures: SignatureModel[];
   members: MemberModel[];
+  structuredRows: StructuredRowModel[];
 }
 
-export type ExportKind = 'function' | 'type' | 'unknown';
+export type ExportKind = 'function' | 'type' | 'value' | 'unknown';
 
 export interface ComponentModel {
   name: string;
@@ -119,6 +120,10 @@ interface MemberModel {
   defaultValue?: string;
   inheritedFrom?: string;
   children?: MemberModel[];
+}
+
+interface StructuredRowModel {
+  values: Record<string, string>;
 }
 
 export interface ModuleModel {

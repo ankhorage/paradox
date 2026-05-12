@@ -1,14 +1,44 @@
-import type { Node } from 'ts-morph';
+import { type Node as MorphNode, Node } from 'ts-morph';
 
 /***
  * Reads the nearest Paradox doc comment attached to a declaration.
  */
-export function getParadoxComment(node: Node | undefined): string | null {
+export function getParadoxComment(node: MorphNode | undefined): string | null {
   if (!node) return null;
 
   const sourceFile = node.getSourceFile();
   const text = sourceFile.getFullText();
-  const nodeStart = node.getStart(false);
+
+  for (const nodeStart of getCommentTargetStarts(node)) {
+    const comment = readCommentBefore(text, nodeStart);
+    if (comment !== null) return comment;
+  }
+
+  return null;
+}
+
+/***
+ * Returns declaration positions that may own a leading Paradox comment.
+ */
+function getCommentTargetStarts(node: MorphNode): number[] {
+  const starts = [node.getStart(false)];
+
+  if (Node.isVariableDeclaration(node)) {
+    const parent = node.getParent();
+    const statement = Node.isVariableDeclarationList(parent) ? parent.getParent() : undefined;
+
+    if (statement !== undefined && Node.isVariableStatement(statement)) {
+      starts.unshift(statement.getStart(false));
+    }
+  }
+
+  return starts;
+}
+
+/***
+ * Reads a Paradox doc comment directly before a target position.
+ */
+function readCommentBefore(text: string, nodeStart: number): string | null {
   const beforeNode = text.slice(0, nodeStart);
   const commentStart = beforeNode.lastIndexOf('/***');
 

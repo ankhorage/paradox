@@ -64,29 +64,6 @@ sequenceDiagram
 
 </details>
 
-## Documentation Tags
-
-<details>
-<summary>@readme</summary>
-
-Includes a documentation block or exported symbol in README output.
-
-</details>
-
-<details>
-<summary>@config</summary>
-
-Marks a type or interface as part of the Paradox configuration model. `@config` alone does not imply README inclusion; use `@config` plus `@readme` for README output.
-
-</details>
-
-<details>
-<summary>@example</summary>
-
-Adds a titled fenced code example to the generated documentation for a symbol.
-
-</details>
-
 ## Configuration
 
 Create a `paradox.config.ts` file:
@@ -119,6 +96,7 @@ export default defineParadoxConfig({
 - [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
+- [isParadoxDocTagName sequence](./paradox/diagrams/sequences/is-paradox-doc-tag-name.mmd)
 - [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
 
 ## Architecture preview
@@ -267,6 +245,8 @@ graph TD
   module_src_config_defineParadoxConfig_ts --> module_src_config_types_ts
   module_src_config_types_ts["src/config/types.ts"]
   package__ankhorage_paradox -.-> module_src_config_types_ts
+  module_src_doc_tags_registry_ts["src/doc-tags/registry.ts"]
+  package__ankhorage_paradox -.-> module_src_doc_tags_registry_ts
   module_src_index_ts["src/index.ts"]
   module_src_model_buildModel_ts["src/model/buildModel.ts"]
   package__ankhorage_paradox -.-> module_src_model_buildModel_ts
@@ -346,5 +326,25 @@ Configuration for running Paradox.
 
 Module: `src/config/types.ts`
 Source: `src/config/types.ts:7:1`
+
+</details>
+
+### Documentation
+
+<details>
+<summary>PARADOX_DOC_TAGS</summary>
+
+Supported Paradox documentation tags.
+
+Paradox supports doc tags inside triple-star documentation comments.
+
+| name      | syntax     | description                                                                                                                                                      | applies to      | repeatable | handler        |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------- | -------------- |
+| `readme`  | `@readme`  | Includes a documentation block or exported symbol in README output.                                                                                              | block, symbol   | no         | `markReadme`   |
+| `config`  | `@config`  | Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output. | interface, type | no         | `markConfig`   |
+| `example` | `@example` | Adds a titled fenced code example to the generated documentation for a symbol.                                                                                   | symbol          | yes        | `parseExample` |
+
+Module: `src/doc-tags/registry.ts`
+Source: `src/doc-tags/registry.ts:8:14`
 
 </details>
