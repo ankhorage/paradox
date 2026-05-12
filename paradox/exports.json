@@ -121,7 +121,38 @@
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
-    "structuredRows": []
+    "structuredRows": [
+      {
+        "values": {
+          "name": "readme",
+          "syntax": "@readme",
+          "description": "Includes a documentation block or exported symbol in README output.",
+          "appliesTo": "block, symbol",
+          "repeatable": "false",
+          "handler": "markReadme"
+        }
+      },
+      {
+        "values": {
+          "name": "config",
+          "syntax": "@config",
+          "description": "Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.",
+          "appliesTo": "interface, type",
+          "repeatable": "false",
+          "handler": "markConfig"
+        }
+      },
+      {
+        "values": {
+          "name": "example",
+          "syntax": "@example",
+          "description": "Adds a titled fenced code example to the generated documentation for a symbol.",
+          "appliesTo": "symbol",
+          "repeatable": "true",
+          "handler": "parseExample"
+        }
+      }
+    ]
   },
   {
     "name": "ParadoxConfig",

@@ -52,6 +52,12 @@ Supported Paradox documentation tags.
 
 Paradox supports doc tags inside triple-star documentation comments.
 
+| name | syntax | description | applies to | repeatable | handler |
+| --- | --- | --- | --- | --- | --- |
+| `readme` | `@readme` | Includes a documentation block or exported symbol in README output. | block, symbol | no | `markReadme` |
+| `config` | `@config` | Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output. | interface, type | no | `markConfig` |
+| `example` | `@example` | Adds a titled fenced code example to the generated documentation for a symbol. | symbol | yes | `parseExample` |
+
 ## ParadoxConfig
 
 Kind: `type`

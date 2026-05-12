@@ -756,7 +756,38 @@
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
-      "structuredRows": []
+      "structuredRows": [
+        {
+          "values": {
+            "name": "readme",
+            "syntax": "@readme",
+            "description": "Includes a documentation block or exported symbol in README output.",
+            "appliesTo": "block, symbol",
+            "repeatable": "false",
+            "handler": "markReadme"
+          }
+        },
+        {
+          "values": {
+            "name": "config",
+            "syntax": "@config",
+            "description": "Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.",
+            "appliesTo": "interface, type",
+            "repeatable": "false",
+            "handler": "markConfig"
+          }
+        },
+        {
+          "values": {
+            "name": "example",
+            "syntax": "@example",
+            "description": "Adds a titled fenced code example to the generated documentation for a symbol.",
+            "appliesTo": "symbol",
+            "repeatable": "true",
+            "handler": "parseExample"
+          }
+        }
+      ]
     },
     {
       "name": "ParadoxConfig",
@@ -1755,7 +1786,7 @@
       "description": "Extracts computed metadata for an exported declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 35,
+        "line": 37,
         "column": 1
       }
     },
@@ -1764,7 +1795,7 @@
       "description": "Resolves the source location for a declaration relative to the package root.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 81,
+        "line": 83,
         "column": 1
       }
     },
@@ -1773,7 +1804,7 @@
       "description": "Extracts callable signatures for exported functions and callable values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 95,
+        "line": 97,
         "column": 1
       }
     },
@@ -1782,7 +1813,7 @@
       "description": "Builds one normalized call signature from a callable declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 115,
+        "line": 117,
         "column": 1
       }
     },
@@ -1791,7 +1822,7 @@
       "description": "Extracts members for interface and type literal exports.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 146,
+        "line": 148,
         "column": 1
       }
     },
@@ -1800,7 +1831,7 @@
       "description": "Converts TypeScript properties into documented member metadata.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 165,
+        "line": 167,
         "column": 1
       }
     },
@@ -1809,7 +1840,25 @@
       "description": "Extracts table-like rows from exported const arrays of object literals.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 200,
+        "line": 202,
+        "column": 1
+      }
+    },
+    {
+      "name": "getStructuredArrayLiteral",
+      "description": "Resolves const assertions and returns the array literal used for structured docs.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 220,
+        "column": 1
+      }
+    },
+    {
+      "name": "getVariableDeclaration",
+      "description": "Resolves a variable declaration from declaration nodes used by export symbols.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 230,
         "column": 1
       }
     },
@@ -1818,7 +1867,7 @@
       "description": "Extracts primitive and string-array values from one object literal.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 217,
+        "line": 254,
         "column": 1
       }
     },
@@ -1827,7 +1876,7 @@
       "description": "Converts supported literal expressions into displayable string values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 236,
+        "line": 273,
         "column": 1
       }
     },
@@ -1836,7 +1885,7 @@
       "description": "Returns the first declaration for a symbol, or null when none exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 256,
+        "line": 293,
         "column": 1
       }
     },
@@ -1845,7 +1894,7 @@
       "description": "Finds callable declarations associated with an export symbol.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 264,
+        "line": 301,
         "column": 1
       }
     },
@@ -1854,7 +1903,7 @@
       "description": "Returns the callable node represented by a declaration when one exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 282,
+        "line": 319,
         "column": 1
       }
     },
@@ -1863,7 +1912,7 @@
       "description": "Checks whether a node is a method declaration or method signature.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 305,
+        "line": 342,
         "column": 1
       }
     },
@@ -1872,7 +1921,7 @@
       "description": "Reads Paradox comment metadata from a declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 312,
+        "line": 349,
         "column": 1
       }
     },
@@ -1881,7 +1930,7 @@
       "description": "Finds related exported symbols mentioned in signature and member type text.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 329,
+        "line": 366,
         "column": 1
       }
     },
@@ -1890,7 +1939,7 @@
       "description": "Normalizes platform-specific path separators for generated documentation output.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 351,
+        "line": 388,
         "column": 1
       }
     },
@@ -1899,7 +1948,7 @@
       "description": "Returns unique items by a caller-provided key while preserving first occurrence order.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 358,
+        "line": 395,
         "column": 1
       }
     },
@@ -4900,9 +4949,27 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
+        "fromSymbol": "getStructuredRows",
+        "toSymbol": "getVariableDeclaration",
+        "callExpression": "getVariableDeclaration",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getStructuredRows",
+        "toSymbol": "getStructuredArrayLiteral",
+        "callExpression": "getStructuredArrayLiteral",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
         "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
         "toSymbol": "getObjectLiteralValues",
         "callExpression": "getObjectLiteralValues",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getStructuredArrayLiteral",
+        "toSymbol": "getStructuredArrayLiteral",
+        "callExpression": "getStructuredArrayLiteral",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
