@@ -884,17 +884,17 @@
       },
       {
         "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/usage.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
         "toPath": "src/analyze/utils/getParadoxComment.ts",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
         "fromPath": "src/analyze/sequenceScenarios.ts",
         "toPath": "src/analyze/utils/parseParadoxComment.ts",
-        "sourcePath": "src/analyze/sequenceScenarios.ts"
-      },
-      {
-        "fromPath": "src/analyze/sequenceScenarios.ts",
-        "toPath": "src/analyze/usage.ts",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
