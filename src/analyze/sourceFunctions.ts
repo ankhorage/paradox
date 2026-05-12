@@ -18,29 +18,27 @@ export function analyzeSourceFunctions(project: Project, root: string): Analysis
       const filePath = toPosixPath(relative(root, sourceFile.getFilePath()));
       if (!filePath.startsWith('src/')) return [];
 
-      return sourceFile
-        .getDescendants()
-        .flatMap((node): AnalysisSourceFunction[] => {
-          if (Node.isFunctionDeclaration(node)) {
-            const name = node.getName();
-            if (name === undefined) return [];
-            return [createSourceFunction(name, node, root)];
+      return sourceFile.getDescendants().flatMap((node): AnalysisSourceFunction[] => {
+        if (Node.isFunctionDeclaration(node)) {
+          const name = node.getName();
+          if (name === undefined) return [];
+          return [createSourceFunction(name, node, root)];
+        }
+
+        if (Node.isVariableDeclaration(node)) {
+          const initializer = node.getInitializer();
+          if (
+            initializer === undefined ||
+            (!Node.isArrowFunction(initializer) && !Node.isFunctionExpression(initializer))
+          ) {
+            return [];
           }
 
-          if (Node.isVariableDeclaration(node)) {
-            const initializer = node.getInitializer();
-            if (
-              initializer === undefined ||
-              (!Node.isArrowFunction(initializer) && !Node.isFunctionExpression(initializer))
-            ) {
-              return [];
-            }
+          return [createSourceFunction(node.getName(), node, root)];
+        }
 
-            return [createSourceFunction(node.getName(), node, root)];
-          }
-
-          return [];
-        });
+        return [];
+      });
     })
     .sort((left, right) =>
       left.sourceLocation.filePath === right.sourceLocation.filePath
@@ -52,11 +50,7 @@ export function analyzeSourceFunctions(project: Project, root: string): Analysis
 /***
  * Converts a callable declaration into source documentation metadata.
  */
-function createSourceFunction(
-  name: string,
-  node: Node,
-  root: string,
-): AnalysisSourceFunction {
+function createSourceFunction(name: string, node: Node, root: string): AnalysisSourceFunction {
   const sourceFile = node.getSourceFile();
   const { column, line } = sourceFile.getLineAndColumnAtPos(node.getStart(false));
   const rawComment = getParadoxComment(node);
