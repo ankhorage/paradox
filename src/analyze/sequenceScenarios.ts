@@ -10,9 +10,9 @@ import {
 
 import { relativeToRoot, toPosixPath } from './semantic/utils.js';
 import type { AnalysisExport, AnalysisSequenceScenario } from './types.js';
+import type { PackageJsonModel } from './usage.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
-import type { PackageJsonModel } from './usage.js';
 
 interface AnalyzeSequenceScenariosOptions {
   project: Project;
