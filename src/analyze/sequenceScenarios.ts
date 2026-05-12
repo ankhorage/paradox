@@ -3,15 +3,8 @@ import { isAbsolute, join, normalize } from 'node:path';
 import { type CallExpression, Node as MorphNode, type Project, type SourceFile } from 'ts-morph';
 
 import { relativeToRoot, toPosixPath } from './semantic/utils.js';
-import type { AnalysisExport } from './types.js';
+import type { AnalysisExport, AnalysisSequenceScenario } from './types.js';
 import type { PackageJsonModel } from './usage.js';
-
-interface SequenceScenarioAnalysis {
-  kind: 'bin' | 'export';
-  name: string;
-  sourcePath: string;
-  symbolName: string;
-}
 
 interface AnalyzeSequenceScenariosOptions {
   project: Project;
@@ -28,7 +21,7 @@ export function analyzeSequenceScenarios({
   root,
   pkg,
   exports,
-}: AnalyzeSequenceScenariosOptions): SequenceScenarioAnalysis[] {
+}: AnalyzeSequenceScenariosOptions): AnalysisSequenceScenario[] {
   return uniqueScenarios([
     ...analyzeBinSequenceScenarios(project, root, pkg),
     ...analyzeExportSequenceScenarios(exports),
@@ -39,7 +32,7 @@ function analyzeBinSequenceScenarios(
   project: Project,
   root: string,
   pkg: PackageJsonModel,
-): SequenceScenarioAnalysis[] {
+): AnalysisSequenceScenario[] {
   return getBinEntries(pkg).flatMap((entry) => {
     const sourceFile = resolveBinSourceFile(project, root, entry.targetPath);
     if (!sourceFile) return [];
@@ -60,7 +53,7 @@ function analyzeBinSequenceScenarios(
 
 function analyzeExportSequenceScenarios(
   exports: readonly AnalysisExport[],
-): SequenceScenarioAnalysis[] {
+): AnalysisSequenceScenario[] {
   return exports.flatMap((entry) => {
     if (entry.signatures.length === 0) return [];
 
@@ -187,8 +180,8 @@ function getPackageBaseName(packageName: string): string {
 }
 
 function uniqueScenarios(
-  scenarios: readonly SequenceScenarioAnalysis[],
-): SequenceScenarioAnalysis[] {
+  scenarios: readonly AnalysisSequenceScenario[],
+): AnalysisSequenceScenario[] {
   const seen = new Set<string>();
   return scenarios.filter((scenario) => {
     const key = `${scenario.kind}:${scenario.name}:${scenario.sourcePath}:${scenario.symbolName}`;
