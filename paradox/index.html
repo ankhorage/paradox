@@ -108,7 +108,7 @@
           <div class="summary">
             <div><strong>2</strong><span class="muted">public exports</span></div>
             <div><strong>0</strong><span class="muted">components</span></div>
-            <div><strong>41</strong><span class="muted">modules</span></div>
+            <div><strong>42</strong><span class="muted">modules</span></div>
             <div><strong>1</strong><span class="muted">entrypoints</span></div>
           </div>
           <h3>Entrypoints</h3>
@@ -118,10 +118,10 @@
         </section>
         <section class="panel">
           <h2>Modules</h2>
-          <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+          <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
@@ -208,11 +208,16 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>isNodeModulePath</code>, <code>isPathInsideRoot</code>, <code>relativeToRoot</code>, <code>toPosixPath</code></p>
-  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSignature AnalysisSourceLocation AnalysisUsage">
+  </article><article class="item" data-search="src/analyze/sequenceScenarios.ts src/analyze/semantic/utils.ts src/analyze/types.ts src/analyze/usage.ts analyzeSequenceScenarios">
+    <h3>src/analyze/sequenceScenarios.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/utils.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code></p>
+    <p><strong>Exports:</strong> <code>analyzeSequenceScenarios</code></p>
+  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceLocation AnalysisUsage">
     <h3>src/analyze/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code></p>
   </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
     <h3>src/analyze/usage.ts</h3>
     <p class="muted">Referenced module</p>
@@ -278,11 +283,11 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
     <p><strong>Exports:</strong> <code>buildModel</code></p>
-  </article><article class="item" data-search="src/model/types.ts ComponentModel DocumentationModel ExportKind ExportModel GeneratedBadge ModuleModel">
+  </article><article class="item" data-search="src/model/types.ts ComponentModel DocumentationModel ExportKind ExportModel GeneratedBadge ModuleModel SequenceScenarioModel">
     <h3>src/model/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>GeneratedBadge</code>, <code>ModuleModel</code></p>
+    <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>GeneratedBadge</code>, <code>ModuleModel</code>, <code>SequenceScenarioModel</code></p>
   </article><article class="item" data-search="src/paths/policy.ts src/config/types.ts findParadoxConfigFile loadParadoxConfig resolveOutputRoot resolvePackageRoot">
     <h3>src/paths/policy.ts</h3>
     <p class="muted">Referenced module</p>
@@ -420,6 +425,7 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -495,6 +501,11 @@
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_tagRegistry_ts
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_sequenceScenarios_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -589,6 +600,7 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -664,6 +676,11 @@
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_tagRegistry_ts
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_sequenceScenarios_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -765,6 +782,7 @@
   module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
   module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -796,6 +814,7 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -837,6 +856,9 @@
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
@@ -891,6 +913,7 @@
   module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
   module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -922,6 +945,7 @@
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_types_ts
@@ -963,6 +987,9 @@
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
@@ -1019,6 +1046,7 @@
   module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
   module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -1069,6 +1097,7 @@
   module_src_analyze_semantic_paradoxComment_ts[&quot;src/analyze/semantic/paradoxComment.ts&quot;]
   module_src_analyze_semantic_tagRegistry_ts[&quot;src/analyze/semantic/tagRegistry.ts&quot;]
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
+  module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
@@ -1097,20 +1126,6 @@
   export_defineParadoxConfig -.-&gt; export_ParadoxConfig
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
   module_src_config_types_ts --&gt; export_ParadoxConfig
-</pre>
-    </details>
-  </article><article class="item" data-search="Entrypoint sequence diagrams/entrypoint-sequence.mmd">
-    <h3>Entrypoint sequence</h3>
-    <p class="muted"><code>diagrams/entrypoint-sequence.mmd</code></p>
-    <div class="mermaid">sequenceDiagram
-  participant participant__ankhorage_paradox as ankhorage paradox
-  Note over participant__ankhorage_paradox: Automatic sequence rendering skipped because the call graph has 24 roots
-</div>
-    <details>
-      <summary>View Mermaid source</summary>
-      <pre>sequenceDiagram
-  participant participant__ankhorage_paradox as ankhorage paradox
-  Note over participant__ankhorage_paradox: Automatic sequence rendering skipped because the call graph has 24 roots
 </pre>
     </details>
   </article>

@@ -68,7 +68,6 @@ export default defineParadoxConfig({
 - [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
-- [Entrypoint sequence](./paradox/diagrams/entrypoint-sequence.mmd)
 
 ## Architecture preview
 
@@ -90,6 +89,7 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
@@ -165,6 +165,11 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_semantic_tagRegistry_ts
   module_src_analyze_semantic_utils_ts["src/analyze/semantic/utils.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts["src/analyze/sequenceScenarios.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_sequenceScenarios_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_usage_ts
   module_src_analyze_types_ts["src/analyze/types.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_types_ts
   module_src_analyze_usage_ts["src/analyze/usage.ts"]
