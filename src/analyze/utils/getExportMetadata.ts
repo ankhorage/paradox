@@ -220,7 +220,7 @@ function getObjectLiteralValues(node: ObjectLiteralExpression): Record<string, s
   for (const property of node.getProperties()) {
     if (!Node.isPropertyAssignment(property)) continue;
 
-    const name = property.getName().replace(/^['\"]|['\"]$/g, '');
+    const name = property.getName().replace(/^['"]|['"]$/g, '');
     const value = getLiteralValue(property.getInitializer());
     if (value !== null) {
       values[name] = value;
