@@ -104,6 +104,8 @@ export interface AnalysisSequenceScenario {
   name: string;
   sourcePath: string;
   symbolName: string;
+  description: string | null;
+  isReadme: boolean;
 }
 
 interface AnalysisTypeMember {
