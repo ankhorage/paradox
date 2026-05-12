@@ -170,6 +170,8 @@ graph TD
   module_src_analyze_sequenceScenarios_ts --> module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --> module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --> module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_types_ts["src/analyze/types.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_types_ts
   module_src_analyze_usage_ts["src/analyze/usage.ts"]

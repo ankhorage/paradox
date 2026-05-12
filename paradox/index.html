@@ -208,10 +208,10 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>isNodeModulePath</code>, <code>isPathInsideRoot</code>, <code>relativeToRoot</code>, <code>toPosixPath</code></p>
-  </article><article class="item" data-search="src/analyze/sequenceScenarios.ts src/analyze/semantic/utils.ts src/analyze/types.ts src/analyze/usage.ts analyzeSequenceScenarios">
+  </article><article class="item" data-search="src/analyze/sequenceScenarios.ts src/analyze/semantic/utils.ts src/analyze/types.ts src/analyze/usage.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts analyzeSequenceScenarios">
     <h3>src/analyze/sequenceScenarios.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/utils.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/utils.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeSequenceScenarios</code></p>
   </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceLocation AnalysisUsage">
     <h3>src/analyze/types.ts</h3>
@@ -506,6 +506,8 @@
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -681,6 +683,8 @@
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
@@ -859,6 +863,8 @@
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
@@ -990,6 +996,8 @@
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts

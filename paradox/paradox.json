@@ -340,7 +340,9 @@
       "dependencies": [
         "src/analyze/semantic/utils.ts",
         "src/analyze/types.ts",
-        "src/analyze/usage.ts"
+        "src/analyze/usage.ts",
+        "src/analyze/utils/getParadoxComment.ts",
+        "src/analyze/utils/parseParadoxComment.ts"
       ],
       "exports": [
         "analyzeSequenceScenarios"
@@ -690,13 +692,17 @@
       "kind": "export",
       "name": "defineParadoxConfig",
       "sourcePath": "src/config/defineParadoxConfig.ts",
-      "symbolName": "defineParadoxConfig"
+      "symbolName": "defineParadoxConfig",
+      "description": "Defines a Paradox configuration object without changing its shape.",
+      "isReadme": true
     },
     {
       "kind": "bin",
       "name": "paradox",
       "sourcePath": "src/cli.ts",
-      "symbolName": "main"
+      "symbolName": "main",
+      "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
+      "isReadme": true
     }
   ],
   "graphs": {
@@ -874,6 +880,16 @@
       {
         "fromPath": "src/analyze/sequenceScenarios.ts",
         "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
@@ -1728,14 +1744,32 @@
       },
       {
         "fromSymbol": "src/analyze/sequenceScenarios.ts",
-        "toSymbol": "getLocalFunctionNameForCall",
-        "callExpression": "getLocalFunctionNameForCall",
+        "toSymbol": "getLocalFunctionDeclarationForCall",
+        "callExpression": "getLocalFunctionDeclarationForCall",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
         "fromSymbol": "findTopLevelInvokedLocalCallable",
-        "toSymbol": "uniqueSorted",
-        "callExpression": "uniqueSorted",
+        "toSymbol": "uniqueByFunctionName",
+        "callExpression": "uniqueByFunctionName",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "findTopLevelInvokedLocalCallable",
+        "toSymbol": "getParsedParadoxComment",
+        "callExpression": "getParsedParadoxComment",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getParsedParadoxComment",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getParsedParadoxComment",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
