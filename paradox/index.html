@@ -1136,6 +1136,72 @@
   module_src_config_types_ts --&gt; export_ParadoxConfig
 </pre>
     </details>
+  </article><article class="item" data-search="paradox sequence diagrams/sequences/paradox.mmd">
+    <h3>paradox sequence</h3>
+    <p class="muted"><code>diagrams/sequences/paradox.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_analyze as analyze
+  participant participant_buildModel as buildModel
+  participant participant_dirname as dirname
+  participant participant_findParadoxConfigFile as findParadoxConfigFile
+  participant participant_loadParadoxConfig as loadParadoxConfig
+  participant participant_main as main
+  participant participant_render as render
+  participant participant_resolveOutputRoot as resolveOutputRoot
+  participant participant_resolvePackageRoot as resolvePackageRoot
+  participant participant_write as write
+  participant_main-&gt;&gt;participant_findParadoxConfigFile: findParadoxConfigFile()
+  participant_findParadoxConfigFile--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_dirname: dirname()
+  participant_dirname--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_loadParadoxConfig: loadParadoxConfig()
+  participant_loadParadoxConfig--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_resolvePackageRoot: resolvePackageRoot()
+  participant_resolvePackageRoot--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_resolveOutputRoot: resolveOutputRoot()
+  participant_resolveOutputRoot--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_analyze: analyze()
+  participant_analyze--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_buildModel: buildModel()
+  participant_buildModel--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_render: render()
+  participant_render--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_write: write()
+  participant_write--&gt;&gt;participant_main: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_analyze as analyze
+  participant participant_buildModel as buildModel
+  participant participant_dirname as dirname
+  participant participant_findParadoxConfigFile as findParadoxConfigFile
+  participant participant_loadParadoxConfig as loadParadoxConfig
+  participant participant_main as main
+  participant participant_render as render
+  participant participant_resolveOutputRoot as resolveOutputRoot
+  participant participant_resolvePackageRoot as resolvePackageRoot
+  participant participant_write as write
+  participant_main-&gt;&gt;participant_findParadoxConfigFile: findParadoxConfigFile()
+  participant_findParadoxConfigFile--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_dirname: dirname()
+  participant_dirname--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_loadParadoxConfig: loadParadoxConfig()
+  participant_loadParadoxConfig--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_resolvePackageRoot: resolvePackageRoot()
+  participant_resolvePackageRoot--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_resolveOutputRoot: resolveOutputRoot()
+  participant_resolveOutputRoot--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_analyze: analyze()
+  participant_analyze--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_buildModel: buildModel()
+  participant_buildModel--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_render: render()
+  participant_render--&gt;&gt;participant_main: return
+  participant_main-&gt;&gt;participant_write: write()
+  participant_write--&gt;&gt;participant_main: return
+</pre>
+    </details>
   </article>
         </section>
       </main>
