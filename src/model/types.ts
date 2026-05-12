@@ -69,7 +69,7 @@ export interface ComponentModel {
   props: PropModel[];
 }
 
-export interface SourceFunctionModel {
+interface SourceFunctionModel {
   name: string;
   description: string | null;
   sourceLocation: SourceLocationModel;
