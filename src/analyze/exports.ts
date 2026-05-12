@@ -1,6 +1,6 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
-import type { Node, Project } from 'ts-morph';
+import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisExport } from './types.js';
 import { getExportMetadata } from './utils/getExportMetadata.js';
@@ -77,6 +77,10 @@ export function analyzeExports(
               signatures:
                 existing.signatures.length > 0 ? existing.signatures : metadata.signatures,
               members: existing.members.length > 0 ? existing.members : metadata.members,
+              structuredRows:
+                existing.structuredRows.length > 0
+                  ? existing.structuredRows
+                  : metadata.structuredRows,
             }
           : {
               name,
@@ -97,6 +101,9 @@ export function analyzeExports(
   };
 }
 
+/***
+ * Resolves configured entrypoint paths to source files in the TypeScript project.
+ */
 function getEntryPointSourceFiles(
   project: Project,
   options: {
@@ -117,25 +124,41 @@ function getEntryPointSourceFiles(
     .filter((sourceFile) => sourceFile != null);
 }
 
+/***
+ * Returns the first declaration for a symbol, or null when none exists.
+ */
 function getFirstDeclaration(declarations: readonly Node[]): Node | null {
   const [declaration = null] = declarations;
   return declaration;
 }
 
+/***
+ * Infers the public export kind from the declaration shape.
+ */
 function inferKind(node: Node): AnalysisExport['kind'] {
   if ('getParameters' in node) return 'function';
   if ('getProperties' in node || 'getMembers' in node) return 'type';
+  if (Node.isVariableDeclaration(node)) return 'value';
   return 'unknown';
 }
 
+/***
+ * Returns unique string values sorted for deterministic generated output.
+ */
 function uniqueSorted(values: readonly string[]): string[] {
   return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
+/***
+ * Normalizes platform-specific path separators for generated documentation output.
+ */
 function toPosixPath(path: string): string {
   return path.replaceAll('\\', '/');
 }
 
+/***
+ * Creates empty documentation metadata for exports without Paradox comments.
+ */
 function createEmptyMetadata() {
   return {
     description: null,
