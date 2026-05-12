@@ -2686,7 +2686,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 85,
+        "line": 84,
         "column": 1
       }
     },
@@ -2695,7 +2695,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 125,
+        "line": 124,
         "column": 1
       }
     },
@@ -2704,7 +2704,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 134,
+        "line": 133,
         "column": 1
       }
     },
@@ -2713,7 +2713,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 180,
+        "line": 179,
         "column": 1
       }
     },
@@ -2722,16 +2722,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 195,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderPathResolution",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 207,
+        "line": 194,
         "column": 1
       }
     },
@@ -2740,7 +2731,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 223,
+        "line": 206,
         "column": 1
       }
     },
@@ -2749,7 +2740,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 240,
+        "line": 223,
         "column": 1
       }
     },
@@ -2758,7 +2749,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 273,
+        "line": 256,
         "column": 1
       }
     },
@@ -2767,7 +2758,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 292,
+        "line": 275,
         "column": 1
       }
     },
@@ -2776,7 +2767,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 300,
+        "line": 283,
         "column": 1
       }
     },
@@ -2785,7 +2776,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 309,
+        "line": 292,
         "column": 1
       }
     },
@@ -2794,7 +2785,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 331,
+        "line": 314,
         "column": 1
       }
     },
@@ -2803,7 +2794,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 342,
+        "line": 325,
         "column": 1
       }
     },
@@ -2812,7 +2803,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 346,
+        "line": 329,
         "column": 1
       }
     },
@@ -2821,7 +2812,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 358,
+        "line": 341,
         "column": 1
       }
     },
@@ -2830,7 +2821,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 386,
+        "line": 369,
         "column": 1
       }
     },
@@ -2839,7 +2830,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 392,
+        "line": 375,
         "column": 1
       }
     },
@@ -2848,7 +2839,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 398,
+        "line": 381,
         "column": 1
       }
     },
@@ -2857,7 +2848,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 402,
+        "line": 385,
         "column": 1
       }
     },
@@ -2866,7 +2857,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 415,
+        "line": 398,
         "column": 1
       }
     },
@@ -2875,7 +2866,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 471,
+        "line": 454,
         "column": 1
       }
     },
@@ -2884,7 +2875,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 511,
+        "line": 494,
         "column": 1
       }
     },
@@ -2893,7 +2884,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 515,
+        "line": 498,
         "column": 1
       }
     },
@@ -2902,7 +2893,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 519,
+        "line": 502,
         "column": 1
       }
     },
@@ -2911,7 +2902,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 543,
+        "line": 526,
         "column": 1
       }
     },
@@ -2920,7 +2911,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 555,
+        "line": 538,
         "column": 1
       }
     },
@@ -5576,12 +5567,6 @@
         "fromSymbol": "renderReadme",
         "toSymbol": "renderArchitecturePreview",
         "callExpression": "renderArchitecturePreview",
-        "sourcePath": "src/render/renderers/markdown.ts"
-      },
-      {
-        "fromSymbol": "renderReadme",
-        "toSymbol": "renderPathResolution",
-        "callExpression": "renderPathResolution",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
