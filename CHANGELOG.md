@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+### Patch Changes
+
+- 919d454: Render README CLI entries as per-command accordions and show sequence diagrams directly inside the expanded command section.
+
 ## 0.1.2
 
 ### Patch Changes
