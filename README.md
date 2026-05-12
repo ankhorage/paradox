@@ -316,7 +316,7 @@ graph TD
 
 ## Public API
 
-### Configuration
+### Config
 
 <details>
 <summary>defineParadoxConfig</summary>
