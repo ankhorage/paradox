@@ -76,7 +76,6 @@ function renderReadme(
 
   renderGeneratedDocumentation(lines, outputDir, diagrams);
   renderArchitecturePreview(lines, diagrams);
-  renderPathResolution(lines);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
@@ -202,22 +201,6 @@ function renderArchitecturePreview(lines: string[], diagrams: RenderContext['dia
     lines.push('```', '');
     lines.push('</details>', '');
   }
-}
-
-function renderPathResolution(lines: string[]): void {
-  lines.push('## Path resolution', '');
-  lines.push(
-    '- Config discovery: searches upward from `process.cwd()` for `paradox.config.ts/js/mjs/cjs` (required; no fallback).',
-  );
-  lines.push(
-    '- Package root: defaults to the directory containing `paradox.config.*`; `package.root` (when relative) resolves relative to that directory.',
-  );
-  lines.push(
-    '- Output directory: defaults to `paradox/`; `output.dir` (when relative) resolves relative to the resolved package root and must stay inside it.',
-  );
-  lines.push('- Modes:');
-  lines.push('  - `safe`: writes generated artifacts only under the output directory');
-  lines.push('  - `write`: additionally updates `<packageRoot>/README.md`', '');
 }
 
 function renderReadmeApi(lines: string[], model: DocumentationModel): void {
