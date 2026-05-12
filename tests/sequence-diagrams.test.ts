@@ -29,6 +29,8 @@ describe('sequence diagrams', () => {
       name: 'sequence-flow',
       sourcePath: 'src/cli.ts',
       symbolName: 'main',
+      description: null,
+      isReadme: false,
     });
 
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
