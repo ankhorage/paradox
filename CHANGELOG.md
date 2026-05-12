@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+### Patch Changes
+
+- 3a7c982: Render sequence diagrams from call flow instead of import topology.
+
 ## 0.1.0
 
 ### Minor Changes
