@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6
+
+### Patch Changes
+
+- 8ba8f5c: Remove the hardcoded Path resolution section from generated README output so consumer documentation only contains analyzed package content.
+
 ## 0.1.5
 
 ### Patch Changes
