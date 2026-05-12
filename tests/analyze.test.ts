@@ -242,10 +242,10 @@ describe('analyze', () => {
       '| name | syntax | description | applies to | repeatable | handler |',
     );
     expect(output.readme).toContain(
-      '| `readme` | @readme | Includes a symbol in README output. | symbol | no | `markReadme` |',
+      '| `readme` | `@readme` | Includes a symbol in README output. | symbol | no | `markReadme` |',
     );
     expect(output.readme).toContain(
-      '| `example` | @example | Adds an example to generated documentation. | symbol | yes | `parseExample` |',
+      '| `example` | `@example` | Adds an example to generated documentation. | symbol | yes | `parseExample` |',
     );
   });
 
