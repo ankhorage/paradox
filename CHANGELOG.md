@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+### Patch Changes
+
+- 0255235: Full documentation of repo
+
 ## 0.1.3
 
 ### Patch Changes
