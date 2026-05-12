@@ -1,4 +1,4 @@
-import { Node, type Node as MorphNode } from 'ts-morph';
+import { type Node as MorphNode, Node } from 'ts-morph';
 
 /***
  * Reads the nearest Paradox doc comment attached to a declaration.
