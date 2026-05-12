@@ -170,6 +170,9 @@ export async function analyzeBadges(root: string, pkg: PackageJsonModel): Promis
   return sortBadges(badges);
 }
 
+/***
+ * Checks whether any candidate file exists under the repository root.
+ */
 async function hasAnyFile(root: string, paths: readonly string[]): Promise<boolean> {
   for (const relativePath of paths) {
     if (await fileExists(join(root, relativePath))) {
@@ -180,11 +183,17 @@ async function hasAnyFile(root: string, paths: readonly string[]): Promise<boole
   return false;
 }
 
+/***
+ * Reads tsconfig metadata and detects strict TypeScript mode.
+ */
 async function hasTypeScriptStrictMode(root: string): Promise<boolean> {
   const tsconfig = await readJsonFile<TsConfigModel>(join(root, 'tsconfig.json'));
   return tsconfig?.compilerOptions?.strict === true;
 }
 
+/***
+ * Reads the line coverage percentage from a coverage summary file when present.
+ */
 async function readCoveragePercent(root: string): Promise<number | null> {
   const coverage = await readJsonFile<CoverageSummaryModel>(
     join(root, 'coverage', 'coverage-summary.json'),
@@ -194,10 +203,16 @@ async function readCoveragePercent(root: string): Promise<number | null> {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
 }
 
+/***
+ * Formats integer and fractional percentages for badge labels.
+ */
 function formatPercent(value: number): string {
   return Number.isInteger(value) ? `${value}` : value.toFixed(1);
 }
 
+/***
+ * Selects the coverage badge color from the coverage percentage.
+ */
 function getCoverageColor(value: number): string {
   if (value >= 90) return '0a7f3f';
   if (value >= 75) return '65a30d';
@@ -205,14 +220,23 @@ function getCoverageColor(value: number): string {
   return 'dc2626';
 }
 
+/***
+ * Checks whether a named package script is configured.
+ */
 function hasScript(pkg: PackageJsonModel, name: string): boolean {
   return typeof pkg.scripts?.[name] === 'string' && pkg.scripts[name].length > 0;
 }
 
+/***
+ * Checks whether a package script contains a specific command fragment.
+ */
 function scriptContains(pkg: PackageJsonModel, name: string, command: string): boolean {
   return pkg.scripts?.[name]?.includes(command) ?? false;
 }
 
+/***
+ * Detects whether package metadata or workflows indicate Bun support.
+ */
 function supportsBun(pkg: PackageJsonModel, workflowFiles: readonly string[]): boolean {
   if (pkg.packageManager?.startsWith('bun@') ?? false) {
     return true;
@@ -234,6 +258,9 @@ function supportsBun(pkg: PackageJsonModel, workflowFiles: readonly string[]): b
   );
 }
 
+/***
+ * Checks whether any workflow file invokes a named package script.
+ */
 function workflowRunsScript(workflowFiles: readonly string[], scriptName: string): boolean {
   const escaped = escapeRegExp(scriptName);
   const patterns = [
@@ -246,10 +273,16 @@ function workflowRunsScript(workflowFiles: readonly string[], scriptName: string
   return workflowFiles.some((workflow) => patterns.some((pattern) => pattern.test(workflow)));
 }
 
+/***
+ * Escapes regular expression syntax in a script name.
+ */
 function escapeRegExp(value: string): string {
   return value.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/***
+ * Reads all GitHub Actions workflow files from the repository.
+ */
 async function readWorkflowFiles(root: string): Promise<string[]> {
   const workflowsPath = join(root, '.github', 'workflows');
   const entries = await readDirectory(workflowsPath);
@@ -264,6 +297,9 @@ async function readWorkflowFiles(root: string): Promise<string[]> {
   return contents;
 }
 
+/***
+ * Reads a directory and treats a missing path as an empty directory.
+ */
 async function readDirectory(path: string): Promise<string[]> {
   try {
     return await readdir(path);
@@ -276,10 +312,16 @@ async function readDirectory(path: string): Promise<string[]> {
   }
 }
 
+/***
+ * Checks whether an unknown error is a file-not-found filesystem error.
+ */
 function isNotFoundError(error: unknown): error is NodeJS.ErrnoException {
   return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
 }
 
+/***
+ * Reads and parses a JSON file, returning null when the file does not exist.
+ */
 async function readJsonFile<T>(path: string): Promise<T | null> {
   let content: string;
   try {
@@ -299,6 +341,9 @@ async function readJsonFile<T>(path: string): Promise<T | null> {
   }
 }
 
+/***
+ * Checks whether a filesystem path exists.
+ */
 async function fileExists(path: string): Promise<boolean> {
   try {
     await access(path);
@@ -312,6 +357,9 @@ async function fileExists(path: string): Promise<boolean> {
   }
 }
 
+/***
+ * Sorts badges into the stable preferred display order.
+ */
 function sortBadges(badges: readonly AnalysisBadge[]): AnalysisBadge[] {
   return [...badges].sort((left, right) => {
     const order = getBadgeOrder(left.id) - getBadgeOrder(right.id);
@@ -319,6 +367,9 @@ function sortBadges(badges: readonly AnalysisBadge[]): AnalysisBadge[] {
   });
 }
 
+/***
+ * Returns the configured display order index for a badge id.
+ */
 function getBadgeOrder(id: string): number {
   const index = BADGE_ORDER.indexOf(id as (typeof BADGE_ORDER)[number]);
   return index === -1 ? BADGE_ORDER.length : index;
