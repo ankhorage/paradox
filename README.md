@@ -27,6 +27,45 @@ and writes them to the configured output directory.
 bunx @ankhorage/paradox
 ```
 
+<details>
+<summary>paradox sequence</summary>
+
+Diagram: [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
+
+```mermaid
+sequenceDiagram
+  participant participant_analyze as analyze
+  participant participant_buildModel as buildModel
+  participant participant_dirname as dirname
+  participant participant_findParadoxConfigFile as findParadoxConfigFile
+  participant participant_loadParadoxConfig as loadParadoxConfig
+  participant participant_main as main
+  participant participant_render as render
+  participant participant_resolveOutputRoot as resolveOutputRoot
+  participant participant_resolvePackageRoot as resolvePackageRoot
+  participant participant_write as write
+  participant_main->>participant_findParadoxConfigFile: findParadoxConfigFile()
+  participant_findParadoxConfigFile-->>participant_main: return
+  participant_main->>participant_dirname: dirname()
+  participant_dirname-->>participant_main: return
+  participant_main->>participant_loadParadoxConfig: loadParadoxConfig()
+  participant_loadParadoxConfig-->>participant_main: return
+  participant_main->>participant_resolvePackageRoot: resolvePackageRoot()
+  participant_resolvePackageRoot-->>participant_main: return
+  participant_main->>participant_resolveOutputRoot: resolveOutputRoot()
+  participant_resolveOutputRoot-->>participant_main: return
+  participant_main->>participant_analyze: analyze()
+  participant_analyze-->>participant_main: return
+  participant_main->>participant_buildModel: buildModel()
+  participant_buildModel-->>participant_main: return
+  participant_main->>participant_render: render()
+  participant_render-->>participant_main: return
+  participant_main->>participant_write: write()
+  participant_write-->>participant_main: return
+```
+
+</details>
+
 ## Documentation Tags
 
 <details>
@@ -82,6 +121,7 @@ export default defineParadoxConfig({
 - [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
+- [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
 
 ## Architecture preview
 

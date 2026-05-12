@@ -2770,30 +2770,72 @@
       },
       {
         "fromSymbol": "renderSequenceScenario",
-        "toSymbol": "collectReachableCallEdges",
-        "callExpression": "collectReachableCallEdges",
+        "toSymbol": "renderBinSequenceScenario",
+        "callExpression": "renderBinSequenceScenario",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
         "fromSymbol": "renderSequenceScenario",
+        "toSymbol": "renderNestedSequenceScenario",
+        "callExpression": "renderNestedSequenceScenario",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderBinSequenceScenario",
+        "toSymbol": "collectDirectCallEdges",
+        "callExpression": "collectDirectCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderBinSequenceScenario",
         "toSymbol": "collectSequenceParticipants",
         "callExpression": "collectSequenceParticipants",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
-        "fromSymbol": "renderSequenceScenario",
+        "fromSymbol": "renderBinSequenceScenario",
         "toSymbol": "toMermaidId",
         "callExpression": "toMermaidId",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
-        "fromSymbol": "renderSequenceScenario",
+        "fromSymbol": "renderBinSequenceScenario",
         "toSymbol": "escapeLabel",
         "callExpression": "escapeLabel",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
-        "fromSymbol": "renderSequenceScenario",
+        "fromSymbol": "renderBinSequenceScenario",
+        "toSymbol": "formatCallLabel",
+        "callExpression": "formatCallLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedSequenceScenario",
+        "toSymbol": "collectReachableCallEdges",
+        "callExpression": "collectReachableCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedSequenceScenario",
+        "toSymbol": "collectSequenceParticipants",
+        "callExpression": "collectSequenceParticipants",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedSequenceScenario",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedSequenceScenario",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedSequenceScenario",
         "toSymbol": "renderCallFlow",
         "callExpression": "renderCallFlow",
         "sourcePath": "src/render/renderers/diagrams.ts"

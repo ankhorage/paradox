@@ -3,6 +3,7 @@ import type { DiagramArtifact } from '../types.js';
 
 const MAX_SEQUENCE_CALL_EDGES = 12;
 const MAX_SEQUENCE_PARTICIPANTS = 8;
+const MAX_BIN_SEQUENCE_PARTICIPANTS = 12;
 
 /***
  * Generates deterministic Mermaid diagrams for the documentation app.
@@ -115,6 +116,45 @@ function renderSequenceScenario(
   model: DocumentationModel,
   scenario: SequenceScenarioModel,
 ): string | null {
+  if (scenario.kind === 'bin') {
+    return renderBinSequenceScenario(model, scenario);
+  }
+
+  return renderNestedSequenceScenario(model, scenario);
+}
+
+function renderBinSequenceScenario(
+  model: DocumentationModel,
+  scenario: SequenceScenarioModel,
+): string | null {
+  const callEdges = collectDirectCallEdges(model.graphs.calls, scenario.symbolName);
+  const participants = collectSequenceParticipants(callEdges);
+
+  if (callEdges.length === 0) return null;
+  if (participants.length > MAX_BIN_SEQUENCE_PARTICIPANTS) return null;
+
+  const lines = ['sequenceDiagram'];
+
+  for (const participant of participants) {
+    lines.push(
+      `  participant ${toMermaidId(`participant-${participant}`)} as ${escapeLabel(participant)}`,
+    );
+  }
+
+  for (const edge of callEdges) {
+    const fromId = toMermaidId(`participant-${edge.fromSymbol}`);
+    const toId = toMermaidId(`participant-${edge.toSymbol}`);
+    lines.push(`  ${fromId}->>${toId}: ${formatCallLabel(edge.callExpression)}`);
+    lines.push(`  ${toId}-->>${fromId}: return`);
+  }
+
+  return `${lines.join('\n')}\n`;
+}
+
+function renderNestedSequenceScenario(
+  model: DocumentationModel,
+  scenario: SequenceScenarioModel,
+): string | null {
   const lines = ['sequenceDiagram'];
   const reachableEdges = collectReachableCallEdges(model.graphs.calls, scenario.symbolName);
   const participants = collectSequenceParticipants(reachableEdges);
@@ -137,6 +177,13 @@ function renderSequenceScenario(
   renderCallFlow(lines, reachableEdges, scenario.symbolName);
 
   return `${lines.join('\n')}\n`;
+}
+
+function collectDirectCallEdges(
+  callEdges: DocumentationModel['graphs']['calls'],
+  root: string,
+): DocumentationModel['graphs']['calls'] {
+  return callEdges.filter((edge) => edge.fromSymbol === root);
 }
 
 function collectReachableCallEdges(
