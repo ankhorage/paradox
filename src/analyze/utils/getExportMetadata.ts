@@ -9,6 +9,7 @@ import {
   Node,
   type ObjectLiteralExpression,
   type Symbol as MorphSymbol,
+  type VariableDeclaration,
 } from 'ts-morph';
 
 import type {
@@ -54,7 +55,7 @@ export function getExportMetadata(options: {
   const sourceLocation = getSourceLocation(options.node, options.root);
   const signatures = getSignatures(options.symbol, options.node);
   const members = getMembers(options.node);
-  const structuredRows = getStructuredRows(options.node);
+  const structuredRows = getStructuredRows(options.node, options.name);
   const relatedSymbols = collectRelatedSymbols(
     options.name,
     signatures.flatMap((signature) => [
@@ -197,10 +198,11 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
 /***
  * Extracts table-like rows from exported const arrays of object literals.
  */
-function getStructuredRows(node: Node): AnalysisStructuredRow[] {
-  if (!Node.isVariableDeclaration(node)) return [];
+function getStructuredRows(node: Node, exportName: string): AnalysisStructuredRow[] {
+  const declaration = getVariableDeclaration(node, exportName);
+  if (declaration === null) return [];
 
-  const initializer = node.getInitializer();
+  const initializer = declaration.getInitializer();
   if (!initializer || !Node.isArrayLiteralExpression(initializer)) return [];
 
   return initializer.getElements().flatMap((element): AnalysisStructuredRow[] => {
@@ -209,6 +211,28 @@ function getStructuredRows(node: Node): AnalysisStructuredRow[] {
     const values = getObjectLiteralValues(element);
     return Object.keys(values).length > 0 ? [{ values }] : [];
   });
+}
+
+/***
+ * Resolves a variable declaration from declaration nodes used by export symbols.
+ */
+function getVariableDeclaration(node: Node, exportName: string): VariableDeclaration | null {
+  if (Node.isVariableDeclaration(node)) return node;
+
+  if (Node.isVariableStatement(node)) {
+    return (
+      node
+        .getDeclarationList()
+        .getDeclarations()
+        .find((declaration) => declaration.getName() === exportName) ?? null
+    );
+  }
+
+  if (Node.isVariableDeclarationList(node)) {
+    return node.getDeclarations().find((declaration) => declaration.getName() === exportName) ?? null;
+  }
+
+  return null;
 }
 
 /***
