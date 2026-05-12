@@ -3034,6 +3034,12 @@
       },
       {
         "fromSymbol": "renderReadme",
+        "toSymbol": "renderCliScenarios",
+        "callExpression": "renderCliScenarios",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
         "toSymbol": "renderDocumentationTags",
         "callExpression": "renderDocumentationTags",
         "sourcePath": "src/render/renderers/markdown.ts"
@@ -3066,6 +3072,18 @@
         "fromSymbol": "renderReadme",
         "toSymbol": "renderReadmeApi",
         "callExpression": "renderReadmeApi",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderCliScenarios",
+        "toSymbol": "findScenarioDiagram",
+        "callExpression": "findScenarioDiagram",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "toFileStem",
+        "callExpression": "toFileStem",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {

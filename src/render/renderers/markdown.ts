@@ -127,7 +127,9 @@ function findScenarioDiagram(
   diagrams: RenderContext['diagrams'],
   scenario: SequenceScenarioEntry,
 ): RenderContext['diagrams'][number] | undefined {
-  return diagrams.find((diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`);
+  return diagrams.find(
+    (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+  );
 }
 
 function renderDocumentationTags(lines: string[]): void {

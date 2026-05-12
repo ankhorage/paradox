@@ -13,6 +13,20 @@ Deterministic documentation generator for TypeScript packages.
 bunx @ankhorage/paradox
 ```
 
+## CLI
+
+### paradox
+
+Runs the Paradox CLI.
+
+The command discovers the nearest Paradox config, resolves the package and output roots,
+analyzes the package, builds the documentation model, renders all documentation artifacts,
+and writes them to the configured output directory.
+
+```bash
+bunx @ankhorage/paradox
+```
+
 ## Documentation Tags
 
 <details>
