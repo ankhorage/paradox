@@ -1,5 +1,8 @@
-import type { DocumentationModel, ModuleModel } from '../../model/types.js';
+import type { DocumentationModel, ModuleModel, SequenceScenarioModel } from '../../model/types.js';
 import type { DiagramArtifact } from '../types.js';
+
+const MAX_SEQUENCE_CALL_EDGES = 12;
+const MAX_SEQUENCE_PARTICIPANTS = 8;
 
 /***
  * Generates deterministic Mermaid diagrams for the documentation app.
@@ -21,11 +24,7 @@ export function renderDiagramArtifacts(model: DocumentationModel): DiagramArtifa
       title: 'Export graph',
       content: renderExportGraph(model),
     },
-    {
-      path: 'diagrams/entrypoint-sequence.mmd',
-      title: 'Entrypoint sequence',
-      content: renderEntrypointSequence(model),
-    },
+    ...renderSequenceArtifacts(model),
   ];
 }
 
@@ -97,64 +96,131 @@ function renderExportGraph(model: DocumentationModel): string {
   return `${lines.join('\n')}\n`;
 }
 
-function renderEntrypointSequence(model: DocumentationModel): string {
+function renderSequenceArtifacts(model: DocumentationModel): DiagramArtifact[] {
+  return model.sequenceScenarios.flatMap((scenario) => {
+    const content = renderSequenceScenario(model, scenario);
+    if (content === null) return [];
+
+    return [
+      {
+        path: `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+        title: `${scenario.name} sequence`,
+        content,
+      },
+    ];
+  });
+}
+
+function renderSequenceScenario(
+  model: DocumentationModel,
+  scenario: SequenceScenarioModel,
+): string | null {
   const lines = ['sequenceDiagram'];
-  const callEdges = model.graphs.calls;
+  const reachableEdges = collectReachableCallEdges(model.graphs.calls, scenario.symbolName);
+  const participants = collectSequenceParticipants(reachableEdges);
 
-  if (callEdges.length > 0) {
-    const participants = new Map<string, string>();
-    for (const edge of callEdges) {
-      participants.set(
-        edge.fromSymbol,
-        `participant ${toMermaidId(`participant-${edge.fromSymbol}`)} as ${edge.fromSymbol}`,
-      );
-      participants.set(
-        edge.toSymbol,
-        `participant ${toMermaidId(`participant-${edge.toSymbol}`)} as ${edge.toSymbol}`,
-      );
-    }
-    lines.push(...participants.values());
+  if (reachableEdges.length === 0) return null;
+
+  if (
+    reachableEdges.length > MAX_SEQUENCE_CALL_EDGES ||
+    participants.length > MAX_SEQUENCE_PARTICIPANTS
+  ) {
+    return null;
+  }
+
+  for (const participant of participants) {
     lines.push(
-      ...callEdges.map(
-        (edge) =>
-          `  ${toMermaidId(`participant-${edge.fromSymbol}`)}->>${toMermaidId(
-            `participant-${edge.toSymbol}`,
-          )}: ${edge.callExpression}`,
-      ),
-    );
-
-    return `${lines.join('\n')}\n`;
-  }
-
-  const participants = new Map<string, string>();
-
-  for (const module of model.modules) {
-    participants.set(
-      module.path,
-      `participant ${toMermaidId(`participant-${module.path}`)} as ${module.path}`,
+      `  participant ${toMermaidId(`participant-${participant}`)} as ${escapeLabel(participant)}`,
     );
   }
 
-  lines.push(...participants.values());
-
-  const interactions = model.modules.flatMap((module) =>
-    module.dependencies.map(
-      (dependency) =>
-        `  ${toMermaidId(`participant-${module.path}`)}->>${toMermaidId(
-          `participant-${dependency}`,
-        )}: imports`,
-    ),
-  );
-
-  if (interactions.length === 0) {
-    const packageId = toMermaidId(`participant-${model.packageId}`);
-    lines.push(`  participant ${packageId} as ${model.packageName}`);
-    lines.push(`  Note over ${packageId}: No internal module relationships detected.`);
-  } else {
-    lines.push(...interactions);
-  }
+  renderCallFlow(lines, reachableEdges, scenario.symbolName);
 
   return `${lines.join('\n')}\n`;
+}
+
+function collectReachableCallEdges(
+  callEdges: DocumentationModel['graphs']['calls'],
+  root: string,
+): DocumentationModel['graphs']['calls'] {
+  const outgoing = groupCallsBySource(callEdges);
+  const visited = new Set<string>();
+  const ordered: DocumentationModel['graphs']['calls'] = [];
+
+  visitCallEdges(root, outgoing, visited, ordered);
+
+  return ordered;
+}
+
+function visitCallEdges(
+  fromSymbol: string,
+  outgoing: ReadonlyMap<string, DocumentationModel['graphs']['calls']>,
+  visited: Set<string>,
+  ordered: DocumentationModel['graphs']['calls'],
+): void {
+  for (const edge of outgoing.get(fromSymbol) ?? []) {
+    const key = getCallEdgeKey(edge);
+    if (visited.has(key)) continue;
+    visited.add(key);
+    ordered.push(edge);
+    visitCallEdges(edge.toSymbol, outgoing, visited, ordered);
+  }
+}
+
+function renderCallFlow(
+  lines: string[],
+  callEdges: DocumentationModel['graphs']['calls'],
+  root: string,
+): void {
+  const outgoing = groupCallsBySource(callEdges);
+  const visited = new Set<string>();
+
+  renderNestedCalls(lines, root, outgoing, visited);
+}
+
+function renderNestedCalls(
+  lines: string[],
+  fromSymbol: string,
+  outgoing: ReadonlyMap<string, DocumentationModel['graphs']['calls']>,
+  visited: Set<string>,
+): void {
+  for (const edge of outgoing.get(fromSymbol) ?? []) {
+    const key = getCallEdgeKey(edge);
+    if (visited.has(key)) continue;
+    visited.add(key);
+
+    const fromId = toMermaidId(`participant-${edge.fromSymbol}`);
+    const toId = toMermaidId(`participant-${edge.toSymbol}`);
+    lines.push(`  ${fromId}->>${toId}: ${formatCallLabel(edge.callExpression)}`);
+    renderNestedCalls(lines, edge.toSymbol, outgoing, visited);
+    lines.push(`  ${toId}-->>${fromId}: return`);
+  }
+}
+
+function groupCallsBySource(
+  callEdges: DocumentationModel['graphs']['calls'],
+): Map<string, DocumentationModel['graphs']['calls']> {
+  const grouped = new Map<string, DocumentationModel['graphs']['calls']>();
+
+  for (const edge of callEdges) {
+    const existing = grouped.get(edge.fromSymbol) ?? [];
+    existing.push(edge);
+    grouped.set(edge.fromSymbol, existing);
+  }
+
+  return grouped;
+}
+
+function collectSequenceParticipants(callEdges: DocumentationModel['graphs']['calls']): string[] {
+  return uniqueSorted(callEdges.flatMap((edge) => [edge.fromSymbol, edge.toSymbol]));
+}
+
+function getCallEdgeKey(edge: DocumentationModel['graphs']['calls'][number]): string {
+  return `${edge.fromSymbol}->${edge.toSymbol}@${edge.sourcePath}:${edge.callExpression}`;
+}
+
+function formatCallLabel(callExpression: string): string {
+  return callExpression.endsWith(')') ? callExpression : `${callExpression}()`;
 }
 
 function renderFallbackEdge(modules: readonly ModuleModel[], prefix: string): string[] {
@@ -166,6 +232,18 @@ function renderFallbackEdge(modules: readonly ModuleModel[], prefix: string): st
     const previous = modules[index];
     return `  ${toMermaidId(`${prefix}-${previous.path}`)} -.-> ${toMermaidId(`${prefix}-${module.path}`)}`;
   });
+}
+
+function uniqueSorted(values: readonly string[]): string[] {
+  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
+}
+
+function toFileStem(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
 }
 
 function toMermaidId(value: string): string {

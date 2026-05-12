@@ -17,6 +17,7 @@ graph LR
   module_src_analyze_semantic_paradoxComment_ts["src/analyze/semantic/paradoxComment.ts"]
   module_src_analyze_semantic_tagRegistry_ts["src/analyze/semantic/tagRegistry.ts"]
   module_src_analyze_semantic_utils_ts["src/analyze/semantic/utils.ts"]
+  module_src_analyze_sequenceScenarios_ts["src/analyze/sequenceScenarios.ts"]
   module_src_analyze_types_ts["src/analyze/types.ts"]
   module_src_analyze_usage_ts["src/analyze/usage.ts"]
   module_src_analyze_utils_getComponentPropsType_ts["src/analyze/utils/getComponentPropsType.ts"]
@@ -48,6 +49,7 @@ graph LR
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
@@ -89,6 +91,11 @@ graph LR
   module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_exports_ts
   module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_model_ts
   module_src_analyze_semantic_graphs_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_usage_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts

@@ -12,6 +12,7 @@ export interface DocumentationModel {
   modules: ModuleModel[];
   exports: ExportModel[];
   components: ComponentModel[];
+  sequenceScenarios: SequenceScenarioModel[];
   graphs: GraphModel;
 }
 
@@ -65,6 +66,15 @@ export interface ComponentModel {
   sourceLocation: SourceLocationModel;
   exportPaths: string[];
   props: PropModel[];
+}
+
+export interface SequenceScenarioModel {
+  kind: 'bin' | 'export';
+  name: string;
+  sourcePath: string;
+  symbolName: string;
+  description: string | null;
+  isReadme: boolean;
 }
 
 interface ExampleModel {

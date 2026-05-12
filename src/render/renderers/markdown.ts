@@ -5,6 +5,7 @@ type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
 type ComponentEntry = DocumentationModel['components'][number];
 type ExportEntry = DocumentationModel['exports'][number];
 type ExampleEntry = ExportEntry['examples'][number];
+type SequenceScenarioEntry = DocumentationModel['sequenceScenarios'][number];
 
 interface ReadmeGroup {
   title: string;
@@ -67,6 +68,7 @@ function renderReadme(
     lines.push('```', '');
   }
 
+  renderCliScenarios(lines, model, outputDir, diagrams);
   renderDocumentationTags(lines);
 
   if (model.config?.isReadme) {
@@ -79,6 +81,55 @@ function renderReadme(
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
+}
+
+function renderCliScenarios(
+  lines: string[],
+  model: DocumentationModel,
+  outputDir: string,
+  diagrams: RenderContext['diagrams'],
+): void {
+  const scenarios = model.sequenceScenarios.filter(
+    (scenario) => scenario.kind === 'bin' && scenario.isReadme,
+  );
+  if (scenarios.length === 0) return;
+
+  lines.push('## CLI', '');
+
+  for (const scenario of scenarios) {
+    lines.push(`### ${scenario.name}`, '');
+
+    if (scenario.description !== null) {
+      lines.push(scenario.description, '');
+    }
+
+    const command = model.usage?.commands.find((item) => item.name === scenario.name);
+    if (command !== undefined) {
+      lines.push('```bash');
+      lines.push(command.command);
+      lines.push('```', '');
+    }
+
+    const diagram = findScenarioDiagram(diagrams, scenario);
+    if (diagram !== undefined) {
+      lines.push('<details>');
+      lines.push(`<summary>${scenario.name} sequence</summary>`, '');
+      lines.push(`Diagram: [${diagram.title}](./${outputDir}/${diagram.path})`, '');
+      lines.push('```mermaid');
+      lines.push(diagram.content.trimEnd());
+      lines.push('```', '');
+      lines.push('</details>', '');
+    }
+  }
+}
+
+function findScenarioDiagram(
+  diagrams: RenderContext['diagrams'],
+  scenario: SequenceScenarioEntry,
+): RenderContext['diagrams'][number] | undefined {
+  return diagrams.find(
+    (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+  );
 }
 
 function renderDocumentationTags(lines: string[]): void {
@@ -457,6 +508,14 @@ function badgeLabel(model: DocumentationModel, badgePath: string): string {
   const badge = model.badges.find((entry) => entry.id === id);
 
   return badge ? `${badge.label}: ${badge.value}` : badgePath;
+}
+
+function toFileStem(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
 }
 
 const CATEGORY_ORDER = [

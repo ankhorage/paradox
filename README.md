@@ -3,11 +3,25 @@
 
 # @ankhorage/paradox
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.0.10](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.1.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
 
 Deterministic documentation generator for TypeScript packages.
 
 ## Installation
+
+```bash
+bunx @ankhorage/paradox
+```
+
+## CLI
+
+### paradox
+
+Runs the Paradox CLI.
+
+The command discovers the nearest Paradox config, resolves the package and output roots,
+analyzes the package, builds the documentation model, renders all documentation artifacts,
+and writes them to the configured output directory.
 
 ```bash
 bunx @ankhorage/paradox
@@ -68,7 +82,6 @@ export default defineParadoxConfig({
 - [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
-- [Entrypoint sequence](./paradox/diagrams/entrypoint-sequence.mmd)
 
 ## Architecture preview
 
@@ -90,6 +103,7 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_graphs_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
@@ -165,6 +179,13 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_semantic_tagRegistry_ts
   module_src_analyze_semantic_utils_ts["src/analyze/semantic/utils.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts["src/analyze/sequenceScenarios.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_sequenceScenarios_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_semantic_utils_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_usage_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_types_ts["src/analyze/types.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_types_ts
   module_src_analyze_usage_ts["src/analyze/usage.ts"]

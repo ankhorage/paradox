@@ -99,6 +99,15 @@ export interface AnalysisModule {
   exports: string[];
 }
 
+export interface AnalysisSequenceScenario {
+  kind: 'bin' | 'export';
+  name: string;
+  sourcePath: string;
+  symbolName: string;
+  description: string | null;
+  isReadme: boolean;
+}
+
 interface AnalysisTypeMember {
   name: string;
   type: string;
@@ -155,6 +164,7 @@ export interface AnalysisResult {
   entrypoints: string[];
   modules: AnalysisModule[];
   badges: AnalysisBadge[];
+  sequenceScenarios: AnalysisSequenceScenario[];
 
   usage: AnalysisUsage | null;
 

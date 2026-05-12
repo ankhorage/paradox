@@ -12,7 +12,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.0.10",
+      "value": "v0.1.0",
       "color": "cb3837"
     },
     {
@@ -115,6 +115,7 @@
         "src/analyze/semantic/createTypeScriptProgram.ts",
         "src/analyze/semantic/exports.ts",
         "src/analyze/semantic/graphs.ts",
+        "src/analyze/sequenceScenarios.ts",
         "src/analyze/types.ts",
         "src/analyze/usage.ts",
         "src/config/types.ts"
@@ -334,6 +335,20 @@
       ]
     },
     {
+      "path": "src/analyze/sequenceScenarios.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/semantic/utils.ts",
+        "src/analyze/types.ts",
+        "src/analyze/usage.ts",
+        "src/analyze/utils/getParadoxComment.ts",
+        "src/analyze/utils/parseParadoxComment.ts"
+      ],
+      "exports": [
+        "analyzeSequenceScenarios"
+      ]
+    },
+    {
       "path": "src/analyze/types.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -345,6 +360,7 @@
         "AnalysisModule",
         "AnalysisParameter",
         "AnalysisResult",
+        "AnalysisSequenceScenario",
         "AnalysisSignature",
         "AnalysisSourceLocation",
         "AnalysisUsage"
@@ -484,7 +500,8 @@
         "ExportKind",
         "ExportModel",
         "GeneratedBadge",
-        "ModuleModel"
+        "ModuleModel",
+        "SequenceScenarioModel"
       ]
     },
     {
@@ -670,6 +687,24 @@
     }
   ],
   "components": [],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "defineParadoxConfig",
+      "sourcePath": "src/config/defineParadoxConfig.ts",
+      "symbolName": "defineParadoxConfig",
+      "description": "Defines a Paradox configuration object without changing its shape.",
+      "isReadme": true
+    },
+    {
+      "kind": "bin",
+      "name": "paradox",
+      "sourcePath": "src/cli.ts",
+      "symbolName": "main",
+      "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
+      "isReadme": true
+    }
+  ],
   "graphs": {
     "imports": [
       {
@@ -754,6 +789,11 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/sequenceScenarios.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
@@ -831,6 +871,31 @@
         "fromPath": "src/analyze/modules.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/usage.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromPath": "src/analyze/sequenceScenarios.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
         "fromPath": "src/analyze/usage.ts",
@@ -1195,6 +1260,12 @@
         "fromSymbol": "analyze",
         "toSymbol": "analyzeModules",
         "callExpression": "analyzeModules",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeSequenceScenarios",
+        "callExpression": "analyzeSequenceScenarios",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -1574,6 +1645,132 @@
         "toSymbol": "uniqueSorted",
         "callExpression": "uniqueSorted",
         "sourcePath": "src/analyze/modules.ts"
+      },
+      {
+        "fromSymbol": "analyzeSequenceScenarios",
+        "toSymbol": "uniqueScenarios",
+        "callExpression": "uniqueScenarios",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "analyzeSequenceScenarios",
+        "toSymbol": "analyzeBinSequenceScenarios",
+        "callExpression": "analyzeBinSequenceScenarios",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "analyzeSequenceScenarios",
+        "toSymbol": "analyzeExportSequenceScenarios",
+        "callExpression": "analyzeExportSequenceScenarios",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "analyzeBinSequenceScenarios",
+        "toSymbol": "getBinEntries",
+        "callExpression": "getBinEntries",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/sequenceScenarios.ts",
+        "toSymbol": "resolveBinSourceFile",
+        "callExpression": "resolveBinSourceFile",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/sequenceScenarios.ts",
+        "toSymbol": "findTopLevelInvokedLocalCallable",
+        "callExpression": "findTopLevelInvokedLocalCallable",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/sequenceScenarios.ts",
+        "toSymbol": "relativeToRoot",
+        "callExpression": "relativeToRoot",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getBinEntries",
+        "toSymbol": "getPackageBaseName",
+        "callExpression": "getPackageBaseName",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "resolveBinSourceFile",
+        "toSymbol": "getBinSourceCandidates",
+        "callExpression": "getBinSourceCandidates",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "resolveBinSourceFile",
+        "toSymbol": "getSourceFileByRelativePath",
+        "callExpression": "getSourceFileByRelativePath",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getBinSourceCandidates",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getBinSourceCandidates",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getSourceFileByRelativePath",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getSourceFileByRelativePath",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getSourceFileByRelativePath",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/sequenceScenarios.ts",
+        "toSymbol": "isInsideCallable",
+        "callExpression": "isInsideCallable",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/sequenceScenarios.ts",
+        "toSymbol": "getLocalFunctionDeclarationForCall",
+        "callExpression": "getLocalFunctionDeclarationForCall",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "findTopLevelInvokedLocalCallable",
+        "toSymbol": "uniqueByFunctionName",
+        "callExpression": "uniqueByFunctionName",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "findTopLevelInvokedLocalCallable",
+        "toSymbol": "getParsedParadoxComment",
+        "callExpression": "getParsedParadoxComment",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getParsedParadoxComment",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
+      },
+      {
+        "fromSymbol": "getParsedParadoxComment",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
         "fromSymbol": "createUsageFromPackageJson",
@@ -2507,8 +2704,8 @@
       },
       {
         "fromSymbol": "renderDiagramArtifacts",
-        "toSymbol": "renderEntrypointSequence",
-        "callExpression": "renderEntrypointSequence",
+        "toSymbol": "renderSequenceArtifacts",
+        "callExpression": "renderSequenceArtifacts",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
@@ -2560,9 +2757,111 @@
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
-        "fromSymbol": "renderEntrypointSequence",
+        "fromSymbol": "src/render/renderers/diagrams.ts",
+        "toSymbol": "renderSequenceScenario",
+        "callExpression": "renderSequenceScenario",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/diagrams.ts",
+        "toSymbol": "toFileStem",
+        "callExpression": "toFileStem",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderSequenceScenario",
+        "toSymbol": "collectReachableCallEdges",
+        "callExpression": "collectReachableCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderSequenceScenario",
+        "toSymbol": "collectSequenceParticipants",
+        "callExpression": "collectSequenceParticipants",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderSequenceScenario",
         "toSymbol": "toMermaidId",
         "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderSequenceScenario",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderSequenceScenario",
+        "toSymbol": "renderCallFlow",
+        "callExpression": "renderCallFlow",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectReachableCallEdges",
+        "toSymbol": "groupCallsBySource",
+        "callExpression": "groupCallsBySource",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectReachableCallEdges",
+        "toSymbol": "visitCallEdges",
+        "callExpression": "visitCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "visitCallEdges",
+        "toSymbol": "getCallEdgeKey",
+        "callExpression": "getCallEdgeKey",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "visitCallEdges",
+        "toSymbol": "visitCallEdges",
+        "callExpression": "visitCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderCallFlow",
+        "toSymbol": "groupCallsBySource",
+        "callExpression": "groupCallsBySource",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderCallFlow",
+        "toSymbol": "renderNestedCalls",
+        "callExpression": "renderNestedCalls",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "getCallEdgeKey",
+        "callExpression": "getCallEdgeKey",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "formatCallLabel",
+        "callExpression": "formatCallLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "renderNestedCalls",
+        "callExpression": "renderNestedCalls",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectSequenceParticipants",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
@@ -2735,6 +3034,12 @@
       },
       {
         "fromSymbol": "renderReadme",
+        "toSymbol": "renderCliScenarios",
+        "callExpression": "renderCliScenarios",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderReadme",
         "toSymbol": "renderDocumentationTags",
         "callExpression": "renderDocumentationTags",
         "sourcePath": "src/render/renderers/markdown.ts"
@@ -2767,6 +3072,18 @@
         "fromSymbol": "renderReadme",
         "toSymbol": "renderReadmeApi",
         "callExpression": "renderReadmeApi",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderCliScenarios",
+        "toSymbol": "findScenarioDiagram",
+        "callExpression": "findScenarioDiagram",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "src/render/renderers/markdown.ts",
+        "toSymbol": "toFileStem",
+        "callExpression": "toFileStem",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {

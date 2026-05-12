@@ -184,7 +184,9 @@ describe('analyze', () => {
     await expectSnapshot('basic.architecture-overview.mmd', output.diagrams[0]?.content ?? '');
     await expectSnapshot('basic.module-relationships.mmd', output.diagrams[1]?.content ?? '');
     await expectSnapshot('basic.export-graph.mmd', output.diagrams[2]?.content ?? '');
-    await expectSnapshot('basic.entrypoint-sequence.mmd', output.diagrams[3]?.content ?? '');
+    expect(output.diagrams.map((diagram) => diagram.path)).not.toContain(
+      'diagrams/entrypoint-sequence.mmd',
+    );
   });
 
   test('analyzes branded primitive exports without declarationless member crashes', async () => {

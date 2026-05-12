@@ -1,0 +1,11 @@
+{
+  "name": "@fixture/sequence-flow",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "sequence-flow": "./dist/cli.js"
+  }
+}
