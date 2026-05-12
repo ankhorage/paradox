@@ -15,7 +15,8 @@ bunx @ankhorage/paradox
 
 ## CLI
 
-### paradox
+<details>
+<summary>paradox</summary>
 
 Runs the Paradox CLI.
 
@@ -26,9 +27,6 @@ and writes them to the configured output directory.
 ```bash
 bunx @ankhorage/paradox
 ```
-
-<details>
-<summary>paradox sequence</summary>
 
 Diagram: [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
 

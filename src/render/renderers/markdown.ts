@@ -97,7 +97,8 @@ function renderCliScenarios(
   lines.push('## CLI', '');
 
   for (const scenario of scenarios) {
-    lines.push(`### ${scenario.name}`, '');
+    lines.push('<details>');
+    lines.push(`<summary>${scenario.name}</summary>`, '');
 
     if (scenario.description !== null) {
       lines.push(scenario.description, '');
@@ -112,14 +113,13 @@ function renderCliScenarios(
 
     const diagram = findScenarioDiagram(diagrams, scenario);
     if (diagram !== undefined) {
-      lines.push('<details>');
-      lines.push(`<summary>${scenario.name} sequence</summary>`, '');
       lines.push(`Diagram: [${diagram.title}](./${outputDir}/${diagram.path})`, '');
       lines.push('```mermaid');
       lines.push(diagram.content.trimEnd());
       lines.push('```', '');
-      lines.push('</details>', '');
     }
+
+    lines.push('</details>', '');
   }
 }
 
