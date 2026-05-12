@@ -31,6 +31,7 @@ graph LR
   module_src_cli_ts["src/cli.ts"]
   module_src_config_defineParadoxConfig_ts["src/config/defineParadoxConfig.ts"]
   module_src_config_types_ts["src/config/types.ts"]
+  module_src_doc_tags_registry_ts["src/doc-tags/registry.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_model_buildModel_ts["src/model/buildModel.ts"]
   module_src_model_types_ts["src/model/types.ts"]
@@ -45,5 +46,15 @@ graph LR
   export_defineParadoxConfig["defineParadoxConfig"]
   module_src_config_defineParadoxConfig_ts --> export_defineParadoxConfig
   export_defineParadoxConfig -.-> export_ParadoxConfig
+  export_getParadoxDocTag["getParadoxDocTag"]
+  module_src_doc_tags_registry_ts --> export_getParadoxDocTag
+  export_isParadoxDocTagName["isParadoxDocTagName"]
+  module_src_doc_tags_registry_ts --> export_isParadoxDocTagName
+  export_PARADOX_DOC_TAGS["PARADOX_DOC_TAGS"]
+  module_src_doc_tags_registry_ts --> export_PARADOX_DOC_TAGS
   export_ParadoxConfig["ParadoxConfig"]
   module_src_config_types_ts --> export_ParadoxConfig
+  export_ParadoxDocTagHandlerId["ParadoxDocTagHandlerId"]
+  module_src_doc_tags_registry_ts --> export_ParadoxDocTagHandlerId
+  export_ParadoxDocTagName["ParadoxDocTagName"]
+  module_src_doc_tags_registry_ts --> export_ParadoxDocTagName

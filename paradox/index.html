@@ -229,7 +229,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/utils/getExportMetadata.ts">
       src/analyze/utils/getExportMetadata.ts
-      <small>14 functions</small>
+      <small>17 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/utils/getParadoxComment.ts">
@@ -267,6 +267,11 @@
       <small>1 function</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/doc-tags/registry.ts">
+      src/doc-tags/registry.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/model/buildModel.ts">
       src/model/buildModel.ts
       <small>6 functions</small>
@@ -299,7 +304,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/render/renderers/markdown.ts">
       src/render/renderers/markdown.ts
-      <small>26 functions</small>
+      <small>29 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/write/write.ts">
@@ -316,9 +321,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>2</strong><span class="muted">public exports</span></div>
+        <div><strong>7</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>43</strong><span class="muted">modules</span></div>
+        <div><strong>44</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -507,11 +512,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeSourceFunctions</code></p>
-  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisUsage">
+  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisStructuredRow AnalysisUsage">
     <h3>src/analyze/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisUsage</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisStructuredRow</code>, <code>AnalysisUsage</code></p>
   </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
     <h3>src/analyze/usage.ts</h3>
     <p class="muted">Referenced module</p>
@@ -567,11 +572,16 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>ParadoxConfig</code></p>
-  </article><article class="item" data-search="src/index.ts defineParadoxConfig ParadoxConfig">
+  </article><article class="item" data-search="src/doc-tags/registry.ts getParadoxDocTag isParadoxDocTagName PARADOX_DOC_TAGS ParadoxDocTagHandlerId ParadoxDocTagName">
+    <h3>src/doc-tags/registry.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>getParadoxDocTag</code>, <code>isParadoxDocTagName</code>, <code>PARADOX_DOC_TAGS</code>, <code>ParadoxDocTagHandlerId</code>, <code>ParadoxDocTagName</code></p>
+  </article><article class="item" data-search="src/index.ts defineParadoxConfig getParadoxDocTag isParadoxDocTagName PARADOX_DOC_TAGS ParadoxConfig ParadoxDocTagHandlerId ParadoxDocTagName">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>defineParadoxConfig</code>, <code>ParadoxConfig</code></p>
+    <p><strong>Exports:</strong> <code>defineParadoxConfig</code>, <code>getParadoxDocTag</code>, <code>isParadoxDocTagName</code>, <code>PARADOX_DOC_TAGS</code>, <code>ParadoxConfig</code>, <code>ParadoxDocTagHandlerId</code>, <code>ParadoxDocTagName</code></p>
   </article><article class="item" data-search="src/model/buildModel.ts src/model/types.ts buildModel">
     <h3>src/model/buildModel.ts</h3>
     <p class="muted">Referenced module</p>
@@ -693,6 +703,80 @@ and writes them to the configured output directory.</p>
           </tr>
     </tbody>
   </table>
+  </article>
+            </section>
+            <section>
+              <h3>src/doc-tags/registry.ts</h3>
+              <article class="item" id="symbol-getparadoxdoctag" data-search="getParadoxDocTag function src/doc-tags/registry.ts Looks up documentation tag metadata by tag name. (name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null">
+    <h4>getParadoxDocTag</h4>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:42:1</code></p>
+    <p>Looks up documentation tag metadata by tag name.</p>
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>{ readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null</code></p>
+      </div>
+    
+  </article><article class="item" id="symbol-isparadoxdoctagname" data-search="isParadoxDocTagName function src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name. (name: string) =&gt; boolean">
+    <h4>isParadoxDocTagName</h4>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:49:1</code></p>
+    <p>Checks whether a string is a supported Paradox documentation tag name.</p>
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(name: string) =&gt; boolean</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>boolean</code></p>
+      </div>
+    
+  </article><article class="item" id="symbol-paradox-doc-tags" data-search="PARADOX_DOC_TAGS value src/doc-tags/registry.ts ">
+    <h4>PARADOX_DOC_TAGS</h4>
+    <p class="muted">value • <code>src/doc-tags/registry.ts:8:14</code></p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-paradoxdoctaghandlerid" data-search="ParadoxDocTagHandlerId unknown src/doc-tags/registry.ts ">
+    <h4>ParadoxDocTagHandlerId</h4>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:37:1</code></p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-paradoxdoctagname" data-search="ParadoxDocTagName unknown src/doc-tags/registry.ts ">
+    <h4>ParadoxDocTagName</h4>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:36:1</code></p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
   </article>
             </section>
     </section>
@@ -845,6 +929,8 @@ and writes them to the configured output directory.</p>
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_config_types_ts
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_doc_tags_registry_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
@@ -1028,6 +1114,8 @@ and writes them to the configured output directory.</p>
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_config_types_ts
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_doc_tags_registry_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
@@ -1106,6 +1194,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1244,6 +1333,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1384,6 +1474,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1398,8 +1489,18 @@ and writes them to the configured output directory.</p>
   export_defineParadoxConfig[&quot;defineParadoxConfig&quot;]
   module_src_config_defineParadoxConfig_ts --&gt; export_defineParadoxConfig
   export_defineParadoxConfig -.-&gt; export_ParadoxConfig
+  export_getParadoxDocTag[&quot;getParadoxDocTag&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_getParadoxDocTag
+  export_isParadoxDocTagName[&quot;isParadoxDocTagName&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_isParadoxDocTagName
+  export_PARADOX_DOC_TAGS[&quot;PARADOX_DOC_TAGS&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_PARADOX_DOC_TAGS
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
   module_src_config_types_ts --&gt; export_ParadoxConfig
+  export_ParadoxDocTagHandlerId[&quot;ParadoxDocTagHandlerId&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_ParadoxDocTagHandlerId
+  export_ParadoxDocTagName[&quot;ParadoxDocTagName&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_ParadoxDocTagName
 </div>
     <details>
       <summary>View Mermaid source</summary>
@@ -1436,6 +1537,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
+  module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1450,8 +1552,36 @@ and writes them to the configured output directory.</p>
   export_defineParadoxConfig[&quot;defineParadoxConfig&quot;]
   module_src_config_defineParadoxConfig_ts --&gt; export_defineParadoxConfig
   export_defineParadoxConfig -.-&gt; export_ParadoxConfig
+  export_getParadoxDocTag[&quot;getParadoxDocTag&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_getParadoxDocTag
+  export_isParadoxDocTagName[&quot;isParadoxDocTagName&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_isParadoxDocTagName
+  export_PARADOX_DOC_TAGS[&quot;PARADOX_DOC_TAGS&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_PARADOX_DOC_TAGS
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
   module_src_config_types_ts --&gt; export_ParadoxConfig
+  export_ParadoxDocTagHandlerId[&quot;ParadoxDocTagHandlerId&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_ParadoxDocTagHandlerId
+  export_ParadoxDocTagName[&quot;ParadoxDocTagName&quot;]
+  module_src_doc_tags_registry_ts --&gt; export_ParadoxDocTagName
+</pre>
+    </details>
+  </article><article class="item" data-search="isParadoxDocTagName sequence diagrams/sequences/is-paradox-doc-tag-name.mmd">
+    <h3>isParadoxDocTagName sequence</h3>
+    <p class="muted"><code>diagrams/sequences/is-paradox-doc-tag-name.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_getParadoxDocTag as getParadoxDocTag
+  participant participant_isParadoxDocTagName as isParadoxDocTagName
+  participant_isParadoxDocTagName-&gt;&gt;participant_getParadoxDocTag: getParadoxDocTag()
+  participant_getParadoxDocTag--&gt;&gt;participant_isParadoxDocTagName: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_getParadoxDocTag as getParadoxDocTag
+  participant participant_isParadoxDocTagName as isParadoxDocTagName
+  participant_isParadoxDocTagName-&gt;&gt;participant_getParadoxDocTag: getParadoxDocTag()
+  participant_getParadoxDocTag--&gt;&gt;participant_isParadoxDocTagName: return
 </pre>
     </details>
   </article><article class="item" data-search="paradox sequence diagrams/sequences/paradox.mmd">
@@ -1633,30 +1763,30 @@ and writes them to the configured output directory.</p>
     <h3>analyzeExports</h3>
     <p class="muted"><code>src/analyze/exports.ts:22:1</code></p>
     <p>Collects exported declarations from configured package entrypoints.</p>
-  </article><article class="item" data-search="getEntryPointSourceFiles src/analyze/exports.ts ">
+  </article><article class="item" data-search="getEntryPointSourceFiles src/analyze/exports.ts Resolves configured entrypoint paths to source files in the TypeScript project.">
     <h3>getEntryPointSourceFiles</h3>
-    <p class="muted"><code>src/analyze/exports.ts:100:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getFirstDeclaration src/analyze/exports.ts ">
+    <p class="muted"><code>src/analyze/exports.ts:107:1</code></p>
+    <p>Resolves configured entrypoint paths to source files in the TypeScript project.</p>
+  </article><article class="item" data-search="getFirstDeclaration src/analyze/exports.ts Returns the first declaration for a symbol, or null when none exists.">
     <h3>getFirstDeclaration</h3>
-    <p class="muted"><code>src/analyze/exports.ts:120:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="inferKind src/analyze/exports.ts ">
+    <p class="muted"><code>src/analyze/exports.ts:130:1</code></p>
+    <p>Returns the first declaration for a symbol, or null when none exists.</p>
+  </article><article class="item" data-search="inferKind src/analyze/exports.ts Infers the public export kind from the declaration shape.">
     <h3>inferKind</h3>
-    <p class="muted"><code>src/analyze/exports.ts:125:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="uniqueSorted src/analyze/exports.ts ">
+    <p class="muted"><code>src/analyze/exports.ts:138:1</code></p>
+    <p>Infers the public export kind from the declaration shape.</p>
+  </article><article class="item" data-search="uniqueSorted src/analyze/exports.ts Returns unique string values sorted for deterministic generated output.">
     <h3>uniqueSorted</h3>
-    <p class="muted"><code>src/analyze/exports.ts:131:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="toPosixPath src/analyze/exports.ts ">
+    <p class="muted"><code>src/analyze/exports.ts:148:1</code></p>
+    <p>Returns unique string values sorted for deterministic generated output.</p>
+  </article><article class="item" data-search="toPosixPath src/analyze/exports.ts Normalizes platform-specific path separators for generated documentation output.">
     <h3>toPosixPath</h3>
-    <p class="muted"><code>src/analyze/exports.ts:135:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="createEmptyMetadata src/analyze/exports.ts ">
+    <p class="muted"><code>src/analyze/exports.ts:155:1</code></p>
+    <p>Normalizes platform-specific path separators for generated documentation output.</p>
+  </article><article class="item" data-search="createEmptyMetadata src/analyze/exports.ts Creates empty documentation metadata for exports without Paradox comments.">
     <h3>createEmptyMetadata</h3>
-    <p class="muted"><code>src/analyze/exports.ts:139:1</code></p>
-    <p class="empty">No description available.</p>
+    <p class="muted"><code>src/analyze/exports.ts:162:1</code></p>
+    <p>Creates empty documentation metadata for exports without Paradox comments.</p>
   </article>
     </section>
   </section><section id="view-src-analyze-modules-ts" class="view" data-view="src/analyze/modules.ts" hidden>
@@ -2028,60 +2158,72 @@ and writes them to the configured output directory.</p>
       <h2>src/analyze/utils/getExportMetadata.ts</h2>
       <article class="item" data-search="getExportMetadata src/analyze/utils/getExportMetadata.ts Extracts computed metadata for an exported declaration.">
     <h3>getExportMetadata</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:33:1</code></p>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:35:1</code></p>
     <p>Extracts computed metadata for an exported declaration.</p>
-  </article><article class="item" data-search="getSourceLocation src/analyze/utils/getExportMetadata.ts ">
+  </article><article class="item" data-search="getSourceLocation src/analyze/utils/getExportMetadata.ts Resolves the source location for a declaration relative to the package root.">
     <h3>getSourceLocation</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:68:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getSignatures src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:81:1</code></p>
+    <p>Resolves the source location for a declaration relative to the package root.</p>
+  </article><article class="item" data-search="getSignatures src/analyze/utils/getExportMetadata.ts Extracts callable signatures for exported functions and callable values.">
     <h3>getSignatures</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:79:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getSignature src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:95:1</code></p>
+    <p>Extracts callable signatures for exported functions and callable values.</p>
+  </article><article class="item" data-search="getSignature src/analyze/utils/getExportMetadata.ts Builds one normalized call signature from a callable declaration.">
     <h3>getSignature</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:96:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getMembers src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:115:1</code></p>
+    <p>Builds one normalized call signature from a callable declaration.</p>
+  </article><article class="item" data-search="getMembers src/analyze/utils/getExportMetadata.ts Extracts members for interface and type literal exports.">
     <h3>getMembers</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:124:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getMembersFromProperties src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:146:1</code></p>
+    <p>Extracts members for interface and type literal exports.</p>
+  </article><article class="item" data-search="getMembersFromProperties src/analyze/utils/getExportMetadata.ts Converts TypeScript properties into documented member metadata.">
     <h3>getMembersFromProperties</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:140:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getFirstDeclaration src/analyze/utils/getExportMetadata.ts ">
-    <h3>getFirstDeclaration</h3>
     <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:165:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getCallableDeclarations src/analyze/utils/getExportMetadata.ts ">
+    <p>Converts TypeScript properties into documented member metadata.</p>
+  </article><article class="item" data-search="getStructuredRows src/analyze/utils/getExportMetadata.ts Extracts table-like rows from exported const arrays of object literals.">
+    <h3>getStructuredRows</h3>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:200:1</code></p>
+    <p>Extracts table-like rows from exported const arrays of object literals.</p>
+  </article><article class="item" data-search="getObjectLiteralValues src/analyze/utils/getExportMetadata.ts Extracts primitive and string-array values from one object literal.">
+    <h3>getObjectLiteralValues</h3>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:217:1</code></p>
+    <p>Extracts primitive and string-array values from one object literal.</p>
+  </article><article class="item" data-search="getLiteralValue src/analyze/utils/getExportMetadata.ts Converts supported literal expressions into displayable string values.">
+    <h3>getLiteralValue</h3>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:236:1</code></p>
+    <p>Converts supported literal expressions into displayable string values.</p>
+  </article><article class="item" data-search="getFirstDeclaration src/analyze/utils/getExportMetadata.ts Returns the first declaration for a symbol, or null when none exists.">
+    <h3>getFirstDeclaration</h3>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:256:1</code></p>
+    <p>Returns the first declaration for a symbol, or null when none exists.</p>
+  </article><article class="item" data-search="getCallableDeclarations src/analyze/utils/getExportMetadata.ts Finds callable declarations associated with an export symbol.">
     <h3>getCallableDeclarations</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:170:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="getCallableNode src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:264:1</code></p>
+    <p>Finds callable declarations associated with an export symbol.</p>
+  </article><article class="item" data-search="getCallableNode src/analyze/utils/getExportMetadata.ts Returns the callable node represented by a declaration when one exists.">
     <h3>getCallableNode</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:185:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="isMemberMethodDeclaration src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:282:1</code></p>
+    <p>Returns the callable node represented by a declaration when one exists.</p>
+  </article><article class="item" data-search="isMemberMethodDeclaration src/analyze/utils/getExportMetadata.ts Checks whether a node is a method declaration or method signature.">
     <h3>isMemberMethodDeclaration</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:205:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="readParadoxMetadata src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:305:1</code></p>
+    <p>Checks whether a node is a method declaration or method signature.</p>
+  </article><article class="item" data-search="readParadoxMetadata src/analyze/utils/getExportMetadata.ts Reads Paradox comment metadata from a declaration.">
     <h3>readParadoxMetadata</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:209:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="collectRelatedSymbols src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:312:1</code></p>
+    <p>Reads Paradox comment metadata from a declaration.</p>
+  </article><article class="item" data-search="collectRelatedSymbols src/analyze/utils/getExportMetadata.ts Finds related exported symbols mentioned in signature and member type text.">
     <h3>collectRelatedSymbols</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:216:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="toPosixPath src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:329:1</code></p>
+    <p>Finds related exported symbols mentioned in signature and member type text.</p>
+  </article><article class="item" data-search="toPosixPath src/analyze/utils/getExportMetadata.ts Normalizes platform-specific path separators for generated documentation output.">
     <h3>toPosixPath</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:235:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="uniqueBy src/analyze/utils/getExportMetadata.ts ">
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:351:1</code></p>
+    <p>Normalizes platform-specific path separators for generated documentation output.</p>
+  </article><article class="item" data-search="uniqueBy src/analyze/utils/getExportMetadata.ts Returns unique items by a caller-provided key while preserving first occurrence order.">
     <h3>uniqueBy</h3>
-    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:239:1</code></p>
-    <p class="empty">No description available.</p>
+    <p class="muted"><code>src/analyze/utils/getExportMetadata.ts:358:1</code></p>
+    <p>Returns unique items by a caller-provided key while preserving first occurrence order.</p>
   </article>
     </section>
   </section><section id="view-src-analyze-utils-getparadoxcomment-ts" class="view" data-view="src/analyze/utils/getParadoxComment.ts" hidden>
@@ -2167,32 +2309,45 @@ and writes them to the configured output directory.</p>
     <p>Defines a Paradox configuration object without changing its shape.</p>
   </article>
     </section>
+  </section><section id="view-src-doc-tags-registry-ts" class="view" data-view="src/doc-tags/registry.ts" hidden>
+    <section class="panel">
+      <h2>src/doc-tags/registry.ts</h2>
+      <article class="item" data-search="getParadoxDocTag src/doc-tags/registry.ts Looks up documentation tag metadata by tag name.">
+    <h3>getParadoxDocTag</h3>
+    <p class="muted"><code>src/doc-tags/registry.ts:42:1</code></p>
+    <p>Looks up documentation tag metadata by tag name.</p>
+  </article><article class="item" data-search="isParadoxDocTagName src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name.">
+    <h3>isParadoxDocTagName</h3>
+    <p class="muted"><code>src/doc-tags/registry.ts:49:1</code></p>
+    <p>Checks whether a string is a supported Paradox documentation tag name.</p>
+  </article>
+    </section>
   </section><section id="view-src-model-buildmodel-ts" class="view" data-view="src/model/buildModel.ts" hidden>
     <section class="panel">
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:152:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:153:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:239:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:240:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:290:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:292:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
   </article><article class="item" data-search="findConfigFactoryName src/model/buildModel.ts Finds the conventional config factory export for a config type when present.">
     <h3>findConfigFactoryName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:322:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:324:1</code></p>
     <p>Finds the conventional config factory export for a config type when present.</p>
   </article><article class="item" data-search="getDefaultConfigFileName src/model/buildModel.ts Derives the default config file name from a package id.">
     <h3>getDefaultConfigFileName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:334:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:336:1</code></p>
     <p>Derives the default config file name from a package id.</p>
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their `name` property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:343:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:345:1</code></p>
     <p>Returns a copy of items sorted by their `name` property.</p>
   </article>
     </section>
@@ -2466,99 +2621,111 @@ and writes them to the configured output directory.</p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderCliScenarios src/render/renderers/markdown.ts ">
     <h3>renderCliScenarios</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:86:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:85:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="findScenarioDiagram src/render/renderers/markdown.ts ">
     <h3>findScenarioDiagram</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:126:1</code></p>
-    <p class="empty">No description available.</p>
-  </article><article class="item" data-search="renderDocumentationTags src/render/renderers/markdown.ts ">
-    <h3>renderDocumentationTags</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:135:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:125:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts ">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:145:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:134:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderGeneratedDocumentation src/render/renderers/markdown.ts ">
     <h3>renderGeneratedDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:191:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:180:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderArchitecturePreview src/render/renderers/markdown.ts ">
     <h3>renderArchitecturePreview</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:206:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:195:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderPathResolution src/render/renderers/markdown.ts ">
     <h3>renderPathResolution</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:218:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:207:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts ">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:234:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:223:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts ">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:251:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:240:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts ">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:284:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:273:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts ">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:302:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:292:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExamples src/render/renderers/markdown.ts ">
     <h3>renderExamples</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:310:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:300:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts ">
+    <h3>renderStructuredRows</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:309:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts ">
+    <h3>getStructuredColumns</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:331:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts ">
+    <h3>formatStructuredColumnHeader</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:342:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts ">
+    <h3>formatStructuredCell</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:346:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts ">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:319:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:358:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts ">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:347:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:386:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts ">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:353:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:392:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts ">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:359:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:398:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts ">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:363:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:402:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts ">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:375:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:415:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts ">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:429:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:471:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts ">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:469:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:511:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts ">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:473:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:515:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts ">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:477:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:519:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts ">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:501:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:543:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toFileStem src/render/renderers/markdown.ts ">
     <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:513:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:555:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>
