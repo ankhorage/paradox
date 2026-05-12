@@ -1,6 +1,9 @@
 import type { DocumentationModel, ModuleModel } from '../../model/types.js';
 import type { DiagramArtifact } from '../types.js';
 
+const MAX_SEQUENCE_CALL_EDGES = 12;
+const MAX_SEQUENCE_PARTICIPANTS = 8;
+
 /***
  * Generates deterministic Mermaid diagrams for the documentation app.
  */
@@ -102,15 +105,31 @@ function renderEntrypointSequence(model: DocumentationModel): string {
   const callEdges = model.graphs.calls;
 
   if (callEdges.length === 0) {
-    const packageId = toMermaidId(`participant-${model.packageId}`);
-    lines.push(`  participant ${packageId} as ${escapeLabel(model.packageName)}`);
-    lines.push(`  Note over ${packageId}: No internal call flow detected.`);
-
-    return `${lines.join('\n')}\n`;
+    return renderSequenceFallback(lines, model, 'No internal call flow detected.');
   }
 
-  const reachableEdges = collectReachableCallEdges(callEdges);
+  const roots = getCallFlowRoots(callEdges);
+  if (roots.length !== 1) {
+    return renderSequenceFallback(
+      lines,
+      model,
+      `Call graph has ${roots.length} possible roots; automatic sequence rendering needs one scenario.`,
+    );
+  }
+
+  const reachableEdges = collectReachableCallEdges(callEdges, roots[0]);
   const participants = collectSequenceParticipants(reachableEdges);
+
+  if (
+    reachableEdges.length > MAX_SEQUENCE_CALL_EDGES ||
+    participants.length > MAX_SEQUENCE_PARTICIPANTS
+  ) {
+    return renderSequenceFallback(
+      lines,
+      model,
+      `Call flow is too large for automatic sequence rendering (${reachableEdges.length} calls, ${participants.length} participants).`,
+    );
+  }
 
   for (const participant of participants) {
     lines.push(
@@ -118,22 +137,32 @@ function renderEntrypointSequence(model: DocumentationModel): string {
     );
   }
 
-  renderCallFlow(lines, reachableEdges);
+  renderCallFlow(lines, reachableEdges, roots[0]);
+
+  return `${lines.join('\n')}\n`;
+}
+
+function renderSequenceFallback(
+  lines: string[],
+  model: DocumentationModel,
+  message: string,
+): string {
+  const packageId = toMermaidId(`participant-${model.packageId}`);
+  lines.push(`  participant ${packageId} as ${escapeLabel(model.packageName)}`);
+  lines.push(`  Note over ${packageId}: ${message}`);
 
   return `${lines.join('\n')}\n`;
 }
 
 function collectReachableCallEdges(
   callEdges: DocumentationModel['graphs']['calls'],
+  root: string,
 ): DocumentationModel['graphs']['calls'] {
   const outgoing = groupCallsBySource(callEdges);
-  const roots = getCallFlowRoots(callEdges);
   const visited = new Set<string>();
   const ordered: DocumentationModel['graphs']['calls'] = [];
 
-  for (const root of roots) {
-    visitCallEdges(root, outgoing, visited, ordered);
-  }
+  visitCallEdges(root, outgoing, visited, ordered);
 
   return ordered;
 }
@@ -153,14 +182,15 @@ function visitCallEdges(
   }
 }
 
-function renderCallFlow(lines: string[], callEdges: DocumentationModel['graphs']['calls']): void {
+function renderCallFlow(
+  lines: string[],
+  callEdges: DocumentationModel['graphs']['calls'],
+  root: string,
+): void {
   const outgoing = groupCallsBySource(callEdges);
-  const roots = getCallFlowRoots(callEdges);
   const visited = new Set<string>();
 
-  for (const root of roots) {
-    renderNestedCalls(lines, root, outgoing, visited);
-  }
+  renderNestedCalls(lines, root, outgoing, visited);
 }
 
 function renderNestedCalls(
