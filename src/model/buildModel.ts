@@ -63,6 +63,7 @@ interface BuildModelInput {
       returnDescription: string | null;
     }[];
     members: ExportMemberInput[];
+    structuredRows: { values: Record<string, string> }[];
   }[];
   components: {
     name: string;
@@ -281,6 +282,7 @@ function mapExport(
         children: member.children,
       })),
     ),
+    structuredRows: item.structuredRows.map((row) => ({ values: { ...row.values } })),
   };
 }
 
