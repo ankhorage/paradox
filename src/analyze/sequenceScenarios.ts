@@ -1,10 +1,10 @@
 import { isAbsolute, join, normalize } from 'node:path';
 
-import { Node as MorphNode, type CallExpression, type Project, type SourceFile } from 'ts-morph';
+import { type CallExpression, Node as MorphNode, type Project, type SourceFile } from 'ts-morph';
 
+import { relativeToRoot, toPosixPath } from './semantic/utils.js';
 import type { AnalysisExport } from './types.js';
 import type { PackageJsonModel } from './usage.js';
-import { relativeToRoot, toPosixPath } from './semantic/utils.js';
 
 interface SequenceScenarioAnalysis {
   kind: 'bin' | 'export';
@@ -131,7 +131,9 @@ function getSourceFileByRelativePath(
   root: string,
   relativePath: string,
 ): SourceFile | null {
-  const absolutePath = normalize(isAbsolute(relativePath) ? relativePath : join(root, relativePath));
+  const absolutePath = normalize(
+    isAbsolute(relativePath) ? relativePath : join(root, relativePath),
+  );
 
   return project.getSourceFile(absolutePath) ?? null;
 }
@@ -153,10 +155,7 @@ function findTopLevelInvokedLocalCallable(sourceFile: SourceFile): string | null
   return uniqueCandidates.length === 1 ? (uniqueCandidates[0] ?? null) : null;
 }
 
-function getLocalFunctionNameForCall(
-  sourceFile: SourceFile,
-  node: CallExpression,
-): string | null {
+function getLocalFunctionNameForCall(sourceFile: SourceFile, node: CallExpression): string | null {
   const expression = node.getExpression();
   const symbol = expression.getSymbol() ?? expression.getType().getSymbol();
   if (!symbol) return null;
