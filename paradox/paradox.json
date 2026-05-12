@@ -2566,6 +2566,114 @@
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
+        "fromSymbol": "renderEntrypointSequence",
+        "toSymbol": "escapeLabel",
+        "callExpression": "escapeLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderEntrypointSequence",
+        "toSymbol": "collectReachableCallEdges",
+        "callExpression": "collectReachableCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderEntrypointSequence",
+        "toSymbol": "collectSequenceParticipants",
+        "callExpression": "collectSequenceParticipants",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderEntrypointSequence",
+        "toSymbol": "renderCallFlow",
+        "callExpression": "renderCallFlow",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectReachableCallEdges",
+        "toSymbol": "groupCallsBySource",
+        "callExpression": "groupCallsBySource",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectReachableCallEdges",
+        "toSymbol": "getCallFlowRoots",
+        "callExpression": "getCallFlowRoots",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectReachableCallEdges",
+        "toSymbol": "visitCallEdges",
+        "callExpression": "visitCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "visitCallEdges",
+        "toSymbol": "getCallEdgeKey",
+        "callExpression": "getCallEdgeKey",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "visitCallEdges",
+        "toSymbol": "visitCallEdges",
+        "callExpression": "visitCallEdges",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderCallFlow",
+        "toSymbol": "groupCallsBySource",
+        "callExpression": "groupCallsBySource",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderCallFlow",
+        "toSymbol": "getCallFlowRoots",
+        "callExpression": "getCallFlowRoots",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderCallFlow",
+        "toSymbol": "renderNestedCalls",
+        "callExpression": "renderNestedCalls",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "getCallEdgeKey",
+        "callExpression": "getCallEdgeKey",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "toMermaidId",
+        "callExpression": "toMermaidId",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "formatCallLabel",
+        "callExpression": "formatCallLabel",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "renderNestedCalls",
+        "toSymbol": "renderNestedCalls",
+        "callExpression": "renderNestedCalls",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "getCallFlowRoots",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromSymbol": "collectSequenceParticipants",
+        "toSymbol": "uniqueSorted",
+        "callExpression": "uniqueSorted",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
         "fromSymbol": "src/render/renderers/html.ts",
         "toSymbol": "toAnchorId",
         "callExpression": "toAnchorId",
