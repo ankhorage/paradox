@@ -4,5 +4,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
+  },
+  "bin": {
+    "sequence-flow": "./dist/cli.js"
   }
 }
