@@ -1,9 +1,17 @@
 import { isAbsolute, join, normalize } from 'node:path';
 
-import { type CallExpression, Node as MorphNode, type Project, type SourceFile } from 'ts-morph';
+import {
+  type CallExpression,
+  type FunctionDeclaration,
+  Node as MorphNode,
+  type Project,
+  type SourceFile,
+} from 'ts-morph';
 
 import { relativeToRoot, toPosixPath } from './semantic/utils.js';
 import type { AnalysisExport, AnalysisSequenceScenario } from './types.js';
+import { getParadoxComment } from './utils/getParadoxComment.js';
+import { parseParadoxComment } from './utils/parseParadoxComment.js';
 import type { PackageJsonModel } from './usage.js';
 
 interface AnalyzeSequenceScenariosOptions {
@@ -11,6 +19,12 @@ interface AnalyzeSequenceScenariosOptions {
   root: string;
   pkg: PackageJsonModel;
   exports: readonly AnalysisExport[];
+}
+
+interface BinCallableRoot {
+  symbolName: string;
+  description: string | null;
+  isReadme: boolean;
 }
 
 /***
@@ -37,15 +51,17 @@ function analyzeBinSequenceScenarios(
     const sourceFile = resolveBinSourceFile(project, root, entry.targetPath);
     if (!sourceFile) return [];
 
-    const symbolName = findTopLevelInvokedLocalCallable(sourceFile);
-    if (symbolName === null) return [];
+    const callableRoot = findTopLevelInvokedLocalCallable(sourceFile);
+    if (callableRoot === null) return [];
 
     return [
       {
         kind: 'bin',
         name: entry.name,
         sourcePath: relativeToRoot(root, sourceFile.getFilePath()),
-        symbolName,
+        symbolName: callableRoot.symbolName,
+        description: callableRoot.description,
+        isReadme: callableRoot.isReadme,
       },
     ];
   });
@@ -63,6 +79,8 @@ function analyzeExportSequenceScenarios(
         name: entry.name,
         sourcePath: entry.modulePath,
         symbolName: entry.name,
+        description: entry.description,
+        isReadme: entry.isReadme,
       },
     ];
   });
@@ -131,24 +149,52 @@ function getSourceFileByRelativePath(
   return project.getSourceFile(absolutePath) ?? null;
 }
 
-function findTopLevelInvokedLocalCallable(sourceFile: SourceFile): string | null {
-  const candidates: string[] = [];
+function findTopLevelInvokedLocalCallable(sourceFile: SourceFile): BinCallableRoot | null {
+  const candidates: FunctionDeclaration[] = [];
 
   sourceFile.forEachDescendant((node) => {
     if (!MorphNode.isCallExpression(node)) return;
     if (isInsideCallable(node)) return;
 
-    const callableName = getLocalFunctionNameForCall(sourceFile, node);
-    if (callableName !== null) {
-      candidates.push(callableName);
+    const callableDeclaration = getLocalFunctionDeclarationForCall(sourceFile, node);
+    if (callableDeclaration !== null) {
+      candidates.push(callableDeclaration);
     }
   });
 
-  const uniqueCandidates = uniqueSorted(candidates);
-  return uniqueCandidates.length === 1 ? (uniqueCandidates[0] ?? null) : null;
+  const uniqueCandidates = uniqueByFunctionName(candidates);
+  const declaration = uniqueCandidates.length === 1 ? uniqueCandidates[0] : undefined;
+  if (declaration === undefined) return null;
+
+  const parsedComment = getParsedParadoxComment(declaration);
+
+  return {
+    symbolName: declaration.getName() ?? 'main',
+    description: parsedComment.description,
+    isReadme: parsedComment.isReadme,
+  };
 }
 
-function getLocalFunctionNameForCall(sourceFile: SourceFile, node: CallExpression): string | null {
+function getParsedParadoxComment(declaration: FunctionDeclaration): {
+  description: string | null;
+  isReadme: boolean;
+} {
+  const comment = getParadoxComment(declaration);
+  if (comment === null) {
+    return { description: null, isReadme: false };
+  }
+
+  const parsed = parseParadoxComment(comment);
+  return {
+    description: parsed.description,
+    isReadme: parsed.isReadme,
+  };
+}
+
+function getLocalFunctionDeclarationForCall(
+  sourceFile: SourceFile,
+  node: CallExpression,
+): FunctionDeclaration | null {
   const expression = node.getExpression();
   const symbol = expression.getSymbol() ?? expression.getType().getSymbol();
   if (!symbol) return null;
@@ -156,7 +202,7 @@ function getLocalFunctionNameForCall(sourceFile: SourceFile, node: CallExpressio
   for (const declaration of symbol.getDeclarations()) {
     if (declaration.getSourceFile().getFilePath() !== sourceFile.getFilePath()) continue;
     if (!MorphNode.isFunctionDeclaration(declaration)) continue;
-    return declaration.getName() ?? null;
+    return declaration;
   }
 
   return null;
@@ -187,6 +233,16 @@ function uniqueScenarios(
     const key = `${scenario.kind}:${scenario.name}:${scenario.sourcePath}:${scenario.symbolName}`;
     if (seen.has(key)) return false;
     seen.add(key);
+    return true;
+  });
+}
+
+function uniqueByFunctionName(declarations: readonly FunctionDeclaration[]): FunctionDeclaration[] {
+  const seen = new Set<string>();
+  return declarations.filter((declaration) => {
+    const name = declaration.getName();
+    if (name === undefined || seen.has(name)) return false;
+    seen.add(name);
     return true;
   });
 }
