@@ -105,7 +105,7 @@ function renderEntrypointSequence(model: DocumentationModel): string {
   const callEdges = model.graphs.calls;
 
   if (callEdges.length === 0) {
-    return renderSequenceFallback(lines, model, 'No internal call flow detected.');
+    return renderSequenceFallback(lines, model, 'No internal call flow detected');
   }
 
   const roots = getCallFlowRoots(callEdges);
@@ -113,7 +113,7 @@ function renderEntrypointSequence(model: DocumentationModel): string {
     return renderSequenceFallback(
       lines,
       model,
-      `Call graph has ${roots.length} possible roots; automatic sequence rendering needs one scenario.`,
+      `Automatic sequence rendering skipped because the call graph has ${roots.length} roots`,
     );
   }
 
@@ -127,7 +127,7 @@ function renderEntrypointSequence(model: DocumentationModel): string {
     return renderSequenceFallback(
       lines,
       model,
-      `Call flow is too large for automatic sequence rendering (${reachableEdges.length} calls, ${participants.length} participants).`,
+      `Automatic sequence rendering skipped because the call flow has ${reachableEdges.length} calls and ${participants.length} participants`,
     );
   }
 
@@ -148,8 +148,8 @@ function renderSequenceFallback(
   message: string,
 ): string {
   const packageId = toMermaidId(`participant-${model.packageId}`);
-  lines.push(`  participant ${packageId} as ${escapeLabel(model.packageName)}`);
-  lines.push(`  Note over ${packageId}: ${message}`);
+  lines.push(`  participant ${packageId} as ${escapeSequenceText(model.packageName)}`);
+  lines.push(`  Note over ${packageId}: ${escapeSequenceText(message)}`);
 
   return `${lines.join('\n')}\n`;
 }
@@ -267,4 +267,8 @@ function toMermaidId(value: string): string {
 
 function escapeLabel(value: string): string {
   return value.replaceAll('"', '&quot;');
+}
+
+function escapeSequenceText(value: string): string {
+  return value.replace(/[^A-Za-z0-9 ]/g, ' ').replaceAll(/\s+/g, ' ').trim();
 }
