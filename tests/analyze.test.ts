@@ -177,6 +177,7 @@ describe('analyze', () => {
     expect(output.readme).toContain('#### Basic button');
     expect(output.readme).toContain('<Button label="Save" />');
     expect(output.readme).not.toContain('## Documentation Tags');
+    expect(output.readme).not.toContain('## Path resolution');
 
     expect(output.exportsMarkdown).toContain('# Public API');
     expect(output.exportsMarkdown).toContain('## Button');
@@ -236,6 +237,7 @@ describe('analyze', () => {
 
     expectGeneratedReadmeScaffold(output.readme, 'Tag Registry Fixture');
     expect(output.readme).not.toContain('## Documentation Tags');
+    expect(output.readme).not.toContain('## Path resolution');
     expect(output.readme).toContain('### Utilities');
     expect(output.readme).toContain('<summary>FIXTURE_DOC_TAGS</summary>');
     expect(output.readme).toContain(
@@ -317,6 +319,7 @@ describe('analyze', () => {
     expect(output.readme).toContain('bunx fixture-multi-bin alpha');
     expect(output.readme).toContain('bunx fixture-multi-bin beta');
     expect(output.readme).not.toContain('## Documentation Tags');
+    expect(output.readme).not.toContain('## Path resolution');
     expect(output.readme).not.toContain('## Public API');
   });
 
@@ -417,6 +420,7 @@ describe('analyze', () => {
     expectGeneratedReadmeScaffold(output.readme, 'Quality Metadata Fixture');
     expect(output.readme).toContain('![coverage: 98.4%](./paradox/badges/coverage.svg)');
     expect(output.readme).not.toContain('## Documentation Tags');
+    expect(output.readme).not.toContain('## Path resolution');
     expect(output.readme).not.toContain('## Public API');
   });
 
