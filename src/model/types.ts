@@ -73,6 +73,8 @@ export interface SequenceScenarioModel {
   name: string;
   sourcePath: string;
   symbolName: string;
+  description: string | null;
+  isReadme: boolean;
 }
 
 interface ExampleModel {
