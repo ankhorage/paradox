@@ -238,9 +238,15 @@ describe('analyze', () => {
     expect(output.readme).not.toContain('## Documentation Tags');
     expect(output.readme).toContain('### Utilities');
     expect(output.readme).toContain('<summary>FIXTURE_DOC_TAGS</summary>');
-    expect(output.readme).toContain('| name | syntax | description | applies to | repeatable | handler |');
-    expect(output.readme).toContain('| `readme` | @readme | Includes a symbol in README output. | symbol | no | `markReadme` |');
-    expect(output.readme).toContain('| `example` | @example | Adds an example to generated documentation. | symbol | yes | `parseExample` |');
+    expect(output.readme).toContain(
+      '| name | syntax | description | applies to | repeatable | handler |',
+    );
+    expect(output.readme).toContain(
+      '| `readme` | @readme | Includes a symbol in README output. | symbol | no | `markReadme` |',
+    );
+    expect(output.readme).toContain(
+      '| `example` | @example | Adds an example to generated documentation. | symbol | yes | `parseExample` |',
+    );
   });
 
   test('analyzes branded primitive exports without declarationless member crashes', async () => {

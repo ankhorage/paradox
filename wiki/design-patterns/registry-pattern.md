@@ -4,7 +4,7 @@ The registry pattern centralizes a known set of named definitions behind a stabl
 point. Other parts of the system can ask the registry for metadata by name instead of
 hardcoding the same list in multiple renderers, parsers, or validators.
 
-Martin Fowler catalogs **Registry** in *Patterns of Enterprise Application Architecture* as
+Martin Fowler catalogs **Registry** in _Patterns of Enterprise Application Architecture_ as
 a well-known object used to find common objects and services. In Paradox, the same idea
 applies to documentation-tag metadata: the renderer should not own the canonical list of
 supported tags. A documentation-tag registry should own that list, and consumers such as
@@ -12,7 +12,7 @@ parsers, validators, diagnostics, and renderers should read from that registry.
 
 ## Book reference
 
-- **Title:** *Patterns of Enterprise Application Architecture*
+- **Title:** _Patterns of Enterprise Application Architecture_
 - **Author:** Martin Fowler, with Dave Rice, Matthew Foemmel, Edward Hieatt, Robert Mee,
   and Randy Stafford
 - **Publisher:** Addison-Wesley Professional
