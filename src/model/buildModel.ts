@@ -84,6 +84,12 @@ interface BuildModelInput {
       description: string | null;
     }[];
   }[];
+  sequenceScenarios: {
+    kind: 'bin' | 'export';
+    name: string;
+    sourcePath: string;
+    symbolName: string;
+  }[];
   usage: {
     packageName: string;
     commands: {
@@ -187,6 +193,14 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
       analysis.components.map((component) =>
         mapComponent(component, exportsByName.get(component.name)),
       ),
+    ),
+    sequenceScenarios: sortByName(
+      analysis.sequenceScenarios.map((scenario) => ({
+        kind: scenario.kind,
+        name: scenario.name,
+        sourcePath: scenario.sourcePath,
+        symbolName: scenario.symbolName,
+      })),
     ),
     graphs: {
       imports: [...analysis.graphs.imports],
