@@ -89,6 +89,8 @@ interface BuildModelInput {
     name: string;
     sourcePath: string;
     symbolName: string;
+    description: string | null;
+    isReadme: boolean;
   }[];
   usage: {
     packageName: string;
@@ -200,6 +202,8 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
         name: scenario.name,
         sourcePath: scenario.sourcePath,
         symbolName: scenario.symbolName,
+        description: scenario.description,
+        isReadme: scenario.isReadme,
       })),
     ),
     graphs: {
