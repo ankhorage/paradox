@@ -173,7 +173,14 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
     const rawComment = getParadoxComment(declaration);
     const parsed = rawComment
       ? parseParadoxComment(rawComment)
-      : { description: null, isConfig: false, isReadme: false, examples: [], params: {}, returns: null };
+      : {
+          description: null,
+          isConfig: false,
+          isReadme: false,
+          examples: [],
+          params: {},
+          returns: null,
+        };
 
     return [
       {
@@ -306,7 +313,14 @@ function readParadoxMetadata(node: Node) {
   const rawComment = getParadoxComment(node);
   return rawComment
     ? parseParadoxComment(rawComment)
-    : { description: null, isConfig: false, isReadme: false, examples: [], params: {}, returns: null };
+    : {
+        description: null,
+        isConfig: false,
+        isReadme: false,
+        examples: [],
+        params: {},
+        returns: null,
+      };
 }
 
 /***
