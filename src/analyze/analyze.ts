@@ -14,6 +14,7 @@ import {
   collectComponentCompositionGraph,
   collectImportGraph,
 } from './semantic/graphs.js';
+import { analyzeSequenceScenarios } from './sequenceScenarios.js';
 import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
@@ -31,6 +32,7 @@ export async function analyze(
   const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
   const modules = analyzeModules(project, { root, entrypoints });
+  const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
   const configExport = configMetadata
     ? (exports.find((entry) => entry.name === configMetadata.exportName) ?? null)
     : null;
@@ -68,6 +70,7 @@ export async function analyze(
     entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
     modules,
     badges,
+    sequenceScenarios,
     usage,
     config: configMetadata
       ? {
