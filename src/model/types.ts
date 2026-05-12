@@ -12,6 +12,7 @@ export interface DocumentationModel {
   modules: ModuleModel[];
   exports: ExportModel[];
   components: ComponentModel[];
+  sourceFunctions: SourceFunctionModel[];
   sequenceScenarios: SequenceScenarioModel[];
   graphs: GraphModel;
 }
@@ -66,6 +67,12 @@ export interface ComponentModel {
   sourceLocation: SourceLocationModel;
   exportPaths: string[];
   props: PropModel[];
+}
+
+export interface SourceFunctionModel {
+  name: string;
+  description: string | null;
+  sourceLocation: SourceLocationModel;
 }
 
 export interface SequenceScenarioModel {
