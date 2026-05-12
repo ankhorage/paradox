@@ -11,6 +11,9 @@ const CONFIG_FILENAMES = [
   'paradox.config.cjs',
 ] as const;
 
+/***
+ * Searches upward from a start directory until it finds a supported Paradox config file.
+ */
 export async function findParadoxConfigFile(startDir: string): Promise<string | null> {
   let current = resolve(startDir);
   let parent = dirname(current);
@@ -33,12 +36,18 @@ export async function findParadoxConfigFile(startDir: string): Promise<string | 
   return null;
 }
 
+/***
+ * Loads a Paradox config module and returns its default export or an empty config.
+ */
 export async function loadParadoxConfig(configFilePath: string): Promise<ParadoxConfig> {
   const url = pathToFileURL(configFilePath).href;
   const mod = (await import(url)) as { default?: ParadoxConfig };
   return mod.default ?? {};
 }
 
+/***
+ * Resolves and validates the package root from config and config directory.
+ */
 export async function resolvePackageRoot(
   config: ParadoxConfig,
   configDir: string,
@@ -58,6 +67,9 @@ export async function resolvePackageRoot(
   return resolvedRoot;
 }
 
+/***
+ * Resolves the configured output directory and enforces that it stays inside the package root.
+ */
 export function resolveOutputRoot(
   config: ParadoxConfig,
   packageRoot: string,
@@ -75,6 +87,9 @@ export function resolveOutputRoot(
   return { outputDir, outputRoot };
 }
 
+/***
+ * Checks whether a filesystem path can be accessed.
+ */
 async function pathExists(path: string): Promise<boolean> {
   try {
     await access(path);
@@ -84,12 +99,18 @@ async function pathExists(path: string): Promise<boolean> {
   }
 }
 
+/***
+ * Throws a supplied error message when a required path does not exist.
+ */
 async function assertPathExists(path: string, message: string): Promise<void> {
   if (!(await pathExists(path))) {
     throw new Error(message);
   }
 }
 
+/***
+ * Validates an output directory string before resolving it against the package root.
+ */
 function validateOutputDir(outputDir: string): void {
   const trimmed = outputDir.trim();
   if (trimmed.length === 0) {
@@ -107,7 +128,6 @@ function validateOutputDir(outputDir: string): void {
     );
   }
 
-  // Reject explicit parent traversal to keep writes deterministic and scoped.
   for (const segment of splitPathSegments(trimmed)) {
     if (segment === '..') {
       throw new Error('Invalid output.dir: must not contain ".." path segments.');
@@ -115,12 +135,17 @@ function validateOutputDir(outputDir: string): void {
   }
 }
 
+/***
+ * Splits a configured path into normalized non-empty path segments.
+ */
 function splitPathSegments(path: string): string[] {
-  // Treat both separators as potential delimiters to stay robust across platforms/config styles.
   const normalized = path.replaceAll('\\', '/');
   return normalized.split('/').filter((segment) => segment.length > 0 && segment !== '.');
 }
 
+/***
+ * Throws when a resolved path is outside the expected package root.
+ */
 function assertWithinRoot(resolvedPath: string, root: string, message: string): void {
   const rel = relative(root, resolvedPath);
   if (rel === '') return;

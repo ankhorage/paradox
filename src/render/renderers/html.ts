@@ -1,6 +1,17 @@
 import type { DocumentationModel } from '../../model/types.js';
 import type { DiagramArtifact, RenderContext } from '../types.js';
 
+type ExportEntry = DocumentationModel['exports'][number];
+type ComponentEntry = DocumentationModel['components'][number];
+type ModuleEntry = DocumentationModel['modules'][number];
+type SourceFunctionEntry = DocumentationModel['sourceFunctions'][number];
+type SequenceScenarioEntry = DocumentationModel['sequenceScenarios'][number];
+
+interface SourceArea {
+  path: string;
+  functions: SourceFunctionEntry[];
+}
+
 /***
  * Renders a deterministic static HTML documentation app.
  */
@@ -8,19 +19,8 @@ export function renderHtml({
   diagrams,
   model,
 }: RenderContext): Pick<RenderContext['result'], 'indexHtml'> {
-  const navigationItems = [
-    ...model.exports.map((item) => ({
-      href: `#symbol-${toAnchorId(item.name)}`,
-      label: item.name,
-      meta: `${item.kind} • ${item.modulePath}`,
-    })),
-    ...model.components.map((component) => ({
-      href: `#component-${toAnchorId(component.name)}`,
-      label: component.name,
-      meta: `component • ${component.modulePath}`,
-    })),
-  ].sort((left, right) => left.label.localeCompare(right.label));
-
+  const sourceAreas = getSourceAreas(model);
+  const cliScenarios = getReadmeCliScenarios(model);
   const exportsByModule = groupBy(model.exports, (item) => item.modulePath);
 
   return {
@@ -41,6 +41,7 @@ export function renderHtml({
       body { margin: 0; }
       a { color: #2459d3; text-decoration: none; }
       a:hover { text-decoration: underline; }
+      button { font: inherit; }
       code, pre { font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, monospace; }
       .layout {
         display: grid;
@@ -56,9 +57,7 @@ export function renderHtml({
         max-height: 100vh;
         overflow: auto;
       }
-      .content {
-        padding: 2rem;
-      }
+      .content { padding: 2rem; }
       .panel, .item {
         background: #ffffff;
         border: 1px solid #d8dfec;
@@ -88,7 +87,28 @@ export function renderHtml({
         padding: 0;
         margin: 0;
       }
-      .nav-list li + li { margin-top: 0.8rem; }
+      .nav-list li + li { margin-top: 0.5rem; }
+      .nav-button {
+        width: 100%;
+        display: block;
+        border: 0;
+        border-radius: 0.7rem;
+        background: transparent;
+        color: #24427a;
+        cursor: pointer;
+        padding: 0.55rem 0.7rem;
+        text-align: left;
+      }
+      .nav-button:hover, .nav-button[aria-current="page"] {
+        background: #e8eefb;
+        text-decoration: none;
+      }
+      .nav-button small {
+        display: block;
+        color: #5e6d8c;
+        margin-top: 0.15rem;
+      }
+      .view[hidden] { display: none; }
       .muted { color: #5e6d8c; }
       .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; list-style: none; }
       .chip {
@@ -123,66 +143,64 @@ export function renderHtml({
         <p class="muted">Generated with Paradox</p>
         <h1>${escapeHtml(model.packageName)}</h1>
         <p>${escapeHtml(model.description ?? 'Deterministic package documentation.')}</p>
-        <input id="search" class="search" type="search" placeholder="Search symbols, files, and metadata" />
-        <ul class="nav-list">
-          ${navigationItems
-            .map(
-              (item) =>
-                `<li><a href="${escapeAttribute(item.href)}">${escapeHtml(item.label)}</a><div class="muted">${escapeHtml(item.meta)}</div></li>`,
-            )
-            .join('')}
-        </ul>
+        <input id="search" class="search" type="search" placeholder="Search current view" />
+        <nav aria-label="Documentation sections">
+          <ul class="nav-list">
+            <li>
+              <button class="nav-button" type="button" data-target="home" aria-current="page">
+                Home
+                <small>Overview, CLI, public API, diagrams</small>
+              </button>
+            </li>
+            ${sourceAreas.map(renderSourceNavItem).join('')}
+          </ul>
+        </nav>
       </aside>
       <main class="content">
-        <section class="panel">
-          <h2>Package overview</h2>
-          <div class="summary">
-            <div><strong>${model.exports.length}</strong><span class="muted">public exports</span></div>
-            <div><strong>${model.components.length}</strong><span class="muted">components</span></div>
-            <div><strong>${model.modules.length}</strong><span class="muted">modules</span></div>
-            <div><strong>${model.entrypoints.length}</strong><span class="muted">entrypoints</span></div>
-          </div>
-          <h3>Entrypoints</h3>
-          <ul class="meta-list">
-            ${model.entrypoints.map((entrypoint) => `<li><code>${escapeHtml(entrypoint)}</code></li>`).join('')}
-          </ul>
+        <section id="view-home" class="view" data-view="home">
+          ${renderHomeView(model, diagrams, cliScenarios, exportsByModule)}
         </section>
-        <section class="panel">
-          <h2>Modules</h2>
-          ${model.modules.map(renderModuleCard).join('')}
-        </section>
-        <section class="panel">
-          <h2>Exports by module</h2>
-          ${[...exportsByModule.entries()]
-            .map(
-              ([modulePath, exports]) => `
-                <section>
-                  <h3>${escapeHtml(modulePath)}</h3>
-                  ${exports.map((item) => renderExportCard(item)).join('')}
-                </section>`,
-            )
-            .join('')}
-        </section>
-        <section class="panel">
-          <h2>Component registry</h2>
-          ${model.components.length === 0 ? '<p class="empty">No components were detected.</p>' : model.components.map(renderComponentCard).join('')}
-        </section>
-        <section class="panel">
-          <h2>Diagrams</h2>
-          ${diagrams.map(renderDiagramCard).join('')}
-        </section>
+        ${sourceAreas.map(renderSourceAreaView).join('')}
       </main>
     </div>
     <script>
       const search = document.getElementById('search');
-      const items = Array.from(document.querySelectorAll('[data-search]'));
-      search?.addEventListener('input', () => {
-        const value = search.value.trim().toLowerCase();
+      const navButtons = Array.from(document.querySelectorAll('[data-target]'));
+      const views = Array.from(document.querySelectorAll('[data-view]'));
+
+      function getActiveView() {
+        return document.querySelector('[data-view]:not([hidden])');
+      }
+
+      function applySearch() {
+        const value = search?.value.trim().toLowerCase() || '';
+        const activeView = getActiveView();
+        const items = Array.from(activeView?.querySelectorAll('[data-search]') || []);
+
         for (const item of items) {
           const haystack = (item.getAttribute('data-search') || '').toLowerCase();
           item.style.display = value === '' || haystack.includes(value) ? '' : 'none';
         }
-      });
+      }
+
+      for (const button of navButtons) {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-target');
+
+          for (const view of views) {
+            view.hidden = view.getAttribute('data-view') !== target;
+          }
+
+          for (const item of navButtons) {
+            item.setAttribute('aria-current', item === button ? 'page' : 'false');
+          }
+
+          if (search) search.value = '';
+          applySearch();
+        });
+      }
+
+      search?.addEventListener('input', applySearch);
     </script>
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
@@ -194,7 +212,155 @@ export function renderHtml({
   };
 }
 
-function renderModuleCard(module: DocumentationModel['modules'][number]): string {
+/***
+ * Renders the Home view that keeps public API and package-level information together.
+ */
+function renderHomeView(
+  model: DocumentationModel,
+  diagrams: readonly DiagramArtifact[],
+  cliScenarios: readonly SequenceScenarioEntry[],
+  exportsByModule: ReadonlyMap<string, ExportEntry[]>,
+): string {
+  return `
+    <section class="panel">
+      <h2>Package overview</h2>
+      <div class="summary">
+        <div><strong>${model.exports.length}</strong><span class="muted">public exports</span></div>
+        <div><strong>${model.components.length}</strong><span class="muted">components</span></div>
+        <div><strong>${model.modules.length}</strong><span class="muted">modules</span></div>
+        <div><strong>${model.entrypoints.length}</strong><span class="muted">entrypoints</span></div>
+      </div>
+      <h3>Entrypoints</h3>
+      <ul class="meta-list">
+        ${model.entrypoints.map((entrypoint) => `<li><code>${escapeHtml(entrypoint)}</code></li>`).join('')}
+      </ul>
+    </section>
+    ${cliScenarios.length > 0 ? renderCliPanel(model, diagrams, cliScenarios) : ''}
+    <section class="panel">
+      <h2>Modules</h2>
+      ${model.modules.map(renderModuleCard).join('')}
+    </section>
+    <section class="panel">
+      <h2>Public API</h2>
+      ${[...exportsByModule.entries()]
+        .map(
+          ([modulePath, exports]) => `
+            <section>
+              <h3>${escapeHtml(modulePath)}</h3>
+              ${exports.map((item) => renderExportCard(item)).join('')}
+            </section>`,
+        )
+        .join('')}
+    </section>
+    <section class="panel">
+      <h2>Component registry</h2>
+      ${model.components.length === 0 ? '<p class="empty">No components were detected.</p>' : model.components.map(renderComponentCard).join('')}
+    </section>
+    <section class="panel">
+      <h2>Diagrams</h2>
+      ${diagrams.map(renderDiagramCard).join('')}
+    </section>`;
+}
+
+/***
+ * Renders the Home CLI chapter for detected bin scenarios.
+ */
+function renderCliPanel(
+  model: DocumentationModel,
+  diagrams: readonly DiagramArtifact[],
+  scenarios: readonly SequenceScenarioEntry[],
+): string {
+  return `<section class="panel" data-search="cli ${scenarios.map((scenario) => scenario.name).join(' ')}">
+    <h2>CLI</h2>
+    ${scenarios
+      .map((scenario) => {
+        const command = model.usage?.commands.find((item) => item.name === scenario.name);
+        const diagram = findScenarioDiagram(diagrams, scenario);
+
+        return `<article class="item" data-search="${escapeAttribute(
+          [scenario.name, scenario.description ?? '', command?.command ?? ''].join(' '),
+        )}">
+          <h3>${escapeHtml(scenario.name)}</h3>
+          ${scenario.description === null ? '' : `<p>${escapeHtml(scenario.description)}</p>`}
+          ${command === undefined ? '' : `<pre>${escapeHtml(command.command)}</pre>`}
+          ${diagram === undefined ? '' : renderDiagramCard(diagram)}
+        </article>`;
+      })
+      .join('')}
+  </section>`;
+}
+
+/***
+ * Renders one source file entry in the left navigation.
+ */
+function renderSourceNavItem(area: SourceArea): string {
+  return `<li>
+    <button class="nav-button" type="button" data-target="${escapeAttribute(area.path)}">
+      ${escapeHtml(area.path)}
+      <small>${area.functions.length} function${area.functions.length === 1 ? '' : 's'}</small>
+    </button>
+  </li>`;
+}
+
+/***
+ * Renders the right-hand source area view for a selected file.
+ */
+function renderSourceAreaView(area: SourceArea): string {
+  return `<section id="view-${toAnchorId(area.path)}" class="view" data-view="${escapeAttribute(
+    area.path,
+  )}" hidden>
+    <section class="panel">
+      <h2>${escapeHtml(area.path)}</h2>
+      ${area.functions.map(renderSourceFunctionCard).join('')}
+    </section>
+  </section>`;
+}
+
+/***
+ * Renders one source function card in a source-area view.
+ */
+function renderSourceFunctionCard(item: SourceFunctionEntry): string {
+  return `<article class="item" data-search="${escapeAttribute(
+    [item.name, item.sourceLocation.filePath, item.description ?? ''].join(' '),
+  )}">
+    <h3>${escapeHtml(item.name)}</h3>
+    <p class="muted"><code>${escapeHtml(item.sourceLocation.filePath)}:${item.sourceLocation.line}:${item.sourceLocation.column}</code></p>
+    ${item.description === null ? '<p class="empty">No description available.</p>' : `<p>${escapeHtml(item.description)}</p>`}
+  </article>`;
+}
+
+/***
+ * Groups analyzed source functions by their source file path.
+ */
+function getSourceAreas(model: DocumentationModel): SourceArea[] {
+  return [...groupBy(model.sourceFunctions, (item) => item.sourceLocation.filePath).entries()]
+    .map(([path, functions]) => ({ path, functions }))
+    .sort((left, right) => left.path.localeCompare(right.path));
+}
+
+/***
+ * Selects bin scenarios that should be shown on the Home page.
+ */
+function getReadmeCliScenarios(model: DocumentationModel): SequenceScenarioEntry[] {
+  return model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin' && scenario.isReadme);
+}
+
+/***
+ * Finds the generated Mermaid artifact for a sequence scenario.
+ */
+function findScenarioDiagram(
+  diagrams: readonly DiagramArtifact[],
+  scenario: SequenceScenarioEntry,
+): DiagramArtifact | undefined {
+  return diagrams.find(
+    (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+  );
+}
+
+/***
+ * Renders module metadata on the Home page.
+ */
+function renderModuleCard(module: ModuleEntry): string {
   return `<article class="item" data-search="${escapeAttribute(
     [module.path, ...module.dependencies, ...module.exports].join(' '),
   )}">
@@ -205,7 +371,10 @@ function renderModuleCard(module: DocumentationModel['modules'][number]): string
   </article>`;
 }
 
-function renderExportCard(item: DocumentationModel['exports'][number]): string {
+/***
+ * Renders one public API export card on the Home page.
+ */
+function renderExportCard(item: ExportEntry): string {
   return `<article class="item" id="symbol-${toAnchorId(item.name)}" data-search="${escapeAttribute(
     [
       item.name,
@@ -226,7 +395,10 @@ function renderExportCard(item: DocumentationModel['exports'][number]): string {
   </article>`;
 }
 
-function renderSignatureBlock(item: DocumentationModel['exports'][number]): string {
+/***
+ * Renders all call signatures for a public API export.
+ */
+function renderSignatureBlock(item: ExportEntry): string {
   return item.signatures
     .map(
       (signature) => `<div>
@@ -259,7 +431,10 @@ function renderSignatureBlock(item: DocumentationModel['exports'][number]): stri
     .join('');
 }
 
-function renderMemberTable(item: DocumentationModel['exports'][number]): string {
+/***
+ * Renders the members table for a type-like public API export.
+ */
+function renderMemberTable(item: ExportEntry): string {
   return `<table>
     <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
     <tbody>
@@ -278,7 +453,10 @@ function renderMemberTable(item: DocumentationModel['exports'][number]): string 
   </table>`;
 }
 
-function renderComponentCard(component: DocumentationModel['components'][number]): string {
+/***
+ * Renders one detected component card on the Home page.
+ */
+function renderComponentCard(component: ComponentEntry): string {
   return `<article class="item" id="component-${toAnchorId(component.name)}" data-search="${escapeAttribute(
     [
       component.name,
@@ -309,6 +487,9 @@ function renderComponentCard(component: DocumentationModel['components'][number]
   </article>`;
 }
 
+/***
+ * Renders one Mermaid diagram card.
+ */
 function renderDiagramCard(diagram: DiagramArtifact): string {
   return `<article class="item" data-search="${escapeAttribute(`${diagram.title} ${diagram.path}`)}">
     <h3>${escapeHtml(diagram.title)}</h3>
@@ -321,6 +502,9 @@ function renderDiagramCard(diagram: DiagramArtifact): string {
   </article>`;
 }
 
+/***
+ * Renders an inline comma-separated list of code values.
+ */
 function renderInlineCodeList(values: readonly string[]): string {
   if (values.length === 0) {
     return '<span class="empty">None</span>';
@@ -329,12 +513,18 @@ function renderInlineCodeList(values: readonly string[]): string {
   return values.map((value) => `<code>${escapeHtml(value)}</code>`).join(', ');
 }
 
+/***
+ * Renders a compact chip list for related symbols.
+ */
 function renderChipList(values: readonly string[]): string {
   return `<ul class="chips">${values
     .map((value) => `<li class="chip">${escapeHtml(value)}</li>`)
     .join('')}</ul>`;
 }
 
+/***
+ * Groups items by a string key and returns deterministic key order.
+ */
 function groupBy<T>(items: readonly T[], key: (item: T) => string): Map<string, T[]> {
   const groups = new Map<string, T[]>();
 
@@ -351,6 +541,9 @@ function groupBy<T>(items: readonly T[], key: (item: T) => string): Map<string, 
   return new Map([...groups.entries()].sort(([left], [right]) => left.localeCompare(right)));
 }
 
+/***
+ * Converts a label to a stable HTML anchor id fragment.
+ */
 function toAnchorId(value: string): string {
   return value
     .toLowerCase()
@@ -358,6 +551,20 @@ function toAnchorId(value: string): string {
     .replace(/^-|-$/g, '');
 }
 
+/***
+ * Converts a scenario name to the generated Mermaid file stem.
+ */
+function toFileStem(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
+
+/***
+ * Escapes user-controlled text for safe HTML rendering.
+ */
 function escapeHtml(value: string): string {
   return value
     .replaceAll('&', '&amp;')
@@ -367,6 +574,9 @@ function escapeHtml(value: string): string {
     .replaceAll("'", '&#39;');
 }
 
+/***
+ * Escapes text for use inside HTML attribute values.
+ */
 function escapeAttribute(value: string): string {
   return escapeHtml(value).replaceAll('\n', '&#10;');
 }

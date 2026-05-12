@@ -12,6 +12,9 @@ export interface PackageJsonModel {
   prettier?: unknown;
 }
 
+/***
+ * Builds installation and executable usage commands from package metadata.
+ */
 export function createUsageFromPackageJson(pkg: PackageJsonModel): AnalysisUsage | null {
   if (pkg.bin == null) return null;
 
@@ -54,6 +57,9 @@ export function createUsageFromPackageJson(pkg: PackageJsonModel): AnalysisUsage
   };
 }
 
+/***
+ * Extracts the unscoped package name from a package id.
+ */
 function getPackageBaseName(packageName: string): string {
   return packageName.split('/').pop() ?? packageName;
 }

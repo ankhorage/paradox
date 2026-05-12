@@ -84,6 +84,15 @@ interface BuildModelInput {
       description: string | null;
     }[];
   }[];
+  sourceFunctions: {
+    name: string;
+    description: string | null;
+    sourceLocation: {
+      filePath: string;
+      line: number;
+      column: number;
+    };
+  }[];
   sequenceScenarios: {
     kind: 'bin' | 'export';
     name: string;
@@ -196,6 +205,15 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
         mapComponent(component, exportsByName.get(component.name)),
       ),
     ),
+    sourceFunctions: analysis.sourceFunctions.map((sourceFunction) => ({
+      name: sourceFunction.name,
+      description: sourceFunction.description,
+      sourceLocation: {
+        filePath: sourceFunction.sourceLocation.filePath,
+        line: sourceFunction.sourceLocation.line,
+        column: sourceFunction.sourceLocation.column,
+      },
+    })),
     sequenceScenarios: sortByName(
       analysis.sequenceScenarios.map((scenario) => ({
         kind: scenario.kind,
@@ -215,6 +233,9 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
   };
 }
 
+/***
+ * Maps one analyzed export into the serializable documentation shape.
+ */
 function mapExport(
   item: BuildModelInput['exports'][number],
   exportNames: ReadonlySet<string>,
@@ -263,6 +284,9 @@ function mapExport(
   };
 }
 
+/***
+ * Maps an analyzed component while preserving export metadata when available.
+ */
 function mapComponent(
   component: BuildModelInput['components'][number],
   exportModel: ExportModel | undefined,
@@ -292,6 +316,9 @@ function mapComponent(
   };
 }
 
+/***
+ * Finds the conventional config factory export for a config type when present.
+ */
 function findConfigFactoryName(configExportName: string, exportNames: string[]): string | null {
   const prefix = configExportName.endsWith('Config')
     ? configExportName.slice(0, -'Config'.length)
@@ -301,12 +328,18 @@ function findConfigFactoryName(configExportName: string, exportNames: string[]):
   return exportNames.includes(expectedFactoryName) ? expectedFactoryName : null;
 }
 
+/***
+ * Derives the default config file name from a package id.
+ */
 function getDefaultConfigFileName(packageId: string): string {
   const packageBaseName = packageId.split('/').pop() ?? packageId;
 
   return `${packageBaseName}.config.ts`;
 }
 
+/***
+ * Returns a copy of items sorted by their `name` property.
+ */
 function sortByName<T extends { name: string }>(items: readonly T[]): T[] {
   return [...items].sort((a, b) => a.name.localeCompare(b.name));
 }

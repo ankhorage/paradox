@@ -59,10 +59,16 @@ export function analyzeModules(
     .sort((left, right) => left.path.localeCompare(right.path));
 }
 
+/***
+ * Returns unique string values sorted for deterministic generated output.
+ */
 function uniqueSorted(values: readonly string[]): string[] {
   return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
+/***
+ * Normalizes platform-specific path separators for generated documentation output.
+ */
 function toPosixPath(path: string): string {
   return path.replaceAll('\\', '/');
 }
