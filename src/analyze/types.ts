@@ -108,6 +108,12 @@ export interface AnalysisSequenceScenario {
   isReadme: boolean;
 }
 
+export interface AnalysisSourceFunction {
+  name: string;
+  description: string | null;
+  sourceLocation: AnalysisSourceLocation;
+}
+
 interface AnalysisTypeMember {
   name: string;
   type: string;
@@ -161,6 +167,7 @@ export interface AnalysisResult {
 
   exports: AnalysisExport[];
   components: AnalysisComponent[];
+  sourceFunctions: AnalysisSourceFunction[];
   entrypoints: string[];
   modules: AnalysisModule[];
   badges: AnalysisBadge[];
