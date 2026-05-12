@@ -1,4 +1,4 @@
-import type { DocumentationModel, ModuleModel } from '../../model/types.js';
+import type { DocumentationModel, ModuleModel, SequenceScenarioModel } from '../../model/types.js';
 import type { DiagramArtifact } from '../types.js';
 
 const MAX_SEQUENCE_CALL_EDGES = 12;
@@ -24,11 +24,7 @@ export function renderDiagramArtifacts(model: DocumentationModel): DiagramArtifa
       title: 'Export graph',
       content: renderExportGraph(model),
     },
-    {
-      path: 'diagrams/entrypoint-sequence.mmd',
-      title: 'Entrypoint sequence',
-      content: renderEntrypointSequence(model),
-    },
+    ...renderSequenceArtifacts(model),
   ];
 }
 
@@ -100,35 +96,36 @@ function renderExportGraph(model: DocumentationModel): string {
   return `${lines.join('\n')}\n`;
 }
 
-function renderEntrypointSequence(model: DocumentationModel): string {
+function renderSequenceArtifacts(model: DocumentationModel): DiagramArtifact[] {
+  return model.sequenceScenarios.flatMap((scenario) => {
+    const content = renderSequenceScenario(model, scenario);
+    if (content === null) return [];
+
+    return [
+      {
+        path: `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+        title: `${scenario.name} sequence`,
+        content,
+      },
+    ];
+  });
+}
+
+function renderSequenceScenario(
+  model: DocumentationModel,
+  scenario: SequenceScenarioModel,
+): string | null {
   const lines = ['sequenceDiagram'];
-  const callEdges = model.graphs.calls;
-
-  if (callEdges.length === 0) {
-    return renderSequenceFallback(lines, model, 'No internal call flow detected');
-  }
-
-  const roots = getCallFlowRoots(callEdges);
-  if (roots.length !== 1) {
-    return renderSequenceFallback(
-      lines,
-      model,
-      `Automatic sequence rendering skipped because the call graph has ${roots.length} roots`,
-    );
-  }
-
-  const reachableEdges = collectReachableCallEdges(callEdges, roots[0]);
+  const reachableEdges = collectReachableCallEdges(model.graphs.calls, scenario.symbolName);
   const participants = collectSequenceParticipants(reachableEdges);
+
+  if (reachableEdges.length === 0) return null;
 
   if (
     reachableEdges.length > MAX_SEQUENCE_CALL_EDGES ||
     participants.length > MAX_SEQUENCE_PARTICIPANTS
   ) {
-    return renderSequenceFallback(
-      lines,
-      model,
-      `Automatic sequence rendering skipped because the call flow has ${reachableEdges.length} calls and ${participants.length} participants`,
-    );
+    return null;
   }
 
   for (const participant of participants) {
@@ -137,19 +134,7 @@ function renderEntrypointSequence(model: DocumentationModel): string {
     );
   }
 
-  renderCallFlow(lines, reachableEdges, roots[0]);
-
-  return `${lines.join('\n')}\n`;
-}
-
-function renderSequenceFallback(
-  lines: string[],
-  model: DocumentationModel,
-  message: string,
-): string {
-  const packageId = toMermaidId(`participant-${model.packageId}`);
-  lines.push(`  participant ${packageId} as ${escapeSequenceText(model.packageName)}`);
-  lines.push(`  Note over ${packageId}: ${escapeSequenceText(message)}`);
+  renderCallFlow(lines, reachableEdges, scenario.symbolName);
 
   return `${lines.join('\n')}\n`;
 }
@@ -226,14 +211,6 @@ function groupCallsBySource(
   return grouped;
 }
 
-function getCallFlowRoots(callEdges: DocumentationModel['graphs']['calls']): string[] {
-  const fromSymbols = uniqueSorted(callEdges.map((edge) => edge.fromSymbol));
-  const toSymbols = new Set(callEdges.map((edge) => edge.toSymbol));
-  const roots = fromSymbols.filter((symbol) => !toSymbols.has(symbol));
-
-  return roots.length > 0 ? roots : [callEdges[0]?.fromSymbol ?? 'entrypoint'];
-}
-
 function collectSequenceParticipants(callEdges: DocumentationModel['graphs']['calls']): string[] {
   return uniqueSorted(callEdges.flatMap((edge) => [edge.fromSymbol, edge.toSymbol]));
 }
@@ -261,14 +238,18 @@ function uniqueSorted(values: readonly string[]): string[] {
   return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
+function toFileStem(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
+
 function toMermaidId(value: string): string {
   return value.replace(/[^A-Za-z0-9_]/g, '_');
 }
 
 function escapeLabel(value: string): string {
   return value.replaceAll('"', '&quot;');
-}
-
-function escapeSequenceText(value: string): string {
-  return value.replace(/[^A-Za-z0-9 ]/g, ' ').replaceAll(/\s+/g, ' ').trim();
 }
