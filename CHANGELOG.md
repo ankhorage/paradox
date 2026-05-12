@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5
+
+### Patch Changes
+
+- fd606af: Move documentation tag metadata into a typed registry, stop rendering Paradox tag docs by default in consumer READMEs, and add structured table rendering for documented const array exports.
+
 ## 0.1.4
 
 ### Patch Changes
