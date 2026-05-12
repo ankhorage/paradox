@@ -69,7 +69,6 @@ function renderReadme(
   }
 
   renderCliScenarios(lines, model, outputDir, diagrams);
-  renderDocumentationTags(lines);
 
   if (model.config?.isReadme) {
     renderConfiguration(lines, model);
@@ -130,16 +129,6 @@ function findScenarioDiagram(
   return diagrams.find(
     (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
   );
-}
-
-function renderDocumentationTags(lines: string[]): void {
-  lines.push('## Documentation Tags', '');
-  for (const tag of DOCUMENTATION_TAGS) {
-    lines.push('<details>');
-    lines.push(`<summary>@${tag.name}</summary>`, '');
-    lines.push(tag.description, '');
-    lines.push('</details>', '');
-  }
 }
 
 function renderConfiguration(lines: string[], model: DocumentationModel): void {
@@ -286,6 +275,7 @@ function renderExportAccordion(lines: string[], item: ExportEntry): void {
   lines.push(`<summary>${item.name}</summary>`, '');
   renderSignature(lines, item);
   lines.push(item.description ?? `\`${item.kind}\` export.`, '');
+  renderStructuredRows(lines, item);
   renderExamples(lines, item.examples);
   lines.push(`Module: \`${item.modulePath}\``);
   lines.push(
@@ -314,6 +304,55 @@ function renderExamples(lines: string[], examples: readonly ExampleEntry[]): voi
     lines.push(example.code);
     lines.push('```', '');
   }
+}
+
+function renderStructuredRows(lines: string[], item: ExportEntry): void {
+  if (item.structuredRows.length === 0) return;
+
+  const columns = getStructuredColumns(item);
+  if (columns.length === 0) return;
+
+  lines.push('| ' + columns.map(formatStructuredColumnHeader).join(' | ') + ' |');
+  lines.push('| ' + columns.map(() => '---').join(' | ') + ' |');
+
+  for (const row of item.structuredRows) {
+    lines.push(
+      '| ' +
+        columns
+          .map((column) => formatStructuredCell(column, row.values[column] ?? ''))
+          .join(' | ') +
+        ' |',
+    );
+  }
+
+  lines.push('');
+}
+
+function getStructuredColumns(item: ExportEntry): string[] {
+  const columns = new Set<string>();
+  for (const row of item.structuredRows) {
+    for (const column of Object.keys(row.values)) {
+      columns.add(column);
+    }
+  }
+
+  return [...columns];
+}
+
+function formatStructuredColumnHeader(column: string): string {
+  return escapeTableCell(column.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase());
+}
+
+function formatStructuredCell(column: string, value: string): string {
+  const escaped = escapeTableCell(value);
+  if (column === 'syntax' || column === 'name' || column === 'handler') {
+    return `\`${escaped}\``;
+  }
+
+  if (value === 'true') return 'yes';
+  if (value === 'false') return 'no';
+
+  return escaped;
 }
 
 function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
@@ -362,6 +401,7 @@ function getReadmeItemName(item: ReadmeItem): string {
 
 function getReadmeCategory(modulePath: string, name: string): string {
   if (modulePath.includes('/config/')) return 'Config';
+  if (modulePath.includes('/doc-tags/')) return 'Documentation';
   if (modulePath.includes('/primitives/')) return 'Primitives';
   if (modulePath.includes('/components/')) return 'Components';
   if (modulePath.includes('/patterns/')) return 'Patterns';
@@ -387,6 +427,8 @@ function renderExports(model: DocumentationModel): string {
     if (item.description) {
       lines.push(item.description, '');
     }
+
+    renderStructuredRows(lines, item);
 
     if (item.signatures.length > 0) {
       lines.push('### Signatures', '');
@@ -520,6 +562,7 @@ function toFileStem(value: string): string {
 
 const CATEGORY_ORDER = [
   'Config',
+  'Documentation',
   'Primitives',
   'Components',
   'Patterns',
@@ -527,20 +570,4 @@ const CATEGORY_ORDER = [
   'Hooks',
   'Utilities',
   'Types',
-];
-
-const DOCUMENTATION_TAGS = [
-  {
-    name: 'readme',
-    description: 'Includes a documentation block or exported symbol in README output.',
-  },
-  {
-    name: 'config',
-    description:
-      'Marks a type or interface as part of the Paradox configuration model. `@config` alone does not imply README inclusion; use `@config` plus `@readme` for README output.',
-  },
-  {
-    name: 'example',
-    description: 'Adds a titled fenced code example to the generated documentation for a symbol.',
-  },
 ];
