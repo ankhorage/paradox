@@ -361,7 +361,7 @@ function getReadmeItemName(item: ReadmeItem): string {
 }
 
 function getReadmeCategory(modulePath: string, name: string): string {
-  if (modulePath.includes('/config/')) return 'Configuration';
+  if (modulePath.includes('/config/')) return 'Config';
   if (modulePath.includes('/primitives/')) return 'Primitives';
   if (modulePath.includes('/components/')) return 'Components';
   if (modulePath.includes('/patterns/')) return 'Patterns';
@@ -519,7 +519,7 @@ function toFileStem(value: string): string {
 }
 
 const CATEGORY_ORDER = [
-  'Configuration',
+  'Config',
   'Primitives',
   'Components',
   'Patterns',
