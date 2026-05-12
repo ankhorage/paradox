@@ -2,6 +2,7 @@ import { relative } from 'node:path';
 
 import {
   type ArrowFunction,
+  type ArrayLiteralExpression,
   type FunctionDeclaration,
   type FunctionExpression,
   type MethodDeclaration,
@@ -202,8 +203,8 @@ function getStructuredRows(node: Node, exportName: string): AnalysisStructuredRo
   const declaration = getVariableDeclaration(node, exportName);
   if (declaration === null) return [];
 
-  const initializer = declaration.getInitializer();
-  if (!initializer || !Node.isArrayLiteralExpression(initializer)) return [];
+  const initializer = getStructuredArrayLiteral(declaration.getInitializer());
+  if (initializer === null) return [];
 
   return initializer.getElements().flatMap((element): AnalysisStructuredRow[] => {
     if (!Node.isObjectLiteralExpression(element)) return [];
@@ -211,6 +212,16 @@ function getStructuredRows(node: Node, exportName: string): AnalysisStructuredRo
     const values = getObjectLiteralValues(element);
     return Object.keys(values).length > 0 ? [{ values }] : [];
   });
+}
+
+/***
+ * Resolves const assertions and returns the array literal used for structured docs.
+ */
+function getStructuredArrayLiteral(node: Node | undefined): ArrayLiteralExpression | null {
+  if (node === undefined) return null;
+  if (Node.isArrayLiteralExpression(node)) return node;
+  if (Node.isAsExpression(node)) return getStructuredArrayLiteral(node.getExpression());
+  return null;
 }
 
 /***
