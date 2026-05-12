@@ -105,8 +105,8 @@
   },
   {
     "name": "PARADOX_DOC_TAGS",
-    "description": null,
-    "isReadme": false,
+    "description": "Supported Paradox documentation tags.\n\nParadox supports doc tags inside triple-star documentation comments.",
+    "isReadme": true,
     "examples": [],
     "kind": "value",
     "modulePath": "src/doc-tags/registry.ts",

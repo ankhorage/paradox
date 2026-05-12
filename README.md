@@ -328,3 +328,17 @@ Module: `src/config/types.ts`
 Source: `src/config/types.ts:7:1`
 
 </details>
+
+### Documentation
+
+<details>
+<summary>PARADOX_DOC_TAGS</summary>
+
+Supported Paradox documentation tags.
+
+Paradox supports doc tags inside triple-star documentation comments.
+
+Module: `src/doc-tags/registry.ts`
+Source: `src/doc-tags/registry.ts:8:14`
+
+</details>

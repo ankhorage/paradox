@@ -740,8 +740,8 @@
     },
     {
       "name": "PARADOX_DOC_TAGS",
-      "description": null,
-      "isReadme": false,
+      "description": "Supported Paradox documentation tags.\n\nParadox supports doc tags inside triple-star documentation comments.",
+      "isReadme": true,
       "examples": [],
       "kind": "value",
       "modulePath": "src/doc-tags/registry.ts",
@@ -1909,6 +1909,24 @@
       "sourceLocation": {
         "filePath": "src/analyze/utils/getParadoxComment.ts",
         "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "getCommentTargetStarts",
+      "description": "Returns declaration positions that may own a leading Paradox comment.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getParadoxComment.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "readCommentBefore",
+      "description": "Reads a Paradox doc comment directly before a target position.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getParadoxComment.ts",
+        "line": 41,
         "column": 1
       }
     },
@@ -4928,6 +4946,18 @@
         "toSymbol": "key",
         "callExpression": "key",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getParadoxComment",
+        "toSymbol": "getCommentTargetStarts",
+        "callExpression": "getCommentTargetStarts",
+        "sourcePath": "src/analyze/utils/getParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "getParadoxComment",
+        "toSymbol": "readCommentBefore",
+        "callExpression": "readCommentBefore",
+        "sourcePath": "src/analyze/utils/getParadoxComment.ts"
       },
       {
         "fromSymbol": "src/analyze/utils/getPropsFromType.ts",

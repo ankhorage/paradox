@@ -48,6 +48,10 @@ Kind: `value`
 Module: `src/doc-tags/registry.ts`
 Source: `src/doc-tags/registry.ts:8:14`
 
+Supported Paradox documentation tags.
+
+Paradox supports doc tags inside triple-star documentation comments.
+
 ## ParadoxConfig
 
 Kind: `type`
