@@ -7,6 +7,7 @@ import {
   type MethodDeclaration,
   type MethodSignature,
   Node,
+  type ObjectLiteralExpression,
   type Symbol as MorphSymbol,
 } from 'ts-morph';
 
@@ -16,6 +17,7 @@ import type {
   AnalysisParameter,
   AnalysisSignature,
   AnalysisSourceLocation,
+  AnalysisStructuredRow,
 } from '../types.js';
 import { getParadoxComment } from './getParadoxComment.js';
 import { parseParadoxComment } from './parseParadoxComment.js';
@@ -38,7 +40,13 @@ export function getExportMetadata(options: {
   symbol: MorphSymbol;
 }): Pick<
   AnalysisExport,
-  'exportPaths' | 'members' | 'modulePath' | 'relatedSymbols' | 'signatures' | 'sourceLocation'
+  | 'exportPaths'
+  | 'members'
+  | 'modulePath'
+  | 'relatedSymbols'
+  | 'signatures'
+  | 'sourceLocation'
+  | 'structuredRows'
 > {
   const modulePath = toPosixPath(
     relative(options.root, options.node.getSourceFile().getFilePath()),
@@ -46,6 +54,7 @@ export function getExportMetadata(options: {
   const sourceLocation = getSourceLocation(options.node, options.root);
   const signatures = getSignatures(options.symbol, options.node);
   const members = getMembers(options.node);
+  const structuredRows = getStructuredRows(options.node);
   const relatedSymbols = collectRelatedSymbols(
     options.name,
     signatures.flatMap((signature) => [
@@ -62,9 +71,13 @@ export function getExportMetadata(options: {
     relatedSymbols,
     signatures,
     members,
+    structuredRows,
   };
 }
 
+/***
+ * Resolves the source location for a declaration relative to the package root.
+ */
 function getSourceLocation(node: Node, root: string): AnalysisSourceLocation {
   const sourceFile = node.getSourceFile();
   const { column, line } = sourceFile.getLineAndColumnAtPos(node.getStart(false));
@@ -76,6 +89,9 @@ function getSourceLocation(node: Node, root: string): AnalysisSourceLocation {
   };
 }
 
+/***
+ * Extracts callable signatures for exported functions and callable values.
+ */
 function getSignatures(symbol: MorphSymbol, node: Node): AnalysisSignature[] {
   const parsed = readParadoxMetadata(node);
   const signatures = getCallableDeclarations(symbol, node).map((declaration) =>
@@ -93,6 +109,9 @@ function getSignatures(symbol: MorphSymbol, node: Node): AnalysisSignature[] {
   );
 }
 
+/***
+ * Builds one normalized call signature from a callable declaration.
+ */
 function getSignature(
   declaration: CallableDeclaration,
   params: Record<string, string>,
@@ -121,6 +140,9 @@ function getSignature(
   };
 }
 
+/***
+ * Extracts members for interface and type literal exports.
+ */
 function getMembers(node: Node): AnalysisMember[] {
   if (getCallableNode(node) !== null) return [];
 
@@ -137,6 +159,9 @@ function getMembers(node: Node): AnalysisMember[] {
   return [];
 }
 
+/***
+ * Converts TypeScript properties into documented member metadata.
+ */
 function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisMember[] {
   return properties.flatMap((property): AnalysisMember[] => {
     const declaration = getFirstDeclaration(property.getDeclarations());
@@ -148,7 +173,7 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
     const rawComment = getParadoxComment(declaration);
     const parsed = rawComment
       ? parseParadoxComment(rawComment)
-      : { description: null, isConfig: false, params: {}, returns: null };
+      : { description: null, isConfig: false, isReadme: false, examples: [], params: {}, returns: null };
 
     return [
       {
@@ -162,11 +187,73 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
   });
 }
 
+/***
+ * Extracts table-like rows from exported const arrays of object literals.
+ */
+function getStructuredRows(node: Node): AnalysisStructuredRow[] {
+  if (!Node.isVariableDeclaration(node)) return [];
+
+  const initializer = node.getInitializer();
+  if (!initializer || !Node.isArrayLiteralExpression(initializer)) return [];
+
+  return initializer.getElements().flatMap((element): AnalysisStructuredRow[] => {
+    if (!Node.isObjectLiteralExpression(element)) return [];
+
+    const values = getObjectLiteralValues(element);
+    return Object.keys(values).length > 0 ? [{ values }] : [];
+  });
+}
+
+/***
+ * Extracts primitive and string-array values from one object literal.
+ */
+function getObjectLiteralValues(node: ObjectLiteralExpression): Record<string, string> {
+  const values: Record<string, string> = {};
+
+  for (const property of node.getProperties()) {
+    if (!Node.isPropertyAssignment(property)) continue;
+
+    const name = property.getName().replace(/^['\"]|['\"]$/g, '');
+    const value = getLiteralValue(property.getInitializer());
+    if (value !== null) {
+      values[name] = value;
+    }
+  }
+
+  return values;
+}
+
+/***
+ * Converts supported literal expressions into displayable string values.
+ */
+function getLiteralValue(node: Node | undefined): string | null {
+  if (node === undefined) return null;
+  if (Node.isStringLiteral(node)) return node.getLiteralText();
+  if (Node.isNoSubstitutionTemplateLiteral(node)) return node.getLiteralText();
+  if (node.getKindName() === 'TrueKeyword') return 'true';
+  if (node.getKindName() === 'FalseKeyword') return 'false';
+  if (Node.isNumericLiteral(node)) return node.getText();
+
+  if (Node.isArrayLiteralExpression(node)) {
+    const values = node.getElements().map((element) => getLiteralValue(element));
+    if (values.some((value) => value === null)) return null;
+    return values.join(', ');
+  }
+
+  return null;
+}
+
+/***
+ * Returns the first declaration for a symbol, or null when none exists.
+ */
 function getFirstDeclaration(declarations: readonly Node[]): Node | null {
   const [declaration = null] = declarations;
   return declaration;
 }
 
+/***
+ * Finds callable declarations associated with an export symbol.
+ */
 function getCallableDeclarations(symbol: MorphSymbol, node: Node): CallableDeclaration[] {
   const declarations = symbol
     .getDeclarations()
@@ -182,6 +269,9 @@ function getCallableDeclarations(symbol: MorphSymbol, node: Node): CallableDecla
   return callableNode !== null ? [callableNode] : [];
 }
 
+/***
+ * Returns the callable node represented by a declaration when one exists.
+ */
 function getCallableNode(node: Node): CallableDeclaration | null {
   if (Node.isFunctionDeclaration(node)) return node;
   if (Node.isMethodDeclaration(node)) return node;
@@ -202,17 +292,26 @@ function getCallableNode(node: Node): CallableDeclaration | null {
   return null;
 }
 
+/***
+ * Checks whether a node is a method declaration or method signature.
+ */
 function isMemberMethodDeclaration(node: Node): node is MethodDeclaration | MethodSignature {
   return Node.isMethodDeclaration(node) || Node.isMethodSignature(node);
 }
 
+/***
+ * Reads Paradox comment metadata from a declaration.
+ */
 function readParadoxMetadata(node: Node) {
   const rawComment = getParadoxComment(node);
   return rawComment
     ? parseParadoxComment(rawComment)
-    : { description: null, isConfig: false, params: {}, returns: null };
+    : { description: null, isConfig: false, isReadme: false, examples: [], params: {}, returns: null };
 }
 
+/***
+ * Finds related exported symbols mentioned in signature and member type text.
+ */
 function collectRelatedSymbols(
   exportName: string,
   ...values: (readonly (string | null)[])[]
@@ -232,10 +331,16 @@ function collectRelatedSymbols(
   return [...related].sort((left, right) => left.localeCompare(right));
 }
 
+/***
+ * Normalizes platform-specific path separators for generated documentation output.
+ */
 function toPosixPath(path: string): string {
   return path.replaceAll('\\', '/');
 }
 
+/***
+ * Returns unique items by a caller-provided key while preserving first occurrence order.
+ */
 function uniqueBy<T>(items: readonly T[], key: (item: T) => string): T[] {
   const seen = new Set<string>();
 
