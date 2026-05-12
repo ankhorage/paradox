@@ -1,8 +1,8 @@
 import { relative } from 'node:path';
 
 import {
-  type ArrowFunction,
   type ArrayLiteralExpression,
+  type ArrowFunction,
   type FunctionDeclaration,
   type FunctionExpression,
   type MethodDeclaration,
@@ -240,7 +240,9 @@ function getVariableDeclaration(node: Node, exportName: string): VariableDeclara
   }
 
   if (Node.isVariableDeclarationList(node)) {
-    return node.getDeclarations().find((declaration) => declaration.getName() === exportName) ?? null;
+    return (
+      node.getDeclarations().find((declaration) => declaration.getName() === exportName) ?? null
+    );
   }
 
   return null;
