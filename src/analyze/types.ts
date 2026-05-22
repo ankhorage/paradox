@@ -90,7 +90,7 @@ interface AnalysisUsageCommand {
   command: string;
 }
 
-export interface AnalysisReadmeUsage {
+interface AnalysisReadmeUsage {
   title: string | null;
   description: string | null;
   language: string;
