@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.10
+
+### Patch Changes
+
+- 47b7ced: Add generated README usage support from real source examples marked through configured usage entrypoints, while keeping existing package command usage intact.
+
 ## 0.1.9
 
 ### Patch Changes
