@@ -53,7 +53,7 @@ jobs:
         if: hashFiles('.changeset/config.json') != ''
         uses: changesets/action@v1
         with:
-          version: bun run version-packages
+          version: bash ./scripts/version-packages-with-docs.sh
           publish: bunx changeset publish
           commit: Version Packages
           title: Version Packages
