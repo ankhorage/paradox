@@ -1,10 +1,11 @@
 /***
  * Parsed representation of a Paradox doc comment.
  */
-interface ParsedParadoxComment {
+export interface ParsedParadoxComment {
   description: string | null;
   isConfig: boolean;
   isReadme: boolean;
+  isUsage: boolean;
   examples: ParsedExample[];
   params: Record<string, string>;
   returns: string | null;
@@ -16,6 +17,8 @@ interface ParsedExample {
   code: string;
 }
 
+const USAGE_TAG = `${String.fromCharCode(64)}usage`;
+
 /***
  * Parses a Paradox doc comment into structured metadata.
  */
@@ -25,6 +28,7 @@ export function parseParadoxComment(rawComment: string): ParsedParadoxComment {
   const examples: ParsedExample[] = [];
   let isConfig = false;
   let isReadme = false;
+  let isUsage = false;
   const params: Record<string, string> = {};
   let returns: string | null = null;
 
@@ -39,6 +43,11 @@ export function parseParadoxComment(rawComment: string): ParsedParadoxComment {
 
     if (trimmed.startsWith('@readme')) {
       isReadme = true;
+      continue;
+    }
+
+    if (trimmed.startsWith(USAGE_TAG)) {
+      isUsage = true;
       continue;
     }
 
@@ -73,6 +82,7 @@ export function parseParadoxComment(rawComment: string): ParsedParadoxComment {
     description: description.length > 0 ? description : null,
     isConfig,
     isReadme,
+    isUsage,
     examples,
     params,
     returns,
