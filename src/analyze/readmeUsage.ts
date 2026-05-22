@@ -61,7 +61,7 @@ function findUsageComments(source: string): UsageCommentMatch[] {
 
   for (const match of source.matchAll(pattern)) {
     const [comment] = match;
-    if (match.index === undefined || !comment.includes(USAGE_TAG)) continue;
+    if (!comment.includes(USAGE_TAG)) continue;
 
     matches.push({
       comment,
