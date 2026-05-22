@@ -12,11 +12,17 @@ export function analyzeModules(
   options: {
     root: string;
     entrypoints: readonly string[];
+    excludePaths?: readonly string[];
   },
 ): AnalysisModule[] {
   const rootPath = normalize(options.root);
   const entrypointPaths = new Set(
     options.entrypoints.map((entrypoint) =>
+      normalize(isAbsolute(entrypoint) ? entrypoint : join(options.root, entrypoint)),
+    ),
+  );
+  const excludedPaths = new Set(
+    (options.excludePaths ?? []).map((entrypoint) =>
       normalize(isAbsolute(entrypoint) ? entrypoint : join(options.root, entrypoint)),
     ),
   );
@@ -29,6 +35,7 @@ export function analyzeModules(
       return (
         !sourceFile.isDeclarationFile() &&
         filePath.startsWith(rootPath) &&
+        !excludedPaths.has(filePath) &&
         !normalizedPath.includes('/node_modules/')
       );
     })
@@ -41,7 +48,9 @@ export function analyzeModules(
         .map((dependency) => normalize(dependency.getFilePath()))
         .filter(
           (dependency) =>
-            dependency.startsWith(rootPath) && !toPosixPath(dependency).includes('/node_modules/'),
+            dependency.startsWith(rootPath) &&
+            !excludedPaths.has(dependency) &&
+            !toPosixPath(dependency).includes('/node_modules/'),
         )
         .map((dependency) => toPosixPath(relative(options.root, dependency)));
       const exports = sourceFile

@@ -5,6 +5,9 @@
  *
  * @readme
  */
+const DOC_TAG_PREFIX = '\u0040';
+const USAGE_DOC_TAG = `${DOC_TAG_PREFIX}usage` as const;
+
 export const PARADOX_DOC_TAGS = [
   {
     name: 'readme',
@@ -30,6 +33,14 @@ export const PARADOX_DOC_TAGS = [
     appliesTo: ['symbol'],
     repeatable: true,
     handler: 'parseExample',
+  },
+  {
+    name: 'usage',
+    syntax: USAGE_DOC_TAG,
+    description: 'Promotes a real source example into the generated README Usage section.',
+    appliesTo: ['block', 'symbol'],
+    repeatable: false,
+    handler: 'markUsage',
   },
 ] as const;
 

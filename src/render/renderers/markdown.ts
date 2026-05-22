@@ -5,6 +5,7 @@ type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
 type ComponentEntry = DocumentationModel['components'][number];
 type ExportEntry = DocumentationModel['exports'][number];
 type ExampleEntry = ExportEntry['examples'][number];
+type ReadmeUsageEntry = DocumentationModel['readmeUsage'][number];
 type SequenceScenarioEntry = DocumentationModel['sequenceScenarios'][number];
 
 interface ReadmeGroup {
@@ -55,29 +56,45 @@ function renderReadme(
     );
   }
 
-  if (model.description) {
-    lines.push(model.description, '');
-  }
+  if (model.description) lines.push(model.description, '');
+
+  renderReadmeUsage(lines, model.readmeUsage);
 
   if (model.usage !== null) {
-    lines.push('## Installation', '');
-    lines.push('```bash');
-    for (const command of model.usage.commands) {
-      lines.push(command.command);
-    }
+    lines.push('## Installation', '', '```bash');
+    for (const command of model.usage.commands) lines.push(command.command);
     lines.push('```', '');
   }
 
   renderCliScenarios(lines, model, outputDir, diagrams);
 
-  if (model.config?.isReadme) {
-    renderConfiguration(lines, model);
-  }
+  if (model.config?.isReadme) renderConfiguration(lines, model);
 
   renderGeneratedDocumentation(lines, outputDir, diagrams);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
+}
+
+function renderReadmeUsage(lines: string[], entries: readonly ReadmeUsageEntry[]): void {
+  if (entries.length === 0) return;
+
+  lines.push('## Usage', '');
+
+  for (const entry of entries) {
+    if (entry.title !== null) lines.push(`### ${entry.title}`, '');
+
+    if (entry.description !== null) {
+      const [, ...rest] = entry.description.split('\n');
+      const description = rest.join('\n').trim();
+      if (description.length > 0) lines.push(description, '');
+    }
+
+    lines.push(`Source: \`${entry.sourcePath}\``, '');
+    lines.push(`\`\`\`${entry.language}`);
+    lines.push(entry.code);
+    lines.push('```', '');
+  }
 }
 
 function renderCliScenarios(
@@ -96,10 +113,7 @@ function renderCliScenarios(
   for (const scenario of scenarios) {
     lines.push('<details>');
     lines.push(`<summary>${scenario.name}</summary>`, '');
-
-    if (scenario.description !== null) {
-      lines.push(scenario.description, '');
-    }
+    if (scenario.description !== null) lines.push(scenario.description, '');
 
     const command = model.usage?.commands.find((item) => item.name === scenario.name);
     if (command !== undefined) {
@@ -155,24 +169,24 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
 
   lines.push('```', '');
 
-  if (config.members.length > 0) {
-    lines.push('<details>');
-    lines.push('<summary>Configuration options</summary>', '');
-    lines.push('| Field | Type | Required | Default | Description |');
-    lines.push('| --- | --- | --- | --- | --- |');
+  if (config.members.length === 0) return;
 
-    for (const configMember of flattenConfigMembers(config.members)) {
-      lines.push(
-        `| ${escapeTableCell(configMember.path)} | \`${escapeTableCell(configMember.type)}\` | ${
-          configMember.required ? 'yes' : 'no'
-        } | ${renderDefault(configMember.defaultValue)} | ${escapeTableCell(
-          configMember.description ?? '',
-        )} |`,
-      );
-    }
+  lines.push('<details>');
+  lines.push('<summary>Configuration options</summary>', '');
+  lines.push('| Field | Type | Required | Default | Description |');
+  lines.push('| --- | --- | --- | --- | --- |');
 
-    lines.push('', '</details>', '');
+  for (const configMember of flattenConfigMembers(config.members)) {
+    lines.push(
+      `| ${escapeTableCell(configMember.path)} | \`${escapeTableCell(configMember.type)}\` | ${
+        configMember.required ? 'yes' : 'no'
+      } | ${renderDefault(configMember.defaultValue)} | ${escapeTableCell(
+        configMember.description ?? '',
+      )} |`,
+    );
   }
+
+  lines.push('', '</details>', '');
 }
 
 function renderGeneratedDocumentation(
@@ -184,9 +198,8 @@ function renderGeneratedDocumentation(
   lines.push(`- [Interactive documentation app](./${outputDir}/index.html)`);
   lines.push(`- [Public API reference](./${outputDir}/exports.md)`);
   lines.push(`- [Component registry](./${outputDir}/components.md)`);
-  for (const diagram of diagrams) {
+  for (const diagram of diagrams)
     lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
-  }
   lines.push('');
 }
 
@@ -198,11 +211,9 @@ function renderReadmeApi(lines: string[], model: DocumentationModel): void {
   for (const group of groups) {
     lines.push(`### ${group.title}`, '');
     for (const item of group.items) {
-      if (item.kind === 'component') {
+      if (item.kind === 'component')
         renderComponentAccordion(lines, item.component, item.exportEntry);
-      } else {
-        renderExportAccordion(lines, item.exportEntry);
-      }
+      else renderExportAccordion(lines, item.exportEntry);
     }
   }
 }
@@ -301,9 +312,7 @@ function renderStructuredRows(lines: string[], item: ExportEntry): void {
 function getStructuredColumns(item: ExportEntry): string[] {
   const columns = new Set<string>();
   for (const row of item.structuredRows) {
-    for (const column of Object.keys(row.values)) {
-      columns.add(column);
-    }
+    for (const column of Object.keys(row.values)) columns.add(column);
   }
 
   return [...columns];
@@ -315,13 +324,9 @@ function formatStructuredColumnHeader(column: string): string {
 
 function formatStructuredCell(column: string, value: string): string {
   const escaped = escapeTableCell(value);
-  if (column === 'syntax' || column === 'name' || column === 'handler') {
-    return `\`${escaped}\``;
-  }
-
+  if (column === 'syntax' || column === 'name' || column === 'handler') return `\`${escaped}\``;
   if (value === 'true') return 'yes';
   if (value === 'false') return 'no';
-
   return escaped;
 }
 
@@ -393,11 +398,7 @@ function renderExports(model: DocumentationModel): string {
       `Source: \`${item.sourceLocation.filePath}:${item.sourceLocation.line}:${item.sourceLocation.column}\``,
       '',
     );
-
-    if (item.description) {
-      lines.push(item.description, '');
-    }
-
+    if (item.description) lines.push(item.description, '');
     renderStructuredRows(lines, item);
 
     if (item.signatures.length > 0) {
@@ -447,10 +448,7 @@ function renderComponents(model: DocumentationModel): string {
       `Source: \`${component.sourceLocation.filePath}:${component.sourceLocation.line}:${component.sourceLocation.column}\``,
       '',
     );
-
-    if (component.description) {
-      lines.push(component.description, '');
-    }
+    if (component.description) lines.push(component.description, '');
 
     if (component.exportPaths.length > 0) {
       lines.push(
@@ -462,7 +460,6 @@ function renderComponents(model: DocumentationModel): string {
     if (component.props.length > 0) {
       lines.push('| Prop | Type | Required | Default | Description |');
       lines.push('| --- | --- | --- | --- | --- |');
-
       for (const prop of component.props) {
         lines.push(
           `| ${escapeTableCell(prop.name)} | \`${escapeTableCell(prop.type)}\` | ${
@@ -470,7 +467,6 @@ function renderComponents(model: DocumentationModel): string {
           } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(prop.description ?? '')} |`,
         );
       }
-
       lines.push('');
     }
   }
@@ -512,9 +508,7 @@ function flattenConfigMembers(
 
 function badgeLabel(model: DocumentationModel, badgePath: string): string {
   const fileName = badgePath.split('/').pop();
-  if (!fileName) {
-    return badgePath;
-  }
+  if (!fileName) return badgePath;
 
   const id = fileName.replace(/\.svg$/, '');
   const badge = model.badges.find((entry) => entry.id === id);

@@ -109,6 +109,13 @@ interface BuildModelInput {
       command: string;
     }[];
   } | null;
+  readmeUsage: {
+    title: string | null;
+    description: string | null;
+    language: string;
+    code: string;
+    sourcePath: string;
+  }[];
   config: {
     exportName: string;
     isReadme: boolean;
@@ -179,6 +186,15 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
             ),
           }
         : null,
+    readmeUsage: analysis.readmeUsage
+      .map((usageEntry) => ({
+        title: usageEntry.title,
+        description: usageEntry.description,
+        language: usageEntry.language,
+        code: usageEntry.code,
+        sourcePath: usageEntry.sourcePath,
+      }))
+      .sort((left, right) => left.sourcePath.localeCompare(right.sourcePath)),
     config:
       analysis.config !== null
         ? {

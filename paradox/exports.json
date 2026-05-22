@@ -44,7 +44,7 @@
     "modulePath": "src/doc-tags/registry.ts",
     "sourceLocation": {
       "filePath": "src/doc-tags/registry.ts",
-      "line": 42,
+      "line": 53,
       "column": 1
     },
     "exportPaths": [
@@ -53,7 +53,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(name: string) => { readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | null",
+        "label": "(name: string) => { readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | { readonly name: \"usage\"; readonly syntax: \"@usage\"; readonly description: \"Promotes a real source example into the generated README Usage section.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markUsage\"; } | null",
         "parameters": [
           {
             "name": "name",
@@ -62,7 +62,7 @@
             "description": null
           }
         ],
-        "returnType": "{ readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | null",
+        "returnType": "{ readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.\"; readonly appliesTo: readonly [\"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | { readonly name: \"usage\"; readonly syntax: \"@usage\"; readonly description: \"Promotes a real source example into the generated README Usage section.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markUsage\"; } | null",
         "returnDescription": null
       }
     ],
@@ -78,7 +78,7 @@
     "modulePath": "src/doc-tags/registry.ts",
     "sourceLocation": {
       "filePath": "src/doc-tags/registry.ts",
-      "line": 49,
+      "line": 60,
       "column": 1
     },
     "exportPaths": [
@@ -105,14 +105,14 @@
   },
   {
     "name": "PARADOX_DOC_TAGS",
-    "description": "Supported Paradox documentation tags.\n\nParadox supports doc tags inside triple-star documentation comments.",
-    "isReadme": true,
+    "description": null,
+    "isReadme": false,
     "examples": [],
     "kind": "value",
     "modulePath": "src/doc-tags/registry.ts",
     "sourceLocation": {
       "filePath": "src/doc-tags/registry.ts",
-      "line": 8,
+      "line": 11,
       "column": 14
     },
     "exportPaths": [
@@ -151,6 +151,15 @@
           "repeatable": "true",
           "handler": "parseExample"
         }
+      },
+      {
+        "values": {
+          "name": "usage",
+          "description": "Promotes a real source example into the generated README Usage section.",
+          "appliesTo": "block, symbol",
+          "repeatable": "false",
+          "handler": "markUsage"
+        }
       }
     ]
   },
@@ -175,7 +184,7 @@
       {
         "name": "docs",
         "kind": "property",
-        "type": "{ title?: string; description?: string; } | undefined",
+        "type": "{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } | undefined",
         "required": false,
         "description": null
       },
@@ -212,7 +221,7 @@
     "modulePath": "src/doc-tags/registry.ts",
     "sourceLocation": {
       "filePath": "src/doc-tags/registry.ts",
-      "line": 37,
+      "line": 48,
       "column": 1
     },
     "exportPaths": [
@@ -232,7 +241,7 @@
     "modulePath": "src/doc-tags/registry.ts",
     "sourceLocation": {
       "filePath": "src/doc-tags/registry.ts",
-      "line": 36,
+      "line": 47,
       "column": 1
     },
     "exportPaths": [

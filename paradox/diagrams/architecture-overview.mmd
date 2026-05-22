@@ -9,6 +9,7 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --> module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_graphs_ts
@@ -41,6 +42,9 @@ graph TD
   module_src_analyze_modules_ts --> module_src_analyze_types_ts
   module_src_analyze_project_ts["src/analyze/project.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_project_ts
+  module_src_analyze_readmeUsage_ts["src/analyze/readmeUsage.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_readmeUsage_ts
+  module_src_analyze_readmeUsage_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts["src/analyze/semantic/analyzeProject.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_semantic_analyzeProject_ts
   module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_associateDocBlocksWithSymbols_ts

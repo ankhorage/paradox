@@ -7,6 +7,7 @@ import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
+import { analyzeReadmeUsage } from './readmeUsage.js';
 import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
 import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
 import {
@@ -32,10 +33,16 @@ export async function analyze(
   const badges = await analyzeBadges(root, pkg);
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
+  const usageEntryPoints = config.docs?.usage?.entrypoints ?? [];
+  const readmeUsage = await analyzeReadmeUsage({ root, entrypoints: usageEntryPoints });
   const program = createTypeScriptProgram({ root, entrypoints, project });
   const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
-  const modules = analyzeModules(project, { root, entrypoints });
+  const modules = analyzeModules(project, {
+    root,
+    entrypoints,
+    excludePaths: usageEntryPoints,
+  });
   const sourceFunctions = analyzeSourceFunctions(project, root);
   const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
   const configExport = configMetadata
@@ -78,6 +85,7 @@ export async function analyze(
     badges,
     sequenceScenarios,
     usage,
+    readmeUsage,
     config: configMetadata
       ? {
           exportName: configMetadata.exportName,

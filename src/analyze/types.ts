@@ -90,6 +90,14 @@ interface AnalysisUsageCommand {
   command: string;
 }
 
+interface AnalysisReadmeUsage {
+  title: string | null;
+  description: string | null;
+  language: string;
+  code: string;
+  sourcePath: string;
+}
+
 export interface AnalysisBadge {
   id: string;
   label: string;
@@ -179,6 +187,7 @@ export interface AnalysisResult {
   sequenceScenarios: AnalysisSequenceScenario[];
 
   usage: AnalysisUsage | null;
+  readmeUsage: AnalysisReadmeUsage[];
 
   config: {
     exportName: string;
