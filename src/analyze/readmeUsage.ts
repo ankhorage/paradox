@@ -74,7 +74,13 @@ function findUsageComments(source: string): UsageCommentMatch[] {
 }
 
 function removeRange(source: string, start: number, end: number): string {
-  return `${source.slice(0, start)}${source.slice(end)}`;
+  const before = source.slice(0, start).trimEnd();
+  const after = source.slice(end).trimStart();
+
+  if (before.length === 0) return after;
+  if (after.length === 0) return before;
+
+  return `${before}\n\n${after}`;
 }
 
 function getUsageTitle(description: string | null, sourcePath: string): string | null {
