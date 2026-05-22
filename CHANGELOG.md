@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.9
+
+### Patch Changes
+
+- 9b43e55: Keep generated README files compact by linking diagram artifacts from the generated documentation section instead of embedding the architecture preview inline.
+
 ## 0.1.8
 
 ### Patch Changes
