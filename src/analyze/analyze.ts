@@ -38,7 +38,11 @@ export async function analyze(
   const program = createTypeScriptProgram({ root, entrypoints, project });
   const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
-  const modules = analyzeModules(project, { root, entrypoints });
+  const modules = analyzeModules(project, {
+    root,
+    entrypoints,
+    excludePaths: usageEntryPoints,
+  });
   const sourceFunctions = analyzeSourceFunctions(project, root);
   const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
   const configExport = configMetadata
