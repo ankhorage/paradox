@@ -198,7 +198,8 @@ function renderGeneratedDocumentation(
   lines.push(`- [Interactive documentation app](./${outputDir}/index.html)`);
   lines.push(`- [Public API reference](./${outputDir}/exports.md)`);
   lines.push(`- [Component registry](./${outputDir}/components.md)`);
-  for (const diagram of diagrams) lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
+  for (const diagram of diagrams)
+    lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
   lines.push('');
 }
 
@@ -210,7 +211,8 @@ function renderReadmeApi(lines: string[], model: DocumentationModel): void {
   for (const group of groups) {
     lines.push(`### ${group.title}`, '');
     for (const item of group.items) {
-      if (item.kind === 'component') renderComponentAccordion(lines, item.component, item.exportEntry);
+      if (item.kind === 'component')
+        renderComponentAccordion(lines, item.component, item.exportEntry);
       else renderExportAccordion(lines, item.exportEntry);
     }
   }

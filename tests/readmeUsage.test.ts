@@ -35,7 +35,8 @@ describe('readme usage examples', () => {
       expect(analysis.readmeUsage).toEqual([
         {
           title: 'Minimal app root.',
-          description: 'Minimal app root.\n\nShows the canonical provider and app shell composition.',
+          description:
+            'Minimal app root.\n\nShows the canonical provider and app shell composition.',
           language: 'tsx',
           sourcePath: 'examples/basic-app/App.tsx',
           code: [
