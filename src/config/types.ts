@@ -10,6 +10,9 @@ export interface ParadoxConfig {
   docs?: {
     title?: string;
     description?: string;
+    usage?: {
+      entrypoints?: string[];
+    };
   };
 
   package?: {
