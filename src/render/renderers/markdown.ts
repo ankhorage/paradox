@@ -56,26 +56,19 @@ function renderReadme(
     );
   }
 
-  if (model.description) {
-    lines.push(model.description, '');
-  }
+  if (model.description) lines.push(model.description, '');
 
   renderReadmeUsage(lines, model.readmeUsage);
 
   if (model.usage !== null) {
-    lines.push('## Installation', '');
-    lines.push('```bash');
-    for (const command of model.usage.commands) {
-      lines.push(command.command);
-    }
+    lines.push('## Installation', '', '```bash');
+    for (const command of model.usage.commands) lines.push(command.command);
     lines.push('```', '');
   }
 
   renderCliScenarios(lines, model, outputDir, diagrams);
 
-  if (model.config?.isReadme) {
-    renderConfiguration(lines, model);
-  }
+  if (model.config?.isReadme) renderConfiguration(lines, model);
 
   renderGeneratedDocumentation(lines, outputDir, diagrams);
   renderReadmeApi(lines, model);
@@ -89,14 +82,12 @@ function renderReadmeUsage(lines: string[], entries: readonly ReadmeUsageEntry[]
   lines.push('## Usage', '');
 
   for (const entry of entries) {
-    if (entry.title !== null) {
-      lines.push(`### ${entry.title}`, '');
-    }
+    if (entry.title !== null) lines.push(`### ${entry.title}`, '');
 
     if (entry.description !== null) {
       const [, ...rest] = entry.description.split('\n');
-      const body = rest.join('\n').trim();
-      if (body.length > 0) lines.push(body, '');
+      const description = rest.join('\n').trim();
+      if (description.length > 0) lines.push(description, '');
     }
 
     lines.push(`Source: \`${entry.sourcePath}\``, '');
@@ -122,10 +113,7 @@ function renderCliScenarios(
   for (const scenario of scenarios) {
     lines.push('<details>');
     lines.push(`<summary>${scenario.name}</summary>`, '');
-
-    if (scenario.description !== null) {
-      lines.push(scenario.description, '');
-    }
+    if (scenario.description !== null) lines.push(scenario.description, '');
 
     const command = model.usage?.commands.find((item) => item.name === scenario.name);
     if (command !== undefined) {
@@ -181,24 +169,24 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
 
   lines.push('```', '');
 
-  if (config.members.length > 0) {
-    lines.push('<details>');
-    lines.push('<summary>Configuration options</summary>', '');
-    lines.push('| Field | Type | Required | Default | Description |');
-    lines.push('| --- | --- | --- | --- | --- |');
+  if (config.members.length === 0) return;
 
-    for (const configMember of flattenConfigMembers(config.members)) {
-      lines.push(
-        `| ${escapeTableCell(configMember.path)} | \`${escapeTableCell(configMember.type)}\` | ${
-          configMember.required ? 'yes' : 'no'
-        } | ${renderDefault(configMember.defaultValue)} | ${escapeTableCell(
-          configMember.description ?? '',
-        )} |`,
-      );
-    }
+  lines.push('<details>');
+  lines.push('<summary>Configuration options</summary>', '');
+  lines.push('| Field | Type | Required | Default | Description |');
+  lines.push('| --- | --- | --- | --- | --- |');
 
-    lines.push('', '</details>', '');
+  for (const configMember of flattenConfigMembers(config.members)) {
+    lines.push(
+      `| ${escapeTableCell(configMember.path)} | \`${escapeTableCell(configMember.type)}\` | ${
+        configMember.required ? 'yes' : 'no'
+      } | ${renderDefault(configMember.defaultValue)} | ${escapeTableCell(
+        configMember.description ?? '',
+      )} |`,
+    );
   }
+
+  lines.push('', '</details>', '');
 }
 
 function renderGeneratedDocumentation(
@@ -210,9 +198,7 @@ function renderGeneratedDocumentation(
   lines.push(`- [Interactive documentation app](./${outputDir}/index.html)`);
   lines.push(`- [Public API reference](./${outputDir}/exports.md)`);
   lines.push(`- [Component registry](./${outputDir}/components.md)`);
-  for (const diagram of diagrams) {
-    lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
-  }
+  for (const diagram of diagrams) lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
   lines.push('');
 }
 
@@ -224,11 +210,326 @@ function renderReadmeApi(lines: string[], model: DocumentationModel): void {
   for (const group of groups) {
     lines.push(`### ${group.title}`, '');
     for (const item of group.items) {
-      if (item.kind === 'component') {
-        renderComponentAccordion(lines, item.component, item.exportEntry);
-      } else {
-        renderExportAccordion(lines, item.exportEntry);
-      }
+      if (item.kind === 'component') renderComponentAccordion(lines, item.component, item.exportEntry);
+      else renderExportAccordion(lines, item.exportEntry);
     }
   }
 }
+
+function renderComponentAccordion(
+  lines: string[],
+  component: ComponentEntry,
+  exportEntry: ExportEntry | undefined,
+): void {
+  lines.push('<details>');
+  lines.push(`<summary>${component.name}</summary>`, '');
+  renderSignature(lines, exportEntry);
+  if (component.description) lines.push(component.description, '');
+  renderExamples(lines, component.examples);
+  if (exportEntry && exportEntry.relatedSymbols.length > 0) {
+    lines.push(
+      `Related types: ${exportEntry.relatedSymbols.map((symbol) => `\`${symbol}\``).join(', ')}`,
+      '',
+    );
+  }
+  if (component.props.length > 0) {
+    lines.push('<details>');
+    lines.push('<summary>Props</summary>', '');
+    lines.push('| Prop | Type | Required | Default | Description |');
+    lines.push('| --- | --- | --- | --- | --- |');
+    for (const prop of component.props) {
+      lines.push(
+        `| ${escapeTableCell(prop.name)} | \`${escapeTableCell(prop.type)}\` | ${
+          prop.required ? 'yes' : 'no'
+        } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(prop.description ?? '')} |`,
+      );
+    }
+    lines.push('', '</details>', '');
+  }
+  lines.push('</details>', '');
+}
+
+function renderExportAccordion(lines: string[], item: ExportEntry): void {
+  lines.push('<details>');
+  lines.push(`<summary>${item.name}</summary>`, '');
+  renderSignature(lines, item);
+  lines.push(item.description ?? `\`${item.kind}\` export.`, '');
+  renderStructuredRows(lines, item);
+  renderExamples(lines, item.examples);
+  lines.push(`Module: \`${item.modulePath}\``);
+  lines.push(
+    `Source: \`${item.sourceLocation.filePath}:${item.sourceLocation.line}:${item.sourceLocation.column}\``,
+  );
+  if (item.relatedSymbols.length > 0) {
+    lines.push(
+      `Related symbols: ${item.relatedSymbols.map((symbol) => `\`${symbol}\``).join(', ')}`,
+    );
+  }
+  lines.push('', '</details>', '');
+}
+
+function renderSignature(lines: string[], item: ExportEntry | undefined): void {
+  const signature = item?.signatures[0]?.label;
+  if (!signature) return;
+  lines.push('```ts');
+  lines.push(`${item.name}${signature}`);
+  lines.push('```', '');
+}
+
+function renderExamples(lines: string[], examples: readonly ExampleEntry[]): void {
+  for (const example of examples) {
+    if (example.title) lines.push(`#### ${example.title}`, '');
+    lines.push(`\`\`\`${example.language ?? ''}`);
+    lines.push(example.code);
+    lines.push('```', '');
+  }
+}
+
+function renderStructuredRows(lines: string[], item: ExportEntry): void {
+  if (item.structuredRows.length === 0) return;
+
+  const columns = getStructuredColumns(item);
+  if (columns.length === 0) return;
+
+  lines.push('| ' + columns.map(formatStructuredColumnHeader).join(' | ') + ' |');
+  lines.push('| ' + columns.map(() => '---').join(' | ') + ' |');
+
+  for (const row of item.structuredRows) {
+    lines.push(
+      '| ' +
+        columns
+          .map((column) => formatStructuredCell(column, row.values[column] ?? ''))
+          .join(' | ') +
+        ' |',
+    );
+  }
+
+  lines.push('');
+}
+
+function getStructuredColumns(item: ExportEntry): string[] {
+  const columns = new Set<string>();
+  for (const row of item.structuredRows) {
+    for (const column of Object.keys(row.values)) columns.add(column);
+  }
+
+  return [...columns];
+}
+
+function formatStructuredColumnHeader(column: string): string {
+  return escapeTableCell(column.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase());
+}
+
+function formatStructuredCell(column: string, value: string): string {
+  const escaped = escapeTableCell(value);
+  if (column === 'syntax' || column === 'name' || column === 'handler') return `\`${escaped}\``;
+  if (value === 'true') return 'yes';
+  if (value === 'false') return 'no';
+  return escaped;
+}
+
+function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
+  const exportsByName = new Map(model.exports.map((entry) => [entry.name, entry]));
+  const componentNames = new Set(model.components.map((component) => component.name));
+  const groups = new Map<string, ReadmeItem[]>();
+
+  for (const component of model.components.filter((entry) => entry.isReadme)) {
+    addReadmeItem(groups, getReadmeCategory(component.modulePath, component.name), {
+      kind: 'component',
+      component,
+      exportEntry: exportsByName.get(component.name),
+    });
+  }
+
+  for (const item of model.exports.filter((entry) => entry.isReadme)) {
+    if (componentNames.has(item.name)) continue;
+    addReadmeItem(groups, getReadmeCategory(item.modulePath, item.name), {
+      kind: 'export',
+      exportEntry: item,
+    });
+  }
+
+  return CATEGORY_ORDER.flatMap((title) => {
+    const items = groups.get(title);
+    if (!items || items.length === 0) return [];
+    return [{ title, items: sortReadmeItems(items) }];
+  });
+}
+
+function addReadmeItem(groups: Map<string, ReadmeItem[]>, title: string, item: ReadmeItem): void {
+  const existing = groups.get(title) ?? [];
+  existing.push(item);
+  groups.set(title, existing);
+}
+
+function sortReadmeItems(items: readonly ReadmeItem[]): ReadmeItem[] {
+  return [...items].sort((left, right) =>
+    getReadmeItemName(left).localeCompare(getReadmeItemName(right)),
+  );
+}
+
+function getReadmeItemName(item: ReadmeItem): string {
+  return item.kind === 'component' ? item.component.name : item.exportEntry.name;
+}
+
+function getReadmeCategory(modulePath: string, name: string): string {
+  if (modulePath.includes('/config/')) return 'Config';
+  if (modulePath.includes('/doc-tags/')) return 'Documentation';
+  if (modulePath.includes('/primitives/')) return 'Primitives';
+  if (modulePath.includes('/components/')) return 'Components';
+  if (modulePath.includes('/patterns/')) return 'Patterns';
+  if (modulePath.includes('/layout/')) return 'Layout';
+  if (modulePath.includes('/hooks/') || /^use[A-Z]/.test(name)) return 'Hooks';
+  if (modulePath.includes('/utils/')) return 'Utilities';
+  if (modulePath.endsWith('types.ts') || modulePath.includes('/types/')) return 'Types';
+  return 'Utilities';
+}
+
+function renderExports(model: DocumentationModel): string {
+  const lines = ['# Public API', ''];
+
+  for (const item of model.exports) {
+    lines.push(`## ${item.name}`, '');
+    lines.push(`Kind: \`${item.kind}\``);
+    lines.push(`Module: \`${item.modulePath}\``);
+    lines.push(
+      `Source: \`${item.sourceLocation.filePath}:${item.sourceLocation.line}:${item.sourceLocation.column}\``,
+      '',
+    );
+    if (item.description) lines.push(item.description, '');
+    renderStructuredRows(lines, item);
+
+    if (item.signatures.length > 0) {
+      lines.push('### Signatures', '');
+      for (const signature of item.signatures) {
+        lines.push(`- \`${signature.label}\``);
+        for (const parameter of signature.parameters) {
+          lines.push(
+            `  - ${parameter.name}: \`${parameter.type}\`${parameter.required ? '' : ' (optional)'}${
+              parameter.description ? ` — ${parameter.description}` : ''
+            }`,
+          );
+        }
+        lines.push(
+          `  - returns: \`${signature.returnType ?? 'void'}\`${
+            signature.returnDescription ? ` — ${signature.returnDescription}` : ''
+          }`,
+        );
+      }
+      lines.push('');
+    }
+
+    if (item.members.length > 0) {
+      lines.push('### Members', '');
+      lines.push('| Name | Kind | Type | Required | Description |');
+      lines.push('| --- | --- | --- | --- | --- |');
+      for (const member of item.members) {
+        lines.push(
+          `| ${escapeTableCell(member.name)} | ${member.kind} | \`${escapeTableCell(
+            member.type,
+          )}\` | ${member.required ? 'yes' : 'no'} | ${escapeTableCell(member.description ?? '')} |`,
+        );
+      }
+      lines.push('');
+    }
+  }
+
+  return `${lines.join('\n').trimEnd()}\n`;
+}
+
+function renderComponents(model: DocumentationModel): string {
+  const lines = ['# Components', ''];
+
+  for (const component of model.components) {
+    lines.push(`## ${component.name}`, '');
+    lines.push(
+      `Source: \`${component.sourceLocation.filePath}:${component.sourceLocation.line}:${component.sourceLocation.column}\``,
+      '',
+    );
+    if (component.description) lines.push(component.description, '');
+
+    if (component.exportPaths.length > 0) {
+      lines.push(
+        `Export paths: ${component.exportPaths.map((path) => `\`${path}\``).join(', ')}`,
+        '',
+      );
+    }
+
+    if (component.props.length > 0) {
+      lines.push('| Prop | Type | Required | Default | Description |');
+      lines.push('| --- | --- | --- | --- | --- |');
+      for (const prop of component.props) {
+        lines.push(
+          `| ${escapeTableCell(prop.name)} | \`${escapeTableCell(prop.type)}\` | ${
+            prop.required ? 'yes' : 'no'
+          } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(prop.description ?? '')} |`,
+        );
+      }
+      lines.push('');
+    }
+  }
+
+  return `${lines.join('\n').trimEnd()}\n`;
+}
+
+function escapeTableCell(value: string): string {
+  return value.replaceAll('|', '\\|');
+}
+
+function renderDefault(value: string | undefined): string {
+  return value === undefined ? '—' : `\`${escapeTableCell(value)}\``;
+}
+
+function flattenConfigMembers(
+  members: ConfigMembers,
+  prefix = '',
+): {
+  path: string;
+  type: string;
+  required: boolean;
+  description: string | null;
+  defaultValue?: string;
+}[] {
+  return members.flatMap((member) => {
+    const path = prefix ? `${prefix}.${member.name}` : member.name;
+    const current = {
+      path,
+      type: member.type,
+      required: member.required,
+      description: member.description,
+      defaultValue: member.defaultValue,
+    };
+    const children = member.children ? flattenConfigMembers(member.children, path) : [];
+    return [current, ...children];
+  });
+}
+
+function badgeLabel(model: DocumentationModel, badgePath: string): string {
+  const fileName = badgePath.split('/').pop();
+  if (!fileName) return badgePath;
+
+  const id = fileName.replace(/\.svg$/, '');
+  const badge = model.badges.find((entry) => entry.id === id);
+
+  return badge ? `${badge.label}: ${badge.value}` : badgePath;
+}
+
+function toFileStem(value: string): string {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
+
+const CATEGORY_ORDER = [
+  'Config',
+  'Documentation',
+  'Primitives',
+  'Components',
+  'Patterns',
+  'Layout',
+  'Hooks',
+  'Utilities',
+  'Types',
+];
