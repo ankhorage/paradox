@@ -75,7 +75,6 @@ function renderReadme(
   }
 
   renderGeneratedDocumentation(lines, outputDir, diagrams);
-  renderArchitecturePreview(lines, diagrams);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
@@ -189,18 +188,6 @@ function renderGeneratedDocumentation(
     lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
   }
   lines.push('');
-}
-
-function renderArchitecturePreview(lines: string[], diagrams: RenderContext['diagrams']): void {
-  lines.push('## Architecture preview', '');
-  if (diagrams.length > 0) {
-    lines.push('<details>');
-    lines.push('<summary>Architecture overview</summary>', '');
-    lines.push('```mermaid');
-    lines.push(diagrams[0]?.content.trimEnd() ?? '');
-    lines.push('```', '');
-    lines.push('</details>', '');
-  }
 }
 
 function renderReadmeApi(lines: string[], model: DocumentationModel): void {
