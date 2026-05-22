@@ -79,12 +79,12 @@ export default defineParadoxConfig({
 <details>
 <summary>Configuration options</summary>
 
-| Field   | Type                                                      | Required | Default | Description |
-| ------- | --------------------------------------------------------- | -------- | ------- | ----------- |
-| mode    | `'safe' \| 'write' \| undefined`                          | no       | —       |             |
-| docs    | `{ title?: string; description?: string; } \| undefined`  | no       | —       |             |
-| package | `{ root?: string; entrypoints?: string[]; } \| undefined` | no       | —       |             |
-| output  | `{ dir?: string; } \| undefined`                          | no       | —       |             |
+| Field   | Type                                                                                          | Required | Default | Description |
+| ------- | --------------------------------------------------------------------------------------------- | -------- | ------- | ----------- |
+| mode    | `'safe' \| 'write' \| undefined`                                                              | no       | —       |             |
+| docs    | `{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } \| undefined` | no       | —       |             |
+| package | `{ root?: string; entrypoints?: string[]; } \| undefined`                                     | no       | —       |             |
+| output  | `{ dir?: string; } \| undefined`                                                              | no       | —       |             |
 
 </details>
 
@@ -125,25 +125,5 @@ Configuration for running Paradox.
 
 Module: `src/config/types.ts`
 Source: `src/config/types.ts:7:1`
-
-</details>
-
-### Documentation
-
-<details>
-<summary>PARADOX_DOC_TAGS</summary>
-
-Supported Paradox documentation tags.
-
-Paradox supports doc tags inside triple-star documentation comments.
-
-| name      | syntax     | description                                                                                                                                                      | applies to      | repeatable | handler        |
-| --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------- | -------------- |
-| `readme`  | `@readme`  | Includes a documentation block or exported symbol in README output.                                                                                              | block, symbol   | no         | `markReadme`   |
-| `config`  | `@config`  | Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output. | interface, type | no         | `markConfig`   |
-| `example` | `@example` | Adds a titled fenced code example to the generated documentation for a symbol.                                                                                   | symbol          | yes        | `parseExample` |
-
-Module: `src/doc-tags/registry.ts`
-Source: `src/doc-tags/registry.ts:8:14`
 
 </details>

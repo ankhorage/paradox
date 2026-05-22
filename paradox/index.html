@@ -157,6 +157,11 @@
       <small>1 function</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/analyze/readmeUsage.ts">
+      src/analyze/readmeUsage.ts
+      <small>7 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/semantic/analyzeProject.ts">
       src/analyze/semantic/analyzeProject.ts
       <small>1 function</small>
@@ -304,7 +309,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/render/renderers/markdown.ts">
       src/render/renderers/markdown.ts
-      <small>27 functions</small>
+      <small>28 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/write/write.ts">
@@ -323,7 +328,7 @@
       <div class="summary">
         <div><strong>7</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>44</strong><span class="muted">modules</span></div>
+        <div><strong>45</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -412,10 +417,10 @@ and writes them to the configured output directory.</p>
   </section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
@@ -442,6 +447,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
+  </article><article class="item" data-search="src/analyze/readmeUsage.ts src/analyze/utils/parseParadoxComment.ts AnalysisReadmeUsage analyzeReadmeUsage">
+    <h3>src/analyze/readmeUsage.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisReadmeUsage</code>, <code>analyzeReadmeUsage</code></p>
   </article><article class="item" data-search="src/analyze/semantic/analyzeProject.ts src/analyze/semantic/associateDocBlocksWithSymbols.ts src/analyze/semantic/collectSourceFiles.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/docBlocks.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/semantic/model.ts src/analyze/semantic/tagRegistry.ts analyzeProject">
     <h3>src/analyze/semantic/analyzeProject.ts</h3>
     <p class="muted">Referenced module</p>
@@ -512,11 +522,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeSourceFunctions</code></p>
-  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisStructuredRow AnalysisUsage">
+  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisReadmeUsage AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisStructuredRow AnalysisUsage">
     <h3>src/analyze/types.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisStructuredRow</code>, <code>AnalysisUsage</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisReadmeUsage</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisStructuredRow</code>, <code>AnalysisUsage</code></p>
   </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
     <h3>src/analyze/usage.ts</h3>
     <p class="muted">Referenced module</p>
@@ -547,11 +557,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>isReactComponent</code></p>
-  </article><article class="item" data-search="src/analyze/utils/parseParadoxComment.ts parseParadoxComment">
+  </article><article class="item" data-search="src/analyze/utils/parseParadoxComment.ts ParsedParadoxComment parseParadoxComment">
     <h3>src/analyze/utils/parseParadoxComment.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>parseParadoxComment</code></p>
+    <p><strong>Exports:</strong> <code>ParsedParadoxComment</code>, <code>parseParadoxComment</code></p>
   </article><article class="item" data-search="src/analyze/utils/resolveExportSymbol.ts resolveExportSymbol">
     <h3>src/analyze/utils/resolveExportSymbol.ts</h3>
     <p class="muted">Referenced module</p>
@@ -679,7 +689,7 @@ and writes them to the configured output directory.</p>
       <tr>
             <td><code>docs</code></td>
             <td>property</td>
-            <td><code>{ title?: string; description?: string; } | undefined</code></td>
+            <td><code>{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } | undefined</code></td>
             <td>no</td>
             <td></td>
           </tr><tr>
@@ -707,15 +717,15 @@ and writes them to the configured output directory.</p>
             </section>
             <section>
               <h3>src/doc-tags/registry.ts</h3>
-              <article class="item" id="symbol-getparadoxdoctag" data-search="getParadoxDocTag function src/doc-tags/registry.ts Looks up documentation tag metadata by tag name. (name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null">
+              <article class="item" id="symbol-getparadoxdoctag" data-search="getParadoxDocTag function src/doc-tags/registry.ts Looks up documentation tag metadata by tag name. (name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | { readonly name: &quot;usage&quot;; readonly syntax: &quot;@usage&quot;; readonly description: &quot;Promotes a real source example into the generated README Usage section.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markUsage&quot;; } | null">
     <h4>getParadoxDocTag</h4>
-    <p class="muted">function • <code>src/doc-tags/registry.ts:42:1</code></p>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:53:1</code></p>
     <p>Looks up documentation tag metadata by tag name.</p>
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     <div>
         <h5>Signature</h5>
-        <pre>(name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null</pre>
+        <pre>(name: string) =&gt; { readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | { readonly name: &quot;usage&quot;; readonly syntax: &quot;@usage&quot;; readonly description: &quot;Promotes a real source example into the generated README Usage section.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markUsage&quot;; } | null</pre>
         <table>
                 <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                 <tbody>
@@ -727,12 +737,12 @@ and writes them to the configured output directory.</p>
                       </tr>
                 </tbody>
               </table>
-        <p><strong>Returns:</strong> <code>{ readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | null</code></p>
+        <p><strong>Returns:</strong> <code>{ readonly name: &quot;readme&quot;; readonly syntax: &quot;@readme&quot;; readonly description: &quot;Includes a documentation block or exported symbol in README output.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markReadme&quot;; } | { readonly name: &quot;config&quot;; readonly syntax: &quot;@config&quot;; readonly description: &quot;Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.&quot;; readonly appliesTo: readonly [&quot;interface&quot;, &quot;type&quot;]; readonly repeatable: false; readonly handler: &quot;markConfig&quot;; } | { readonly name: &quot;example&quot;; readonly syntax: &quot;@example&quot;; readonly description: &quot;Adds a titled fenced code example to the generated documentation for a symbol.&quot;; readonly appliesTo: readonly [&quot;symbol&quot;]; readonly repeatable: true; readonly handler: &quot;parseExample&quot;; } | { readonly name: &quot;usage&quot;; readonly syntax: &quot;@usage&quot;; readonly description: &quot;Promotes a real source example into the generated README Usage section.&quot;; readonly appliesTo: readonly [&quot;block&quot;, &quot;symbol&quot;]; readonly repeatable: false; readonly handler: &quot;markUsage&quot;; } | null</code></p>
       </div>
     
   </article><article class="item" id="symbol-isparadoxdoctagname" data-search="isParadoxDocTagName function src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name. (name: string) =&gt; boolean">
     <h4>isParadoxDocTagName</h4>
-    <p class="muted">function • <code>src/doc-tags/registry.ts:49:1</code></p>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:60:1</code></p>
     <p>Checks whether a string is a supported Paradox documentation tag name.</p>
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -753,19 +763,17 @@ and writes them to the configured output directory.</p>
         <p><strong>Returns:</strong> <code>boolean</code></p>
       </div>
     
-  </article><article class="item" id="symbol-paradox-doc-tags" data-search="PARADOX_DOC_TAGS value src/doc-tags/registry.ts Supported Paradox documentation tags.&#10;&#10;Paradox supports doc tags inside triple-star documentation comments.">
+  </article><article class="item" id="symbol-paradox-doc-tags" data-search="PARADOX_DOC_TAGS value src/doc-tags/registry.ts ">
     <h4>PARADOX_DOC_TAGS</h4>
-    <p class="muted">value • <code>src/doc-tags/registry.ts:8:14</code></p>
-    <p>Supported Paradox documentation tags.
-
-Paradox supports doc tags inside triple-star documentation comments.</p>
+    <p class="muted">value • <code>src/doc-tags/registry.ts:11:14</code></p>
+    
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
     
   </article><article class="item" id="symbol-paradoxdoctaghandlerid" data-search="ParadoxDocTagHandlerId unknown src/doc-tags/registry.ts ">
     <h4>ParadoxDocTagHandlerId</h4>
-    <p class="muted">unknown • <code>src/doc-tags/registry.ts:37:1</code></p>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:48:1</code></p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -773,7 +781,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
     
   </article><article class="item" id="symbol-paradoxdoctagname" data-search="ParadoxDocTagName unknown src/doc-tags/registry.ts ">
     <h4>ParadoxDocTagName</h4>
-    <p class="muted">unknown • <code>src/doc-tags/registry.ts:36:1</code></p>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:47:1</code></p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -802,6 +810,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
@@ -834,6 +843,9 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
@@ -987,6 +999,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
@@ -1019,6 +1032,9 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
@@ -1170,6 +1186,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
   module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
@@ -1213,6 +1230,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
@@ -1235,6 +1253,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1309,6 +1328,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
   module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
@@ -1352,6 +1372,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
@@ -1374,6 +1395,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1450,6 +1472,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
   module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
@@ -1513,6 +1536,7 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   module_src_analyze_semantic_associateDocBlocksWithSymbols_ts[&quot;src/analyze/semantic/associateDocBlocksWithSymbols.ts&quot;]
   module_src_analyze_semantic_collectSourceFiles_ts[&quot;src/analyze/semantic/collectSourceFiles.ts&quot;]
@@ -1660,15 +1684,15 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
       <h2>src/analyze/analyze.ts</h2>
       <article class="item" data-search="analyze src/analyze/analyze.ts Analyzes a package and returns the complete documentation input model.">
     <h3>analyze</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:25:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:26:1</code></p>
     <p>Analyzes a package and returns the complete documentation input model.</p>
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:105:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:113:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:122:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:130:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
   </article>
     </section>
@@ -1800,11 +1824,11 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
     <p>Builds a deterministic module relationship graph for documentation renderers.</p>
   </article><article class="item" data-search="uniqueSorted src/analyze/modules.ts Returns unique string values sorted for deterministic generated output.">
     <h3>uniqueSorted</h3>
-    <p class="muted"><code>src/analyze/modules.ts:65:1</code></p>
+    <p class="muted"><code>src/analyze/modules.ts:74:1</code></p>
     <p>Returns unique string values sorted for deterministic generated output.</p>
   </article><article class="item" data-search="toPosixPath src/analyze/modules.ts Normalizes platform-specific path separators for generated documentation output.">
     <h3>toPosixPath</h3>
-    <p class="muted"><code>src/analyze/modules.ts:72:1</code></p>
+    <p class="muted"><code>src/analyze/modules.ts:81:1</code></p>
     <p>Normalizes platform-specific path separators for generated documentation output.</p>
   </article>
     </section>
@@ -1815,6 +1839,39 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
     <h3>createProject</h3>
     <p class="muted"><code>src/analyze/project.ts:6:1</code></p>
     <p>Creates the ts-morph project used by the analyzer.</p>
+  </article>
+    </section>
+  </section><section id="view-src-analyze-readmeusage-ts" class="view" data-view="src/analyze/readmeUsage.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/readmeUsage.ts</h2>
+      <article class="item" data-search="analyzeReadmeUsage src/analyze/readmeUsage.ts Collects README usage examples from configured real source files.">
+    <h3>analyzeReadmeUsage</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:25:1</code></p>
+    <p>Collects README usage examples from configured real source files.</p>
+  </article><article class="item" data-search="analyzeUsageEntrypoint src/analyze/readmeUsage.ts ">
+    <h3>analyzeUsageEntrypoint</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:36:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="findUsageComments src/analyze/readmeUsage.ts ">
+    <h3>findUsageComments</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:58:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="removeRange src/analyze/readmeUsage.ts ">
+    <h3>removeRange</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:76:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="getUsageTitle src/analyze/readmeUsage.ts ">
+    <h3>getUsageTitle</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:86:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="getLanguage src/analyze/readmeUsage.ts ">
+    <h3>getLanguage</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:92:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="toPosixPath src/analyze/readmeUsage.ts ">
+    <h3>toPosixPath</h3>
+    <p class="muted"><code>src/analyze/readmeUsage.ts:103:1</code></p>
+    <p class="empty">No description available.</p>
   </article>
     </section>
   </section><section id="view-src-analyze-semantic-analyzeproject-ts" class="view" data-view="src/analyze/semantic/analyzeProject.ts" hidden>
@@ -2284,15 +2341,15 @@ Paradox supports doc tags inside triple-star documentation comments.</p>
       <h2>src/analyze/utils/parseParadoxComment.ts</h2>
       <article class="item" data-search="parseParadoxComment src/analyze/utils/parseParadoxComment.ts Parses a Paradox doc comment into structured metadata.">
     <h3>parseParadoxComment</h3>
-    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:22:1</code></p>
+    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:25:1</code></p>
     <p>Parses a Paradox doc comment into structured metadata.</p>
   </article><article class="item" data-search="parseExample src/analyze/utils/parseParadoxComment.ts ">
     <h3>parseExample</h3>
-    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:82:1</code></p>
+    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:92:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="normalizeCommentLines src/analyze/utils/parseParadoxComment.ts ">
     <h3>normalizeCommentLines</h3>
-    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:119:1</code></p>
+    <p class="muted"><code>src/analyze/utils/parseParadoxComment.ts:129:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>
@@ -2332,11 +2389,11 @@ and writes them to the configured output directory.</p>
       <h2>src/doc-tags/registry.ts</h2>
       <article class="item" data-search="getParadoxDocTag src/doc-tags/registry.ts Looks up documentation tag metadata by tag name.">
     <h3>getParadoxDocTag</h3>
-    <p class="muted"><code>src/doc-tags/registry.ts:42:1</code></p>
+    <p class="muted"><code>src/doc-tags/registry.ts:53:1</code></p>
     <p>Looks up documentation tag metadata by tag name.</p>
   </article><article class="item" data-search="isParadoxDocTagName src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name.">
     <h3>isParadoxDocTagName</h3>
-    <p class="muted"><code>src/doc-tags/registry.ts:49:1</code></p>
+    <p class="muted"><code>src/doc-tags/registry.ts:60:1</code></p>
     <p>Checks whether a string is a supported Paradox documentation tag name.</p>
   </article>
     </section>
@@ -2345,27 +2402,27 @@ and writes them to the configured output directory.</p>
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:153:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:160:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:240:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:256:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:292:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:308:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
   </article><article class="item" data-search="findConfigFactoryName src/model/buildModel.ts Finds the conventional config factory export for a config type when present.">
     <h3>findConfigFactoryName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:324:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:340:1</code></p>
     <p>Finds the conventional config factory export for a config type when present.</p>
   </article><article class="item" data-search="getDefaultConfigFileName src/model/buildModel.ts Derives the default config file name from a package id.">
     <h3>getDefaultConfigFileName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:336:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:352:1</code></p>
     <p>Derives the default config file name from a package id.</p>
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their `name` property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:345:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:361:1</code></p>
     <p>Returns a copy of items sorted by their `name` property.</p>
   </article>
     </section>
@@ -2631,111 +2688,115 @@ and writes them to the configured output directory.</p>
       <h2>src/render/renderers/markdown.ts</h2>
       <article class="item" data-search="renderMarkdown src/render/renderers/markdown.ts Renders markdown artifacts from the documentation model.">
     <h3>renderMarkdown</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:22:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:23:1</code></p>
     <p>Renders markdown artifacts from the documentation model.</p>
   </article><article class="item" data-search="renderReadme src/render/renderers/markdown.ts ">
     <h3>renderReadme</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:35:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:36:1</code></p>
+    <p class="empty">No description available.</p>
+  </article><article class="item" data-search="renderReadmeUsage src/render/renderers/markdown.ts ">
+    <h3>renderReadmeUsage</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:79:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderCliScenarios src/render/renderers/markdown.ts ">
     <h3>renderCliScenarios</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:83:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:100:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="findScenarioDiagram src/render/renderers/markdown.ts ">
     <h3>findScenarioDiagram</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:123:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:137:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts ">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:132:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:146:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderGeneratedDocumentation src/render/renderers/markdown.ts ">
     <h3>renderGeneratedDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:178:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:192:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts ">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:193:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:206:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts ">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:210:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:221:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts ">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:243:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:254:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts ">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:262:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:273:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExamples src/render/renderers/markdown.ts ">
     <h3>renderExamples</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:270:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:281:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts ">
     <h3>renderStructuredRows</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:279:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:290:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts ">
     <h3>getStructuredColumns</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:301:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:312:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts ">
     <h3>formatStructuredColumnHeader</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:312:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:321:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts ">
     <h3>formatStructuredCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:316:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:325:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts ">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:328:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:333:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts ">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:356:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:361:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts ">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:362:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:367:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts ">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:368:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:373:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts ">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:372:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:377:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts ">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:385:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:390:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts ">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:441:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:442:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts ">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:481:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:477:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts ">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:485:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:481:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts ">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:489:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:485:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts ">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:513:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:509:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toFileStem src/render/renderers/markdown.ts ">
     <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:525:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:519:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>
