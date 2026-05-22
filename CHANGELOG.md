@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.8
+
+### Patch Changes
+
+- adb5c26: Regenerate generated README, docs, and badges during Changesets version PR creation so release version bumps stay in sync with committed documentation.
+
 ## 0.1.7
 
 ### Patch Changes
