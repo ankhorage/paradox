@@ -513,6 +513,14 @@
       ]
     },
     {
+      "path": "src/docsSurface.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "default"
+      ]
+    },
+    {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],

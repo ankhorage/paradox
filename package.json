@@ -42,13 +42,11 @@
     "paradox": "./dist/cli.js"
   },
   "ankh": {
-    "category": "paradox",
-    "provider": null,
+    "category": "docs",
+    "provider": "./dist/docsSurface.js",
     "capabilities": [
-      "paradox.package",
-      "paradox.config",
-      "paradox.model",
-      "paradox.tags"
+      "docs.generate",
+      "docs.check"
     ]
   },
   "scripts": {
