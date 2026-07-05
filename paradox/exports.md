@@ -42,6 +42,12 @@ Checks whether a string is a supported Paradox documentation tag name.
   - name: `string`
   - returns: `boolean`
 
+## packageMetadata
+
+Kind: `value`
+Module: `src/packageMetadata.ts`
+Source: `src/packageMetadata.ts:1:14`
+
 ## PARADOX_DOC_TAGS
 
 Kind: `value`

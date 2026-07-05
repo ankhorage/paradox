@@ -523,7 +523,8 @@
         "PARADOX_DOC_TAGS",
         "ParadoxConfig",
         "ParadoxDocTagHandlerId",
-        "ParadoxDocTagName"
+        "ParadoxDocTagName",
+        "paradoxPackageMetadata"
       ]
     },
     {
@@ -548,6 +549,22 @@
         "GeneratedBadge",
         "ModuleModel",
         "SequenceScenarioModel"
+      ]
+    },
+    {
+      "path": "src/packageMetadata.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/packageMetadata.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "packageMetadata"
       ]
     },
     {
@@ -749,6 +766,26 @@
           "returnDescription": null
         }
       ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "packageMetadata",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/packageMetadata.ts",
+      "sourceLocation": {
+        "filePath": "src/packageMetadata.ts",
+        "line": 1,
+        "column": 14
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
       "members": [],
       "structuredRows": []
     },
@@ -3088,6 +3125,16 @@
         "sourcePath": "src/index.ts"
       },
       {
+        "fromPath": "src/index.ts",
+        "toPath": "src/packageMetadata.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/packageMetadata.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/packageMetadata.test.ts"
+      },
+      {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/config/types.ts",
         "sourcePath": "src/analyze/analyze.ts"
@@ -3588,6 +3635,24 @@
         "toSymbol": "main",
         "callExpression": "main",
         "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/packageMetadata.test.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/packageMetadata.test.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/packageMetadata.test.ts"
       },
       {
         "fromSymbol": "analyze",
