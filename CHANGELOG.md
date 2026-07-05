@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.12
+
+### Patch Changes
+
+- 088286e: Expose package-level surface metadata.
+
 ## 0.1.11
 
 ### Patch Changes
