@@ -1,4 +1,4 @@
 export const packageMetadata = {
   category: 'paradox',
-  capabilities: ['package', 'config', 'model', 'tags'] as const,
+  capabilities: ['paradox.package', 'paradox.config', 'paradox.model', 'paradox.tags'] as const,
 };
