@@ -513,6 +513,14 @@
       ]
     },
     {
+      "path": "src/docsSurface.handlers.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/docsSurface.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/docsSurface.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -3126,6 +3134,11 @@
         "sourcePath": "src/cli.ts"
       },
       {
+        "fromPath": "src/docsSurface.handlers.test.ts",
+        "toPath": "src/docsSurface.ts",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
         "fromPath": "src/index.ts",
         "toPath": "src/config/defineParadoxConfig.ts",
         "sourcePath": "src/index.ts"
@@ -3656,6 +3669,30 @@
         "toSymbol": "main",
         "callExpression": "main",
         "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "src/docsSurface.handlers.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromSymbol": "src/docsSurface.handlers.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromSymbol": "src/docsSurface.handlers.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "spawnSync",
+        "callExpression": "spawnSync",
+        "sourcePath": "src/docsSurface.ts"
       },
       {
         "fromSymbol": "src/packageMetadata.capabilities.test.ts",
