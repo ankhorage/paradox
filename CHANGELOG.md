@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.14
+
+### Patch Changes
+
+- 63a2f91: Add execution handlers to the docs command surface.
+
 ## 0.1.13
 
 ### Patch Changes
