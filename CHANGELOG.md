@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.11
+
+### Patch Changes
+
+- c090033: Add Ankh package metadata for the Paradox command boundary.
+
 ## 0.1.10
 
 ### Patch Changes
