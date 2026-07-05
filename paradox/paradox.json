@@ -552,10 +552,18 @@
       ]
     },
     {
+      "path": "src/packageMetadata.capabilities.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/packageMetadata.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/packageMetadata.test.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/index.ts"
+        "src/packageMetadata.ts"
       ],
       "exports": []
     },
@@ -3130,8 +3138,13 @@
         "sourcePath": "src/index.ts"
       },
       {
+        "fromPath": "src/packageMetadata.capabilities.test.ts",
+        "toPath": "src/packageMetadata.ts",
+        "sourcePath": "src/packageMetadata.capabilities.test.ts"
+      },
+      {
         "fromPath": "src/packageMetadata.test.ts",
-        "toPath": "src/index.ts",
+        "toPath": "src/packageMetadata.ts",
         "sourcePath": "src/packageMetadata.test.ts"
       },
       {
@@ -3635,6 +3648,24 @@
         "toSymbol": "main",
         "callExpression": "main",
         "sourcePath": "src/cli.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.capabilities.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/packageMetadata.capabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.capabilities.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/packageMetadata.capabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/packageMetadata.capabilities.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/packageMetadata.capabilities.test.ts"
       },
       {
         "fromSymbol": "src/packageMetadata.test.ts",

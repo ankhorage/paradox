@@ -328,7 +328,7 @@
       <div class="summary">
         <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>47</strong><span class="muted">modules</span></div>
+        <div><strong>48</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -602,10 +602,15 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>GeneratedBadge</code>, <code>ModuleModel</code>, <code>SequenceScenarioModel</code></p>
-  </article><article class="item" data-search="src/packageMetadata.test.ts src/index.ts">
+  </article><article class="item" data-search="src/packageMetadata.capabilities.test.ts src/packageMetadata.ts">
+    <h3>src/packageMetadata.capabilities.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/packageMetadata.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/packageMetadata.test.ts src/packageMetadata.ts">
     <h3>src/packageMetadata.test.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/packageMetadata.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/packageMetadata.ts packageMetadata">
     <h3>src/packageMetadata.ts</h3>
@@ -973,9 +978,12 @@ and writes them to the configured output directory.</p>
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_capabilities_test_ts
+  module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_packageMetadata_test_ts
-  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
@@ -1167,9 +1175,12 @@ and writes them to the configured output directory.</p>
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_capabilities_test_ts
+  module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_packageMetadata_test_ts
-  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
@@ -1249,6 +1260,7 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
@@ -1334,7 +1346,8 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
-  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
@@ -1394,6 +1407,7 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
@@ -1479,7 +1493,8 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
-  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
@@ -1541,6 +1556,7 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
@@ -1609,6 +1625,7 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_capabilities_test_ts[&quot;src/packageMetadata.capabilities.test.ts&quot;]
   module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
   module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
