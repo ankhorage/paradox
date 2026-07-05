@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.13
+
+### Patch Changes
+
+- df28363: Expose docs command surface metadata for Ankh discovery.
+
 ## 0.1.12
 
 ### Patch Changes
