@@ -36,6 +36,8 @@ graph LR
   module_src_index_ts["src/index.ts"]
   module_src_model_buildModel_ts["src/model/buildModel.ts"]
   module_src_model_types_ts["src/model/types.ts"]
+  module_src_packageMetadata_test_ts["src/packageMetadata.test.ts"]
+  module_src_packageMetadata_ts["src/packageMetadata.ts"]
   module_src_paths_policy_ts["src/paths/policy.ts"]
   module_src_render_render_ts["src/render/render.ts"]
   module_src_render_renderers_badges_ts["src/render/renderers/badges.ts"]
@@ -51,6 +53,8 @@ graph LR
   module_src_doc_tags_registry_ts --> export_getParadoxDocTag
   export_isParadoxDocTagName["isParadoxDocTagName"]
   module_src_doc_tags_registry_ts --> export_isParadoxDocTagName
+  export_packageMetadata["packageMetadata"]
+  module_src_packageMetadata_ts --> export_packageMetadata
   export_PARADOX_DOC_TAGS["PARADOX_DOC_TAGS"]
   module_src_doc_tags_registry_ts --> export_PARADOX_DOC_TAGS
   export_ParadoxConfig["ParadoxConfig"]

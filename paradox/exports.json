@@ -104,6 +104,26 @@
     "structuredRows": []
   },
   {
+    "name": "packageMetadata",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "value",
+    "modulePath": "src/packageMetadata.ts",
+    "sourceLocation": {
+      "filePath": "src/packageMetadata.ts",
+      "line": 1,
+      "column": 14
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "PARADOX_DOC_TAGS",
     "description": null,
     "isReadme": false,

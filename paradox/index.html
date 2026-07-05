@@ -326,9 +326,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>7</strong><span class="muted">public exports</span></div>
+        <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>45</strong><span class="muted">modules</span></div>
+        <div><strong>47</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -587,11 +587,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>getParadoxDocTag</code>, <code>isParadoxDocTagName</code>, <code>PARADOX_DOC_TAGS</code>, <code>ParadoxDocTagHandlerId</code>, <code>ParadoxDocTagName</code></p>
-  </article><article class="item" data-search="src/index.ts defineParadoxConfig getParadoxDocTag isParadoxDocTagName PARADOX_DOC_TAGS ParadoxConfig ParadoxDocTagHandlerId ParadoxDocTagName">
+  </article><article class="item" data-search="src/index.ts defineParadoxConfig getParadoxDocTag isParadoxDocTagName PARADOX_DOC_TAGS ParadoxConfig ParadoxDocTagHandlerId ParadoxDocTagName paradoxPackageMetadata">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>defineParadoxConfig</code>, <code>getParadoxDocTag</code>, <code>isParadoxDocTagName</code>, <code>PARADOX_DOC_TAGS</code>, <code>ParadoxConfig</code>, <code>ParadoxDocTagHandlerId</code>, <code>ParadoxDocTagName</code></p>
+    <p><strong>Exports:</strong> <code>defineParadoxConfig</code>, <code>getParadoxDocTag</code>, <code>isParadoxDocTagName</code>, <code>PARADOX_DOC_TAGS</code>, <code>ParadoxConfig</code>, <code>ParadoxDocTagHandlerId</code>, <code>ParadoxDocTagName</code>, <code>paradoxPackageMetadata</code></p>
   </article><article class="item" data-search="src/model/buildModel.ts src/model/types.ts buildModel">
     <h3>src/model/buildModel.ts</h3>
     <p class="muted">Referenced module</p>
@@ -602,6 +602,16 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>ComponentModel</code>, <code>DocumentationModel</code>, <code>ExportKind</code>, <code>ExportModel</code>, <code>GeneratedBadge</code>, <code>ModuleModel</code>, <code>SequenceScenarioModel</code></p>
+  </article><article class="item" data-search="src/packageMetadata.test.ts src/index.ts">
+    <h3>src/packageMetadata.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/packageMetadata.ts packageMetadata">
+    <h3>src/packageMetadata.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>packageMetadata</code></p>
   </article><article class="item" data-search="src/paths/policy.ts src/config/types.ts findParadoxConfigFile loadParadoxConfig resolveOutputRoot resolvePackageRoot">
     <h3>src/paths/policy.ts</h3>
     <p class="muted">Referenced module</p>
@@ -789,6 +799,18 @@ and writes them to the configured output directory.</p>
     
   </article>
             </section>
+            <section>
+              <h3>src/packageMetadata.ts</h3>
+              <article class="item" id="symbol-packagemetadata" data-search="packageMetadata value src/packageMetadata.ts ">
+    <h4>packageMetadata</h4>
+    <p class="muted">value • <code>src/packageMetadata.ts:1:14</code></p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article>
+            </section>
     </section>
     <section class="panel">
       <h2>Component registry</h2>
@@ -951,6 +973,11 @@ and writes them to the configured output directory.</p>
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_test_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_paths_policy_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
@@ -1140,6 +1167,11 @@ and writes them to the configured output directory.</p>
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_types_ts
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_test_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_packageMetadata_ts
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_paths_policy_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
@@ -1217,6 +1249,8 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
@@ -1300,6 +1334,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
@@ -1359,6 +1394,8 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
@@ -1442,6 +1479,7 @@ and writes them to the configured output directory.</p>
   module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
+  module_src_packageMetadata_test_ts --&gt; module_src_index_ts
   module_src_paths_policy_ts --&gt; module_src_config_types_ts
   module_src_render_render_ts --&gt; module_src_model_types_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_badges_ts
@@ -1503,6 +1541,8 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
@@ -1518,6 +1558,8 @@ and writes them to the configured output directory.</p>
   module_src_doc_tags_registry_ts --&gt; export_getParadoxDocTag
   export_isParadoxDocTagName[&quot;isParadoxDocTagName&quot;]
   module_src_doc_tags_registry_ts --&gt; export_isParadoxDocTagName
+  export_packageMetadata[&quot;packageMetadata&quot;]
+  module_src_packageMetadata_ts --&gt; export_packageMetadata
   export_PARADOX_DOC_TAGS[&quot;PARADOX_DOC_TAGS&quot;]
   module_src_doc_tags_registry_ts --&gt; export_PARADOX_DOC_TAGS
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
@@ -1567,6 +1609,8 @@ and writes them to the configured output directory.</p>
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
+  module_src_packageMetadata_test_ts[&quot;src/packageMetadata.test.ts&quot;]
+  module_src_packageMetadata_ts[&quot;src/packageMetadata.ts&quot;]
   module_src_paths_policy_ts[&quot;src/paths/policy.ts&quot;]
   module_src_render_render_ts[&quot;src/render/render.ts&quot;]
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
@@ -1582,6 +1626,8 @@ and writes them to the configured output directory.</p>
   module_src_doc_tags_registry_ts --&gt; export_getParadoxDocTag
   export_isParadoxDocTagName[&quot;isParadoxDocTagName&quot;]
   module_src_doc_tags_registry_ts --&gt; export_isParadoxDocTagName
+  export_packageMetadata[&quot;packageMetadata&quot;]
+  module_src_packageMetadata_ts --&gt; export_packageMetadata
   export_PARADOX_DOC_TAGS[&quot;PARADOX_DOC_TAGS&quot;]
   module_src_doc_tags_registry_ts --&gt; export_PARADOX_DOC_TAGS
   export_ParadoxConfig[&quot;ParadoxConfig&quot;]
