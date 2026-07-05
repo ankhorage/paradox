@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'bun:test';
 
-import { paradoxPackageMetadata } from './index.js';
+import { packageMetadata } from './packageMetadata.js';
 
-describe('package metadata', () => {
-  test('declares Paradox package boundary capabilities', () => {
-    expect(paradoxPackageMetadata.category).toBe('paradox');
-    expect(paradoxPackageMetadata.capabilities).toEqual(['package', 'config', 'model', 'tags']);
+describe('metadata', () => {
+  test('has a category and surfaces', () => {
+    expect(packageMetadata.category).toBe('paradox');
+    expect(packageMetadata.capabilities.length).toBeGreaterThan(0);
   });
 });

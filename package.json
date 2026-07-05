@@ -41,6 +41,16 @@
   "bin": {
     "paradox": "./dist/cli.js"
   },
+  "ankh": {
+    "category": "paradox",
+    "provider": null,
+    "capabilities": [
+      "paradox.package",
+      "paradox.config",
+      "paradox.model",
+      "paradox.tags"
+    ]
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "changeset": "changeset",
