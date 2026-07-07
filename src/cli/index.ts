@@ -1,6 +1,11 @@
-import type { AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
-
 import { runParadox } from '../run.js';
+
+interface ProviderRequest {
+  readonly argv: readonly string[];
+  readonly context: {
+    writeStdout(text: string): void;
+  };
+}
 
 const provider = {
   id: '@ankhorage/paradox',
@@ -18,13 +23,13 @@ const provider = {
   handlers: [
     {
       path: ['generate'],
-      async handler(request) {
+      async handler(request: ProviderRequest) {
         await runParadox({ cwd: request.argv[0] });
         request.context.writeStdout('Done.\n');
         return { exitCode: 0 };
       },
     },
   ],
-} satisfies AnkhRuntimeCommandProvider;
+};
 
 export default provider;
