@@ -1,60 +1,29 @@
-import { runParadox } from '../run.js';
+import { spawnSync } from 'node:child_process';
 
-export interface ParadoxProviderRequest {
-  readonly argv: readonly string[];
-  readonly context: {
-    writeStdout(text: string): void;
-  };
-}
+const packageName = '@ankhorage/paradox';
+const packageVersion = '0.1.14';
 
-export interface ParadoxProviderResult {
-  readonly exitCode: number;
-}
+const commandList = [
+  {
+    path: ['generate'],
+    summary: 'Generate package documentation.',
+    capability: 'docs.generate',
+  },
+] as const;
 
-export interface ParadoxProviderHandler {
-  readonly path: readonly ['generate'];
-  handler(request: ParadoxProviderRequest): Promise<ParadoxProviderResult>;
-}
+const handlers = commandList.map((command) => ({
+  path: command.path,
+  handler() {
+    const result = spawnSync('paradox', [], { stdio: 'inherit' });
+    return { exitCode: result.status ?? 1 };
+  },
+}));
 
-export interface ParadoxProviderCommand {
-  readonly path: readonly ['generate'];
-  readonly capability: 'docs.generate';
-  readonly summary: string;
-  readonly examples: readonly string[];
-}
-
-export interface ParadoxProvider {
-  readonly id: '@ankhorage/paradox';
-  readonly category: 'docs';
-  readonly version: string;
-  readonly capabilities: readonly ['docs.generate'];
-  readonly commands: readonly [ParadoxProviderCommand];
-  readonly handlers: readonly [ParadoxProviderHandler];
-}
-
-const provider: ParadoxProvider = {
-  id: '@ankhorage/paradox',
+export default {
+  id: packageName,
   category: 'docs',
-  version: '0.1.14',
+  version: packageVersion,
   capabilities: ['docs.generate'],
-  commands: [
-    {
-      path: ['generate'],
-      capability: 'docs.generate',
-      summary: 'Run Paradox for the current package.',
-      examples: ['ankh docs generate'],
-    },
-  ],
-  handlers: [
-    {
-      path: ['generate'],
-      async handler(request) {
-        await runParadox({ cwd: request.argv[0] });
-        request.context.writeStdout('Done.\n');
-        return { exitCode: 0 };
-      },
-    },
-  ],
+  commands: commandList,
+  handlers,
 };
-
-export default provider;
