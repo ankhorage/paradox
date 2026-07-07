@@ -483,6 +483,14 @@
       "exports": []
     },
     {
+      "path": "src/cli/index.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "default"
+      ]
+    },
+    {
       "path": "src/config/defineParadoxConfig.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -3357,6 +3365,11 @@
         "fromPath": "src/analyze/usage.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/docsSurface.ts",
+        "sourcePath": "src/cli/index.ts"
       },
       {
         "fromPath": "src/config/defineParadoxConfig.ts",
