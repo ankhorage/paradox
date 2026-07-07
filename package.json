@@ -30,6 +30,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./cli": {
+      "types": "./dist/cli/index.d.ts",
+      "import": "./dist/cli/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -43,10 +47,9 @@
   },
   "ankh": {
     "category": "docs",
-    "provider": "./dist/docsSurface.js",
+    "provider": "./dist/cli/index.js",
     "capabilities": [
-      "docs.generate",
-      "docs.check"
+      "docs.generate"
     ]
   },
   "scripts": {

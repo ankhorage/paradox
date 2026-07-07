@@ -1,23 +1,13 @@
 import { spawnSync } from 'node:child_process';
 
 const packageName = '@ankhorage/paradox';
-const packageVersion = '0.1.13';
+const packageVersion = '0.1.14';
 
 const commandList = [
   {
-    path: ['docs'],
+    path: ['generate'],
     summary: 'Generate package documentation.',
     capability: 'docs.generate',
-  },
-  {
-    path: ['docs', 'write'],
-    summary: 'Generate and write package documentation.',
-    capability: 'docs.generate',
-  },
-  {
-    path: ['docs', 'check'],
-    summary: 'Check package documentation generation.',
-    capability: 'docs.check',
   },
 ] as const;
 
@@ -33,7 +23,7 @@ export default {
   id: packageName,
   category: 'docs',
   version: packageVersion,
-  capabilities: ['docs.generate', 'docs.check'],
+  capabilities: ['docs.generate'],
   commands: commandList,
   handlers,
 };
