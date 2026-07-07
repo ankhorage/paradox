@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.15
+
+### Patch Changes
+
+- 7d54020: Expose the package command provider.
+
 ## 0.1.14
 
 ### Patch Changes
