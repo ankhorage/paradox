@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.16
+
+### Patch Changes
+
+- 5bbc16a: Move the standalone executable into the canonical `src/cli/` folder while keeping the provider export at `src/cli/index.ts`.
+
 ## 0.1.15
 
 ### Patch Changes
