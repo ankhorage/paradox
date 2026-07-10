@@ -471,7 +471,15 @@
       ]
     },
     {
-      "path": "src/cli.ts",
+      "path": "src/cli/index.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/cli/standalone.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/analyze/analyze.ts",
@@ -481,14 +489,6 @@
         "src/write/write.ts"
       ],
       "exports": []
-    },
-    {
-      "path": "src/cli/index.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": [
-        "default"
-      ]
     },
     {
       "path": "src/config/defineParadoxConfig.ts",
@@ -2210,7 +2210,7 @@
       "name": "main",
       "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
       "sourceLocation": {
-        "filePath": "src/cli.ts",
+        "filePath": "src/cli/standalone.ts",
         "line": 24,
         "column": 1
       }
@@ -3108,7 +3108,7 @@
     {
       "kind": "bin",
       "name": "paradox",
-      "sourcePath": "src/cli.ts",
+      "sourcePath": "src/cli/standalone.ts",
       "symbolName": "main",
       "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
       "isReadme": true
@@ -3116,31 +3116,6 @@
   ],
   "graphs": {
     "imports": [
-      {
-        "fromPath": "src/cli.ts",
-        "toPath": "src/analyze/analyze.ts",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromPath": "src/cli.ts",
-        "toPath": "src/model/buildModel.ts",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromPath": "src/cli.ts",
-        "toPath": "src/paths/policy.ts",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromPath": "src/cli.ts",
-        "toPath": "src/render/render.ts",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromPath": "src/cli.ts",
-        "toPath": "src/write/write.ts",
-        "sourcePath": "src/cli.ts"
-      },
       {
         "fromPath": "src/docsSurface.handlers.test.ts",
         "toPath": "src/docsSurface.ts",
@@ -3370,6 +3345,31 @@
         "fromPath": "src/cli/index.ts",
         "toPath": "src/docsSurface.ts",
         "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/analyze/analyze.ts",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/model/buildModel.ts",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/paths/policy.ts",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/render/render.ts",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/write/write.ts",
+        "sourcePath": "src/cli/standalone.ts"
       },
       {
         "fromPath": "src/config/defineParadoxConfig.ts",
@@ -3623,66 +3623,6 @@
       }
     ],
     "calls": [
-      {
-        "fromSymbol": "main",
-        "toSymbol": "findParadoxConfigFile",
-        "callExpression": "findParadoxConfigFile",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "dirname",
-        "callExpression": "dirname",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "loadParadoxConfig",
-        "callExpression": "loadParadoxConfig",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "resolvePackageRoot",
-        "callExpression": "resolvePackageRoot",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "resolveOutputRoot",
-        "callExpression": "resolveOutputRoot",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "analyze",
-        "callExpression": "analyze",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "buildModel",
-        "callExpression": "buildModel",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "render",
-        "callExpression": "render",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "main",
-        "toSymbol": "write",
-        "callExpression": "write",
-        "sourcePath": "src/cli.ts"
-      },
-      {
-        "fromSymbol": "src/cli.ts",
-        "toSymbol": "main",
-        "callExpression": "main",
-        "sourcePath": "src/cli.ts"
-      },
       {
         "fromSymbol": "src/docsSurface.handlers.test.ts",
         "toSymbol": "describe",
@@ -4432,6 +4372,66 @@
         "toSymbol": "getPackageBaseName",
         "callExpression": "getPackageBaseName",
         "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "findParadoxConfigFile",
+        "callExpression": "findParadoxConfigFile",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "loadParadoxConfig",
+        "callExpression": "loadParadoxConfig",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "resolvePackageRoot",
+        "callExpression": "resolvePackageRoot",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "resolveOutputRoot",
+        "callExpression": "resolveOutputRoot",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "analyze",
+        "callExpression": "analyze",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "buildModel",
+        "callExpression": "buildModel",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "render",
+        "callExpression": "render",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
+        "toSymbol": "write",
+        "callExpression": "write",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "src/cli/standalone.ts",
+        "toSymbol": "main",
+        "callExpression": "main",
+        "sourcePath": "src/cli/standalone.ts"
       },
       {
         "fromSymbol": "isParadoxDocTagName",
