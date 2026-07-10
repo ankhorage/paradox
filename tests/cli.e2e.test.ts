@@ -5,7 +5,7 @@ import { join, relative, resolve } from 'node:path';
 import { describe, expect, test } from 'bun:test';
 
 const repoRoot = resolve(import.meta.dir, '..');
-const cliPath = join(repoRoot, 'src', 'cli.ts');
+const cliPath = join(repoRoot, 'src', 'cli', 'standalone.ts');
 
 describe('cli e2e', () => {
   test('writes artifacts to <packageRoot>/paradox when invoked from package root', async () => {
@@ -236,7 +236,6 @@ async function overwriteFixtureConfig(
   const outputDirLine = options.outputDir
     ? `  output: { dir: ${JSON.stringify(options.outputDir)} },\n`
     : '';
-
   const contents = `export default {\n  mode: ${JSON.stringify(options.mode)},\n  package: { entrypoints: ['src/index.ts'] },\n${outputDirLine}};\n`;
 
   await writeFile(join(pkgRoot, 'paradox.config.ts'), contents);

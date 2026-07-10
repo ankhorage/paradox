@@ -1,16 +1,16 @@
 #!/usr/bin/env bun
 import { dirname } from 'node:path';
 
-import { analyze } from './analyze/analyze.js';
-import { buildModel } from './model/buildModel.js';
+import { analyze } from '../analyze/analyze.js';
+import { buildModel } from '../model/buildModel.js';
 import {
   findParadoxConfigFile,
   loadParadoxConfig,
   resolveOutputRoot,
   resolvePackageRoot,
-} from './paths/policy.js';
-import { render } from './render/render.js';
-import { write } from './write/write.js';
+} from '../paths/policy.js';
+import { render } from '../render/render.js';
+import { write } from '../write/write.js';
 
 /***
  * Runs the Paradox CLI.

@@ -262,8 +262,8 @@
       <small>1 function</small>
     </button>
   </li><li>
-    <button class="nav-button" type="button" data-target="src/cli.ts">
-      src/cli.ts
+    <button class="nav-button" type="button" data-target="src/cli/standalone.ts">
+      src/cli/standalone.ts
       <small>1 function</small>
     </button>
   </li><li>
@@ -567,16 +567,16 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>resolveExportSymbol</code></p>
-  </article><article class="item" data-search="src/cli.ts src/analyze/analyze.ts src/model/buildModel.ts src/paths/policy.ts src/render/render.ts src/write/write.ts">
-    <h3>src/cli.ts</h3>
-    <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/analyze.ts</code>, <code>src/model/buildModel.ts</code>, <code>src/paths/policy.ts</code>, <code>src/render/render.ts</code>, <code>src/write/write.ts</code></p>
-    <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/cli/index.ts default">
     <h3>src/cli/index.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>default</code></p>
+  </article><article class="item" data-search="src/cli/standalone.ts src/analyze/analyze.ts src/model/buildModel.ts src/paths/policy.ts src/render/render.ts src/write/write.ts">
+    <h3>src/cli/standalone.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/analyze.ts</code>, <code>src/model/buildModel.ts</code>, <code>src/paths/policy.ts</code>, <code>src/render/render.ts</code>, <code>src/write/write.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/config/defineParadoxConfig.ts src/config/types.ts defineParadoxConfig">
     <h3>src/config/defineParadoxConfig.ts</h3>
     <p class="muted">Referenced module</p>
@@ -973,15 +973,15 @@ and writes them to the configured output directory.</p>
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_resolveExportSymbol_ts
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_cli_ts
-  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
-  module_src_cli_ts --&gt; module_src_model_buildModel_ts
-  module_src_cli_ts --&gt; module_src_paths_policy_ts
-  module_src_cli_ts --&gt; module_src_render_render_ts
-  module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_cli_index_ts
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_cli_standalone_ts
+  module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_standalone_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_standalone_ts --&gt; module_src_render_render_ts
+  module_src_cli_standalone_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_config_defineParadoxConfig_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
@@ -1177,15 +1177,15 @@ and writes them to the configured output directory.</p>
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_resolveExportSymbol_ts
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_cli_ts
-  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
-  module_src_cli_ts --&gt; module_src_model_buildModel_ts
-  module_src_cli_ts --&gt; module_src_paths_policy_ts
-  module_src_cli_ts --&gt; module_src_render_render_ts
-  module_src_cli_ts --&gt; module_src_write_write_ts
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_cli_index_ts
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_cli_standalone_ts
+  module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_standalone_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_standalone_ts --&gt; module_src_render_render_ts
+  module_src_cli_standalone_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_config_defineParadoxConfig_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
@@ -1282,8 +1282,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
@@ -1371,11 +1371,11 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
-  module_src_cli_ts --&gt; module_src_model_buildModel_ts
-  module_src_cli_ts --&gt; module_src_paths_policy_ts
-  module_src_cli_ts --&gt; module_src_render_render_ts
-  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_standalone_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_standalone_ts --&gt; module_src_render_render_ts
+  module_src_cli_standalone_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_docsSurface_handlers_test_ts --&gt; module_src_docsSurface_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
@@ -1433,8 +1433,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
@@ -1522,11 +1522,11 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_cli_ts --&gt; module_src_analyze_analyze_ts
-  module_src_cli_ts --&gt; module_src_model_buildModel_ts
-  module_src_cli_ts --&gt; module_src_paths_policy_ts
-  module_src_cli_ts --&gt; module_src_render_render_ts
-  module_src_cli_ts --&gt; module_src_write_write_ts
+  module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
+  module_src_cli_standalone_ts --&gt; module_src_paths_policy_ts
+  module_src_cli_standalone_ts --&gt; module_src_render_render_ts
+  module_src_cli_standalone_ts --&gt; module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --&gt; module_src_config_types_ts
   module_src_docsSurface_handlers_test_ts --&gt; module_src_docsSurface_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
@@ -1586,8 +1586,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
@@ -1658,8 +1658,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   module_src_analyze_utils_parseParadoxComment_ts[&quot;src/analyze/utils/parseParadoxComment.ts&quot;]
   module_src_analyze_utils_resolveExportSymbol_ts[&quot;src/analyze/utils/resolveExportSymbol.ts&quot;]
-  module_src_cli_ts[&quot;src/cli.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_standalone_ts[&quot;src/cli/standalone.ts&quot;]
   module_src_config_defineParadoxConfig_ts[&quot;src/config/defineParadoxConfig.ts&quot;]
   module_src_config_types_ts[&quot;src/config/types.ts&quot;]
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
@@ -2468,12 +2468,12 @@ and writes them to the configured output directory.</p>
     <p>Resolves aliased export symbols to their underlying declarations.</p>
   </article>
     </section>
-  </section><section id="view-src-cli-ts" class="view" data-view="src/cli.ts" hidden>
+  </section><section id="view-src-cli-standalone-ts" class="view" data-view="src/cli/standalone.ts" hidden>
     <section class="panel">
-      <h2>src/cli.ts</h2>
-      <article class="item" data-search="main src/cli.ts Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory.">
+      <h2>src/cli/standalone.ts</h2>
+      <article class="item" data-search="main src/cli/standalone.ts Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory.">
     <h3>main</h3>
-    <p class="muted"><code>src/cli.ts:24:1</code></p>
+    <p class="muted"><code>src/cli/standalone.ts:24:1</code></p>
     <p>Runs the Paradox CLI.
 
 The command discovers the nearest Paradox config, resolves the package and output roots,

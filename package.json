@@ -43,7 +43,7 @@
     "LICENSE"
   ],
   "bin": {
-    "paradox": "./dist/cli.js"
+    "paradox": "./dist/cli/standalone.js"
   },
   "ankh": {
     "category": "docs",
@@ -56,7 +56,7 @@
     "build": "tsc -p tsconfig.build.json",
     "changeset": "changeset",
     "changeset:status": "changeset status --since=origin/main",
-    "docs": "bun src/cli.ts",
+    "docs": "bun src/cli/standalone.ts",
     "docs:bunx": "bunx @ankhorage/paradox",
     "format": "ankhorage-prettier --write .",
     "format:check": "ankhorage-prettier --check .",
