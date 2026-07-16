@@ -32,6 +32,7 @@ describe('readme usage examples', () => {
         { packageRoot: fixtureRoot },
       );
 
+      expect(analysis.readmeUsageDescription).toBeNull();
       expect(analysis.readmeUsage).toEqual([
         {
           title: 'Minimal app root.',
@@ -79,8 +80,15 @@ describe('readme usage examples', () => {
     }
   });
 
-  test('renders source usage and package command usage side by side', async () => {
+  test('renders section-level usage description without requiring a source example', async () => {
     const fixtureRoot = await createUsageFixture();
+    const description = [
+      'Start the Studio development environment:',
+      '',
+      '```bash',
+      'bun dev',
+      '```',
+    ].join('\n');
 
     try {
       const analysis = await analyze(
@@ -89,6 +97,45 @@ describe('readme usage examples', () => {
             title: 'Usage Fixture',
             description: 'Fixture docs for readme usage examples.',
             usage: {
+              description,
+            },
+          },
+          package: {
+            root: fixtureRoot,
+            entrypoints: ['src/index.ts'],
+          },
+        },
+        { packageRoot: fixtureRoot },
+      );
+
+      expect(analysis.readmeUsageDescription).toBe(description);
+      expect(analysis.readmeUsage).toEqual([]);
+
+      const output = render(buildModel(analysis), { outputDir: 'paradox' });
+      const usageStart = output.readme.indexOf('## Usage');
+      const installationStart = output.readme.indexOf('## Installation');
+      const usageSection = output.readme.slice(usageStart, installationStart);
+
+      expect(usageSection).toContain(description);
+      expect(usageSection).not.toContain('### Start the Studio development environment:');
+      expect(usageSection).not.toContain('Source:');
+    } finally {
+      await rm(fixtureRoot, { force: true, recursive: true });
+    }
+  });
+
+  test('renders section-level usage description before source-backed examples', async () => {
+    const fixtureRoot = await createUsageFixture();
+    const description = 'Start the host before opening Studio.';
+
+    try {
+      const analysis = await analyze(
+        {
+          docs: {
+            title: 'Usage Fixture',
+            description: 'Fixture docs for readme usage examples.',
+            usage: {
+              description,
               entrypoints: ['examples/basic-app/App.tsx'],
             },
           },
@@ -103,9 +150,14 @@ describe('readme usage examples', () => {
       const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
       expect(output.readme).toContain('## Usage');
+      expect(output.readme).toContain(description);
+      expect(output.readme).toContain('### Minimal app root.');
       expect(output.readme).toContain('## Installation');
       expect(output.readme).toContain('bunx @fixture/usage');
-      expect(output.readme.indexOf('## Usage')).toBeLessThan(
+      expect(output.readme.indexOf(description)).toBeLessThan(
+        output.readme.indexOf('### Minimal app root.'),
+      );
+      expect(output.readme.indexOf('### Minimal app root.')).toBeLessThan(
         output.readme.indexOf('## Installation'),
       );
     } finally {
