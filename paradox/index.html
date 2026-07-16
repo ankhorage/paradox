@@ -719,7 +719,7 @@ and writes them to the configured output directory.</p>
       <tr>
             <td><code>docs</code></td>
             <td>property</td>
-            <td><code>{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } | undefined</code></td>
+            <td><code>{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined</code></td>
             <td>no</td>
             <td></td>
           </tr><tr>
@@ -1794,11 +1794,11 @@ and writes them to the configured output directory.</p>
     <p>Analyzes a package and returns the complete documentation input model.</p>
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:113:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:115:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:130:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:132:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
   </article>
     </section>
@@ -2508,27 +2508,27 @@ and writes them to the configured output directory.</p>
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:160:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:161:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:256:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:258:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:308:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:310:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
   </article><article class="item" data-search="findConfigFactoryName src/model/buildModel.ts Finds the conventional config factory export for a config type when present.">
     <h3>findConfigFactoryName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:340:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:342:1</code></p>
     <p>Finds the conventional config factory export for a config type when present.</p>
   </article><article class="item" data-search="getDefaultConfigFileName src/model/buildModel.ts Derives the default config file name from a package id.">
     <h3>getDefaultConfigFileName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:352:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:354:1</code></p>
     <p>Derives the default config file name from a package id.</p>
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their `name` property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:361:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:363:1</code></p>
     <p>Returns a copy of items sorted by their `name` property.</p>
   </article>
     </section>
@@ -2806,103 +2806,103 @@ and writes them to the configured output directory.</p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderCliScenarios src/render/renderers/markdown.ts ">
     <h3>renderCliScenarios</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:100:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:106:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="findScenarioDiagram src/render/renderers/markdown.ts ">
     <h3>findScenarioDiagram</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:137:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:143:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts ">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:146:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:152:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderGeneratedDocumentation src/render/renderers/markdown.ts ">
     <h3>renderGeneratedDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:192:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:198:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts ">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:206:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:212:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts ">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:221:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:227:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts ">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:254:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:260:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts ">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:273:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:279:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExamples src/render/renderers/markdown.ts ">
     <h3>renderExamples</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:281:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:287:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts ">
     <h3>renderStructuredRows</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:290:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:296:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts ">
     <h3>getStructuredColumns</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:312:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:318:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts ">
     <h3>formatStructuredColumnHeader</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:321:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:327:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts ">
     <h3>formatStructuredCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:325:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:331:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts ">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:333:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:339:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts ">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:361:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:367:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts ">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:367:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:373:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts ">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:373:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:379:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts ">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:377:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:383:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts ">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:390:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:396:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts ">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:442:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:448:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts ">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:477:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:483:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts ">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:481:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:487:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts ">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:485:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:491:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts ">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:509:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:515:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toFileStem src/render/renderers/markdown.ts ">
     <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:519:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:525:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>

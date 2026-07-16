@@ -109,6 +109,7 @@ interface BuildModelInput {
       command: string;
     }[];
   } | null;
+  readmeUsageDescription: string | null;
   readmeUsage: {
     title: string | null;
     description: string | null;
@@ -186,6 +187,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
             ),
           }
         : null,
+    readmeUsageDescription: analysis.readmeUsageDescription,
     readmeUsage: analysis.readmeUsage
       .map((usageEntry) => ({
         title: usageEntry.title,

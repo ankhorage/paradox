@@ -7,6 +7,7 @@ export interface DocumentationModel {
   description: string | null;
   badges: GeneratedBadge[];
   usage: UsageModel | null;
+  readmeUsageDescription: string | null;
   readmeUsage: ReadmeUsageModel[];
   config: ConfigModel | null;
   entrypoints: string[];

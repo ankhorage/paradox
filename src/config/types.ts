@@ -11,6 +11,7 @@ export interface ParadoxConfig {
     title?: string;
     description?: string;
     usage?: {
+      description?: string;
       entrypoints?: string[];
     };
   };
