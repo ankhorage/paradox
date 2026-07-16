@@ -1,4 +1,4 @@
-import { parseParadoxComment, type ParsedParadoxComment } from './parseParadoxComment.js';
+import { type ParsedParadoxComment, parseParadoxComment } from './parseParadoxComment.js';
 
 export interface LeadingParadoxComment {
   parsed: ParsedParadoxComment;
