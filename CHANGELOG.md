@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.17
+
+### Patch Changes
+
+- 8eac93d: Support section-level README Usage prose through `docs.usage.description` without requiring a source-backed usage example.
+
 ## 0.1.16
 
 ### Patch Changes
