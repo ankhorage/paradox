@@ -117,6 +117,10 @@ interface BuildModelInput {
     code: string;
     sourcePath: string;
   }[];
+  readmeCli: {
+    description: string | null;
+    sourcePath: string;
+  } | null;
   readmeConfig: {
     description: string | null;
     language: string;
@@ -203,6 +207,13 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
         sourcePath: usageEntry.sourcePath,
       }))
       .sort((left, right) => left.sourcePath.localeCompare(right.sourcePath)),
+    readmeCli:
+      analysis.readmeCli !== null
+        ? {
+            description: analysis.readmeCli.description,
+            sourcePath: analysis.readmeCli.sourcePath,
+          }
+        : null,
     readmeConfig:
       analysis.readmeConfig !== null
         ? {
