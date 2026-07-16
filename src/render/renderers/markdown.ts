@@ -58,7 +58,7 @@ function renderReadme(
 
   if (model.description) lines.push(model.description, '');
 
-  renderReadmeUsage(lines, model.readmeUsage);
+  renderReadmeUsage(lines, model.readmeUsageDescription, model.readmeUsage);
 
   if (model.usage !== null) {
     lines.push('## Installation', '', '```bash');
@@ -76,18 +76,24 @@ function renderReadme(
   return `${lines.join('\n').trimEnd()}\n`;
 }
 
-function renderReadmeUsage(lines: string[], entries: readonly ReadmeUsageEntry[]): void {
-  if (entries.length === 0) return;
+function renderReadmeUsage(
+  lines: string[],
+  description: string | null,
+  entries: readonly ReadmeUsageEntry[],
+): void {
+  if (description === null && entries.length === 0) return;
 
   lines.push('## Usage', '');
+
+  if (description !== null) lines.push(description, '');
 
   for (const entry of entries) {
     if (entry.title !== null) lines.push(`### ${entry.title}`, '');
 
     if (entry.description !== null) {
       const [, ...rest] = entry.description.split('\n');
-      const description = rest.join('\n').trim();
-      if (description.length > 0) lines.push(description, '');
+      const entryDescription = rest.join('\n').trim();
+      if (entryDescription.length > 0) lines.push(entryDescription, '');
     }
 
     lines.push(`Source: \`${entry.sourcePath}\``, '');
