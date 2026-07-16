@@ -18,8 +18,6 @@ import { write } from '../write/write.js';
  * The command discovers the nearest Paradox config, resolves the package and output roots,
  * analyzes the package, builds the documentation model, renders all documentation artifacts,
  * and writes them to the configured output directory.
- *
- * @readme
  */
 async function main(): Promise<void> {
   const cwd = process.cwd();

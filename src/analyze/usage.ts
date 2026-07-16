@@ -13,7 +13,7 @@ export interface PackageJsonModel {
 }
 
 /***
- * Builds installation and executable usage commands from package metadata.
+ * Builds executable CLI commands from package metadata.
  */
 export function createUsageFromPackageJson(pkg: PackageJsonModel): AnalysisUsage | null {
   if (pkg.bin == null) return null;

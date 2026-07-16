@@ -157,9 +157,14 @@
       <small>1 function</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/analyze/readmeCli.ts">
+      src/analyze/readmeCli.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/readmeConfig.ts">
       src/analyze/readmeConfig.ts
-      <small>5 functions</small>
+      <small>4 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/readmeUsage.ts">
@@ -240,6 +245,11 @@
     <button class="nav-button" type="button" data-target="src/analyze/utils/getExportMetadata.ts">
       src/analyze/utils/getExportMetadata.ts
       <small>19 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/analyze/utils/getLeadingParadoxComment.ts">
+      src/analyze/utils/getLeadingParadoxComment.ts
+      <small>1 function</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/utils/getParadoxComment.ts">
@@ -333,7 +343,7 @@
       <div class="summary">
         <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>52</strong><span class="muted">modules</span></div>
+        <div><strong>54</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -341,16 +351,17 @@
         <li><code>src/index.ts</code></li>
       </ul>
     </section>
-    <section class="panel" data-search="cli paradox">
+    <section class="panel" data-search="cli Generates deterministic documentation for a package through the Paradox CLI. bunx @ankhorage/paradox paradox">
     <h2>CLI</h2>
-    <article class="item" data-search="paradox Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory. bunx @ankhorage/paradox">
+    <p>Generates deterministic documentation for a package through the Paradox CLI.</p>
+    <pre>bunx @ankhorage/paradox</pre>
+    <article class="item" data-search="paradox Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory.">
           <h3>paradox</h3>
           <p>Runs the Paradox CLI.
 
 The command discovers the nearest Paradox config, resolves the package and output roots,
 analyzes the package, builds the documentation model, renders all documentation artifacts,
 and writes them to the configured output directory.</p>
-          <pre>bunx @ankhorage/paradox</pre>
           <article class="item" data-search="paradox sequence diagrams/sequences/paradox.mmd">
     <h3>paradox sequence</h3>
     <p class="muted"><code>diagrams/sequences/paradox.mmd</code></p>
@@ -422,10 +433,10 @@ and writes them to the configured output directory.</p>
   </section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeConfig.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeCli.ts src/analyze/readmeConfig.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeConfig.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeCli.ts</code>, <code>src/analyze/readmeConfig.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
@@ -452,10 +463,15 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
-  </article><article class="item" data-search="src/analyze/readmeConfig.ts src/analyze/utils/parseParadoxComment.ts AnalysisReadmeConfig analyzeReadmeConfig">
+  </article><article class="item" data-search="src/analyze/readmeCli.ts src/analyze/utils/getLeadingParadoxComment.ts AnalysisReadmeCli analyzeReadmeCli">
+    <h3>src/analyze/readmeCli.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getLeadingParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisReadmeCli</code>, <code>analyzeReadmeCli</code></p>
+  </article><article class="item" data-search="src/analyze/readmeConfig.ts src/analyze/utils/getLeadingParadoxComment.ts AnalysisReadmeConfig analyzeReadmeConfig">
     <h3>src/analyze/readmeConfig.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getLeadingParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>AnalysisReadmeConfig</code>, <code>analyzeReadmeConfig</code></p>
   </article><article class="item" data-search="src/analyze/readmeUsage.ts src/analyze/utils/parseParadoxComment.ts AnalysisReadmeUsage analyzeReadmeUsage">
     <h3>src/analyze/readmeUsage.ts</h3>
@@ -552,6 +568,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>getExportMetadata</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getLeadingParadoxComment.ts src/analyze/utils/parseParadoxComment.ts getLeadingParadoxComment LeadingParadoxComment">
+    <h3>src/analyze/utils/getLeadingParadoxComment.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>getLeadingParadoxComment</code>, <code>LeadingParadoxComment</code></p>
   </article><article class="item" data-search="src/analyze/utils/getParadoxComment.ts getParadoxComment">
     <h3>src/analyze/utils/getParadoxComment.ts</h3>
     <p class="muted">Referenced module</p>
@@ -862,6 +883,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -896,9 +918,12 @@ and writes them to the configured output directory.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeCli_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -974,6 +999,9 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
@@ -1070,6 +1098,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1104,9 +1133,12 @@ and writes them to the configured output directory.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeCli_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1182,6 +1214,9 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
@@ -1276,6 +1311,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1296,6 +1332,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1327,6 +1364,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1351,7 +1389,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
@@ -1389,6 +1428,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1430,6 +1470,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1450,6 +1491,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1481,6 +1523,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1505,7 +1548,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
@@ -1543,6 +1587,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1586,6 +1631,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1606,6 +1652,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1659,6 +1706,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1679,6 +1727,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1816,15 +1865,15 @@ and writes them to the configured output directory.</p>
       <h2>src/analyze/analyze.ts</h2>
       <article class="item" data-search="analyze src/analyze/analyze.ts Analyzes a package and returns the complete documentation input model.">
     <h3>analyze</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:27:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:28:1</code></p>
     <p>Analyzes a package and returns the complete documentation input model.</p>
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:121:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:124:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:138:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:141:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
   </article>
     </section>
@@ -1973,29 +2022,39 @@ and writes them to the configured output directory.</p>
     <p>Creates the ts-morph project used by the analyzer.</p>
   </article>
     </section>
+  </section><section id="view-src-analyze-readmecli-ts" class="view" data-view="src/analyze/readmeCli.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/readmeCli.ts</h2>
+      <article class="item" data-search="analyzeReadmeCli src/analyze/readmeCli.ts Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading&#10;Paradox comment opts into README output with @readme.">
+    <h3>analyzeReadmeCli</h3>
+    <p class="muted"><code>src/analyze/readmeCli.ts:17:1</code></p>
+    <p>Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading
+Paradox comment opts into README output with @readme.</p>
+  </article><article class="item" data-search="isMissingPathError src/analyze/readmeCli.ts ">
+    <h3>isMissingPathError</h3>
+    <p class="muted"><code>src/analyze/readmeCli.ts:37:1</code></p>
+    <p class="empty">No description available.</p>
+  </article>
+    </section>
   </section><section id="view-src-analyze-readmeconfig-ts" class="view" data-view="src/analyze/readmeConfig.ts" hidden>
     <section class="panel">
       <h2>src/analyze/readmeConfig.ts</h2>
       <article class="item" data-search="analyzeReadmeConfig src/analyze/readmeConfig.ts Collects a README configuration example from the actual Paradox config file when its&#10;leading Paradox comment is marked with both @config and @readme.">
     <h3>analyzeReadmeConfig</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:23:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:17:1</code></p>
     <p>Collects a README configuration example from the actual Paradox config file when its
 leading Paradox comment is marked with both @config and @readme.</p>
-  </article><article class="item" data-search="findLeadingParadoxComment src/analyze/readmeConfig.ts ">
-    <h3>findLeadingParadoxComment</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:46:1</code></p>
-    <p class="empty">No description available.</p>
   </article><article class="item" data-search="removeRange src/analyze/readmeConfig.ts ">
     <h3>removeRange</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:60:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:39:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getLanguage src/analyze/readmeConfig.ts ">
     <h3>getLanguage</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:70:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:49:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toPosixPath src/analyze/readmeConfig.ts ">
     <h3>toPosixPath</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:79:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:58:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>
@@ -2347,10 +2406,10 @@ leading Paradox comment is marked with both @config and @readme.</p>
   </section><section id="view-src-analyze-usage-ts" class="view" data-view="src/analyze/usage.ts" hidden>
     <section class="panel">
       <h2>src/analyze/usage.ts</h2>
-      <article class="item" data-search="createUsageFromPackageJson src/analyze/usage.ts Builds installation and executable usage commands from package metadata.">
+      <article class="item" data-search="createUsageFromPackageJson src/analyze/usage.ts Builds executable CLI commands from package metadata.">
     <h3>createUsageFromPackageJson</h3>
     <p class="muted"><code>src/analyze/usage.ts:18:1</code></p>
-    <p>Builds installation and executable usage commands from package metadata.</p>
+    <p>Builds executable CLI commands from package metadata.</p>
   </article><article class="item" data-search="getPackageBaseName src/analyze/usage.ts Extracts the unscoped package name from a package id.">
     <h3>getPackageBaseName</h3>
     <p class="muted"><code>src/analyze/usage.ts:63:1</code></p>
@@ -2451,6 +2510,15 @@ leading Paradox comment is marked with both @config and @readme.</p>
     <p>Returns unique items by a caller-provided key while preserving first occurrence order.</p>
   </article>
     </section>
+  </section><section id="view-src-analyze-utils-getleadingparadoxcomment-ts" class="view" data-view="src/analyze/utils/getLeadingParadoxComment.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/utils/getLeadingParadoxComment.ts</h2>
+      <article class="item" data-search="getLeadingParadoxComment src/analyze/utils/getLeadingParadoxComment.ts Parses a leading Paradox comment from a source file.">
+    <h3>getLeadingParadoxComment</h3>
+    <p class="muted"><code>src/analyze/utils/getLeadingParadoxComment.ts:12:1</code></p>
+    <p>Parses a leading Paradox comment from a source file.</p>
+  </article>
+    </section>
   </section><section id="view-src-analyze-utils-getparadoxcomment-ts" class="view" data-view="src/analyze/utils/getParadoxComment.ts" hidden>
     <section class="panel">
       <h2>src/analyze/utils/getParadoxComment.ts</h2>
@@ -2525,7 +2593,7 @@ leading Paradox comment is marked with both @config and @readme.</p>
       <h2>src/cli/standalone.ts</h2>
       <article class="item" data-search="main src/cli/standalone.ts Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory.">
     <h3>main</h3>
-    <p class="muted"><code>src/cli/standalone.ts:24:1</code></p>
+    <p class="muted"><code>src/cli/standalone.ts:22:1</code></p>
     <p>Runs the Paradox CLI.
 
 The command discovers the nearest Paradox config, resolves the package and output roots,
@@ -2560,19 +2628,19 @@ and writes them to the configured output directory.</p>
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:167:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:171:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:269:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:280:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:321:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:332:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their `name` property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:353:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:364:1</code></p>
     <p>Returns a copy of items sorted by their `name` property.</p>
   </article>
     </section>
@@ -2757,79 +2825,79 @@ and writes them to the configured output directory.</p>
     <p>Renders the Home CLI chapter for detected bin scenarios.</p>
   </article><article class="item" data-search="renderSourceNavItem src/render/renderers/html.ts Renders one source file entry in the left navigation.">
     <h3>renderSourceNavItem</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:296:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:307:1</code></p>
     <p>Renders one source file entry in the left navigation.</p>
   </article><article class="item" data-search="renderSourceAreaView src/render/renderers/html.ts Renders the right-hand source area view for a selected file.">
     <h3>renderSourceAreaView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:308:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:319:1</code></p>
     <p>Renders the right-hand source area view for a selected file.</p>
   </article><article class="item" data-search="renderSourceFunctionCard src/render/renderers/html.ts Renders one source function card in a source-area view.">
     <h3>renderSourceFunctionCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:322:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:333:1</code></p>
     <p>Renders one source function card in a source-area view.</p>
   </article><article class="item" data-search="getSourceAreas src/render/renderers/html.ts Groups analyzed source functions by their source file path.">
     <h3>getSourceAreas</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:335:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:346:1</code></p>
     <p>Groups analyzed source functions by their source file path.</p>
   </article><article class="item" data-search="getReadmeCliScenarios src/render/renderers/html.ts Selects bin scenarios that should be shown on the Home page.">
     <h3>getReadmeCliScenarios</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:344:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:355:1</code></p>
     <p>Selects bin scenarios that should be shown on the Home page.</p>
   </article><article class="item" data-search="findScenarioDiagram src/render/renderers/html.ts Finds the generated Mermaid artifact for a sequence scenario.">
     <h3>findScenarioDiagram</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:351:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:365:1</code></p>
     <p>Finds the generated Mermaid artifact for a sequence scenario.</p>
   </article><article class="item" data-search="renderModuleCard src/render/renderers/html.ts Renders module metadata on the Home page.">
     <h3>renderModuleCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:363:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:377:1</code></p>
     <p>Renders module metadata on the Home page.</p>
   </article><article class="item" data-search="renderExportCard src/render/renderers/html.ts Renders one public API export card on the Home page.">
     <h3>renderExportCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:377:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:391:1</code></p>
     <p>Renders one public API export card on the Home page.</p>
   </article><article class="item" data-search="renderSignatureBlock src/render/renderers/html.ts Renders all call signatures for a public API export.">
     <h3>renderSignatureBlock</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:401:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:415:1</code></p>
     <p>Renders all call signatures for a public API export.</p>
   </article><article class="item" data-search="renderMemberTable src/render/renderers/html.ts Renders the members table for a type-like public API export.">
     <h3>renderMemberTable</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:437:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:451:1</code></p>
     <p>Renders the members table for a type-like public API export.</p>
   </article><article class="item" data-search="renderComponentCard src/render/renderers/html.ts Renders one detected component card on the Home page.">
     <h3>renderComponentCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:459:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:473:1</code></p>
     <p>Renders one detected component card on the Home page.</p>
   </article><article class="item" data-search="renderDiagramCard src/render/renderers/html.ts Renders one Mermaid diagram card.">
     <h3>renderDiagramCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:493:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:507:1</code></p>
     <p>Renders one Mermaid diagram card.</p>
   </article><article class="item" data-search="renderInlineCodeList src/render/renderers/html.ts Renders an inline comma-separated list of code values.">
     <h3>renderInlineCodeList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:508:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:522:1</code></p>
     <p>Renders an inline comma-separated list of code values.</p>
   </article><article class="item" data-search="renderChipList src/render/renderers/html.ts Renders a compact chip list for related symbols.">
     <h3>renderChipList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:519:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:533:1</code></p>
     <p>Renders a compact chip list for related symbols.</p>
   </article><article class="item" data-search="groupBy src/render/renderers/html.ts Groups items by a string key and returns deterministic key order.">
     <h3>groupBy</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:528:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:542:1</code></p>
     <p>Groups items by a string key and returns deterministic key order.</p>
   </article><article class="item" data-search="toAnchorId src/render/renderers/html.ts Converts a label to a stable HTML anchor id fragment.">
     <h3>toAnchorId</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:547:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:561:1</code></p>
     <p>Converts a label to a stable HTML anchor id fragment.</p>
   </article><article class="item" data-search="toFileStem src/render/renderers/html.ts Converts a scenario name to the generated Mermaid file stem.">
     <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:557:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:571:1</code></p>
     <p>Converts a scenario name to the generated Mermaid file stem.</p>
   </article><article class="item" data-search="escapeHtml src/render/renderers/html.ts Escapes user-controlled text for safe HTML rendering.">
     <h3>escapeHtml</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:568:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:582:1</code></p>
     <p>Escapes user-controlled text for safe HTML rendering.</p>
   </article><article class="item" data-search="escapeAttribute src/render/renderers/html.ts Escapes text for use inside HTML attribute values.">
     <h3>escapeAttribute</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:580:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:594:1</code></p>
     <p>Escapes text for use inside HTML attribute values.</p>
   </article>
     </section>
@@ -2846,107 +2914,107 @@ and writes them to the configured output directory.</p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderReadmeUsage src/render/renderers/markdown.ts ">
     <h3>renderReadmeUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:79:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:73:1</code></p>
     <p class="empty">No description available.</p>
-  </article><article class="item" data-search="renderCliScenarios src/render/renderers/markdown.ts ">
-    <h3>renderCliScenarios</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:106:1</code></p>
+  </article><article class="item" data-search="renderReadmeCli src/render/renderers/markdown.ts ">
+    <h3>renderReadmeCli</h3>
+    <p class="muted"><code>src/render/renderers/markdown.ts:100:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="findScenarioDiagram src/render/renderers/markdown.ts ">
     <h3>findScenarioDiagram</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:143:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:138:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts ">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:152:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:147:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderGeneratedDocumentation src/render/renderers/markdown.ts ">
     <h3>renderGeneratedDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:186:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:181:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts ">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:200:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:195:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts ">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:215:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:210:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts ">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:248:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:243:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts ">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:267:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:262:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExamples src/render/renderers/markdown.ts ">
     <h3>renderExamples</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:275:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:270:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts ">
     <h3>renderStructuredRows</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:284:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:279:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts ">
     <h3>getStructuredColumns</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:306:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:301:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts ">
     <h3>formatStructuredColumnHeader</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:315:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:310:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts ">
     <h3>formatStructuredCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:319:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:314:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts ">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:327:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:322:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts ">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:355:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:350:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts ">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:361:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:356:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts ">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:367:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:362:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts ">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:371:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:366:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts ">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:384:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:379:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts ">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:436:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:431:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts ">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:471:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:466:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts ">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:475:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:470:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts ">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:479:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:474:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts ">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:503:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:498:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toFileStem src/render/renderers/markdown.ts ">
     <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:513:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:508:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>

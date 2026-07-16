@@ -169,6 +169,8 @@ describe('analyze', () => {
 
     expectGeneratedReadmeScaffold(output.readme, 'Fixture Docs');
     expect(output.readme).toContain('## Configuration');
+    expect(output.readme).not.toContain('## Installation');
+    expect(output.readme).not.toContain('## CLI');
     expect(output.readme).toContain('<summary>Configuration options</summary>');
     expect(output.readme).toContain('## Public API');
     expect(output.readme).toContain('### Utilities');
@@ -316,6 +318,9 @@ describe('analyze', () => {
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
 
     expectGeneratedReadmeScaffold(output.readme, 'Multi Bin Fixture');
+    expect(output.readme).toContain('## CLI');
+    expect(output.readme).toContain('Runs the fixture command-line interface.');
+    expect(output.readme).not.toContain('## Installation');
     expect(output.readme).toContain('bunx fixture-multi-bin alpha');
     expect(output.readme).toContain('bunx fixture-multi-bin beta');
     expect(output.readme).not.toContain('## Documentation Tags');

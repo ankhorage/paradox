@@ -9,6 +9,7 @@ export interface DocumentationModel {
   usage: UsageModel | null;
   readmeUsageDescription: string | null;
   readmeUsage: ReadmeUsageModel[];
+  readmeCli: ReadmeCliModel | null;
   readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
@@ -42,6 +43,11 @@ interface ReadmeUsageModel {
   description: string | null;
   language: string;
   code: string;
+  sourcePath: string;
+}
+
+interface ReadmeCliModel {
+  description: string | null;
   sourcePath: string;
 }
 
@@ -101,6 +107,13 @@ export interface SequenceScenarioModel {
   isReadme: boolean;
 }
 
+export interface ModuleModel {
+  path: string;
+  isEntrypoint: boolean;
+  dependencies: string[];
+  exports: string[];
+}
+
 interface ExampleModel {
   title: string | null;
   language: string | null;
@@ -138,23 +151,16 @@ interface MemberModel {
   children?: MemberModel[];
 }
 
-interface StructuredRowModel {
-  values: Record<string, string>;
-}
-
-export interface ModuleModel {
-  path: string;
-  isEntrypoint: boolean;
-  dependencies: string[];
-  exports: string[];
-}
-
 interface PropModel {
   name: string;
   type: string;
   required: boolean;
   defaultValue?: string;
   description: string | null;
+}
+
+interface StructuredRowModel {
+  values: Record<string, string>;
 }
 
 interface ConfigMemberModel {

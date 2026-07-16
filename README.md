@@ -7,13 +7,13 @@
 
 Deterministic documentation generator for TypeScript packages.
 
-## Installation
+## CLI
+
+Generates deterministic documentation for a package through the Paradox CLI.
 
 ```bash
 bunx @ankhorage/paradox
 ```
-
-## CLI
 
 <details>
 <summary>paradox</summary>
@@ -23,10 +23,6 @@ Runs the Paradox CLI.
 The command discovers the nearest Paradox config, resolves the package and output roots,
 analyzes the package, builds the documentation model, renders all documentation artifacts,
 and writes them to the configured output directory.
-
-```bash
-bunx @ankhorage/paradox
-```
 
 Diagram: [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
 
