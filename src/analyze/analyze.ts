@@ -7,6 +7,7 @@ import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
+import { analyzeReadmeCli } from './readmeCli.js';
 import { analyzeReadmeConfig } from './readmeConfig.js';
 import { analyzeReadmeUsage } from './readmeUsage.js';
 import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
@@ -37,6 +38,7 @@ export async function analyze(
   const readmeUsageDescription = config.docs?.usage?.description ?? null;
   const usageEntryPoints = config.docs?.usage?.entrypoints ?? [];
   const readmeUsage = await analyzeReadmeUsage({ root, entrypoints: usageEntryPoints });
+  const readmeCli = await analyzeReadmeCli(root);
   const readmeConfig = await analyzeReadmeConfig({
     root,
     configFilePath: runtime.configFilePath ?? null,
@@ -93,6 +95,7 @@ export async function analyze(
     usage,
     readmeUsageDescription,
     readmeUsage,
+    readmeCli,
     readmeConfig,
     config: configMetadata
       ? {
