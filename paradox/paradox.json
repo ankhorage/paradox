@@ -69,6 +69,7 @@
   },
   "readmeUsageDescription": null,
   "readmeUsage": [],
+  "readmeCli": null,
   "readmeConfig": {
     "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
@@ -118,6 +119,7 @@
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
         "src/analyze/project.ts",
+        "src/analyze/readmeCli.ts",
         "src/analyze/readmeConfig.ts",
         "src/analyze/readmeUsage.ts",
         "src/analyze/semantic/createTypeScriptProgram.ts",
@@ -192,10 +194,21 @@
       ]
     },
     {
+      "path": "src/analyze/readmeCli.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/utils/getLeadingParadoxComment.ts"
+      ],
+      "exports": [
+        "AnalysisReadmeCli",
+        "analyzeReadmeCli"
+      ]
+    },
+    {
       "path": "src/analyze/readmeConfig.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/getLeadingParadoxComment.ts"
       ],
       "exports": [
         "AnalysisReadmeConfig",
@@ -440,6 +453,17 @@
       ],
       "exports": [
         "getExportMetadata"
+      ]
+    },
+    {
+      "path": "src/analyze/utils/getLeadingParadoxComment.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/utils/parseParadoxComment.ts"
+      ],
+      "exports": [
+        "getLeadingParadoxComment",
+        "LeadingParadoxComment"
       ]
     },
     {
@@ -995,7 +1019,7 @@
       "description": "Analyzes a package and returns the complete documentation input model.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 27,
+        "line": 28,
         "column": 1
       }
     },
@@ -1004,7 +1028,7 @@
       "description": "Converts semantic type members into serializable analysis output.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 121,
+        "line": 124,
         "column": 1
       }
     },
@@ -1013,7 +1037,7 @@
       "description": "Reads package metadata from the analyzed package root.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 138,
+        "line": 141,
         "column": 1
       }
     },
@@ -1288,20 +1312,29 @@
       }
     },
     {
-      "name": "analyzeReadmeConfig",
-      "description": "Collects a README configuration example from the actual Paradox config file when its\nleading Paradox comment is marked with both @config and @readme.",
+      "name": "analyzeReadmeCli",
+      "description": "Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading\nParadox comment opts into README output with @readme.",
       "sourceLocation": {
-        "filePath": "src/analyze/readmeConfig.ts",
-        "line": 23,
+        "filePath": "src/analyze/readmeCli.ts",
+        "line": 17,
         "column": 1
       }
     },
     {
-      "name": "findLeadingParadoxComment",
+      "name": "isMissingPathError",
       "description": null,
       "sourceLocation": {
+        "filePath": "src/analyze/readmeCli.ts",
+        "line": 37,
+        "column": 1
+      }
+    },
+    {
+      "name": "analyzeReadmeConfig",
+      "description": "Collects a README configuration example from the actual Paradox config file when its\nleading Paradox comment is marked with both @config and @readme.",
+      "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 46,
+        "line": 17,
         "column": 1
       }
     },
@@ -1310,7 +1343,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 60,
+        "line": 39,
         "column": 1
       }
     },
@@ -1319,7 +1352,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 70,
+        "line": 49,
         "column": 1
       }
     },
@@ -1328,7 +1361,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 79,
+        "line": 58,
         "column": 1
       }
     },
@@ -2170,6 +2203,15 @@
       }
     },
     {
+      "name": "getLeadingParadoxComment",
+      "description": "Parses a leading Paradox comment from a source file.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getLeadingParadoxComment.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
       "name": "getParadoxComment",
       "description": "Reads the nearest Paradox doc comment attached to a declaration.",
       "sourceLocation": {
@@ -2309,7 +2351,7 @@
       "description": "Converts analysis output into a serializable documentation model.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 167,
+        "line": 171,
         "column": 1
       }
     },
@@ -2318,7 +2360,7 @@
       "description": "Maps one analyzed export into the serializable documentation shape.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 269,
+        "line": 280,
         "column": 1
       }
     },
@@ -2327,7 +2369,7 @@
       "description": "Maps an analyzed component while preserving export metadata when available.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 321,
+        "line": 332,
         "column": 1
       }
     },
@@ -2336,7 +2378,7 @@
       "description": "Returns a copy of items sorted by their `name` property.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 353,
+        "line": 364,
         "column": 1
       }
     },
@@ -3227,6 +3269,11 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/readmeCli.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/readmeConfig.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
@@ -3341,8 +3388,13 @@
         "sourcePath": "src/analyze/modules.ts"
       },
       {
+        "fromPath": "src/analyze/readmeCli.ts",
+        "toPath": "src/analyze/utils/getLeadingParadoxComment.ts",
+        "sourcePath": "src/analyze/readmeCli.ts"
+      },
+      {
         "fromPath": "src/analyze/readmeConfig.ts",
-        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "toPath": "src/analyze/utils/getLeadingParadoxComment.ts",
         "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
@@ -3621,6 +3673,11 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
+        "fromPath": "src/analyze/utils/getLeadingParadoxComment.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getLeadingParadoxComment.ts"
+      },
+      {
         "fromPath": "src/analyze/utils/getPropsFromType.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
@@ -3765,6 +3822,12 @@
         "fromSymbol": "analyze",
         "toSymbol": "analyzeReadmeUsage",
         "callExpression": "analyzeReadmeUsage",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeReadmeCli",
+        "callExpression": "analyzeReadmeCli",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4188,6 +4251,30 @@
         "sourcePath": "src/analyze/modules.ts"
       },
       {
+        "fromSymbol": "analyzeReadmeCli",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/readmeCli.ts"
+      },
+      {
+        "fromSymbol": "analyzeReadmeCli",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/analyze/readmeCli.ts"
+      },
+      {
+        "fromSymbol": "analyzeReadmeCli",
+        "toSymbol": "isMissingPathError",
+        "callExpression": "isMissingPathError",
+        "sourcePath": "src/analyze/readmeCli.ts"
+      },
+      {
+        "fromSymbol": "analyzeReadmeCli",
+        "toSymbol": "getLeadingParadoxComment",
+        "callExpression": "getLeadingParadoxComment",
+        "sourcePath": "src/analyze/readmeCli.ts"
+      },
+      {
         "fromSymbol": "analyzeReadmeConfig",
         "toSymbol": "readFile",
         "callExpression": "readFile",
@@ -4195,14 +4282,8 @@
       },
       {
         "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "findLeadingParadoxComment",
-        "callExpression": "findLeadingParadoxComment",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "parseParadoxComment",
-        "callExpression": "parseParadoxComment",
+        "toSymbol": "getLeadingParadoxComment",
+        "callExpression": "getLeadingParadoxComment",
         "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
@@ -5428,6 +5509,12 @@
         "toSymbol": "key",
         "callExpression": "key",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getLeadingParadoxComment",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/utils/getLeadingParadoxComment.ts"
       },
       {
         "fromSymbol": "getParadoxComment",

@@ -157,9 +157,14 @@
       <small>1 function</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/analyze/readmeCli.ts">
+      src/analyze/readmeCli.ts
+      <small>2 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/readmeConfig.ts">
       src/analyze/readmeConfig.ts
-      <small>5 functions</small>
+      <small>4 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/readmeUsage.ts">
@@ -240,6 +245,11 @@
     <button class="nav-button" type="button" data-target="src/analyze/utils/getExportMetadata.ts">
       src/analyze/utils/getExportMetadata.ts
       <small>19 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/analyze/utils/getLeadingParadoxComment.ts">
+      src/analyze/utils/getLeadingParadoxComment.ts
+      <small>1 function</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/utils/getParadoxComment.ts">
@@ -333,7 +343,7 @@
       <div class="summary">
         <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>52</strong><span class="muted">modules</span></div>
+        <div><strong>54</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -422,10 +432,10 @@ and writes them to the configured output directory.</p>
   </section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeConfig.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
+      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeCli.ts src/analyze/readmeConfig.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/types.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeConfig.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeCli.ts</code>, <code>src/analyze/readmeConfig.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/types.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
@@ -452,10 +462,15 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
-  </article><article class="item" data-search="src/analyze/readmeConfig.ts src/analyze/utils/parseParadoxComment.ts AnalysisReadmeConfig analyzeReadmeConfig">
+  </article><article class="item" data-search="src/analyze/readmeCli.ts src/analyze/utils/getLeadingParadoxComment.ts AnalysisReadmeCli analyzeReadmeCli">
+    <h3>src/analyze/readmeCli.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getLeadingParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisReadmeCli</code>, <code>analyzeReadmeCli</code></p>
+  </article><article class="item" data-search="src/analyze/readmeConfig.ts src/analyze/utils/getLeadingParadoxComment.ts AnalysisReadmeConfig analyzeReadmeConfig">
     <h3>src/analyze/readmeConfig.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getLeadingParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>AnalysisReadmeConfig</code>, <code>analyzeReadmeConfig</code></p>
   </article><article class="item" data-search="src/analyze/readmeUsage.ts src/analyze/utils/parseParadoxComment.ts AnalysisReadmeUsage analyzeReadmeUsage">
     <h3>src/analyze/readmeUsage.ts</h3>
@@ -552,6 +567,11 @@ and writes them to the configured output directory.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>getExportMetadata</code></p>
+  </article><article class="item" data-search="src/analyze/utils/getLeadingParadoxComment.ts src/analyze/utils/parseParadoxComment.ts getLeadingParadoxComment LeadingParadoxComment">
+    <h3>src/analyze/utils/getLeadingParadoxComment.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Exports:</strong> <code>getLeadingParadoxComment</code>, <code>LeadingParadoxComment</code></p>
   </article><article class="item" data-search="src/analyze/utils/getParadoxComment.ts getParadoxComment">
     <h3>src/analyze/utils/getParadoxComment.ts</h3>
     <p class="muted">Referenced module</p>
@@ -862,6 +882,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -896,9 +917,12 @@ and writes them to the configured output directory.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeCli_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -974,6 +998,9 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
@@ -1070,6 +1097,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1104,9 +1132,12 @@ and writes them to the configured output directory.</p>
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_readmeCli_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1182,6 +1213,9 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
@@ -1276,6 +1310,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1296,6 +1331,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1327,6 +1363,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1351,7 +1388,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
@@ -1389,6 +1427,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1430,6 +1469,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1450,6 +1490,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1481,6 +1522,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1505,7 +1547,8 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeCli_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --&gt; module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
@@ -1543,6 +1586,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
@@ -1586,6 +1630,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1606,6 +1651,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1659,6 +1705,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
+  module_src_analyze_readmeCli_ts[&quot;src/analyze/readmeCli.ts&quot;]
   module_src_analyze_readmeConfig_ts[&quot;src/analyze/readmeConfig.ts&quot;]
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
@@ -1679,6 +1726,7 @@ and writes them to the configured output directory.</p>
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
+  module_src_analyze_utils_getLeadingParadoxComment_ts[&quot;src/analyze/utils/getLeadingParadoxComment.ts&quot;]
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
@@ -1816,15 +1864,15 @@ and writes them to the configured output directory.</p>
       <h2>src/analyze/analyze.ts</h2>
       <article class="item" data-search="analyze src/analyze/analyze.ts Analyzes a package and returns the complete documentation input model.">
     <h3>analyze</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:27:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:28:1</code></p>
     <p>Analyzes a package and returns the complete documentation input model.</p>
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:121:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:124:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:138:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:141:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
   </article>
     </section>
@@ -1973,29 +2021,39 @@ and writes them to the configured output directory.</p>
     <p>Creates the ts-morph project used by the analyzer.</p>
   </article>
     </section>
+  </section><section id="view-src-analyze-readmecli-ts" class="view" data-view="src/analyze/readmeCli.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/readmeCli.ts</h2>
+      <article class="item" data-search="analyzeReadmeCli src/analyze/readmeCli.ts Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading&#10;Paradox comment opts into README output with @readme.">
+    <h3>analyzeReadmeCli</h3>
+    <p class="muted"><code>src/analyze/readmeCli.ts:17:1</code></p>
+    <p>Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading
+Paradox comment opts into README output with @readme.</p>
+  </article><article class="item" data-search="isMissingPathError src/analyze/readmeCli.ts ">
+    <h3>isMissingPathError</h3>
+    <p class="muted"><code>src/analyze/readmeCli.ts:37:1</code></p>
+    <p class="empty">No description available.</p>
+  </article>
+    </section>
   </section><section id="view-src-analyze-readmeconfig-ts" class="view" data-view="src/analyze/readmeConfig.ts" hidden>
     <section class="panel">
       <h2>src/analyze/readmeConfig.ts</h2>
       <article class="item" data-search="analyzeReadmeConfig src/analyze/readmeConfig.ts Collects a README configuration example from the actual Paradox config file when its&#10;leading Paradox comment is marked with both @config and @readme.">
     <h3>analyzeReadmeConfig</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:23:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:17:1</code></p>
     <p>Collects a README configuration example from the actual Paradox config file when its
 leading Paradox comment is marked with both @config and @readme.</p>
-  </article><article class="item" data-search="findLeadingParadoxComment src/analyze/readmeConfig.ts ">
-    <h3>findLeadingParadoxComment</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:46:1</code></p>
-    <p class="empty">No description available.</p>
   </article><article class="item" data-search="removeRange src/analyze/readmeConfig.ts ">
     <h3>removeRange</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:60:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:39:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="getLanguage src/analyze/readmeConfig.ts ">
     <h3>getLanguage</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:70:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:49:1</code></p>
     <p class="empty">No description available.</p>
   </article><article class="item" data-search="toPosixPath src/analyze/readmeConfig.ts ">
     <h3>toPosixPath</h3>
-    <p class="muted"><code>src/analyze/readmeConfig.ts:79:1</code></p>
+    <p class="muted"><code>src/analyze/readmeConfig.ts:58:1</code></p>
     <p class="empty">No description available.</p>
   </article>
     </section>
@@ -2451,6 +2509,15 @@ leading Paradox comment is marked with both @config and @readme.</p>
     <p>Returns unique items by a caller-provided key while preserving first occurrence order.</p>
   </article>
     </section>
+  </section><section id="view-src-analyze-utils-getleadingparadoxcomment-ts" class="view" data-view="src/analyze/utils/getLeadingParadoxComment.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/utils/getLeadingParadoxComment.ts</h2>
+      <article class="item" data-search="getLeadingParadoxComment src/analyze/utils/getLeadingParadoxComment.ts Parses a leading Paradox comment from a source file.">
+    <h3>getLeadingParadoxComment</h3>
+    <p class="muted"><code>src/analyze/utils/getLeadingParadoxComment.ts:12:1</code></p>
+    <p>Parses a leading Paradox comment from a source file.</p>
+  </article>
+    </section>
   </section><section id="view-src-analyze-utils-getparadoxcomment-ts" class="view" data-view="src/analyze/utils/getParadoxComment.ts" hidden>
     <section class="panel">
       <h2>src/analyze/utils/getParadoxComment.ts</h2>
@@ -2560,19 +2627,19 @@ and writes them to the configured output directory.</p>
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:167:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:171:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:269:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:280:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:321:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:332:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their `name` property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:353:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:364:1</code></p>
     <p>Returns a copy of items sorted by their `name` property.</p>
   </article>
     </section>

@@ -9,6 +9,7 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --> module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --> module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --> module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -43,9 +44,12 @@ graph TD
   module_src_analyze_modules_ts --> module_src_analyze_types_ts
   module_src_analyze_project_ts["src/analyze/project.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_project_ts
+  module_src_analyze_readmeCli_ts["src/analyze/readmeCli.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_readmeCli_ts
+  module_src_analyze_readmeCli_ts --> module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts["src/analyze/readmeConfig.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeConfig_ts --> module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts["src/analyze/readmeUsage.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_readmeUsage_ts
   module_src_analyze_readmeUsage_ts --> module_src_analyze_utils_parseParadoxComment_ts
@@ -121,6 +125,9 @@ graph TD
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts["src/analyze/utils/getLeadingParadoxComment.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_utils_getLeadingParadoxComment_ts
+  module_src_analyze_utils_getLeadingParadoxComment_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts["src/analyze/utils/getParadoxComment.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts["src/analyze/utils/getPropsFromType.ts"]
