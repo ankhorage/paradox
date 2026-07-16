@@ -33,7 +33,7 @@ export async function analyze(
   const badges = await analyzeBadges(root, pkg);
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
-  const readmeUsageDescription = config.docs?.usage?.description?.trim() || null;
+  const readmeUsageDescription = config.docs?.usage?.description ?? null;
   const usageEntryPoints = config.docs?.usage?.entrypoints ?? [];
   const readmeUsage = await analyzeReadmeUsage({ root, entrypoints: usageEntryPoints });
   const program = createTypeScriptProgram({ root, entrypoints, project });
