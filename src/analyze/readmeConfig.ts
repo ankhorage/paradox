@@ -1,19 +1,13 @@
 import { readFile } from 'node:fs/promises';
 import { extname, relative } from 'node:path';
 
-import { parseParadoxComment } from './utils/parseParadoxComment.js';
+import { getLeadingParadoxComment } from './utils/getLeadingParadoxComment.js';
 
 export interface AnalysisReadmeConfig {
   description: string | null;
   language: string;
   code: string;
   sourcePath: string;
-}
-
-interface ConfigCommentMatch {
-  comment: string;
-  start: number;
-  end: number;
 }
 
 /***
@@ -27,33 +21,18 @@ export async function analyzeReadmeConfig(options: {
   if (options.configFilePath === null) return null;
 
   const source = await readFile(options.configFilePath, 'utf-8');
-  const match = findLeadingParadoxComment(source);
-  if (match === null) return null;
+  const comment = getLeadingParadoxComment(source);
+  if (comment === null) return null;
 
-  const parsed = parseParadoxComment(match.comment);
-  if (!parsed.isConfig || !parsed.isReadme) return null;
+  if (!comment.parsed.isConfig || !comment.parsed.isReadme) return null;
 
   const sourcePath = toPosixPath(relative(options.root, options.configFilePath));
 
   return {
-    description: parsed.description,
+    description: comment.parsed.description,
     language: getLanguage(sourcePath),
-    code: removeRange(source, match.start, match.end).trim(),
+    code: removeRange(source, comment.start, comment.end).trim(),
     sourcePath,
-  };
-}
-
-function findLeadingParadoxComment(source: string): ConfigCommentMatch | null {
-  const match = /^\s*(\/\*\*\*[\s\S]*?\*\/)/.exec(source);
-  const comment = match?.[1];
-  if (match === null || comment === undefined) return null;
-
-  const start = match[0].indexOf(comment);
-
-  return {
-    comment,
-    start,
-    end: start + comment.length,
   };
 }
 
