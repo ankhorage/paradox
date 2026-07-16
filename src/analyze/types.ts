@@ -98,6 +98,11 @@ interface AnalysisReadmeUsage {
   sourcePath: string;
 }
 
+interface AnalysisReadmeCli {
+  description: string | null;
+  sourcePath: string;
+}
+
 interface AnalysisReadmeConfig {
   description: string | null;
   language: string;
@@ -196,6 +201,7 @@ export interface AnalysisResult {
   usage: AnalysisUsage | null;
   readmeUsageDescription: string | null;
   readmeUsage: AnalysisReadmeUsage[];
+  readmeCli: AnalysisReadmeCli | null;
   readmeConfig: AnalysisReadmeConfig | null;
 
   config: {
