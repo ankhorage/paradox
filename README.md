@@ -66,13 +66,26 @@ sequenceDiagram
 
 ## Configuration
 
-Create a `paradox.config.ts` file:
+Canonical Paradox configuration for this package.
 
 ```ts
-import { defineParadoxConfig } from '@ankhorage/paradox';
+import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';
 
 export default defineParadoxConfig({
-  // ...
+  mode: 'write',
+
+  docs: {
+    title: '@ankhorage/paradox',
+    description: 'Deterministic documentation generator for TypeScript packages.',
+  },
+
+  package: {
+    entrypoints: ['src/index.ts'],
+  },
+
+  output: {
+    dir: 'paradox',
+  },
 });
 ```
 

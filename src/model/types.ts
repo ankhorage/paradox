@@ -9,6 +9,7 @@ export interface DocumentationModel {
   usage: UsageModel | null;
   readmeUsageDescription: string | null;
   readmeUsage: ReadmeUsageModel[];
+  readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
   modules: ModuleModel[];
@@ -44,11 +45,16 @@ interface ReadmeUsageModel {
   sourcePath: string;
 }
 
+interface ReadmeConfigModel {
+  description: string | null;
+  language: string;
+  code: string;
+  sourcePath: string;
+}
+
 interface ConfigModel {
   exportName: string;
   isReadme: boolean;
-  configFile: string;
-  factoryName: string | null;
   members: ConfigMemberModel[];
 }
 
