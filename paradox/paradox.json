@@ -67,6 +67,7 @@
       }
     ]
   },
+  "readmeUsageDescription": null,
   "readmeUsage": [],
   "config": {
     "exportName": "ParadoxConfig",
@@ -82,7 +83,7 @@
       },
       {
         "name": "docs",
-        "type": "{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } | undefined",
+        "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",
         "required": false,
         "description": null
       },
@@ -902,7 +903,7 @@
         {
           "name": "docs",
           "kind": "property",
-          "type": "{ title?: string; description?: string; usage?: { entrypoints?: string[]; }; } | undefined",
+          "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",
           "required": false,
           "description": null
         },
@@ -987,7 +988,7 @@
       "description": "Converts semantic type members into serializable analysis output.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 113,
+        "line": 115,
         "column": 1
       }
     },
@@ -996,7 +997,7 @@
       "description": "Reads package metadata from the analyzed package root.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 130,
+        "line": 132,
         "column": 1
       }
     },
@@ -2247,7 +2248,7 @@
       "description": "Converts analysis output into a serializable documentation model.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 160,
+        "line": 161,
         "column": 1
       }
     },
@@ -2256,7 +2257,7 @@
       "description": "Maps one analyzed export into the serializable documentation shape.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 256,
+        "line": 258,
         "column": 1
       }
     },
@@ -2265,7 +2266,7 @@
       "description": "Maps an analyzed component while preserving export metadata when available.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 308,
+        "line": 310,
         "column": 1
       }
     },
@@ -2274,7 +2275,7 @@
       "description": "Finds the conventional config factory export for a config type when present.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 340,
+        "line": 342,
         "column": 1
       }
     },
@@ -2283,7 +2284,7 @@
       "description": "Derives the default config file name from a package id.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 352,
+        "line": 354,
         "column": 1
       }
     },
@@ -2292,7 +2293,7 @@
       "description": "Returns a copy of items sorted by their `name` property.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 361,
+        "line": 363,
         "column": 1
       }
     },
@@ -2850,7 +2851,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 100,
+        "line": 106,
         "column": 1
       }
     },
@@ -2859,7 +2860,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 137,
+        "line": 143,
         "column": 1
       }
     },
@@ -2868,7 +2869,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 146,
+        "line": 152,
         "column": 1
       }
     },
@@ -2877,7 +2878,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 192,
+        "line": 198,
         "column": 1
       }
     },
@@ -2886,7 +2887,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 206,
+        "line": 212,
         "column": 1
       }
     },
@@ -2895,7 +2896,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 221,
+        "line": 227,
         "column": 1
       }
     },
@@ -2904,7 +2905,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 254,
+        "line": 260,
         "column": 1
       }
     },
@@ -2913,7 +2914,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 273,
+        "line": 279,
         "column": 1
       }
     },
@@ -2922,7 +2923,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 281,
+        "line": 287,
         "column": 1
       }
     },
@@ -2931,7 +2932,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 290,
+        "line": 296,
         "column": 1
       }
     },
@@ -2940,7 +2941,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 312,
+        "line": 318,
         "column": 1
       }
     },
@@ -2949,7 +2950,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 321,
+        "line": 327,
         "column": 1
       }
     },
@@ -2958,7 +2959,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 325,
+        "line": 331,
         "column": 1
       }
     },
@@ -2967,7 +2968,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 333,
+        "line": 339,
         "column": 1
       }
     },
@@ -2976,7 +2977,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 361,
+        "line": 367,
         "column": 1
       }
     },
@@ -2985,7 +2986,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 367,
+        "line": 373,
         "column": 1
       }
     },
@@ -2994,7 +2995,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 373,
+        "line": 379,
         "column": 1
       }
     },
@@ -3003,7 +3004,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 377,
+        "line": 383,
         "column": 1
       }
     },
@@ -3012,7 +3013,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 390,
+        "line": 396,
         "column": 1
       }
     },
@@ -3021,7 +3022,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 442,
+        "line": 448,
         "column": 1
       }
     },
@@ -3030,7 +3031,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 477,
+        "line": 483,
         "column": 1
       }
     },
@@ -3039,7 +3040,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 481,
+        "line": 487,
         "column": 1
       }
     },
@@ -3048,7 +3049,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 485,
+        "line": 491,
         "column": 1
       }
     },
@@ -3057,7 +3058,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 509,
+        "line": 515,
         "column": 1
       }
     },
@@ -3066,7 +3067,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 519,
+        "line": 525,
         "column": 1
       }
     },
