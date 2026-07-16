@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.19
+
+### Patch Changes
+
+- 5f6a40f: Generate the README CLI chapter from the canonical `src/cli/index.ts` `@readme` opt-in, keep executable commands under CLI instead of Installation, and declare the required Node.js types dependency.
+
 ## 0.1.18
 
 ### Patch Changes
