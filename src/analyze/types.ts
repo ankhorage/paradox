@@ -187,6 +187,7 @@ export interface AnalysisResult {
   sequenceScenarios: AnalysisSequenceScenario[];
 
   usage: AnalysisUsage | null;
+  readmeUsageDescription: string | null;
   readmeUsage: AnalysisReadmeUsage[];
 
   config: {
