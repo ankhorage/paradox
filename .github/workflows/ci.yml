@@ -22,7 +22,9 @@ jobs:
 
       - name: Apply source-driven CLI README implementation
         if: github.head_ref == 'agent/source-driven-cli-readme'
-        run: node .github/scripts/apply-source-driven-cli.mjs
+        run: |
+          node .github/scripts/apply-source-driven-cli.mjs
+          rm -f .github/scripts/apply-source-driven-cli.mjs
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -65,7 +67,6 @@ jobs:
         if: github.head_ref == 'agent/source-driven-cli-readme'
         run: |
           git show origin/main:.github/workflows/ci.yml > .github/workflows/ci.yml
-          rm -f .github/scripts/apply-source-driven-cli.mjs
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
