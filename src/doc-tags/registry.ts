@@ -21,8 +21,8 @@ export const PARADOX_DOC_TAGS = [
     name: 'config',
     syntax: '@config',
     description:
-      'Marks a type or interface as part of the Paradox configuration model. @config alone does not imply README inclusion; use @config plus @readme for README output.',
-    appliesTo: ['interface', 'type'],
+      'Marks a configuration type, interface, or source block. Pair with @readme to include the schema or actual config source in README Configuration output.',
+    appliesTo: ['block', 'interface', 'type'],
     repeatable: false,
     handler: 'markConfig',
   },

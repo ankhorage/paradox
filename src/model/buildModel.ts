@@ -117,6 +117,12 @@ interface BuildModelInput {
     code: string;
     sourcePath: string;
   }[];
+  readmeConfig: {
+    description: string | null;
+    language: string;
+    code: string;
+    sourcePath: string;
+  } | null;
   config: {
     exportName: string;
     isReadme: boolean;
@@ -197,15 +203,20 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
         sourcePath: usageEntry.sourcePath,
       }))
       .sort((left, right) => left.sourcePath.localeCompare(right.sourcePath)),
+    readmeConfig:
+      analysis.readmeConfig !== null
+        ? {
+            description: analysis.readmeConfig.description,
+            language: analysis.readmeConfig.language,
+            code: analysis.readmeConfig.code,
+            sourcePath: analysis.readmeConfig.sourcePath,
+          }
+        : null,
     config:
       analysis.config !== null
         ? {
             exportName: analysis.config.exportName,
             isReadme: analysis.config.isReadme,
-            configFile: getDefaultConfigFileName(analysis.packageId),
-            factoryName: findConfigFactoryName(analysis.config.exportName, [
-              ...exportsByName.keys(),
-            ]),
             members: analysis.config.members,
           }
         : null,
@@ -334,27 +345,6 @@ function mapComponent(
       })),
     ),
   };
-}
-
-/***
- * Finds the conventional config factory export for a config type when present.
- */
-function findConfigFactoryName(configExportName: string, exportNames: string[]): string | null {
-  const prefix = configExportName.endsWith('Config')
-    ? configExportName.slice(0, -'Config'.length)
-    : configExportName;
-  const expectedFactoryName = `define${prefix}Config`;
-
-  return exportNames.includes(expectedFactoryName) ? expectedFactoryName : null;
-}
-
-/***
- * Derives the default config file name from a package id.
- */
-function getDefaultConfigFileName(packageId: string): string {
-  const packageBaseName = packageId.split('/').pop() ?? packageId;
-
-  return `${packageBaseName}.config.ts`;
 }
 
 /***

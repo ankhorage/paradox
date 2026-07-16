@@ -7,6 +7,7 @@ import { analyzeComponents } from './components.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
+import { analyzeReadmeConfig } from './readmeConfig.js';
 import { analyzeReadmeUsage } from './readmeUsage.js';
 import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
 import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
@@ -25,7 +26,7 @@ import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
  */
 export async function analyze(
   config: ParadoxConfig,
-  runtime: { packageRoot: string },
+  runtime: { packageRoot: string; configFilePath?: string },
 ): Promise<AnalysisResult> {
   const root = runtime.packageRoot;
   const pkg = await readPackageJson(root);
@@ -36,6 +37,10 @@ export async function analyze(
   const readmeUsageDescription = config.docs?.usage?.description ?? null;
   const usageEntryPoints = config.docs?.usage?.entrypoints ?? [];
   const readmeUsage = await analyzeReadmeUsage({ root, entrypoints: usageEntryPoints });
+  const readmeConfig = await analyzeReadmeConfig({
+    root,
+    configFilePath: runtime.configFilePath ?? null,
+  });
   const program = createTypeScriptProgram({ root, entrypoints, project });
   const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
   const components = analyzeComponents(exports, { program });
@@ -88,6 +93,7 @@ export async function analyze(
     usage,
     readmeUsageDescription,
     readmeUsage,
+    readmeConfig,
     config: configMetadata
       ? {
           exportName: configMetadata.exportName,

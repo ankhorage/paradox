@@ -68,7 +68,7 @@ function renderReadme(
 
   renderCliScenarios(lines, model, outputDir, diagrams);
 
-  if (model.config?.isReadme) renderConfiguration(lines, model);
+  renderConfiguration(lines, model);
 
   renderGeneratedDocumentation(lines, outputDir, diagrams);
   renderReadmeApi(lines, model);
@@ -150,32 +150,20 @@ function findScenarioDiagram(
 }
 
 function renderConfiguration(lines: string[], model: DocumentationModel): void {
-  const { config } = model;
-  if (config === null) return;
+  const config = model.config?.isReadme ? model.config : null;
+  const example = model.readmeConfig;
+  if (config === null && example === null) return;
 
   lines.push('## Configuration', '');
-  lines.push(`Create a \`${config.configFile}\` file:`, '');
-  lines.push('```ts');
 
-  if (config.factoryName !== null) {
-    lines.push(`import { ${config.factoryName} } from '${model.packageId}';`);
-    lines.push('');
-    lines.push(`export default ${config.factoryName}({`);
-    lines.push('  // ...');
-    lines.push('});');
-  } else {
-    lines.push(`import type { ${config.exportName} } from '${model.packageId}';`);
-    lines.push('');
-    lines.push('const config = {');
-    lines.push('  // ...');
-    lines.push(`} satisfies ${config.exportName};`);
-    lines.push('');
-    lines.push('export default config;');
+  if (example !== null) {
+    if (example.description !== null) lines.push(example.description, '');
+    lines.push(`\`\`\`${example.language}`);
+    lines.push(example.code);
+    lines.push('```', '');
   }
 
-  lines.push('```', '');
-
-  if (config.members.length === 0) return;
+  if (config === null || config.members.length === 0) return;
 
   lines.push('<details>');
   lines.push('<summary>Configuration options</summary>', '');

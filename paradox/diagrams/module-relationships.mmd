@@ -5,6 +5,7 @@ graph LR
   module_src_analyze_exports_ts["src/analyze/exports.ts"]
   module_src_analyze_modules_ts["src/analyze/modules.ts"]
   module_src_analyze_project_ts["src/analyze/project.ts"]
+  module_src_analyze_readmeConfig_ts["src/analyze/readmeConfig.ts"]
   module_src_analyze_readmeUsage_ts["src/analyze/readmeUsage.ts"]
   module_src_analyze_semantic_analyzeProject_ts["src/analyze/semantic/analyzeProject.ts"]
   module_src_analyze_semantic_associateDocBlocksWithSymbols_ts["src/analyze/semantic/associateDocBlocksWithSymbols.ts"]
@@ -55,6 +56,7 @@ graph LR
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --> module_src_analyze_project_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --> module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_exports_ts
@@ -78,6 +80,7 @@ graph LR
   module_src_analyze_exports_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --> module_src_analyze_utils_resolveExportSymbol_ts
   module_src_analyze_modules_ts --> module_src_analyze_types_ts
+  module_src_analyze_readmeConfig_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_readmeUsage_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --> module_src_analyze_semantic_collectSourceFiles_ts

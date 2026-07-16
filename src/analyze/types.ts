@@ -98,6 +98,13 @@ interface AnalysisReadmeUsage {
   sourcePath: string;
 }
 
+interface AnalysisReadmeConfig {
+  description: string | null;
+  language: string;
+  code: string;
+  sourcePath: string;
+}
+
 export interface AnalysisBadge {
   id: string;
   label: string;
@@ -189,6 +196,7 @@ export interface AnalysisResult {
   usage: AnalysisUsage | null;
   readmeUsageDescription: string | null;
   readmeUsage: AnalysisReadmeUsage[];
+  readmeConfig: AnalysisReadmeConfig | null;
 
   config: {
     exportName: string;
