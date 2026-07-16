@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.18
+
+### Patch Changes
+
+- eaa56ad: Render README Configuration examples from the actual tagged Paradox config file instead of synthesized boilerplate.
+
 ## 0.1.17
 
 ### Patch Changes
