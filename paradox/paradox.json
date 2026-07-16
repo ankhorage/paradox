@@ -69,7 +69,10 @@
   },
   "readmeUsageDescription": null,
   "readmeUsage": [],
-  "readmeCli": null,
+  "readmeCli": {
+    "description": "Generates deterministic documentation for a package through the Paradox CLI.",
+    "sourcePath": "src/cli/index.ts"
+  },
   "readmeConfig": {
     "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
@@ -1997,7 +2000,7 @@
     },
     {
       "name": "createUsageFromPackageJson",
-      "description": "Builds installation and executable usage commands from package metadata.",
+      "description": "Builds executable CLI commands from package metadata.",
       "sourceLocation": {
         "filePath": "src/analyze/usage.ts",
         "line": 18,
@@ -2315,7 +2318,7 @@
       "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
-        "line": 24,
+        "line": 22,
         "column": 1
       }
     },
@@ -2738,7 +2741,7 @@
       "description": "Renders one source file entry in the left navigation.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 296,
+        "line": 307,
         "column": 1
       }
     },
@@ -2747,7 +2750,7 @@
       "description": "Renders the right-hand source area view for a selected file.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 308,
+        "line": 319,
         "column": 1
       }
     },
@@ -2756,7 +2759,7 @@
       "description": "Renders one source function card in a source-area view.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 322,
+        "line": 333,
         "column": 1
       }
     },
@@ -2765,7 +2768,7 @@
       "description": "Groups analyzed source functions by their source file path.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 335,
+        "line": 346,
         "column": 1
       }
     },
@@ -2774,7 +2777,7 @@
       "description": "Selects bin scenarios that should be shown on the Home page.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 344,
+        "line": 355,
         "column": 1
       }
     },
@@ -2783,7 +2786,7 @@
       "description": "Finds the generated Mermaid artifact for a sequence scenario.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 351,
+        "line": 365,
         "column": 1
       }
     },
@@ -2792,7 +2795,7 @@
       "description": "Renders module metadata on the Home page.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 363,
+        "line": 377,
         "column": 1
       }
     },
@@ -2801,7 +2804,7 @@
       "description": "Renders one public API export card on the Home page.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 377,
+        "line": 391,
         "column": 1
       }
     },
@@ -2810,7 +2813,7 @@
       "description": "Renders all call signatures for a public API export.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 401,
+        "line": 415,
         "column": 1
       }
     },
@@ -2819,7 +2822,7 @@
       "description": "Renders the members table for a type-like public API export.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 437,
+        "line": 451,
         "column": 1
       }
     },
@@ -2828,7 +2831,7 @@
       "description": "Renders one detected component card on the Home page.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 459,
+        "line": 473,
         "column": 1
       }
     },
@@ -2837,7 +2840,7 @@
       "description": "Renders one Mermaid diagram card.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 493,
+        "line": 507,
         "column": 1
       }
     },
@@ -2846,7 +2849,7 @@
       "description": "Renders an inline comma-separated list of code values.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 508,
+        "line": 522,
         "column": 1
       }
     },
@@ -2855,7 +2858,7 @@
       "description": "Renders a compact chip list for related symbols.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 519,
+        "line": 533,
         "column": 1
       }
     },
@@ -2864,7 +2867,7 @@
       "description": "Groups items by a string key and returns deterministic key order.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 528,
+        "line": 542,
         "column": 1
       }
     },
@@ -2873,7 +2876,7 @@
       "description": "Converts a label to a stable HTML anchor id fragment.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 547,
+        "line": 561,
         "column": 1
       }
     },
@@ -2882,7 +2885,7 @@
       "description": "Converts a scenario name to the generated Mermaid file stem.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 557,
+        "line": 571,
         "column": 1
       }
     },
@@ -2891,7 +2894,7 @@
       "description": "Escapes user-controlled text for safe HTML rendering.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 568,
+        "line": 582,
         "column": 1
       }
     },
@@ -2900,7 +2903,7 @@
       "description": "Escapes text for use inside HTML attribute values.",
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 580,
+        "line": 594,
         "column": 1
       }
     },
@@ -2927,16 +2930,16 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 79,
+        "line": 73,
         "column": 1
       }
     },
     {
-      "name": "renderCliScenarios",
+      "name": "renderReadmeCli",
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 106,
+        "line": 100,
         "column": 1
       }
     },
@@ -2945,7 +2948,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 143,
+        "line": 138,
         "column": 1
       }
     },
@@ -2954,7 +2957,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 152,
+        "line": 147,
         "column": 1
       }
     },
@@ -2963,7 +2966,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 186,
+        "line": 181,
         "column": 1
       }
     },
@@ -2972,7 +2975,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 200,
+        "line": 195,
         "column": 1
       }
     },
@@ -2981,7 +2984,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 215,
+        "line": 210,
         "column": 1
       }
     },
@@ -2990,7 +2993,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 248,
+        "line": 243,
         "column": 1
       }
     },
@@ -2999,7 +3002,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 267,
+        "line": 262,
         "column": 1
       }
     },
@@ -3008,7 +3011,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 275,
+        "line": 270,
         "column": 1
       }
     },
@@ -3017,7 +3020,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 284,
+        "line": 279,
         "column": 1
       }
     },
@@ -3026,7 +3029,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 306,
+        "line": 301,
         "column": 1
       }
     },
@@ -3035,7 +3038,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 315,
+        "line": 310,
         "column": 1
       }
     },
@@ -3044,7 +3047,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 319,
+        "line": 314,
         "column": 1
       }
     },
@@ -3053,7 +3056,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 327,
+        "line": 322,
         "column": 1
       }
     },
@@ -3062,7 +3065,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 355,
+        "line": 350,
         "column": 1
       }
     },
@@ -3071,7 +3074,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 361,
+        "line": 356,
         "column": 1
       }
     },
@@ -3080,7 +3083,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 367,
+        "line": 362,
         "column": 1
       }
     },
@@ -3089,7 +3092,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 371,
+        "line": 366,
         "column": 1
       }
     },
@@ -3098,7 +3101,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 384,
+        "line": 379,
         "column": 1
       }
     },
@@ -3107,7 +3110,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 436,
+        "line": 431,
         "column": 1
       }
     },
@@ -3116,7 +3119,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 471,
+        "line": 466,
         "column": 1
       }
     },
@@ -3125,7 +3128,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 475,
+        "line": 470,
         "column": 1
       }
     },
@@ -3134,7 +3137,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 479,
+        "line": 474,
         "column": 1
       }
     },
@@ -3143,7 +3146,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 503,
+        "line": 498,
         "column": 1
       }
     },
@@ -3152,7 +3155,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 513,
+        "line": 508,
         "column": 1
       }
     },
@@ -3197,7 +3200,7 @@
       "sourcePath": "src/cli/standalone.ts",
       "symbolName": "main",
       "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
-      "isReadme": true
+      "isReadme": false
     }
   ],
   "graphs": {
@@ -5853,6 +5856,18 @@
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
+        "fromSymbol": "renderCliPanel",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderCliPanel",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
         "fromSymbol": "src/render/renderers/html.ts",
         "toSymbol": "findScenarioDiagram",
         "callExpression": "findScenarioDiagram",
@@ -6064,8 +6079,8 @@
       },
       {
         "fromSymbol": "renderReadme",
-        "toSymbol": "renderCliScenarios",
-        "callExpression": "renderCliScenarios",
+        "toSymbol": "renderReadmeCli",
+        "callExpression": "renderReadmeCli",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6087,7 +6102,7 @@
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "renderCliScenarios",
+        "fromSymbol": "renderReadmeCli",
         "toSymbol": "findScenarioDiagram",
         "callExpression": "findScenarioDiagram",
         "sourcePath": "src/render/renderers/markdown.ts"

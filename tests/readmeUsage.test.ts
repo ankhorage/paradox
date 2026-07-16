@@ -113,8 +113,8 @@ describe('readme usage examples', () => {
 
       const output = render(buildModel(analysis), { outputDir: 'paradox' });
       const usageStart = output.readme.indexOf('## Usage');
-      const installationStart = output.readme.indexOf('## Installation');
-      const usageSection = output.readme.slice(usageStart, installationStart);
+      const generatedDocsStart = output.readme.indexOf('## Generated documentation');
+      const usageSection = output.readme.slice(usageStart, generatedDocsStart);
 
       expect(usageSection).toContain(description);
       expect(usageSection).not.toContain('### Start the Studio development environment:');
@@ -152,13 +152,13 @@ describe('readme usage examples', () => {
       expect(output.readme).toContain('## Usage');
       expect(output.readme).toContain(description);
       expect(output.readme).toContain('### Minimal app root.');
-      expect(output.readme).toContain('## Installation');
-      expect(output.readme).toContain('bunx @fixture/usage');
+      expect(output.readme).not.toContain('## Installation');
+      expect(output.readme).not.toContain('bunx @fixture/usage');
       expect(output.readme.indexOf(description)).toBeLessThan(
         output.readme.indexOf('### Minimal app root.'),
       );
       expect(output.readme.indexOf('### Minimal app root.')).toBeLessThan(
-        output.readme.indexOf('## Installation'),
+        output.readme.indexOf('## Generated documentation'),
       );
     } finally {
       await rm(fixtureRoot, { force: true, recursive: true });

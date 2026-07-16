@@ -235,7 +235,7 @@ function renderHomeView(
         ${model.entrypoints.map((entrypoint) => `<li><code>${escapeHtml(entrypoint)}</code></li>`).join('')}
       </ul>
     </section>
-    ${cliScenarios.length > 0 ? renderCliPanel(model, diagrams, cliScenarios) : ''}
+    ${model.readmeCli !== null ? renderCliPanel(model, diagrams, cliScenarios) : ''}
     <section class="panel">
       <h2>Modules</h2>
       ${model.modules.map(renderModuleCard).join('')}
@@ -270,19 +270,28 @@ function renderCliPanel(
   diagrams: readonly DiagramArtifact[],
   scenarios: readonly SequenceScenarioEntry[],
 ): string {
-  return `<section class="panel" data-search="cli ${scenarios.map((scenario) => scenario.name).join(' ')}">
+  const commands = model.usage?.commands ?? [];
+  const searchText = [
+    'cli',
+    model.readmeCli?.description ?? '',
+    ...commands.map((command) => command.command),
+    ...scenarios.map((scenario) => scenario.name),
+  ].join(' ');
+
+  return `<section class="panel" data-search="${escapeAttribute(searchText)}">
     <h2>CLI</h2>
+    ${model.readmeCli?.description === null || model.readmeCli?.description === undefined ? '' : `<p>${escapeHtml(model.readmeCli.description)}</p>`}
+    ${commands.length === 0 ? '' : `<pre>${escapeHtml(commands.map((command) => command.command).join('\n'))}</pre>`}
     ${scenarios
       .map((scenario) => {
-        const command = model.usage?.commands.find((item) => item.name === scenario.name);
         const diagram = findScenarioDiagram(diagrams, scenario);
+        if (scenario.description === null && diagram === undefined) return '';
 
         return `<article class="item" data-search="${escapeAttribute(
-          [scenario.name, scenario.description ?? '', command?.command ?? ''].join(' '),
+          [scenario.name, scenario.description ?? ''].join(' '),
         )}">
           <h3>${escapeHtml(scenario.name)}</h3>
           ${scenario.description === null ? '' : `<p>${escapeHtml(scenario.description)}</p>`}
-          ${command === undefined ? '' : `<pre>${escapeHtml(command.command)}</pre>`}
           ${diagram === undefined ? '' : renderDiagramCard(diagram)}
         </article>`;
       })
@@ -290,6 +299,8 @@ function renderCliPanel(
   </section>`;
 }
 
+/***
+ * Renders one source file entry in the left navigation.
 /***
  * Renders one source file entry in the left navigation.
  */
@@ -342,9 +353,12 @@ function getSourceAreas(model: DocumentationModel): SourceArea[] {
  * Selects bin scenarios that should be shown on the Home page.
  */
 function getReadmeCliScenarios(model: DocumentationModel): SequenceScenarioEntry[] {
-  return model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin' && scenario.isReadme);
+  if (model.readmeCli === null) return [];
+  return model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin');
 }
 
+/***
+ * Finds the generated Mermaid artifact for a sequence scenario.
 /***
  * Finds the generated Mermaid artifact for a sequence scenario.
  */

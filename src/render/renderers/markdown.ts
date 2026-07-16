@@ -60,13 +60,7 @@ function renderReadme(
 
   renderReadmeUsage(lines, model.readmeUsageDescription, model.readmeUsage);
 
-  if (model.usage !== null) {
-    lines.push('## Installation', '', '```bash');
-    for (const command of model.usage.commands) lines.push(command.command);
-    lines.push('```', '');
-  }
-
-  renderCliScenarios(lines, model, outputDir, diagrams);
+  renderReadmeCli(lines, model, outputDir, diagrams);
 
   renderConfiguration(lines, model);
 
@@ -103,32 +97,33 @@ function renderReadmeUsage(
   }
 }
 
-function renderCliScenarios(
+function renderReadmeCli(
   lines: string[],
   model: DocumentationModel,
   outputDir: string,
   diagrams: RenderContext['diagrams'],
 ): void {
-  const scenarios = model.sequenceScenarios.filter(
-    (scenario) => scenario.kind === 'bin' && scenario.isReadme,
-  );
-  if (scenarios.length === 0) return;
+  if (model.readmeCli === null) return;
 
   lines.push('## CLI', '');
 
+  if (model.readmeCli.description !== null) lines.push(model.readmeCli.description, '');
+
+  if (model.usage !== null && model.usage.commands.length > 0) {
+    lines.push('```bash');
+    for (const command of model.usage.commands) lines.push(command.command);
+    lines.push('```', '');
+  }
+
+  const scenarios = model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin');
   for (const scenario of scenarios) {
+    const diagram = findScenarioDiagram(diagrams, scenario);
+    if (scenario.description === null && diagram === undefined) continue;
+
     lines.push('<details>');
     lines.push(`<summary>${scenario.name}</summary>`, '');
     if (scenario.description !== null) lines.push(scenario.description, '');
 
-    const command = model.usage?.commands.find((item) => item.name === scenario.name);
-    if (command !== undefined) {
-      lines.push('```bash');
-      lines.push(command.command);
-      lines.push('```', '');
-    }
-
-    const diagram = findScenarioDiagram(diagrams, scenario);
     if (diagram !== undefined) {
       lines.push(`Diagram: [${diagram.title}](./${outputDir}/${diagram.path})`, '');
       lines.push('```mermaid');
