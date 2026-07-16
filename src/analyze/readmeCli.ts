@@ -26,7 +26,7 @@ export async function analyzeReadmeCli(root: string): Promise<AnalysisReadmeCli 
   }
 
   const comment = getLeadingParadoxComment(source);
-  if (comment === null || !comment.parsed.isReadme) return null;
+  if (!comment?.parsed.isReadme) return null;
 
   return {
     description: comment.parsed.description,
