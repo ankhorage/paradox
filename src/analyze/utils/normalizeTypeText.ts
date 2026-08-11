@@ -7,8 +7,6 @@ export function normalizeTypeText(typeText: string, packageRoot?: string): strin
 
   for (const match of typeText.matchAll(/import\((['"])([^'"]+)\1\)/g)) {
     const [fullMatch, quote, importPath] = match;
-    if (match.index === undefined || quote === undefined || importPath === undefined) continue;
-
     normalized += typeText.slice(cursor, match.index);
     normalized += `import(${quote}${normalizeImportPath(importPath, packageRoot)}${quote})`;
     cursor = match.index + fullMatch.length;
