@@ -2,6 +2,7 @@ import type { Type } from 'ts-morph';
 
 import type { AnalysisComponent } from '../types.js';
 import { getParadoxComment } from './getParadoxComment.js';
+import { normalizeTypeText } from './normalizeTypeText.js';
 import { parseParadoxComment } from './parseParadoxComment.js';
 
 /***
@@ -18,7 +19,7 @@ export function getPropsFromType(type: Type): AnalysisComponent['props'] {
 
     return {
       name: property.getName(),
-      type: propertyType.getText(declaration),
+      type: normalizeTypeText(propertyType.getText(declaration)),
       required: !property.isOptional(),
       description: parsed.description,
     };
