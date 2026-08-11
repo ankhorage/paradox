@@ -452,6 +452,7 @@
       "dependencies": [
         "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
+        "src/analyze/utils/normalizeTypeText.ts",
         "src/analyze/utils/parseParadoxComment.ts"
       ],
       "exports": [
@@ -483,6 +484,7 @@
       "dependencies": [
         "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
+        "src/analyze/utils/normalizeTypeText.ts",
         "src/analyze/utils/parseParadoxComment.ts"
       ],
       "exports": [
@@ -495,6 +497,14 @@
       "dependencies": [],
       "exports": [
         "isReactComponent"
+      ]
+    },
+    {
+      "path": "src/analyze/utils/normalizeTypeText.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "normalizeTypeText"
       ]
     },
     {
@@ -2039,7 +2049,7 @@
       "description": "Extracts computed metadata for an exported declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 37,
+        "line": 38,
         "column": 1
       }
     },
@@ -2048,7 +2058,7 @@
       "description": "Resolves the source location for a declaration relative to the package root.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 83,
+        "line": 84,
         "column": 1
       }
     },
@@ -2057,7 +2067,7 @@
       "description": "Extracts callable signatures for exported functions and callable values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 97,
+        "line": 98,
         "column": 1
       }
     },
@@ -2066,7 +2076,7 @@
       "description": "Builds one normalized call signature from a callable declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 117,
+        "line": 118,
         "column": 1
       }
     },
@@ -2075,7 +2085,7 @@
       "description": "Extracts members for interface and type literal exports.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 148,
+        "line": 150,
         "column": 1
       }
     },
@@ -2084,7 +2094,7 @@
       "description": "Converts TypeScript properties into documented member metadata.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 167,
+        "line": 169,
         "column": 1
       }
     },
@@ -2093,7 +2103,7 @@
       "description": "Extracts table-like rows from exported const arrays of object literals.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 202,
+        "line": 207,
         "column": 1
       }
     },
@@ -2102,7 +2112,7 @@
       "description": "Resolves const assertions and returns the array literal used for structured docs.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 220,
+        "line": 225,
         "column": 1
       }
     },
@@ -2111,7 +2121,7 @@
       "description": "Resolves a variable declaration from declaration nodes used by export symbols.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 230,
+        "line": 235,
         "column": 1
       }
     },
@@ -2120,7 +2130,7 @@
       "description": "Extracts primitive and string-array values from one object literal.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 254,
+        "line": 259,
         "column": 1
       }
     },
@@ -2129,7 +2139,7 @@
       "description": "Converts supported literal expressions into displayable string values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 273,
+        "line": 278,
         "column": 1
       }
     },
@@ -2138,7 +2148,7 @@
       "description": "Returns the first declaration for a symbol, or null when none exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 293,
+        "line": 298,
         "column": 1
       }
     },
@@ -2147,7 +2157,7 @@
       "description": "Finds callable declarations associated with an export symbol.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 301,
+        "line": 306,
         "column": 1
       }
     },
@@ -2156,7 +2166,7 @@
       "description": "Returns the callable node represented by a declaration when one exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 319,
+        "line": 324,
         "column": 1
       }
     },
@@ -2165,7 +2175,7 @@
       "description": "Checks whether a node is a method declaration or method signature.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 342,
+        "line": 347,
         "column": 1
       }
     },
@@ -2174,7 +2184,7 @@
       "description": "Reads Paradox comment metadata from a declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 349,
+        "line": 354,
         "column": 1
       }
     },
@@ -2183,7 +2193,7 @@
       "description": "Finds related exported symbols mentioned in signature and member type text.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 366,
+        "line": 371,
         "column": 1
       }
     },
@@ -2192,7 +2202,7 @@
       "description": "Normalizes platform-specific path separators for generated documentation output.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 388,
+        "line": 393,
         "column": 1
       }
     },
@@ -2201,7 +2211,7 @@
       "description": "Returns unique items by a caller-provided key while preserving first occurrence order.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 395,
+        "line": 400,
         "column": 1
       }
     },
@@ -2246,7 +2256,7 @@
       "description": "Extracts prop names, types, required flags, and descriptions from a type.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getPropsFromType.ts",
-        "line": 10,
+        "line": 11,
         "column": 1
       }
     },
@@ -2274,6 +2284,33 @@
       "sourceLocation": {
         "filePath": "src/analyze/utils/isReactComponent.ts",
         "line": 25,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeTypeText",
+      "description": "Removes machine-specific absolute paths from TypeScript import type text.",
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/normalizeTypeText.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeImportPath",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/normalizeTypeText.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "toPosixPath",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/normalizeTypeText.ts",
+        "line": 37,
         "column": 1
       }
     },
@@ -3672,6 +3709,11 @@
       },
       {
         "fromPath": "src/analyze/utils/getExportMetadata.ts",
+        "toPath": "src/analyze/utils/normalizeTypeText.ts",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getExportMetadata.ts",
         "toPath": "src/analyze/utils/parseParadoxComment.ts",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
@@ -3688,6 +3730,11 @@
       {
         "fromPath": "src/analyze/utils/getPropsFromType.ts",
         "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/getPropsFromType.ts",
+        "toPath": "src/analyze/utils/normalizeTypeText.ts",
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
       },
       {
@@ -5412,6 +5459,18 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
+        "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
+        "toSymbol": "normalizeTypeText",
+        "callExpression": "normalizeTypeText",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
+        "fromSymbol": "getSignature",
+        "toSymbol": "normalizeTypeText",
+        "callExpression": "normalizeTypeText",
+        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
+      },
+      {
         "fromSymbol": "getMembers",
         "toSymbol": "getCallableNode",
         "callExpression": "getCallableNode",
@@ -5544,6 +5603,12 @@
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
       },
       {
+        "fromSymbol": "src/analyze/utils/getPropsFromType.ts",
+        "toSymbol": "normalizeTypeText",
+        "callExpression": "normalizeTypeText",
+        "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
         "fromSymbol": "isReactComponent",
         "toSymbol": "getDeclarationName",
         "callExpression": "getDeclarationName",
@@ -5554,6 +5619,18 @@
         "toSymbol": "getCallSignature",
         "callExpression": "getCallSignature",
         "sourcePath": "src/analyze/utils/isReactComponent.ts"
+      },
+      {
+        "fromSymbol": "normalizeTypeText",
+        "toSymbol": "normalizeImportPath",
+        "callExpression": "normalizeImportPath",
+        "sourcePath": "src/analyze/utils/normalizeTypeText.ts"
+      },
+      {
+        "fromSymbol": "normalizeImportPath",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/utils/normalizeTypeText.ts"
       },
       {
         "fromSymbol": "parseParadoxComment",

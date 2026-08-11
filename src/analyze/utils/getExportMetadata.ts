@@ -22,6 +22,7 @@ import type {
   AnalysisStructuredRow,
 } from '../types.js';
 import { getParadoxComment } from './getParadoxComment.js';
+import { normalizeTypeText } from './normalizeTypeText.js';
 import { parseParadoxComment } from './parseParadoxComment.js';
 
 type CallableDeclaration =
@@ -54,8 +55,8 @@ export function getExportMetadata(options: {
     relative(options.root, options.node.getSourceFile().getFilePath()),
   );
   const sourceLocation = getSourceLocation(options.node, options.root);
-  const signatures = getSignatures(options.symbol, options.node);
-  const members = getMembers(options.node);
+  const signatures = getSignatures(options.symbol, options.node, options.root);
+  const members = getMembers(options.node, options.root);
   const structuredRows = getStructuredRows(options.node, options.name);
   const relatedSymbols = collectRelatedSymbols(
     options.name,
@@ -94,10 +95,10 @@ function getSourceLocation(node: Node, root: string): AnalysisSourceLocation {
 /***
  * Extracts callable signatures for exported functions and callable values.
  */
-function getSignatures(symbol: MorphSymbol, node: Node): AnalysisSignature[] {
+function getSignatures(symbol: MorphSymbol, node: Node, root: string): AnalysisSignature[] {
   const parsed = readParadoxMetadata(node);
   const signatures = getCallableDeclarations(symbol, node).map((declaration) =>
-    getSignature(declaration, parsed.params, parsed.returns),
+    getSignature(declaration, parsed.params, parsed.returns, root),
   );
 
   return uniqueBy(
@@ -118,18 +119,19 @@ function getSignature(
   declaration: CallableDeclaration,
   params: Record<string, string>,
   returns: string | null,
+  root: string,
 ): AnalysisSignature {
   const normalizedParameters = declaration.getParameters().map((parameter): AnalysisParameter => {
     const parameterDescription = params[parameter.getName()];
 
     return {
       name: parameter.getName(),
-      type: parameter.getType().getText(parameter),
+      type: normalizeTypeText(parameter.getType().getText(parameter), root),
       required: !parameter.isOptional(),
       description: parameterDescription ? parameterDescription.trim() : null,
     };
   });
-  const returnType = declaration.getReturnType().getText(declaration);
+  const returnType = normalizeTypeText(declaration.getReturnType().getText(declaration), root);
   const parameterLabel = normalizedParameters
     .map((parameter) => `${parameter.name}${parameter.required ? '' : '?'}: ${parameter.type}`)
     .join(', ');
@@ -145,17 +147,17 @@ function getSignature(
 /***
  * Extracts members for interface and type literal exports.
  */
-function getMembers(node: Node): AnalysisMember[] {
+function getMembers(node: Node, root: string): AnalysisMember[] {
   if (getCallableNode(node) !== null) return [];
 
   if (Node.isInterfaceDeclaration(node)) {
-    return getMembersFromProperties(node.getType().getProperties());
+    return getMembersFromProperties(node.getType().getProperties(), root);
   }
 
   if (Node.isTypeAliasDeclaration(node)) {
     const typeNode = node.getTypeNode();
     if (!typeNode || !Node.isTypeLiteral(typeNode)) return [];
-    return getMembersFromProperties(node.getType().getProperties());
+    return getMembersFromProperties(node.getType().getProperties(), root);
   }
 
   return [];
@@ -164,7 +166,10 @@ function getMembers(node: Node): AnalysisMember[] {
 /***
  * Converts TypeScript properties into documented member metadata.
  */
-function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisMember[] {
+function getMembersFromProperties(
+  properties: readonly MorphSymbol[],
+  root: string,
+): AnalysisMember[] {
   return properties.flatMap((property): AnalysisMember[] => {
     const declaration = getFirstDeclaration(property.getDeclarations());
 
@@ -188,7 +193,7 @@ function getMembersFromProperties(properties: readonly MorphSymbol[]): AnalysisM
       {
         name: property.getName(),
         kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
-        type: property.getTypeAtLocation(declaration).getText(declaration),
+        type: normalizeTypeText(property.getTypeAtLocation(declaration).getText(declaration), root),
         required: !property.isOptional(),
         description: parsed.description,
       } satisfies AnalysisMember,
