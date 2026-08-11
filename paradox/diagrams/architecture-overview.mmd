@@ -124,6 +124,7 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_utils_getExportMetadata_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getLeadingParadoxComment_ts["src/analyze/utils/getLeadingParadoxComment.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_getLeadingParadoxComment_ts
@@ -134,9 +135,12 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_isReactComponent_ts["src/analyze/utils/isReactComponent.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_utils_normalizeTypeText_ts["src/analyze/utils/normalizeTypeText.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_parseParadoxComment_ts["src/analyze/utils/parseParadoxComment.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]

@@ -30,6 +30,7 @@ graph LR
   module_src_analyze_utils_getParadoxComment_ts["src/analyze/utils/getParadoxComment.ts"]
   module_src_analyze_utils_getPropsFromType_ts["src/analyze/utils/getPropsFromType.ts"]
   module_src_analyze_utils_isReactComponent_ts["src/analyze/utils/isReactComponent.ts"]
+  module_src_analyze_utils_normalizeTypeText_ts["src/analyze/utils/normalizeTypeText.ts"]
   module_src_analyze_utils_parseParadoxComment_ts["src/analyze/utils/parseParadoxComment.ts"]
   module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]
   module_src_cli_index_ts["src/cli/index.ts"]
@@ -121,10 +122,12 @@ graph LR
   module_src_analyze_usage_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getLeadingParadoxComment_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_cli_standalone_ts --> module_src_analyze_analyze_ts
   module_src_cli_standalone_ts --> module_src_model_buildModel_ts
