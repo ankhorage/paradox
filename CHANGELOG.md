@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.20
+
+### Patch Changes
+
+- 112f1f0: Normalize absolute TypeScript import-type paths to deterministic package or package-relative specifiers in generated documentation.
+
 ## 0.1.19
 
 ### Patch Changes
