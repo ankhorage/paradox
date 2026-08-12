@@ -8,10 +8,7 @@ import { parseParadoxComment } from './parseParadoxComment.js';
 /***
  * Extracts prop names, types, required flags, and descriptions from a type.
  */
-export function getPropsFromType(
-  type: Type,
-  packageRoot?: string,
-): AnalysisComponent['props'] {
+export function getPropsFromType(type: Type, packageRoot?: string): AnalysisComponent['props'] {
   return type.getProperties().map((property) => {
     const [declaration] = property.getDeclarations();
     const propertyType = property.getTypeAtLocation(declaration);
