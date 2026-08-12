@@ -29,8 +29,7 @@ export function analyzeComponents(
         description: member.description ?? null,
       })) ?? [];
     const propsType = getComponentPropsType(e.node);
-    const legacyProps =
-      propsType != null ? getPropsFromType(propsType, options.program?.root) : [];
+    const legacyProps = propsType != null ? getPropsFromType(propsType, options.program?.root) : [];
     const props = analyzerProps.length > 0 ? analyzerProps : legacyProps;
 
     components.push({
