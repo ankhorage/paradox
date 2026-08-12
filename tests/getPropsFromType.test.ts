@@ -4,19 +4,19 @@ import { Project } from 'ts-morph';
 import { getPropsFromType } from '../src/analyze/utils/getPropsFromType.js';
 
 describe('getPropsFromType', () => {
-  test('normalizes package-local import types when a package root is provided', () => {
+  test('normalizes package-local absolute imports in component prop types', () => {
     const project = new Project({ useInMemoryFileSystem: true });
     const packageRoot = '/home/runner/work/surface/surface';
+    const typePath = `${packageRoot}/src/index`;
     project.createSourceFile(
-      `${packageRoot}/src/index.ts`,
+      `${typePath}.ts`,
       'export interface SurfaceTheme { readonly mode: "light" | "dark"; }',
     );
     const sourceFile = project.createSourceFile(
       `${packageRoot}/src/context.ts`,
       [
-        "import type { SurfaceTheme } from './index';",
         'export interface ContextProps {',
-        '  readonly value: { readonly theme: SurfaceTheme };',
+        `  readonly value: { readonly theme: import("${typePath}").SurfaceTheme };`,
         '}',
       ].join('\n'),
     );
