@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.22
+
+### Patch Changes
+
+- 125eac9: Add opt-in GitHub Sponsors support from a single root-level `donation.account` config, including generated Donation documentation and `.github/FUNDING.yml` handling.
+
 ## 0.1.21
 
 ### Patch Changes
