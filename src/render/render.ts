@@ -1,6 +1,7 @@
 import type { DocumentationModel } from '../model/types.js';
 import { renderBadgeArtifacts } from './renderers/badges.js';
 import { renderDiagramArtifacts } from './renderers/diagrams.js';
+import { renderDonation } from './renderers/donation.js';
 import { renderFundingYaml } from './renderers/funding.js';
 import { renderHtml } from './renderers/html.js';
 import { renderMarkdown } from './renderers/markdown.js';
@@ -40,6 +41,7 @@ export function render(
   for (const renderer of [renderMarkdown, renderHtml]) {
     Object.assign(result, renderer(context));
   }
+  Object.assign(result, renderDonation(context));
 
   return result;
 }
