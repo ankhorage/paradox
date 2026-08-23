@@ -41,9 +41,7 @@ test('renders canonical donation outputs from one account', async () => {
 test('rejects invalid configured donation accounts', async () => {
   const root = await createFixtureAsync();
   try {
-    await expect(renderFixtureAsync(root, 'invalid account')).rejects.toThrow(
-      'Invalid donation account',
-    );
+    expect(renderFixtureAsync(root, 'invalid account')).rejects.toThrow('Invalid donation account');
   } finally {
     await rm(root, { force: true, recursive: true });
   }
@@ -68,7 +66,7 @@ test('refuses to overwrite a user-owned funding file', async () => {
     const fundingPath = join(root, '.github', 'FUNDING.yml');
     await writeFile(fundingPath, 'github: someone-else\n');
     const { config, result } = await renderFixtureAsync(root, 'ankhorage');
-    await expect(
+    expect(
       write(result, config, { packageRoot: root, outputRoot: join(root, 'paradox') }),
     ).rejects.toThrow('Refusing to overwrite existing non-Paradox');
     expect(await readFile(fundingPath, 'utf-8')).toBe('github: someone-else\n');
@@ -90,7 +88,7 @@ test('removes a Paradox-owned funding file when donation is disabled', async () 
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
     });
-    await expect(readFile(join(root, '.github', 'FUNDING.yml'), 'utf-8')).rejects.toThrow();
+    expect(readFile(join(root, '.github', 'FUNDING.yml'), 'utf-8')).rejects.toThrow();
   } finally {
     await rm(root, { force: true, recursive: true });
   }
