@@ -7,6 +7,12 @@
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';
 
+  /** Enables canonical GitHub Sponsors integration for generated repository documentation. */
+  donation?: {
+    /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
+    account: string;
+  };
+
   docs?: {
     title?: string;
     description?: string;
