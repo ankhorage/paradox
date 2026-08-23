@@ -8,7 +8,7 @@ export function renderDonation(
     return { indexHtml: context.result.indexHtml, readme: context.result.readme };
   }
 
-  const account = donation.account;
+  const { account } = donation;
   return {
     readme: renderDonationReadme(context.result.readme, account),
     indexHtml: renderDonationHtml(context.result.indexHtml, account),
