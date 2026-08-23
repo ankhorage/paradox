@@ -5,6 +5,7 @@ export interface DocumentationModel {
   packageName: string;
   packageId: string;
   description: string | null;
+  donation: DonationModel | null;
   badges: GeneratedBadge[];
   usage: UsageModel | null;
   readmeUsageDescription: string | null;
@@ -19,6 +20,10 @@ export interface DocumentationModel {
   sourceFunctions: SourceFunctionModel[];
   sequenceScenarios: SequenceScenarioModel[];
   graphs: GraphModel;
+}
+
+interface DonationModel {
+  account: string;
 }
 
 export interface GeneratedBadge {
