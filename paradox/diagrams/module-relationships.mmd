@@ -37,6 +37,7 @@ graph LR
   module_src_cli_standalone_ts["src/cli/standalone.ts"]
   module_src_config_defineParadoxConfig_ts["src/config/defineParadoxConfig.ts"]
   module_src_config_types_ts["src/config/types.ts"]
+  module_src_config_utils_validateDonationAccount_ts["src/config/utils/validateDonationAccount.ts"]
   module_src_doc_tags_registry_ts["src/doc-tags/registry.ts"]
   module_src_docsSurface_handlers_test_ts["src/docsSurface.handlers.test.ts"]
   module_src_docsSurface_ts["src/docsSurface.ts"]
@@ -50,9 +51,12 @@ graph LR
   module_src_render_render_ts["src/render/render.ts"]
   module_src_render_renderers_badges_ts["src/render/renderers/badges.ts"]
   module_src_render_renderers_diagrams_ts["src/render/renderers/diagrams.ts"]
+  module_src_render_renderers_donation_ts["src/render/renderers/donation.ts"]
+  module_src_render_renderers_funding_ts["src/render/renderers/funding.ts"]
   module_src_render_renderers_html_ts["src/render/renderers/html.ts"]
   module_src_render_renderers_markdown_ts["src/render/renderers/markdown.ts"]
   module_src_render_types_ts["src/render/types.ts"]
+  module_src_write_utils_syncFundingFileAsync_ts["src/write/utils/syncFundingFileAsync.ts"]
   module_src_write_write_ts["src/write/write.ts"]
   module_src_analyze_analyze_ts --> module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --> module_src_analyze_components_ts
@@ -70,6 +74,7 @@ graph LR
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_types_ts
+  module_src_analyze_analyze_ts --> module_src_config_utils_validateDonationAccount_ts
   module_src_analyze_badges_ts --> module_src_analyze_types_ts
   module_src_analyze_badges_ts --> module_src_analyze_usage_ts
   module_src_analyze_components_ts --> module_src_analyze_semantic_exports_ts
@@ -143,6 +148,8 @@ graph LR
   module_src_render_render_ts --> module_src_model_types_ts
   module_src_render_render_ts --> module_src_render_renderers_badges_ts
   module_src_render_render_ts --> module_src_render_renderers_diagrams_ts
+  module_src_render_render_ts --> module_src_render_renderers_donation_ts
+  module_src_render_render_ts --> module_src_render_renderers_funding_ts
   module_src_render_render_ts --> module_src_render_renderers_html_ts
   module_src_render_render_ts --> module_src_render_renderers_markdown_ts
   module_src_render_render_ts --> module_src_render_types_ts
@@ -150,6 +157,8 @@ graph LR
   module_src_render_renderers_badges_ts --> module_src_render_types_ts
   module_src_render_renderers_diagrams_ts --> module_src_model_types_ts
   module_src_render_renderers_diagrams_ts --> module_src_render_types_ts
+  module_src_render_renderers_donation_ts --> module_src_render_types_ts
+  module_src_render_renderers_funding_ts --> module_src_model_types_ts
   module_src_render_renderers_html_ts --> module_src_model_types_ts
   module_src_render_renderers_html_ts --> module_src_render_types_ts
   module_src_render_renderers_markdown_ts --> module_src_model_types_ts
@@ -157,3 +166,4 @@ graph LR
   module_src_render_types_ts --> module_src_model_types_ts
   module_src_write_write_ts --> module_src_config_types_ts
   module_src_write_write_ts --> module_src_render_types_ts
+  module_src_write_write_ts --> module_src_write_utils_syncFundingFileAsync_ts

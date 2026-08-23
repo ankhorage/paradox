@@ -209,6 +209,13 @@
         "description": null
       },
       {
+        "name": "donation",
+        "kind": "property",
+        "type": "{ account: string; } | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "mode",
         "kind": "property",
         "type": "\"safe\" | \"write\" | undefined",

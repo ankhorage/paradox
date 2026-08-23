@@ -2,6 +2,9 @@
   "packageName": "@ankhorage/paradox",
   "packageId": "@ankhorage/paradox",
   "description": "Deterministic documentation generator for TypeScript packages.",
+  "donation": {
+    "account": "ankhorage"
+  },
   "badges": [
     {
       "id": "license",
@@ -76,7 +79,7 @@
   "readmeConfig": {
     "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
-    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  docs: {\n    title: '@ankhorage/paradox',\n    description: 'Deterministic documentation generator for TypeScript packages.',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
+    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  docs: {\n    title: '@ankhorage/paradox',\n    description: 'Deterministic documentation generator for TypeScript packages.',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
     "sourcePath": "paradox.config.ts"
   },
   "config": {
@@ -86,6 +89,12 @@
       {
         "name": "mode",
         "type": "'safe' | 'write' | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "donation",
+        "type": "{ account: string; } | undefined",
         "required": false,
         "description": null
       },
@@ -132,7 +141,8 @@
         "src/analyze/sourceFunctions.ts",
         "src/analyze/types.ts",
         "src/analyze/usage.ts",
-        "src/config/types.ts"
+        "src/config/types.ts",
+        "src/config/utils/validateDonationAccount.ts"
       ],
       "exports": [
         "analyze"
@@ -563,6 +573,14 @@
       ]
     },
     {
+      "path": "src/config/utils/validateDonationAccount.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "validateDonationAccount"
+      ]
+    },
+    {
       "path": "src/doc-tags/registry.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -673,6 +691,8 @@
         "src/model/types.ts",
         "src/render/renderers/badges.ts",
         "src/render/renderers/diagrams.ts",
+        "src/render/renderers/donation.ts",
+        "src/render/renderers/funding.ts",
         "src/render/renderers/html.ts",
         "src/render/renderers/markdown.ts",
         "src/render/types.ts"
@@ -701,6 +721,26 @@
       ],
       "exports": [
         "renderDiagramArtifacts"
+      ]
+    },
+    {
+      "path": "src/render/renderers/donation.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderDonation"
+      ]
+    },
+    {
+      "path": "src/render/renderers/funding.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/model/types.ts"
+      ],
+      "exports": [
+        "renderFundingYaml"
       ]
     },
     {
@@ -739,11 +779,20 @@
       ]
     },
     {
+      "path": "src/write/utils/syncFundingFileAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "syncFundingFileAsync"
+      ]
+    },
+    {
       "path": "src/write/write.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/config/types.ts",
-        "src/render/types.ts"
+        "src/render/types.ts",
+        "src/write/utils/syncFundingFileAsync.ts"
       ],
       "exports": [
         "write"
@@ -961,6 +1010,13 @@
           "description": null
         },
         {
+          "name": "donation",
+          "kind": "property",
+          "type": "{ account: string; } | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "mode",
           "kind": "property",
           "type": "\"safe\" | \"write\" | undefined",
@@ -1032,7 +1088,7 @@
       "description": "Analyzes a package and returns the complete documentation input model.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 28,
+        "line": 29,
         "column": 1
       }
     },
@@ -1041,7 +1097,7 @@
       "description": "Converts semantic type members into serializable analysis output.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 124,
+        "line": 130,
         "column": 1
       }
     },
@@ -1050,7 +1106,7 @@
       "description": "Reads package metadata from the analyzed package root.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 141,
+        "line": 147,
         "column": 1
       }
     },
@@ -2369,6 +2425,15 @@
       }
     },
     {
+      "name": "validateDonationAccount",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/config/utils/validateDonationAccount.ts",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
       "name": "getParadoxDocTag",
       "description": "Looks up documentation tag metadata by tag name.",
       "sourceLocation": {
@@ -2391,7 +2456,7 @@
       "description": "Converts analysis output into a serializable documentation model.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 171,
+        "line": 174,
         "column": 1
       }
     },
@@ -2400,7 +2465,7 @@
       "description": "Maps one analyzed export into the serializable documentation shape.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 280,
+        "line": 284,
         "column": 1
       }
     },
@@ -2409,7 +2474,7 @@
       "description": "Maps an analyzed component while preserving export metadata when available.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 332,
+        "line": 336,
         "column": 1
       }
     },
@@ -2418,7 +2483,7 @@
       "description": "Returns a copy of items sorted by their `name` property.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 364,
+        "line": 368,
         "column": 1
       }
     },
@@ -2508,7 +2573,7 @@
       "description": "Renders the documentation model into README and artifact files.",
       "sourceLocation": {
         "filePath": "src/render/render.ts",
-        "line": 11,
+        "line": 13,
         "column": 1
       }
     },
@@ -2743,6 +2808,42 @@
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
         "line": 300,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDonation",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/donation.ts",
+        "line": 3,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDonationHtml",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/donation.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDonationReadme",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/donation.ts",
+        "line": 37,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderFundingYaml",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/funding.ts",
+        "line": 3,
         "column": 1
       }
     },
@@ -3197,11 +3298,38 @@
       }
     },
     {
+      "name": "syncFundingFileAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncFundingFileAsync.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "isParadoxOwnedFunding",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncFundingFileAsync.ts",
+        "line": 26,
+        "column": 1
+      }
+    },
+    {
+      "name": "readFundingFileAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncFundingFileAsync.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
       "name": "write",
       "description": "Writes generated documentation artifacts to the configured output paths.",
       "sourceLocation": {
         "filePath": "src/write/write.ts",
-        "line": 10,
+        "line": 11,
         "column": 1
       }
     }
@@ -3280,6 +3408,11 @@
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/config/types.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/config/utils/validateDonationAccount.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -3549,6 +3682,16 @@
       },
       {
         "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/donation.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/funding.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
         "toPath": "src/render/renderers/html.ts",
         "sourcePath": "src/render/render.ts"
       },
@@ -3575,6 +3718,11 @@
       {
         "fromPath": "src/write/write.ts",
         "toPath": "src/render/types.ts",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/write/write.ts",
+        "toPath": "src/write/utils/syncFundingFileAsync.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -3763,6 +3911,16 @@
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
+        "fromPath": "src/render/renderers/donation.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/donation.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/funding.ts",
+        "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/funding.ts"
+      },
+      {
         "fromPath": "src/render/renderers/html.ts",
         "toPath": "src/model/types.ts",
         "sourcePath": "src/render/renderers/html.ts"
@@ -3848,6 +4006,12 @@
         "fromSymbol": "analyze",
         "toSymbol": "readPackageJson",
         "callExpression": "readPackageJson",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "validateDonationAccount",
+        "callExpression": "validateDonationAccount",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4836,8 +5000,20 @@
       },
       {
         "fromSymbol": "render",
+        "toSymbol": "renderFundingYaml",
+        "callExpression": "renderFundingYaml",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "render",
         "toSymbol": "renderer",
         "callExpression": "renderer",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "render",
+        "toSymbol": "renderDonation",
+        "callExpression": "renderDonation",
         "sourcePath": "src/render/render.ts"
       },
       {
@@ -4862,6 +5038,12 @@
         "fromSymbol": "write",
         "toSymbol": "dirname",
         "callExpression": "dirname",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "syncFundingFileAsync",
+        "callExpression": "syncFundingFileAsync",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -5885,6 +6067,18 @@
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
+        "fromSymbol": "renderDonation",
+        "toSymbol": "renderDonationReadme",
+        "callExpression": "renderDonationReadme",
+        "sourcePath": "src/render/renderers/donation.ts"
+      },
+      {
+        "fromSymbol": "renderDonation",
+        "toSymbol": "renderDonationHtml",
+        "callExpression": "renderDonationHtml",
+        "sourcePath": "src/render/renderers/donation.ts"
+      },
+      {
         "fromSymbol": "renderHtml",
         "toSymbol": "getSourceAreas",
         "callExpression": "getSourceAreas",
@@ -6351,6 +6545,54 @@
         "toSymbol": "flattenConfigMembers",
         "callExpression": "flattenConfigMembers",
         "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "readFundingFileAsync",
+        "callExpression": "readFundingFileAsync",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "isParadoxOwnedFunding",
+        "callExpression": "isParadoxOwnedFunding",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "unlink",
+        "callExpression": "unlink",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "syncFundingFileAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "readFundingFileAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
       }
     ],
     "typeReferences": [
