@@ -74,6 +74,7 @@ Configuration for running Paradox.
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | docs | property | `{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } \| undefined` | no |  |
+| donation | property | `{ account: string; } \| undefined` | no |  |
 | mode | property | `"safe" \| "write" \| undefined` | no |  |
 | output | property | `{ dir?: string; } \| undefined` | no |  |
 | package | property | `{ root?: string; entrypoints?: string[]; } \| undefined` | no |  |

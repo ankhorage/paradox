@@ -85,6 +85,10 @@ export interface AnalysisUsage {
   commands: AnalysisUsageCommand[];
 }
 
+interface AnalysisDonation {
+  account: string;
+}
+
 interface AnalysisUsageCommand {
   name: string;
   command: string;
@@ -189,6 +193,7 @@ export interface AnalysisResult {
   packageName: string;
   packageId: string;
   description: string | null;
+  donation: AnalysisDonation | null;
 
   exports: AnalysisExport[];
   components: AnalysisComponent[];

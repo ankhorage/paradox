@@ -9,6 +9,10 @@ import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';
 export default defineParadoxConfig({
   mode: 'write',
 
+  donation: {
+    account: 'ankhorage',
+  },
+
   docs: {
     title: '@ankhorage/paradox',
     description: 'Deterministic documentation generator for TypeScript packages.',
