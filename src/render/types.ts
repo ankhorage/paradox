@@ -21,6 +21,7 @@ export interface RenderResult {
   exportsJson: string;
   paradoxJson: string;
   indexHtml: string;
+  fundingYaml: string | null;
   diagrams: DiagramArtifact[];
   badges: BadgeArtifact[];
 }
