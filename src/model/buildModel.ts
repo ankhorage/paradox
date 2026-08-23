@@ -31,6 +31,9 @@ interface BuildModelInput {
   packageName: string;
   packageId: string;
   description: string | null;
+  donation: {
+    account: string;
+  } | null;
   badges: {
     id: string;
     label: string;
@@ -179,6 +182,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
     packageName: analysis.packageName,
     packageId: analysis.packageId,
     description: analysis.description,
+    donation: analysis.donation === null ? null : { account: analysis.donation.account },
     badges: analysis.badges.map((badge) => ({
       id: badge.id,
       label: badge.label,
