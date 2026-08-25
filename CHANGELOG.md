@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.23
+
+### Patch Changes
+
+- 9c401e8: Sync the package with the current Ankhorage Devtools, Bun, Node 24, TypeScript, and CI baseline.
+
 ## 0.1.22
 
 ### Patch Changes
