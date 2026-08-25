@@ -1,5 +1,6 @@
 import type { DocumentationModel } from '../model/types.js';
 import { renderBadgeArtifacts } from './renderers/badges.js';
+import { renderCollaborators } from './renderers/collaborators.js';
 import { renderDiagramArtifacts } from './renderers/diagrams.js';
 import { renderDonation } from './renderers/donation.js';
 import { renderFundingYaml } from './renderers/funding.js';
@@ -26,6 +27,7 @@ export function render(
     exportsJson: `${JSON.stringify(model.exports, null, 2)}\n`,
     paradoxJson: `${JSON.stringify(model, null, 2)}\n`,
     indexHtml: '',
+    collaboratorsWorkflowYaml: null,
     fundingYaml: renderFundingYaml(model),
     badges,
     diagrams,
@@ -41,6 +43,7 @@ export function render(
   for (const renderer of [renderMarkdown, renderHtml]) {
     Object.assign(result, renderer(context));
   }
+  Object.assign(result, renderCollaborators(context));
   Object.assign(result, renderDonation(context));
 
   return result;

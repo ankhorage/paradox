@@ -166,6 +166,42 @@ describe('cli e2e', () => {
     }
   });
 
+  test('rejects collaborators false from an untyped config without writing artifacts', async () => {
+    const tempRoot = await createTempDir('paradox-cli-e2e-');
+    try {
+      const pkgRoot = join(tempRoot, 'pkg');
+      await writeFixturePackage(pkgRoot, {
+        name: '@fixture/cli-invalid-collaborators',
+        mode: 'write',
+      });
+      await rm(join(pkgRoot, 'paradox.config.ts'));
+      await writeFile(
+        join(pkgRoot, 'paradox.config.mjs'),
+        [
+          'export default {',
+          "  mode: 'write',",
+          '  collaborators: false,',
+          "  package: { entrypoints: ['src/index.ts'] },",
+          '};',
+          '',
+        ].join('\n'),
+      );
+
+      const readmePath = join(pkgRoot, 'README.md');
+      const originalReadme = await readFile(readmePath, 'utf-8');
+      const before = await listFiles(tempRoot);
+      const result = await runCli({ cwd: pkgRoot });
+      const after = await listFiles(tempRoot);
+
+      expect(result.exitCode).not.toBe(0);
+      expect(result.stderr).toContain('Invalid collaborators config');
+      expect(after).toEqual(before);
+      expect(await readFile(readmePath, 'utf-8')).toBe(originalReadme);
+    } finally {
+      await rm(tempRoot, { recursive: true, force: true });
+    }
+  });
+
   test('rejects output.dir with parent traversal and does not write any artifacts', async () => {
     const tempRoot = await createTempDir('paradox-cli-e2e-');
     try {

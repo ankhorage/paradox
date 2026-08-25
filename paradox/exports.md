@@ -73,6 +73,7 @@ Configuration for running Paradox.
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
+| collaborators | property | `true \| undefined` | no |  |
 | docs | property | `{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } \| undefined` | no |  |
 | donation | property | `{ account: string; } \| undefined` | no |  |
 | mode | property | `"safe" \| "write" \| undefined` | no |  |
