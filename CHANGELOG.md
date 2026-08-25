@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.24
+
+### Patch Changes
+
+- 95b08c8: Add opt-in Collaborators README and managed workflow generation through the root-level `collaborators` configuration.
+
 ## 0.1.23
 
 ### Patch Changes
