@@ -128,12 +128,39 @@ test('writes the collaborators workflow idempotently in write mode', async () =>
   }
 });
 
+test('recognizes CRLF Paradox workflows during rerun and disable', async () => {
+  const root = await createFixtureAsync();
+  const workflowPath = join(root, '.github', 'workflows', 'collaborators.yml');
+  const crlfWorkflow = expectedCollaboratorsWorkflow.replaceAll('\n', '\r\n');
+  try {
+    await mkdir(join(root, '.github', 'workflows'), { recursive: true });
+    await writeFile(workflowPath, crlfWorkflow);
+    const enabled = await renderFixtureAsync(root, { collaborators: true });
+    await write(enabled.result, enabled.config, {
+      packageRoot: root,
+      outputRoot: join(root, 'paradox'),
+    });
+    expect(await readFile(workflowPath, 'utf-8')).toBe(expectedCollaboratorsWorkflow);
+
+    await writeFile(workflowPath, crlfWorkflow);
+    const disabled = await renderFixtureAsync(root);
+    await write(disabled.result, disabled.config, {
+      packageRoot: root,
+      outputRoot: join(root, 'paradox'),
+    });
+    expect(readFile(workflowPath, 'utf-8')).rejects.toThrow();
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
 test('refuses to overwrite a user-owned collaborators workflow', async () => {
   const root = await createFixtureAsync();
   const workflowPath = join(root, '.github', 'workflows', 'collaborators.yml');
   try {
     await mkdir(join(root, '.github', 'workflows'), { recursive: true });
     await writeFile(workflowPath, 'name: User workflow\n');
+    await writeFile(join(root, 'README.md'), '# Original README\n');
     const enabled = await renderFixtureAsync(root, { collaborators: true });
     expect(
       write(enabled.result, enabled.config, {
@@ -142,6 +169,8 @@ test('refuses to overwrite a user-owned collaborators workflow', async () => {
       }),
     ).rejects.toThrow('Refusing to overwrite existing non-Paradox');
     expect(await readFile(workflowPath, 'utf-8')).toBe('name: User workflow\n');
+    expect(await readFile(join(root, 'README.md'), 'utf-8')).toBe('# Original README\n');
+    expect(readFile(join(root, 'paradox', 'paradox.json'), 'utf-8')).rejects.toThrow();
   } finally {
     await rm(root, { force: true, recursive: true });
   }

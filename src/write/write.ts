@@ -18,6 +18,12 @@ export async function write(
   const { outputRoot } = runtime;
   const mode = config.mode ?? 'safe';
 
+  if (mode === 'write') {
+    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml, {
+      mode: 'check',
+    });
+  }
+
   await mkdir(outputRoot, { recursive: true });
 
   await writeFile(join(outputRoot, 'exports.md'), result.exportsMarkdown);

@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import type { ParadoxConfig } from '../config/types.js';
+import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
 import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
@@ -32,7 +33,7 @@ export async function analyze(
 ): Promise<AnalysisResult> {
   const root = runtime.packageRoot;
   const pkg = await readPackageJson(root);
-  const collaborators = config.collaborators ?? null;
+  const collaborators = validateCollaborators(config.collaborators);
   const donation =
     config.donation === undefined
       ? null

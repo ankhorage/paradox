@@ -149,6 +149,7 @@
         "src/analyze/types.ts",
         "src/analyze/usage.ts",
         "src/config/types.ts",
+        "src/config/utils/validateCollaborators.ts",
         "src/config/utils/validateDonationAccount.ts"
       ],
       "exports": [
@@ -577,6 +578,14 @@
       "dependencies": [],
       "exports": [
         "ParadoxConfig"
+      ]
+    },
+    {
+      "path": "src/config/utils/validateCollaborators.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "validateCollaborators"
       ]
     },
     {
@@ -1122,7 +1131,7 @@
       "description": "Analyzes a package and returns the complete documentation input model.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 29,
+        "line": 30,
         "column": 1
       }
     },
@@ -1131,7 +1140,7 @@
       "description": "Converts semantic type members into serializable analysis output.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 132,
+        "line": 133,
         "column": 1
       }
     },
@@ -1140,7 +1149,7 @@
       "description": "Reads package metadata from the analyzed package root.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 149,
+        "line": 150,
         "column": 1
       }
     },
@@ -2459,6 +2468,15 @@
       }
     },
     {
+      "name": "validateCollaborators",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/config/utils/validateCollaborators.ts",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
       "name": "validateDonationAccount",
       "description": null,
       "sourceLocation": {
@@ -3372,7 +3390,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
-        "line": 30,
+        "line": 34,
         "column": 1
       }
     },
@@ -3381,7 +3399,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
-        "line": 34,
+        "line": 38,
         "column": 1
       }
     },
@@ -3496,6 +3514,11 @@
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/config/types.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/config/utils/validateCollaborators.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4109,6 +4132,12 @@
         "fromSymbol": "analyze",
         "toSymbol": "readPackageJson",
         "callExpression": "readPackageJson",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "validateCollaborators",
+        "callExpression": "validateCollaborators",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -5127,6 +5156,12 @@
       },
       {
         "fromSymbol": "write",
+        "toSymbol": "syncCollaboratorsWorkflowAsync",
+        "callExpression": "syncCollaboratorsWorkflowAsync",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
         "toSymbol": "mkdir",
         "callExpression": "mkdir",
         "sourcePath": "src/write/write.ts"
@@ -5147,12 +5182,6 @@
         "fromSymbol": "write",
         "toSymbol": "dirname",
         "callExpression": "dirname",
-        "sourcePath": "src/write/write.ts"
-      },
-      {
-        "fromSymbol": "write",
-        "toSymbol": "syncCollaboratorsWorkflowAsync",
-        "callExpression": "syncCollaboratorsWorkflowAsync",
         "sourcePath": "src/write/write.ts"
       },
       {
