@@ -202,6 +202,13 @@
     "signatures": [],
     "members": [
       {
+        "name": "collaborators",
+        "kind": "property",
+        "type": "true | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "docs",
         "kind": "property",
         "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",

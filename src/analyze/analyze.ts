@@ -32,6 +32,7 @@ export async function analyze(
 ): Promise<AnalysisResult> {
   const root = runtime.packageRoot;
   const pkg = await readPackageJson(root);
+  const collaborators = config.collaborators ?? null;
   const donation =
     config.donation === undefined
       ? null
@@ -90,6 +91,7 @@ export async function analyze(
     packageName: config.docs?.title ?? pkg.name,
     packageId: pkg.name,
     description: config.docs?.description ?? pkg.description ?? null,
+    collaborators,
     donation,
     exports,
     components,

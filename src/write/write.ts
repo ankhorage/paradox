@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 
 import type { ParadoxConfig } from '../config/types.js';
 import type { RenderResult } from '../render/types.js';
+import { syncCollaboratorsWorkflowAsync } from './utils/syncCollaboratorsWorkflowAsync.js';
 import { syncFundingFileAsync } from './utils/syncFundingFileAsync.js';
 
 /***
@@ -39,6 +40,7 @@ export async function write(
 
   if (mode === 'write') {
     await writeFile(join(root, 'README.md'), result.readme);
+    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml);
     await syncFundingFileAsync(root, result.fundingYaml);
   }
 }

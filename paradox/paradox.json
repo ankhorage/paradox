@@ -2,6 +2,7 @@
   "packageName": "@ankhorage/paradox",
   "packageId": "@ankhorage/paradox",
   "description": "Deterministic documentation generator for TypeScript packages.",
+  "collaborators": true,
   "donation": {
     "account": "ankhorage"
   },
@@ -79,7 +80,7 @@
   "readmeConfig": {
     "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
-    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  docs: {\n    title: '@ankhorage/paradox',\n    description: 'Deterministic documentation generator for TypeScript packages.',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
+    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  collaborators: true,\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  docs: {\n    title: '@ankhorage/paradox',\n    description: 'Deterministic documentation generator for TypeScript packages.',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
     "sourcePath": "paradox.config.ts"
   },
   "config": {
@@ -89,6 +90,12 @@
       {
         "name": "mode",
         "type": "'safe' | 'write' | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "collaborators",
+        "type": "true | undefined",
         "required": false,
         "description": null
       },
@@ -690,6 +697,7 @@
       "dependencies": [
         "src/model/types.ts",
         "src/render/renderers/badges.ts",
+        "src/render/renderers/collaborators.ts",
         "src/render/renderers/diagrams.ts",
         "src/render/renderers/donation.ts",
         "src/render/renderers/funding.ts",
@@ -710,6 +718,16 @@
       ],
       "exports": [
         "renderBadgeArtifacts"
+      ]
+    },
+    {
+      "path": "src/render/renderers/collaborators.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/render/types.ts"
+      ],
+      "exports": [
+        "renderCollaborators"
       ]
     },
     {
@@ -779,6 +797,14 @@
       ]
     },
     {
+      "path": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "syncCollaboratorsWorkflowAsync"
+      ]
+    },
+    {
       "path": "src/write/utils/syncFundingFileAsync.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -792,6 +818,7 @@
       "dependencies": [
         "src/config/types.ts",
         "src/render/types.ts",
+        "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "src/write/utils/syncFundingFileAsync.ts"
       ],
       "exports": [
@@ -1003,6 +1030,13 @@
       "signatures": [],
       "members": [
         {
+          "name": "collaborators",
+          "kind": "property",
+          "type": "true | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "docs",
           "kind": "property",
           "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",
@@ -1097,7 +1131,7 @@
       "description": "Converts semantic type members into serializable analysis output.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 130,
+        "line": 132,
         "column": 1
       }
     },
@@ -1106,7 +1140,7 @@
       "description": "Reads package metadata from the analyzed package root.",
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 147,
+        "line": 149,
         "column": 1
       }
     },
@@ -2456,7 +2490,7 @@
       "description": "Converts analysis output into a serializable documentation model.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 174,
+        "line": 175,
         "column": 1
       }
     },
@@ -2465,7 +2499,7 @@
       "description": "Maps one analyzed export into the serializable documentation shape.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 284,
+        "line": 286,
         "column": 1
       }
     },
@@ -2474,7 +2508,7 @@
       "description": "Maps an analyzed component while preserving export metadata when available.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 336,
+        "line": 338,
         "column": 1
       }
     },
@@ -2483,7 +2517,7 @@
       "description": "Returns a copy of items sorted by their `name` property.",
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 368,
+        "line": 370,
         "column": 1
       }
     },
@@ -2573,7 +2607,7 @@
       "description": "Renders the documentation model into README and artifact files.",
       "sourceLocation": {
         "filePath": "src/render/render.ts",
-        "line": 13,
+        "line": 14,
         "column": 1
       }
     },
@@ -2610,6 +2644,33 @@
       "sourceLocation": {
         "filePath": "src/render/renderers/badges.ts",
         "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderCollaborators",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/collaborators.ts",
+        "line": 3,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderCollaboratorsReadme",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/collaborators.ts",
+        "line": 27,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderCollaboratorsWorkflowYaml",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/render/renderers/collaborators.ts",
+        "line": 31,
         "column": 1
       }
     },
@@ -3298,6 +3359,33 @@
       }
     },
     {
+      "name": "syncCollaboratorsWorkflowAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "isParadoxOwnedCollaboratorsWorkflow",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "readCollaboratorsWorkflowAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
       "name": "syncFundingFileAsync",
       "description": null,
       "sourceLocation": {
@@ -3329,7 +3417,7 @@
       "description": "Writes generated documentation artifacts to the configured output paths.",
       "sourceLocation": {
         "filePath": "src/write/write.ts",
-        "line": 11,
+        "line": 12,
         "column": 1
       }
     }
@@ -3677,6 +3765,11 @@
       },
       {
         "fromPath": "src/render/render.ts",
+        "toPath": "src/render/renderers/collaborators.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
         "toPath": "src/render/renderers/diagrams.ts",
         "sourcePath": "src/render/render.ts"
       },
@@ -3718,6 +3811,11 @@
       {
         "fromPath": "src/write/write.ts",
         "toPath": "src/render/types.ts",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/write/write.ts",
+        "toPath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -3899,6 +3997,11 @@
         "fromPath": "src/render/renderers/badges.ts",
         "toPath": "src/render/types.ts",
         "sourcePath": "src/render/renderers/badges.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/collaborators.ts",
+        "toPath": "src/render/types.ts",
+        "sourcePath": "src/render/renderers/collaborators.ts"
       },
       {
         "fromPath": "src/render/renderers/diagrams.ts",
@@ -5012,6 +5115,12 @@
       },
       {
         "fromSymbol": "render",
+        "toSymbol": "renderCollaborators",
+        "callExpression": "renderCollaborators",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromSymbol": "render",
         "toSymbol": "renderDonation",
         "callExpression": "renderDonation",
         "sourcePath": "src/render/render.ts"
@@ -5038,6 +5147,12 @@
         "fromSymbol": "write",
         "toSymbol": "dirname",
         "callExpression": "dirname",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "syncCollaboratorsWorkflowAsync",
+        "callExpression": "syncCollaboratorsWorkflowAsync",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -5845,6 +5960,18 @@
         "sourcePath": "src/render/renderers/badges.ts"
       },
       {
+        "fromSymbol": "renderCollaborators",
+        "toSymbol": "renderCollaboratorsWorkflowYaml",
+        "callExpression": "renderCollaboratorsWorkflowYaml",
+        "sourcePath": "src/render/renderers/collaborators.ts"
+      },
+      {
+        "fromSymbol": "renderCollaborators",
+        "toSymbol": "renderCollaboratorsReadme",
+        "callExpression": "renderCollaboratorsReadme",
+        "sourcePath": "src/render/renderers/collaborators.ts"
+      },
+      {
         "fromSymbol": "renderDiagramArtifacts",
         "toSymbol": "renderArchitectureOverview",
         "callExpression": "renderArchitectureOverview",
@@ -6545,6 +6672,54 @@
         "toSymbol": "flattenConfigMembers",
         "callExpression": "flattenConfigMembers",
         "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "readCollaboratorsWorkflowAsync",
+        "callExpression": "readCollaboratorsWorkflowAsync",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "isParadoxOwnedCollaboratorsWorkflow",
+        "callExpression": "isParadoxOwnedCollaboratorsWorkflow",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "unlink",
+        "callExpression": "unlink",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "readCollaboratorsWorkflowAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
       },
       {
         "fromSymbol": "syncFundingFileAsync",

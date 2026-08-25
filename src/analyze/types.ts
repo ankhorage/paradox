@@ -193,6 +193,7 @@ export interface AnalysisResult {
   packageName: string;
   packageId: string;
   description: string | null;
+  collaborators: true | null;
   donation: AnalysisDonation | null;
 
   exports: AnalysisExport[];

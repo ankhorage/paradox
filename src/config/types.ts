@@ -7,6 +7,9 @@
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';
 
+  /** Enables canonical direct-collaborator documentation and workflow integration. */
+  collaborators?: true;
+
   /** Enables canonical GitHub Sponsors integration for generated repository documentation. */
   donation?: {
     /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */

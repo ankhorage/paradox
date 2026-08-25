@@ -9,6 +9,8 @@ import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';
 export default defineParadoxConfig({
   mode: 'write',
 
+  collaborators: true,
+
   donation: {
     account: 'ankhorage',
   },

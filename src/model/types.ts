@@ -5,6 +5,7 @@ export interface DocumentationModel {
   packageName: string;
   packageId: string;
   description: string | null;
+  collaborators: true | null;
   donation: DonationModel | null;
   badges: GeneratedBadge[];
   usage: UsageModel | null;
