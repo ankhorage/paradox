@@ -6,3 +6,4 @@ paradox/**/*.md
 tests/__snapshots__/**/*.html
 tests/__snapshots__/**/*.json
 tests/__snapshots__/**/*.md
+tests/fixtures/**
