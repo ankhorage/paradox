@@ -34,14 +34,7 @@ export interface AnalyzedTag {
 }
 
 export type AnalyzedExportKind =
-  | 'function'
-  | 'component'
-  | 'class'
-  | 'interface'
-  | 'type'
-  | 'const'
-  | 'hook'
-  | 'unknown';
+  'function' | 'component' | 'class' | 'interface' | 'type' | 'const' | 'hook' | 'unknown';
 
 export interface AnalyzedExport {
   name: string;
