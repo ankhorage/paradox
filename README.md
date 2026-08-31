@@ -148,6 +148,10 @@ Source: `src/config/types.ts:7:1`
 ## Collaborators
 
 <!-- readme: collaborators -start -->
+<table>
+	<tbody>
+	<tbody>
+</table>
 <!-- readme: collaborators -end -->
 
 ## Donation
