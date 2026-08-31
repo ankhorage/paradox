@@ -196,16 +196,14 @@ export function collectPropsForExport(
   const defaultValues = collectDefaultValuesFromBinding(parameter);
   const members = collectTypeMembers(program, resolved)
     .filter((member) => member.name.length > 0)
-    .map(
-      (member): AnalyzedProp => ({
-        name: member.name,
-        type: member.type,
-        required: member.required,
-        defaultValue: defaultValues[member.name],
-        description: member.description,
-        inheritedFrom: member.inheritedFrom,
-      }),
-    );
+    .map((member): AnalyzedProp => ({
+      name: member.name,
+      type: member.type,
+      required: member.required,
+      defaultValue: defaultValues[member.name],
+      description: member.description,
+      inheritedFrom: member.inheritedFrom,
+    }));
 
   return {
     typeName,

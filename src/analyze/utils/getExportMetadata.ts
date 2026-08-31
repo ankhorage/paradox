@@ -26,11 +26,7 @@ import { normalizeTypeText } from './normalizeTypeText.js';
 import { parseParadoxComment } from './parseParadoxComment.js';
 
 type CallableDeclaration =
-  | ArrowFunction
-  | FunctionDeclaration
-  | FunctionExpression
-  | MethodDeclaration
-  | MethodSignature;
+  ArrowFunction | FunctionDeclaration | FunctionExpression | MethodDeclaration | MethodSignature;
 
 /***
  * Extracts computed metadata for an exported declaration.

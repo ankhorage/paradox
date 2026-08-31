@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.1.23",
+      "value": "v0.1.24",
       "color": "cb3837"
     },
     {
@@ -1671,7 +1671,7 @@
       "description": "Collects default values from destructured bindings.",
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 220,
+        "line": 218,
         "column": 1
       }
     },
@@ -1680,7 +1680,7 @@
       "description": "Collects related types referenced by an export.",
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 238,
+        "line": 236,
         "column": 1
       }
     },
@@ -1689,7 +1689,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 265,
+        "line": 263,
         "column": 1
       }
     },
@@ -1698,7 +1698,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 314,
+        "line": 312,
         "column": 1
       }
     },
@@ -1707,7 +1707,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 325,
+        "line": 323,
         "column": 1
       }
     },
@@ -1716,7 +1716,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 355,
+        "line": 353,
         "column": 1
       }
     },
@@ -1725,7 +1725,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 378,
+        "line": 376,
         "column": 1
       }
     },
@@ -1734,7 +1734,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 385,
+        "line": 383,
         "column": 1
       }
     },
@@ -1743,7 +1743,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 390,
+        "line": 388,
         "column": 1
       }
     },
@@ -1752,7 +1752,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 395,
+        "line": 393,
         "column": 1
       }
     },
@@ -1761,7 +1761,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 399,
+        "line": 397,
         "column": 1
       }
     },
@@ -1770,7 +1770,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 408,
+        "line": 406,
         "column": 1
       }
     },
@@ -1779,7 +1779,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 418,
+        "line": 416,
         "column": 1
       }
     },
@@ -1788,7 +1788,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 423,
+        "line": 421,
         "column": 1
       }
     },
@@ -1797,7 +1797,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 443,
+        "line": 441,
         "column": 1
       }
     },
@@ -2148,7 +2148,7 @@
       "description": "Extracts computed metadata for an exported declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 38,
+        "line": 34,
         "column": 1
       }
     },
@@ -2157,7 +2157,7 @@
       "description": "Resolves the source location for a declaration relative to the package root.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 84,
+        "line": 80,
         "column": 1
       }
     },
@@ -2166,7 +2166,7 @@
       "description": "Extracts callable signatures for exported functions and callable values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 98,
+        "line": 94,
         "column": 1
       }
     },
@@ -2175,7 +2175,7 @@
       "description": "Builds one normalized call signature from a callable declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 118,
+        "line": 114,
         "column": 1
       }
     },
@@ -2184,7 +2184,7 @@
       "description": "Extracts members for interface and type literal exports.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 150,
+        "line": 146,
         "column": 1
       }
     },
@@ -2193,7 +2193,7 @@
       "description": "Converts TypeScript properties into documented member metadata.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 169,
+        "line": 165,
         "column": 1
       }
     },
@@ -2202,7 +2202,7 @@
       "description": "Extracts table-like rows from exported const arrays of object literals.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 207,
+        "line": 203,
         "column": 1
       }
     },
@@ -2211,7 +2211,7 @@
       "description": "Resolves const assertions and returns the array literal used for structured docs.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 225,
+        "line": 221,
         "column": 1
       }
     },
@@ -2220,7 +2220,7 @@
       "description": "Resolves a variable declaration from declaration nodes used by export symbols.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 235,
+        "line": 231,
         "column": 1
       }
     },
@@ -2229,7 +2229,7 @@
       "description": "Extracts primitive and string-array values from one object literal.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 259,
+        "line": 255,
         "column": 1
       }
     },
@@ -2238,7 +2238,7 @@
       "description": "Converts supported literal expressions into displayable string values.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 278,
+        "line": 274,
         "column": 1
       }
     },
@@ -2247,7 +2247,7 @@
       "description": "Returns the first declaration for a symbol, or null when none exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 298,
+        "line": 294,
         "column": 1
       }
     },
@@ -2256,7 +2256,7 @@
       "description": "Finds callable declarations associated with an export symbol.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 306,
+        "line": 302,
         "column": 1
       }
     },
@@ -2265,7 +2265,7 @@
       "description": "Returns the callable node represented by a declaration when one exists.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 324,
+        "line": 320,
         "column": 1
       }
     },
@@ -2274,7 +2274,7 @@
       "description": "Checks whether a node is a method declaration or method signature.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 347,
+        "line": 343,
         "column": 1
       }
     },
@@ -2283,7 +2283,7 @@
       "description": "Reads Paradox comment metadata from a declaration.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 354,
+        "line": 350,
         "column": 1
       }
     },
@@ -2292,7 +2292,7 @@
       "description": "Finds related exported symbols mentioned in signature and member type text.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 371,
+        "line": 367,
         "column": 1
       }
     },
@@ -2301,7 +2301,7 @@
       "description": "Normalizes platform-specific path separators for generated documentation output.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 393,
+        "line": 389,
         "column": 1
       }
     },
@@ -2310,7 +2310,7 @@
       "description": "Returns unique items by a caller-provided key while preserving first occurrence order.",
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 400,
+        "line": 396,
         "column": 1
       }
     },
