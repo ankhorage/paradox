@@ -72,7 +72,7 @@
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^1.9.3",
+    "@ankhorage/devtools": "^1.10.0",
     "@types/bun": "^1.4.0",
     "@types/node": "^24.13.3",
     "typescript": "^5.9.3"
