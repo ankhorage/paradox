@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.25
+
+### Patch Changes
+
+- e377b70: Update docs & add changeset
+
 ## 0.1.24
 
 ### Patch Changes
