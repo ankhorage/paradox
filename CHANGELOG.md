@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.26
+
+### Patch Changes
+
+- 8020432: Use package metadata as the default Paradox documentation title and description.
+
 ## 0.1.25
 
 ### Patch Changes
