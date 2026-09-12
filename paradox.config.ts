@@ -15,11 +15,6 @@ export default defineParadoxConfig({
     account: 'ankhorage',
   },
 
-  docs: {
-    title: '@ankhorage/paradox',
-    description: 'Deterministic documentation generator for TypeScript packages.',
-  },
-
   package: {
     entrypoints: ['src/index.ts'],
   },
