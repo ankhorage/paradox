@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.1.24",
+      "value": "v0.1.25",
       "color": "cb3837"
     },
     {
@@ -80,7 +80,7 @@
   "readmeConfig": {
     "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
-    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  collaborators: true,\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  docs: {\n    title: '@ankhorage/paradox',\n    description: 'Deterministic documentation generator for TypeScript packages.',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
+    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  collaborators: true,\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
     "sourcePath": "paradox.config.ts"
   },
   "config": {
