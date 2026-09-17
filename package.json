@@ -15,12 +15,13 @@
     "url": "git+https://github.com/ankhorage/paradox.git"
   },
   "keywords": [
-    "typescript",
+    "ankhorage",
+    "developer-tools",
     "documentation",
     "readme-generator",
     "static-analysis",
     "ts-morph",
-    "developer-tools"
+    "typescript"
   ],
   "type": "module",
   "main": "./dist/index.js",
