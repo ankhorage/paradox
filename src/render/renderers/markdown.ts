@@ -5,8 +5,6 @@ type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
 type ComponentEntry = DocumentationModel['components'][number];
 type ExportEntry = DocumentationModel['exports'][number];
 type ExampleEntry = ExportEntry['examples'][number];
-type ReadmeUsageEntry = DocumentationModel['readmeUsage'][number];
-type SequenceScenarioEntry = DocumentationModel['sequenceScenarios'][number];
 
 interface ReadmeGroup {
   title: string;
@@ -58,9 +56,7 @@ function renderReadme(
 
   if (model.description) lines.push(model.description, '');
 
-  renderReadmeUsage(lines, model.readmeUsageDescription, model.readmeUsage);
-
-  renderReadmeCli(lines, model, outputDir, diagrams);
+  renderUsage(lines, model);
 
   renderConfiguration(lines, model);
 
@@ -70,78 +66,58 @@ function renderReadme(
   return `${lines.join('\n').trimEnd()}\n`;
 }
 
-function renderReadmeUsage(
-  lines: string[],
-  description: string | null,
-  entries: readonly ReadmeUsageEntry[],
-): void {
-  if (description === null && entries.length === 0) return;
+function renderUsage(lines: string[], model: DocumentationModel): void {
+  const readmeExample = model.usageEntries.find(
+    (entry) => entry.area === 'examples' && entry.isReadme,
+  );
 
   lines.push('## Usage', '');
-
-  if (description !== null) lines.push(description, '');
-
-  for (const entry of entries) {
-    if (entry.title !== null) lines.push(`### ${entry.title}`, '');
-
-    if (entry.description !== null) {
-      const [, ...rest] = entry.description.split('\n');
-      const entryDescription = rest.join('\n').trim();
-      if (entryDescription.length > 0) lines.push(entryDescription, '');
-    }
-
-    lines.push(`Source: \`${entry.sourcePath}\``, '');
-    lines.push(`\`\`\`${entry.language}`);
-    lines.push(entry.code);
-    lines.push('```', '');
-  }
-}
-
-function renderReadmeCli(
-  lines: string[],
-  model: DocumentationModel,
-  outputDir: string,
-  diagrams: RenderContext['diagrams'],
-): void {
-  if (model.readmeCli === null) return;
-
-  lines.push('## CLI', '');
-
-  if (model.readmeCli.description !== null) lines.push(model.readmeCli.description, '');
-
-  if (model.usage !== null && model.usage.commands.length > 0) {
-    lines.push('```bash');
-    for (const command of model.usage.commands) lines.push(command.command);
-    lines.push('```', '');
-  }
-
-  const scenarios = model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin');
-  for (const scenario of scenarios) {
-    const diagram = findScenarioDiagram(diagrams, scenario);
-    if (scenario.description === null && diagram === undefined) continue;
-
-    lines.push('<details>');
-    lines.push(`<summary>${scenario.name}</summary>`, '');
-    if (scenario.description !== null) lines.push(scenario.description, '');
-
-    if (diagram !== undefined) {
-      lines.push(`Diagram: [${diagram.title}](./${outputDir}/${diagram.path})`, '');
-      lines.push('```mermaid');
-      lines.push(diagram.content.trimEnd());
-      lines.push('```', '');
-    }
-
-    lines.push('</details>', '');
-  }
-}
-
-function findScenarioDiagram(
-  diagrams: RenderContext['diagrams'],
-  scenario: SequenceScenarioEntry,
-): RenderContext['diagrams'][number] | undefined {
-  return diagrams.find(
-    (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
+  lines.push('### CLI', '');
+  lines.push(
+    'Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.',
+    '',
   );
+  lines.push('```zsh');
+  lines.push('# Install the Ankhorage CLI');
+  lines.push('bun add --global @ankhorage/ankh', '');
+  lines.push(`# Show usage information for ${getPackageDisplayName(model.packageId)}`);
+  lines.push(model.usage.command);
+  lines.push('```', '');
+
+  if (readmeExample === undefined) return;
+
+  lines.push(`### ${readmeExample.title ?? 'Programmatic Usage'}`, '');
+  if (readmeExample.description !== null) lines.push(readmeExample.description, '');
+  lines.push(```${readmeExample.language}`);
+  lines.push(readmeExample.code);
+  lines.push('```', '');
+
+  const exampleCount = countExampleDirectories(model);
+  if (exampleCount > 1) {
+    lines.push(
+      `This package contains ${exampleCount} documented examples. See the generated documentation for the complete set.`,
+      '',
+    );
+  }
+}
+
+/***
+ * Counts distinct documented example directories below examples/.
+ */
+function countExampleDirectories(model: DocumentationModel): number {
+  return new Set(
+    model.usageEntries
+      .filter((entry) => entry.area === 'examples')
+      .map((entry) => entry.sourcePath.split('/')[1])
+      .filter((name): name is string => name !== undefined && name.length > 0),
+  ).size;
+}
+
+/***
+ * Returns a human-readable package command name.
+ */
+function getPackageDisplayName(packageId: string): string {
+  return packageId.split('/').pop() ?? packageId;
 }
 
 function renderConfiguration(lines: string[], model: DocumentationModel): void {
