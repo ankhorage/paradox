@@ -75,7 +75,7 @@ async function collectFileCommentsAsync(
   const sourcePath = toPosixPath(relative(root, filePath));
 
   return [...source.matchAll(COMMENT_PATTERN)].map((match) => {
-    const raw = match[0];
+    const [raw] = match;
     return {
       sourcePath,
       line: source.slice(0, match.index).split('\n').length,
