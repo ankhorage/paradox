@@ -78,6 +78,8 @@ function analyzeUsageFile(root: string, project: Project, filePath: string): Ana
         code: getStatementCode(statement),
         sourcePath,
         isReadme: parsed.isReadme,
+        see: parsed.see,
+        security: parsed.security,
       },
     ];
   });
@@ -129,6 +131,21 @@ function getLanguage(sourcePath: string): string {
   if (extension === '.jsx') return 'jsx';
   if (extension === '.js' || extension === '.mjs' || extension === '.cjs') return 'js';
   return '';
+}
+
+/***
+ * Counts real example directories directly below the canonical examples root.
+ */
+export async function countExampleDirectoriesAsync(root: string): Promise<number> {
+  try {
+    const entries = await readdir(join(root, DOCUMENTATION_POLICY.paths.examplesRoot), {
+      withFileTypes: true,
+    });
+    return entries.filter((entry) => entry.isDirectory()).length;
+  } catch (error) {
+    if (isMissingPathError(error)) return 0;
+    throw error;
+  }
 }
 
 /***
