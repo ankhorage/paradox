@@ -4,7 +4,6 @@ import type { RenderContext } from '../types.js';
 type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
 type ComponentEntry = DocumentationModel['components'][number];
 type ExportEntry = DocumentationModel['exports'][number];
-type ExampleEntry = ExportEntry['examples'][number];
 
 interface ReadmeGroup {
   title: string;
@@ -14,6 +13,11 @@ interface ReadmeGroup {
 type ReadmeItem =
   | { kind: 'component'; component: ComponentEntry; exportEntry: ExportEntry | undefined }
   | { kind: 'export'; exportEntry: ExportEntry };
+
+interface ReferenceMetadata {
+  readonly see: readonly string[];
+  readonly security: readonly string[];
+}
 
 /***
  * Renders markdown artifacts from the documentation model.
@@ -31,6 +35,9 @@ export function renderMarkdown({
   };
 }
 
+/***
+ * Renders the generated package README.
+ */
 function renderReadme(
   model: DocumentationModel,
   outputDir: string,
@@ -57,15 +64,16 @@ function renderReadme(
   if (model.description) lines.push(model.description, '');
 
   renderUsage(lines, model);
-
   renderConfiguration(lines, model);
-
   renderGeneratedDocumentation(lines, outputDir, diagrams);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
 }
 
+/***
+ * Renders the canonical CLI-first Usage chapter.
+ */
 function renderUsage(lines: string[], model: DocumentationModel): void {
   const readmeExample = model.usageEntries.find(
     (entry) => entry.area === 'examples' && entry.isReadme,
@@ -88,29 +96,17 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
 
   lines.push(`### ${readmeExample.title ?? 'Programmatic Usage'}`, '');
   if (readmeExample.description !== null) lines.push(readmeExample.description, '');
-  lines.push(```${readmeExample.language}`);
+  renderReferences(lines, readmeExample);
+  lines.push(````${readmeExample.language}`);
   lines.push(readmeExample.code);
   lines.push('```', '');
 
-  const exampleCount = countExampleDirectories(model);
-  if (exampleCount > 1) {
+  if (model.exampleCount > 1) {
     lines.push(
-      `This package contains ${exampleCount} documented examples. See the generated documentation for the complete set.`,
+      `This package contains ${model.exampleCount} examples. See the generated documentation for the complete set.`,
       '',
     );
   }
-}
-
-/***
- * Counts distinct documented example directories below examples/.
- */
-function countExampleDirectories(model: DocumentationModel): number {
-  return new Set(
-    model.usageEntries
-      .filter((entry) => entry.area === 'examples')
-      .map((entry) => entry.sourcePath.split('/')[1])
-      .filter((name): name is string => name !== undefined && name.length > 0),
-  ).size;
 }
 
 /***
@@ -120,6 +116,9 @@ function getPackageDisplayName(packageId: string): string {
   return packageId.split('/').pop() ?? packageId;
 }
 
+/***
+ * Renders the canonical Configuration chapter from the tagged schema plus concrete config instance.
+ */
 function renderConfiguration(lines: string[], model: DocumentationModel): void {
   const config = model.config?.isReadme ? model.config : null;
   const example = model.readmeConfig;
@@ -127,9 +126,17 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
 
   lines.push('## Configuration', '');
 
+  if (config !== null) {
+    if (config.title !== null && config.title !== 'Configuration') {
+      lines.push(`### ${config.title}`, '');
+    }
+    if (config.description !== null) lines.push(config.description, '');
+    renderReferences(lines, config);
+  }
+
   if (example !== null) {
-    if (example.description !== null) lines.push(example.description, '');
-    lines.push(`\`\`\`${example.language}`);
+    lines.push('### Example', '');
+    lines.push(````${example.language}`);
     lines.push(example.code);
     lines.push('```', '');
   }
@@ -154,6 +161,27 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
   lines.push('', '</details>', '');
 }
 
+/***
+ * Renders links and security evidence owned by one documented item.
+ */
+function renderReferences(lines: string[], metadata: ReferenceMetadata): void {
+  if (metadata.see.length > 0) {
+    lines.push(
+      `See also: ${metadata.see.map((url) => `[${url}](${url})`).join(', ')}`,
+      '',
+    );
+  }
+  if (metadata.security.length > 0) {
+    lines.push(
+      `Security tests: ${metadata.security.map((reference) => `\`${reference}\``).join(', ')}`,
+      '',
+    );
+  }
+}
+
+/***
+ * Renders links to generated documentation artifacts.
+ */
 function renderGeneratedDocumentation(
   lines: string[],
   outputDir: string,
@@ -163,11 +191,15 @@ function renderGeneratedDocumentation(
   lines.push(`- [Interactive documentation app](./${outputDir}/index.html)`);
   lines.push(`- [Public API reference](./${outputDir}/exports.md)`);
   lines.push(`- [Component registry](./${outputDir}/components.md)`);
-  for (const diagram of diagrams)
+  for (const diagram of diagrams) {
     lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
+  }
   lines.push('');
 }
 
+/***
+ * Renders README-promoted public API entries.
+ */
 function renderReadmeApi(lines: string[], model: DocumentationModel): void {
   const groups = getReadmeGroups(model);
   if (groups.length === 0) return;
@@ -176,23 +208,28 @@ function renderReadmeApi(lines: string[], model: DocumentationModel): void {
   for (const group of groups) {
     lines.push(`### ${group.title}`, '');
     for (const item of group.items) {
-      if (item.kind === 'component')
+      if (item.kind === 'component') {
         renderComponentAccordion(lines, item.component, item.exportEntry);
-      else renderExportAccordion(lines, item.exportEntry);
+      } else {
+        renderExportAccordion(lines, item.exportEntry);
+      }
     }
   }
 }
 
+/***
+ * Renders one README-promoted component.
+ */
 function renderComponentAccordion(
   lines: string[],
   component: ComponentEntry,
   exportEntry: ExportEntry | undefined,
 ): void {
   lines.push('<details>');
-  lines.push(`<summary>${component.name}</summary>`, '');
+  lines.push(`<summary>${exportEntry?.title ?? component.name}</summary>`, '');
   renderSignature(lines, exportEntry);
   if (component.description) lines.push(component.description, '');
-  renderExamples(lines, component.examples);
+  renderReferences(lines, component);
   if (exportEntry && exportEntry.relatedSymbols.length > 0) {
     lines.push(
       `Related types: ${exportEntry.relatedSymbols.map((symbol) => `\`${symbol}\``).join(', ')}`,
@@ -208,7 +245,9 @@ function renderComponentAccordion(
       lines.push(
         `| ${escapeTableCell(prop.name)} | \`${escapeTableCell(prop.type)}\` | ${
           prop.required ? 'yes' : 'no'
-        } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(prop.description ?? '')} |`,
+        } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(
+          prop.description ?? '',
+        )} |`,
       );
     }
     lines.push('', '</details>', '');
@@ -216,13 +255,16 @@ function renderComponentAccordion(
   lines.push('</details>', '');
 }
 
+/***
+ * Renders one README-promoted non-component export.
+ */
 function renderExportAccordion(lines: string[], item: ExportEntry): void {
   lines.push('<details>');
-  lines.push(`<summary>${item.name}</summary>`, '');
+  lines.push(`<summary>${item.title ?? item.name}</summary>`, '');
   renderSignature(lines, item);
   lines.push(item.description ?? `\`${item.kind}\` export.`, '');
+  renderReferences(lines, item);
   renderStructuredRows(lines, item);
-  renderExamples(lines, item.examples);
   lines.push(`Module: \`${item.modulePath}\``);
   lines.push(
     `Source: \`${item.sourceLocation.filePath}:${item.sourceLocation.line}:${item.sourceLocation.column}\``,
@@ -235,23 +277,20 @@ function renderExportAccordion(lines: string[], item: ExportEntry): void {
   lines.push('', '</details>', '');
 }
 
+/***
+ * Renders the primary signature for a README public API entry.
+ */
 function renderSignature(lines: string[], item: ExportEntry | undefined): void {
   const signature = item?.signatures[0]?.label;
-  if (!signature) return;
+  if (!signature || item === undefined) return;
   lines.push('```ts');
   lines.push(`${item.name}${signature}`);
   lines.push('```', '');
 }
 
-function renderExamples(lines: string[], examples: readonly ExampleEntry[]): void {
-  for (const example of examples) {
-    if (example.title) lines.push(`#### ${example.title}`, '');
-    lines.push(`\`\`\`${example.language ?? ''}`);
-    lines.push(example.code);
-    lines.push('```', '');
-  }
-}
-
+/***
+ * Renders structured const-array rows as a Markdown table.
+ */
 function renderStructuredRows(lines: string[], item: ExportEntry): void {
   if (item.structuredRows.length === 0) return;
 
@@ -274,19 +313,27 @@ function renderStructuredRows(lines: string[], item: ExportEntry): void {
   lines.push('');
 }
 
+/***
+ * Returns stable structured-row columns.
+ */
 function getStructuredColumns(item: ExportEntry): string[] {
   const columns = new Set<string>();
   for (const row of item.structuredRows) {
     for (const column of Object.keys(row.values)) columns.add(column);
   }
-
   return [...columns];
 }
 
+/***
+ * Formats one structured-row column header.
+ */
 function formatStructuredColumnHeader(column: string): string {
   return escapeTableCell(column.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase());
 }
 
+/***
+ * Formats one structured-row table cell.
+ */
 function formatStructuredCell(column: string, value: string): string {
   const escaped = escapeTableCell(value);
   if (column === 'syntax' || column === 'name' || column === 'handler') return `\`${escaped}\``;
@@ -295,6 +342,9 @@ function formatStructuredCell(column: string, value: string): string {
   return escaped;
 }
 
+/***
+ * Groups README-promoted API entries by presentation category.
+ */
 function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
   const exportsByName = new Map(model.exports.map((entry) => [entry.name, entry]));
   const componentNames = new Set(model.components.map((component) => component.name));
@@ -318,27 +368,36 @@ function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
 
   return CATEGORY_ORDER.flatMap((title) => {
     const items = groups.get(title);
-    if (!items || items.length === 0) return [];
-    return [{ title, items: sortReadmeItems(items) }];
+    return items === undefined || items.length === 0 ? [] : [{ title, items: sortReadmeItems(items) }];
   });
 }
 
+/***
+ * Adds one public API item to a README category.
+ */
 function addReadmeItem(groups: Map<string, ReadmeItem[]>, title: string, item: ReadmeItem): void {
-  const existing = groups.get(title) ?? [];
-  existing.push(item);
-  groups.set(title, existing);
+  groups.set(title, [...(groups.get(title) ?? []), item]);
 }
 
+/***
+ * Sorts README category items by symbol name.
+ */
 function sortReadmeItems(items: readonly ReadmeItem[]): ReadmeItem[] {
   return [...items].sort((left, right) =>
     getReadmeItemName(left).localeCompare(getReadmeItemName(right)),
   );
 }
 
+/***
+ * Returns one README item's source symbol name.
+ */
 function getReadmeItemName(item: ReadmeItem): string {
   return item.kind === 'component' ? item.component.name : item.exportEntry.name;
 }
 
+/***
+ * Derives a stable README public API category from a module path.
+ */
 function getReadmeCategory(modulePath: string, name: string): string {
   if (modulePath.includes('/config/')) return 'Config';
   if (modulePath.includes('/doc-tags/')) return 'Documentation';
@@ -352,11 +411,15 @@ function getReadmeCategory(modulePath: string, name: string): string {
   return 'Utilities';
 }
 
+/***
+ * Renders the complete public API reference.
+ */
 function renderExports(model: DocumentationModel): string {
   const lines = ['# Public API', ''];
 
   for (const item of model.exports) {
-    lines.push(`## ${item.name}`, '');
+    lines.push(`## ${item.title ?? item.name}`, '');
+    if (item.title !== null && item.title !== item.name) lines.push(`Symbol: \`${item.name}\``, '');
     lines.push(`Kind: \`${item.kind}\``);
     lines.push(`Module: \`${item.modulePath}\``);
     lines.push(
@@ -364,6 +427,7 @@ function renderExports(model: DocumentationModel): string {
       '',
     );
     if (item.description) lines.push(item.description, '');
+    renderReferences(lines, item);
     renderStructuredRows(lines, item);
 
     if (item.signatures.length > 0) {
@@ -372,16 +436,10 @@ function renderExports(model: DocumentationModel): string {
         lines.push(`- \`${signature.label}\``);
         for (const parameter of signature.parameters) {
           lines.push(
-            `  - ${parameter.name}: \`${parameter.type}\`${parameter.required ? '' : ' (optional)'}${
-              parameter.description ? ` — ${parameter.description}` : ''
-            }`,
+            `  - ${parameter.name}: \`${parameter.type}\`${parameter.required ? '' : ' (optional)'}`,
           );
         }
-        lines.push(
-          `  - returns: \`${signature.returnType ?? 'void'}\`${
-            signature.returnDescription ? ` — ${signature.returnDescription}` : ''
-          }`,
-        );
+        lines.push(`  - returns: \`${signature.returnType ?? 'void'}\``);
       }
       lines.push('');
     }
@@ -394,7 +452,9 @@ function renderExports(model: DocumentationModel): string {
         lines.push(
           `| ${escapeTableCell(member.name)} | ${member.kind} | \`${escapeTableCell(
             member.type,
-          )}\` | ${member.required ? 'yes' : 'no'} | ${escapeTableCell(member.description ?? '')} |`,
+          )}\` | ${member.required ? 'yes' : 'no'} | ${escapeTableCell(
+            member.description ?? '',
+          )} |`,
         );
       }
       lines.push('');
@@ -404,6 +464,9 @@ function renderExports(model: DocumentationModel): string {
   return `${lines.join('\n').trimEnd()}\n`;
 }
 
+/***
+ * Renders the complete component registry.
+ */
 function renderComponents(model: DocumentationModel): string {
   const lines = ['# Components', ''];
 
@@ -414,6 +477,7 @@ function renderComponents(model: DocumentationModel): string {
       '',
     );
     if (component.description) lines.push(component.description, '');
+    renderReferences(lines, component);
 
     if (component.exportPaths.length > 0) {
       lines.push(
@@ -439,14 +503,23 @@ function renderComponents(model: DocumentationModel): string {
   return `${lines.join('\n').trimEnd()}\n`;
 }
 
+/***
+ * Escapes one Markdown table cell.
+ */
 function escapeTableCell(value: string): string {
   return value.replaceAll('|', '\\|');
 }
 
+/***
+ * Renders an optional default value.
+ */
 function renderDefault(value: string | undefined): string {
   return value === undefined ? '—' : `\`${escapeTableCell(value)}\``;
 }
 
+/***
+ * Flattens nested configuration members into dot paths.
+ */
 function flattenConfigMembers(
   members: ConfigMembers,
   prefix = '',
@@ -471,22 +544,16 @@ function flattenConfigMembers(
   });
 }
 
+/***
+ * Returns the accessible badge label stored in a rendered badge artifact.
+ */
 function badgeLabel(model: DocumentationModel, badgePath: string): string {
   const fileName = badgePath.split('/').pop();
   if (!fileName) return badgePath;
 
   const id = fileName.replace(/\.svg$/, '');
   const badge = model.badges.find((entry) => entry.id === id);
-
   return badge ? `${badge.label}: ${badge.value}` : badgePath;
-}
-
-function toFileStem(value: string): string {
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/[^A-Za-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
 }
 
 const CATEGORY_ORDER = [
