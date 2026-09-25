@@ -102,8 +102,10 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
   lines.push('```', '');
 
   if (model.exampleCount > 1) {
+    const additionalExamples = model.exampleCount - 1;
+    const label = additionalExamples === 1 ? 'example' : 'examples';
     lines.push(
-      `This package contains ${model.exampleCount} examples. See the generated documentation for the complete set.`,
+      `This package contains ${additionalExamples} additional ${label}. See the generated documentation for the complete set.`,
       '',
     );
   }
