@@ -205,6 +205,7 @@ export interface AnalysisResult {
   sequenceScenarios: AnalysisSequenceScenario[];
   usage: AnalysisUsage;
   usageEntries: AnalysisUsageEntry[];
+  exampleCount: number;
   findings: AnalysisDocumentationFinding[];
   readmeConfig: AnalysisReadmeConfig | null;
   config: {
