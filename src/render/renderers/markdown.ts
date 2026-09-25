@@ -97,7 +97,7 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
   lines.push(`### ${readmeExample.title ?? 'Programmatic Usage'}`, '');
   if (readmeExample.description !== null) lines.push(readmeExample.description, '');
   renderReferences(lines, readmeExample);
-  lines.push(````${readmeExample.language}`);
+  lines.push('```' + readmeExample.language);
   lines.push(readmeExample.code);
   lines.push('```', '');
 
@@ -136,7 +136,7 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
 
   if (example !== null) {
     lines.push('### Example', '');
-    lines.push(````${example.language}`);
+    lines.push('```' + example.language);
     lines.push(example.code);
     lines.push('```', '');
   }
