@@ -12,6 +12,8 @@ interface AnalyzeExportsResult {
   exports: AnalysisExport[];
   config: {
     exportName: string;
+    title: string | null;
+    description: string | null;
     isReadme: boolean;
   } | null;
 }
@@ -48,6 +50,8 @@ export function analyzeExports(
       if (parsed.isConfig) {
         config = {
           exportName: name,
+          title: parsed.title,
+          description: parsed.description,
           isReadme: parsed.isReadme,
         };
       }
@@ -66,6 +70,7 @@ export function analyzeExports(
         existing
           ? {
               ...existing,
+              title: existing.title ?? parsed.title,
               description: existing.description ?? parsed.description,
               isReadme: existing.isReadme || parsed.isReadme,
               examples: existing.examples.length > 0 ? existing.examples : parsed.examples,
@@ -85,6 +90,7 @@ export function analyzeExports(
           : {
               name,
               node: decl,
+              title: parsed.title,
               description: parsed.description,
               isReadme: parsed.isReadme,
               examples: parsed.examples,
@@ -162,6 +168,7 @@ function toPosixPath(path: string): string {
 function createEmptyMetadata() {
   return {
     description: null,
+    title: null,
     isConfig: false,
     isReadme: false,
     examples: [],
