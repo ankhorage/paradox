@@ -40,11 +40,7 @@ function validateCommentRules(
 ): AnalysisDocumentationFinding[] {
   return comments.flatMap((comment) => {
     const unsupported = comment.parsed.unsupportedTags.map((tag) =>
-      finding(
-        'documentation.comment.tag.unsupported',
-        `Unsupported Paradox tag: @${tag}`,
-        comment,
-      ),
+      finding('documentation.comment.tag.unsupported', `Unsupported Paradox tag: @${tag}`, comment),
     );
     const code = comment.parsed.hasCodeBlock
       ? [
