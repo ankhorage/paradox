@@ -285,11 +285,18 @@ function renderUsagePanel(model: DocumentationModel): string {
  */
 function renderUsageEntry(entry: DocumentationModel['usageEntries'][number]): string {
   return `<article class="item" data-search="${escapeAttribute(
-    [entry.title ?? '', entry.description ?? '', entry.sourcePath].join(' '),
+    [
+      entry.title ?? '',
+      entry.description ?? '',
+      entry.sourcePath,
+      ...entry.see,
+      ...entry.security,
+    ].join(' '),
   )}">
     <h3>${escapeHtml(entry.title ?? 'Usage')}</h3>
     <p class="muted"><code>${escapeHtml(entry.sourcePath)}</code></p>
     ${entry.description === null ? '' : `<p>${escapeHtml(entry.description)}</p>`}
+    ${renderReferenceMetadata(entry)}
     <pre>${escapeHtml(entry.code)}</pre>
   </article>`;
 }
@@ -318,8 +325,6 @@ function renderFindingsPanel(model: DocumentationModel): string {
   </section>`;
 }
 
-/***
- * Renders one source file entry in the left navigation.
 /***
  * Renders one source file entry in the left navigation.
  */
@@ -351,11 +356,18 @@ function renderSourceAreaView(area: SourceArea): string {
  */
 function renderSourceFunctionCard(item: SourceFunctionEntry): string {
   return `<article class="item" data-search="${escapeAttribute(
-    [item.name, item.sourceLocation.filePath, item.description ?? ''].join(' '),
+    [
+      item.name,
+      item.sourceLocation.filePath,
+      item.description ?? '',
+      ...item.see,
+      ...item.security,
+    ].join(' '),
   )}">
     <h3>${escapeHtml(item.name)}</h3>
     <p class="muted"><code>${escapeHtml(item.sourceLocation.filePath)}:${item.sourceLocation.line}:${item.sourceLocation.column}</code></p>
     ${item.description === null ? '<p class="empty">No description available.</p>' : `<p>${escapeHtml(item.description)}</p>`}
+    ${renderReferenceMetadata(item)}
   </article>`;
 }
 
@@ -389,16 +401,21 @@ function renderExportCard(item: ExportEntry): string {
   return `<article class="item" id="symbol-${toAnchorId(item.name)}" data-search="${escapeAttribute(
     [
       item.name,
+      item.title ?? '',
       item.kind,
       item.modulePath,
       item.description ?? '',
+      ...item.see,
+      ...item.security,
       ...item.relatedSymbols,
       ...item.signatures.map((signature) => signature.label),
     ].join(' '),
   )}">
-    <h4>${escapeHtml(item.name)}</h4>
+    <h4>${escapeHtml(item.title ?? item.name)}</h4>
+    ${item.title === null || item.title === item.name ? '' : `<p class="muted">Symbol: <code>${escapeHtml(item.name)}</code></p>`}
     <p class="muted">${escapeHtml(item.kind)} • <code>${escapeHtml(item.sourceLocation.filePath)}:${item.sourceLocation.line}:${item.sourceLocation.column}</code></p>
     ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
+    ${renderReferenceMetadata(item)}
     <p><strong>Export paths:</strong> ${renderInlineCodeList(item.exportPaths)}</p>
     <div><strong>Related symbols:</strong> ${item.relatedSymbols.length > 0 ? renderChipList(item.relatedSymbols) : '<span class="empty">None</span>'}</div>
     ${item.signatures.length > 0 ? renderSignatureBlock(item) : ''}
@@ -473,12 +490,15 @@ function renderComponentCard(component: ComponentEntry): string {
       component.name,
       component.modulePath,
       component.description ?? '',
+      ...component.see,
+      ...component.security,
       ...component.props.map((prop) => `${prop.name} ${prop.type}`),
     ].join(' '),
   )}">
     <h3>${escapeHtml(component.name)}</h3>
     <p class="muted"><code>${escapeHtml(component.sourceLocation.filePath)}:${component.sourceLocation.line}:${component.sourceLocation.column}</code></p>
     ${component.description ? `<p>${escapeHtml(component.description)}</p>` : ''}
+    ${renderReferenceMetadata(component)}
     <p><strong>Export paths:</strong> ${renderInlineCodeList(component.exportPaths)}</p>
     <table>
       <thead><tr><th>Prop</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
@@ -511,6 +531,31 @@ function renderDiagramCard(diagram: DiagramArtifact): string {
       <pre>${escapeHtml(diagram.content)}</pre>
     </details>
   </article>`;
+}
+
+/***
+ * Renders validated external references and security-test evidence.
+ */
+function renderReferenceMetadata(metadata: {
+  readonly see: readonly string[];
+  readonly security: readonly string[];
+}): string {
+  const see =
+    metadata.see.length === 0
+      ? ''
+      : `<p><strong>See also:</strong> ${metadata.see
+          .map(
+            (url) =>
+              `<a href="${escapeAttribute(url)}" rel="noreferrer">${escapeHtml(url)}</a>`,
+          )
+          .join(', ')}</p>`;
+  const security =
+    metadata.security.length === 0
+      ? ''
+      : `<p><strong>Security tests:</strong> ${metadata.security
+          .map((reference) => `<code>${escapeHtml(reference)}</code>`)
+          .join(', ')}</p>`;
+  return `${see}${security}`;
 }
 
 /***
