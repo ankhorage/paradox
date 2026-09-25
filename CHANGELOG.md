@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.27
+
+### Patch Changes
+
+- ef42af1: Reuse the canonical Utility ASCII slugifier for generated HTML anchor ids.
+
 ## 0.1.26
 
 ### Patch Changes
