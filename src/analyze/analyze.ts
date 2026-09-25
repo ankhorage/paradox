@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import type { ParadoxConfig } from '../config/types.js';
+import type { ParadoxConfig } from '../types/config.js';
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
 import { analyzeBadges } from './badges.js';
