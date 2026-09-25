@@ -1,6 +1,7 @@
 import { slugifyAscii } from '@ankhorage/utility/string';
 
 import type { DocumentationModel } from '../../model/types.js';
+import { toFileStem } from '../toFileStem.js';
 import type { DiagramArtifact, RenderContext } from '../types.js';
 
 type ExportEntry = DocumentationModel['exports'][number];
@@ -555,17 +556,6 @@ function groupBy<T>(items: readonly T[], key: (item: T) => string): Map<string, 
   }
 
   return new Map([...groups.entries()].sort(([left], [right]) => left.localeCompare(right)));
-}
-
-/***
- * Converts a scenario name to the generated Mermaid file stem.
- */
-function toFileStem(value: string): string {
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/[^A-Za-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
 }
 
 /***
