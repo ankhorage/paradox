@@ -20,11 +20,7 @@ test('missing public function documentation produces warning status', async () =
       { packageRoot: root },
     );
 
-    expectFinding(
-      analysis.findings,
-      'documentation.public-function.description',
-      'warning',
-    );
+    expectFinding(analysis.findings, 'documentation.public-function.description', 'warning');
     expect(analysis.badges.find((badge) => badge.id === 'docs')).toEqual({
       id: 'docs',
       label: 'paradox',
@@ -188,9 +184,7 @@ test('@security requires one exact colocated executable test', async () => {
       { packageRoot: root },
     );
     expect(
-      analysis.findings.some(
-        (finding) => finding.ruleId === 'documentation.security.reference',
-      ),
+      analysis.findings.some((finding) => finding.ruleId === 'documentation.security.reference'),
     ).toBe(false);
 
     await writeFile(
@@ -339,7 +333,7 @@ function expectFinding(
   ruleId: string,
   severity: 'warning' | 'error',
 ): void {
-  expect(findings.some((finding) => finding.ruleId === ruleId && finding.severity === severity)).toBe(
-    true,
-  );
+  expect(
+    findings.some((finding) => finding.ruleId === ruleId && finding.severity === severity),
+  ).toBe(true);
 }
