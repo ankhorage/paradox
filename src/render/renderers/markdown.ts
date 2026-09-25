@@ -284,7 +284,7 @@ function renderExportAccordion(lines: string[], item: ExportEntry): void {
  */
 function renderSignature(lines: string[], item: ExportEntry | undefined): void {
   const signature = item?.signatures[0]?.label;
-  if (!signature || item === undefined) return;
+  if (!signature) return;
   lines.push('```ts');
   lines.push(`${item.name}${signature}`);
   lines.push('```', '');
