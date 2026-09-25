@@ -57,7 +57,7 @@ describe('analyze', () => {
       isReadme: true,
     });
 
-    const button = analysis.components[0];
+    const [button] = analysis.components;
     expect(button).toMatchObject({
       name: 'Button',
       description: 'Renders the fixture button component.',
