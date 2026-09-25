@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.1",
+      "value": "v0.2.4",
       "color": "cb3837"
     },
     {
@@ -346,8 +346,7 @@
       "path": "src/analyze/semantic/createTypeScriptProgram.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/semantic/model.ts",
-        "src/analyze/semantic/utils.ts"
+        "src/analyze/semantic/model.ts"
       ],
       "exports": [
         "createTypeScriptProgram"
@@ -451,8 +450,7 @@
       "exports": [
         "isNodeModulePath",
         "isPathInsideRoot",
-        "relativeToRoot",
-        "toPosixPath"
+        "relativeToRoot"
       ]
     },
     {
@@ -1167,7 +1165,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 33,
+        "line": 34,
         "column": 1
       }
     },
@@ -1178,7 +1176,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 119,
+        "line": 120,
         "column": 1
       }
     },
@@ -1189,7 +1187,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 165,
+        "line": 166,
         "column": 1
       }
     },
@@ -1200,7 +1198,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 182,
+        "line": 183,
         "column": 1
       }
     },
@@ -1431,7 +1429,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 21,
+        "line": 23,
         "column": 1
       }
     },
@@ -1442,7 +1440,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 38,
+        "line": 40,
         "column": 1
       }
     },
@@ -1453,7 +1451,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 60,
+        "line": 62,
         "column": 1
       }
     },
@@ -1464,7 +1462,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 70,
+        "line": 72,
         "column": 1
       }
     },
@@ -1475,18 +1473,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 91,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes filesystem separators for stable documentation paths.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "line": 98,
+        "line": 93,
         "column": 1
       }
     },
@@ -1541,7 +1528,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 114,
+        "line": 113,
         "column": 1
       }
     },
@@ -1552,7 +1539,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 145,
+        "line": 144,
         "column": 1
       }
     },
@@ -1563,7 +1550,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 171,
+        "line": 170,
         "column": 1
       }
     },
@@ -1574,7 +1561,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 186,
+        "line": 185,
         "column": 1
       }
     },
@@ -1585,7 +1572,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 221,
+        "line": 220,
         "column": 1
       }
     },
@@ -1596,7 +1583,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 241,
+        "line": 240,
         "column": 1
       }
     },
@@ -1607,7 +1594,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 253,
+        "line": 252,
         "column": 1
       }
     },
@@ -1618,7 +1605,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 264,
+        "line": 263,
         "column": 1
       }
     },
@@ -1629,7 +1616,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 271,
+        "line": 270,
         "column": 1
       }
     },
@@ -1761,7 +1748,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 27,
+        "line": 28,
         "column": 1
       }
     },
@@ -1772,7 +1759,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 117,
+        "line": 118,
         "column": 1
       }
     },
@@ -1783,7 +1770,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 139,
+        "line": 140,
         "column": 1
       }
     },
@@ -1794,18 +1781,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 147,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes platform-specific path separators for generated documentation output.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/exports.ts",
-        "line": 157,
+        "line": 148,
         "column": 1
       }
     },
@@ -1816,7 +1792,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 164,
+        "line": 158,
         "column": 1
       }
     },
@@ -1827,18 +1803,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/modules.ts",
-        "line": 11,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes platform-specific path separators for generated documentation output.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/modules.ts",
-        "line": 75,
+        "line": 12,
         "column": 1
       }
     },
@@ -1860,7 +1825,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 13,
+        "line": 15,
         "column": 1
       }
     },
@@ -1871,18 +1836,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 32,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes filesystem separators for stable documentation paths.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeConfig.ts",
-        "line": 42,
+        "line": 34,
         "column": 1
       }
     },
@@ -1893,7 +1847,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 16,
+        "line": 17,
         "column": 1
       }
     },
@@ -1904,7 +1858,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 34,
+        "line": 35,
         "column": 1
       }
     },
@@ -1915,7 +1869,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 57,
+        "line": 58,
         "column": 1
       }
     },
@@ -1926,7 +1880,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 89,
+        "line": 90,
         "column": 1
       }
     },
@@ -1937,7 +1891,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 96,
+        "line": 97,
         "column": 1
       }
     },
@@ -1948,7 +1902,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 118,
+        "line": 119,
         "column": 1
       }
     },
@@ -1959,7 +1913,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 129,
+        "line": 130,
         "column": 1
       }
     },
@@ -1970,7 +1924,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 141,
+        "line": 142,
         "column": 1
       }
     },
@@ -1981,18 +1935,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 156,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes filesystem separators for stable documentation paths.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeUsage.ts",
-        "line": 168,
+        "line": 157,
         "column": 1
       }
     },
@@ -2426,24 +2369,13 @@
       }
     },
     {
-      "name": "toPosixPath",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/semantic/utils.ts",
-        "line": 3,
-        "column": 1
-      }
-    },
-    {
       "name": "relativeToRoot",
       "description": null,
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
-        "line": 7,
+        "line": 4,
         "column": 1
       }
     },
@@ -2454,7 +2386,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
-        "line": 11,
+        "line": 8,
         "column": 1
       }
     },
@@ -2465,7 +2397,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
-        "line": 15,
+        "line": 12,
         "column": 1
       }
     },
@@ -2476,7 +2408,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 34,
+        "line": 35,
         "column": 1
       }
     },
@@ -2487,7 +2419,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 46,
+        "line": 47,
         "column": 1
       }
     },
@@ -2498,7 +2430,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 71,
+        "line": 72,
         "column": 1
       }
     },
@@ -2509,7 +2441,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 90,
+        "line": 91,
         "column": 1
       }
     },
@@ -2520,7 +2452,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 107,
+        "line": 108,
         "column": 1
       }
     },
@@ -2531,7 +2463,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 120,
+        "line": 121,
         "column": 1
       }
     },
@@ -2542,7 +2474,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 141,
+        "line": 142,
         "column": 1
       }
     },
@@ -2553,7 +2485,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 153,
+        "line": 154,
         "column": 1
       }
     },
@@ -2564,7 +2496,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 179,
+        "line": 180,
         "column": 1
       }
     },
@@ -2575,7 +2507,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 195,
+        "line": 196,
         "column": 1
       }
     },
@@ -2586,7 +2518,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 212,
+        "line": 213,
         "column": 1
       }
     },
@@ -2597,7 +2529,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 225,
+        "line": 226,
         "column": 1
       }
     },
@@ -2608,7 +2540,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 229,
+        "line": 230,
         "column": 1
       }
     },
@@ -2619,7 +2551,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
-        "line": 241,
+        "line": 242,
         "column": 1
       }
     },
@@ -2630,7 +2562,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sourceFunctions.ts",
-        "line": 12,
+        "line": 13,
         "column": 1
       }
     },
@@ -2641,18 +2573,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sourceFunctions.ts",
-        "line": 53,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes platform-specific path separators for generated documentation output.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/sourceFunctions.ts",
-        "line": 75,
+        "line": 54,
         "column": 1
       }
     },
@@ -2707,7 +2628,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 34,
+        "line": 35,
         "column": 1
       }
     },
@@ -2718,7 +2639,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 80,
+        "line": 81,
         "column": 1
       }
     },
@@ -2729,7 +2650,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 94,
+        "line": 95,
         "column": 1
       }
     },
@@ -2740,7 +2661,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 113,
+        "line": 114,
         "column": 1
       }
     },
@@ -2751,7 +2672,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 136,
+        "line": 137,
         "column": 1
       }
     },
@@ -2762,7 +2683,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 155,
+        "line": 156,
         "column": 1
       }
     },
@@ -2773,7 +2694,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 184,
+        "line": 185,
         "column": 1
       }
     },
@@ -2784,7 +2705,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 202,
+        "line": 203,
         "column": 1
       }
     },
@@ -2795,7 +2716,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 212,
+        "line": 213,
         "column": 1
       }
     },
@@ -2806,7 +2727,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 236,
+        "line": 237,
         "column": 1
       }
     },
@@ -2817,7 +2738,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 255,
+        "line": 256,
         "column": 1
       }
     },
@@ -2828,7 +2749,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 275,
+        "line": 276,
         "column": 1
       }
     },
@@ -2839,7 +2760,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 283,
+        "line": 284,
         "column": 1
       }
     },
@@ -2850,7 +2771,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 301,
+        "line": 302,
         "column": 1
       }
     },
@@ -2861,7 +2782,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 324,
+        "line": 325,
         "column": 1
       }
     },
@@ -2872,18 +2793,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 331,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": "Normalizes platform-specific path separators for generated documentation output.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 353,
+        "line": 332,
         "column": 1
       }
     },
@@ -2894,7 +2804,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 360,
+        "line": 354,
         "column": 1
       }
     },
@@ -2982,7 +2892,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/normalizeTypeText.ts",
-        "line": 4,
+        "line": 6,
         "column": 1
       }
     },
@@ -2993,18 +2903,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/normalizeTypeText.ts",
-        "line": 18,
-        "column": 1
-      }
-    },
-    {
-      "name": "toPosixPath",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/utils/normalizeTypeText.ts",
-        "line": 37,
+        "line": 20,
         "column": 1
       }
     },
@@ -3235,7 +3134,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 17,
+        "line": 19,
         "column": 1
       }
     },
@@ -3246,7 +3145,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 42,
+        "line": 44,
         "column": 1
       }
     },
@@ -3257,7 +3156,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 51,
+        "line": 53,
         "column": 1
       }
     },
@@ -3268,7 +3167,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 73,
+        "line": 75,
         "column": 1
       }
     },
@@ -3279,7 +3178,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 93,
+        "line": 95,
         "column": 1
       }
     },
@@ -3290,7 +3189,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 105,
+        "line": 107,
         "column": 1
       }
     },
@@ -3301,7 +3200,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 114,
+        "line": 116,
         "column": 1
       }
     },
@@ -3312,7 +3211,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 141,
+        "line": 143,
         "column": 1
       }
     },
@@ -3323,7 +3222,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
-        "line": 149,
+        "line": 151,
         "column": 1
       }
     },
@@ -3686,7 +3585,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 19,
+        "line": 20,
         "column": 1
       }
     },
@@ -3697,7 +3596,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 218,
+        "line": 219,
         "column": 1
       }
     },
@@ -3708,7 +3607,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 268,
+        "line": 269,
         "column": 1
       }
     },
@@ -3719,7 +3618,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 292,
+        "line": 297,
         "column": 1
       }
     },
@@ -3730,7 +3629,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 313,
+        "line": 318,
         "column": 1
       }
     },
@@ -3741,7 +3640,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 337,
+        "line": 342,
         "column": 1
       }
     },
@@ -3752,7 +3651,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 349,
+        "line": 354,
         "column": 1
       }
     },
@@ -3763,7 +3662,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 363,
+        "line": 368,
         "column": 1
       }
     },
@@ -3774,7 +3673,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 383,
+        "line": 388,
         "column": 1
       }
     },
@@ -3785,7 +3684,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 392,
+        "line": 397,
         "column": 1
       }
     },
@@ -3796,7 +3695,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 406,
+        "line": 411,
         "column": 1
       }
     },
@@ -3807,7 +3706,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 435,
+        "line": 440,
         "column": 1
       }
     },
@@ -3818,7 +3717,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 471,
+        "line": 476,
         "column": 1
       }
     },
@@ -3829,7 +3728,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 493,
+        "line": 498,
         "column": 1
       }
     },
@@ -3840,7 +3739,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 530,
+        "line": 535,
         "column": 1
       }
     },
@@ -3851,7 +3750,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 545,
+        "line": 550,
         "column": 1
       }
     },
@@ -3862,7 +3761,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 567,
+        "line": 572,
         "column": 1
       }
     },
@@ -3873,7 +3772,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 578,
+        "line": 583,
         "column": 1
       }
     },
@@ -3884,7 +3783,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 587,
+        "line": 592,
         "column": 1
       }
     },
@@ -3895,7 +3794,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 606,
+        "line": 611,
         "column": 1
       }
     },
@@ -3906,7 +3805,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 618,
+        "line": 623,
         "column": 1
       }
     },
@@ -3917,7 +3816,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 25,
+        "line": 27,
         "column": 1
       }
     },
@@ -3928,7 +3827,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 41,
+        "line": 43,
         "column": 1
       }
     },
@@ -3939,7 +3838,29 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 77,
+        "line": 79,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderCliUsage",
+      "description": "Renders the canonical CLI usage section from package metadata.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 97,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderProgrammaticUsage",
+      "description": "Renders the single README-promoted programmatic usage declaration.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 112,
         "column": 1
       }
     },
@@ -3950,7 +3871,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 117,
+        "line": 139,
         "column": 1
       }
     },
@@ -3961,7 +3882,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 124,
+        "line": 146,
         "column": 1
       }
     },
@@ -3972,7 +3893,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 169,
+        "line": 191,
         "column": 1
       }
     },
@@ -3983,7 +3904,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 184,
+        "line": 206,
         "column": 1
       }
     },
@@ -3994,7 +3915,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 202,
+        "line": 224,
         "column": 1
       }
     },
@@ -4005,7 +3926,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 222,
+        "line": 244,
         "column": 1
       }
     },
@@ -4016,7 +3937,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 258,
+        "line": 280,
         "column": 1
       }
     },
@@ -4027,7 +3948,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 280,
+        "line": 302,
         "column": 1
       }
     },
@@ -4038,7 +3959,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 291,
+        "line": 313,
         "column": 1
       }
     },
@@ -4049,7 +3970,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 316,
+        "line": 338,
         "column": 1
       }
     },
@@ -4060,7 +3981,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 327,
+        "line": 349,
         "column": 1
       }
     },
@@ -4071,7 +3992,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 334,
+        "line": 356,
         "column": 1
       }
     },
@@ -4082,7 +4003,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 345,
+        "line": 367,
         "column": 1
       }
     },
@@ -4093,7 +4014,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 377,
+        "line": 399,
         "column": 1
       }
     },
@@ -4104,7 +4025,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 384,
+        "line": 406,
         "column": 1
       }
     },
@@ -4115,7 +4036,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 393,
+        "line": 415,
         "column": 1
       }
     },
@@ -4126,7 +4047,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 400,
+        "line": 422,
         "column": 1
       }
     },
@@ -4137,7 +4058,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 416,
+        "line": 438,
         "column": 1
       }
     },
@@ -4148,7 +4069,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 469,
+        "line": 491,
         "column": 1
       }
     },
@@ -4159,7 +4080,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 508,
+        "line": 530,
         "column": 1
       }
     },
@@ -4170,7 +4091,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 515,
+        "line": 537,
         "column": 1
       }
     },
@@ -4181,7 +4102,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 522,
+        "line": 544,
         "column": 1
       }
     },
@@ -4192,7 +4113,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 549,
+        "line": 571,
         "column": 1
       }
     },
@@ -4817,11 +4738,6 @@
         "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
       },
       {
-        "fromPath": "src/analyze/semantic/createTypeScriptProgram.ts",
-        "toPath": "src/analyze/semantic/utils.ts",
-        "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
-      },
-      {
         "fromPath": "src/analyze/semantic/docBlocks.ts",
         "toPath": "src/analyze/semantic/model.ts",
         "sourcePath": "src/analyze/semantic/docBlocks.ts"
@@ -5423,8 +5339,8 @@
       },
       {
         "fromSymbol": "analyzeExports",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/exports.ts"
       },
       {
@@ -5525,8 +5441,8 @@
       },
       {
         "fromSymbol": "src/analyze/modules.ts",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/modules.ts"
       },
       {
@@ -5549,8 +5465,8 @@
       },
       {
         "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
@@ -5609,8 +5525,8 @@
       },
       {
         "fromSymbol": "analyzeUsageFile",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
@@ -5741,8 +5657,8 @@
       },
       {
         "fromSymbol": "getBinSourceCandidates",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
@@ -5807,8 +5723,8 @@
       },
       {
         "fromSymbol": "src/analyze/sourceFunctions.ts",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/sourceFunctions.ts"
       },
       {
@@ -5837,8 +5753,8 @@
       },
       {
         "fromSymbol": "createSourceFunction",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/sourceFunctions.ts"
       },
       {
@@ -6070,6 +5986,12 @@
         "sourcePath": "src/paths/policy.ts"
       },
       {
+        "fromSymbol": "splitPathSegments",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
+        "sourcePath": "src/paths/policy.ts"
+      },
+      {
         "fromSymbol": "assertWithinRoot",
         "toSymbol": "relative",
         "callExpression": "relative",
@@ -6203,8 +6125,8 @@
       },
       {
         "fromSymbol": "collectFileCommentsAsync",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
       },
       {
@@ -6611,8 +6533,8 @@
       },
       {
         "fromSymbol": "src/analyze/semantic/createTypeScriptProgram.ts",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/semantic/createTypeScriptProgram.ts"
       },
       {
@@ -6959,8 +6881,8 @@
       },
       {
         "fromSymbol": "relativeToRoot",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/semantic/utils.ts"
       },
       {
@@ -6977,8 +6899,8 @@
       },
       {
         "fromSymbol": "isNodeModulePath",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/semantic/utils.ts"
       },
       {
@@ -6989,8 +6911,8 @@
       },
       {
         "fromSymbol": "getExportMetadata",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
@@ -7031,8 +6953,8 @@
       },
       {
         "fromSymbol": "getSourceLocation",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
@@ -7211,8 +7133,8 @@
       },
       {
         "fromSymbol": "normalizeImportPath",
-        "toSymbol": "toPosixPath",
-        "callExpression": "toPosixPath",
+        "toSymbol": "toPortablePath",
+        "callExpression": "toPortablePath",
         "sourcePath": "src/analyze/utils/normalizeTypeText.ts"
       },
       {
@@ -7829,12 +7751,24 @@
       },
       {
         "fromSymbol": "renderUsage",
+        "toSymbol": "renderCliUsage",
+        "callExpression": "renderCliUsage",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderUsage",
+        "toSymbol": "renderProgrammaticUsage",
+        "callExpression": "renderProgrammaticUsage",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderCliUsage",
         "toSymbol": "getPackageDisplayName",
         "callExpression": "getPackageDisplayName",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "renderUsage",
+        "fromSymbol": "renderProgrammaticUsage",
         "toSymbol": "renderReferences",
         "callExpression": "renderReferences",
         "sourcePath": "src/render/renderers/markdown.ts"
