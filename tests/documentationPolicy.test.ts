@@ -189,9 +189,7 @@ test('@security requires one exact colocated executable test', async () => {
 
     await writeFile(
       join(root, 'src', 'security.test.ts'),
-      ["import { test } from 'bun:test';", '', "test('different test name', () => {});"].join(
-        '\n',
-      ),
+      ["import { test } from 'bun:test';", '', "test('different test name', () => {});"].join('\n'),
     );
     const broken = await analyze(
       { package: { entrypoints: ['src/index.ts'] } },
