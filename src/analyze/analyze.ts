@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { resolvePolicyStatus } from '@ankhorage/policy/status';
+import { toPortablePath } from '@ankhorage/utility/node/path';
 
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
@@ -88,7 +89,7 @@ export async function analyze(
     exports,
     components,
     sourceFunctions,
-    entrypoints: entrypoints.map((entrypoint) => entrypoint.replaceAll('\\', '/')).sort(),
+    entrypoints: entrypoints.map(toPortablePath).sort(),
     modules,
     badges,
     sequenceScenarios,

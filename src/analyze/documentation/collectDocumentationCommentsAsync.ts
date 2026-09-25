@@ -1,6 +1,8 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
+
 import type { ParsedParadoxComment } from '../utils/parseParadoxComment.js';
 import { parseParadoxComment } from '../utils/parseParadoxComment.js';
 
@@ -72,7 +74,7 @@ async function collectFileCommentsAsync(
   filePath: string,
 ): Promise<CollectedDocumentationComment[]> {
   const source = await readFile(filePath, 'utf-8');
-  const sourcePath = toPosixPath(relative(root, filePath));
+  const sourcePath = toPortablePath(relative(root, filePath));
 
   return [...source.matchAll(COMMENT_PATTERN)].map((match) => {
     const [raw] = match;
@@ -90,11 +92,4 @@ async function collectFileCommentsAsync(
  */
 function isMissingPathError(error: unknown): error is NodeJS.ErrnoException {
   return error instanceof Error && 'code' in error && error.code === 'ENOENT';
-}
-
-/***
- * Normalizes filesystem separators for stable documentation paths.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }

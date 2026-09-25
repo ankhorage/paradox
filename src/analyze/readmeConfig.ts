@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { extname, relative } from 'node:path';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
+
 export interface AnalysisReadmeConfig {
   language: string;
   code: string;
@@ -17,7 +19,7 @@ export async function analyzeReadmeConfig(options: {
   if (options.configFilePath === null) return null;
 
   const source = await readFile(options.configFilePath, 'utf-8');
-  const sourcePath = toPosixPath(relative(options.root, options.configFilePath));
+  const sourcePath = toPortablePath(relative(options.root, options.configFilePath));
 
   return {
     language: getLanguage(sourcePath),
@@ -34,11 +36,4 @@ function getLanguage(sourcePath: string): string {
   if (extension === '.ts') return 'ts';
   if (extension === '.js' || extension === '.mjs' || extension === '.cjs') return 'js';
   return '';
-}
-
-/***
- * Normalizes filesystem separators for stable documentation paths.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }

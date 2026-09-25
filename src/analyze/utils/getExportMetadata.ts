@@ -1,5 +1,6 @@
 import { relative } from 'node:path';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import {
   type ArrayLiteralExpression,
   type ArrowFunction,
@@ -47,7 +48,7 @@ export function getExportMetadata(options: {
   | 'sourceLocation'
   | 'structuredRows'
 > {
-  const modulePath = toPosixPath(
+  const modulePath = toPortablePath(
     relative(options.root, options.node.getSourceFile().getFilePath()),
   );
   const sourceLocation = getSourceLocation(options.node, options.root);
@@ -82,7 +83,7 @@ function getSourceLocation(node: Node, root: string): AnalysisSourceLocation {
   const { column, line } = sourceFile.getLineAndColumnAtPos(node.getStart(false));
 
   return {
-    filePath: toPosixPath(relative(root, sourceFile.getFilePath())),
+    filePath: toPortablePath(relative(root, sourceFile.getFilePath())),
     line,
     column,
   };
@@ -345,13 +346,6 @@ function collectRelatedSymbols(
   }
 
   return [...related].sort((left, right) => left.localeCompare(right));
-}
-
-/***
- * Normalizes platform-specific path separators for generated documentation output.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }
 
 /***

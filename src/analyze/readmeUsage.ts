@@ -2,6 +2,7 @@ import { readdir } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Project, type Statement } from 'ts-morph';
 
 import type { AnalysisUsageEntry } from './types.js';
@@ -56,7 +57,7 @@ async function collectSourceFilesAsync(root: string): Promise<string[]> {
  */
 function analyzeUsageFile(root: string, project: Project, filePath: string): AnalysisUsageEntry[] {
   const sourceFile = project.getSourceFile(filePath) ?? project.addSourceFileAtPath(filePath);
-  const sourcePath = toPosixPath(relative(root, filePath));
+  const sourcePath = toPortablePath(relative(root, filePath));
 
   return sourceFile.getStatements().flatMap((statement): AnalysisUsageEntry[] => {
     const comment = getParadoxComment(statement);
@@ -160,11 +161,4 @@ function isMissingPathError(error: unknown): error is NodeJS.ErrnoException {
     typeof error.code === 'string' &&
     error.code === 'ENOENT'
   );
-}
-
-/***
- * Normalizes filesystem separators for stable documentation paths.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }

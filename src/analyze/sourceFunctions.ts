@@ -1,5 +1,6 @@
 import { relative } from 'node:path';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisSourceFunction } from './types.js';
@@ -15,7 +16,7 @@ export function analyzeSourceFunctions(project: Project, root: string): Analysis
     .flatMap((sourceFile) => {
       if (sourceFile.isDeclarationFile()) return [];
 
-      const filePath = toPosixPath(relative(root, sourceFile.getFilePath()));
+      const filePath = toPortablePath(relative(root, sourceFile.getFilePath()));
       if (!filePath.startsWith('src/')) return [];
 
       return sourceFile.getDescendants().flatMap((node): AnalysisSourceFunction[] => {
@@ -62,16 +63,9 @@ function createSourceFunction(name: string, node: Node, root: string): AnalysisS
     see: parsedComment?.see ?? [],
     security: parsedComment?.security ?? [],
     sourceLocation: {
-      filePath: toPosixPath(relative(root, sourceFile.getFilePath())),
+      filePath: toPortablePath(relative(root, sourceFile.getFilePath())),
       line,
       column,
     },
   };
-}
-
-/***
- * Normalizes platform-specific path separators for generated documentation output.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }

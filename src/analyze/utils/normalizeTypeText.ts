@@ -1,3 +1,5 @@
+import { toPortablePath } from '@ankhorage/utility/node/path';
+
 /***
  * Removes machine-specific absolute paths from TypeScript import type text.
  */
@@ -16,7 +18,7 @@ export function normalizeTypeText(typeText: string, packageRoot?: string): strin
 }
 
 function normalizeImportPath(importPath: string, packageRoot?: string): string {
-  const normalizedPath = toPosixPath(importPath);
+  const normalizedPath = toPortablePath(importPath);
   const nodeModulesMarker = '/node_modules/';
   const nodeModulesIndex = normalizedPath.lastIndexOf(nodeModulesMarker);
   if (nodeModulesIndex >= 0) {
@@ -26,14 +28,10 @@ function normalizeImportPath(importPath: string, packageRoot?: string): string {
     return normalizedPath.slice('node_modules/'.length);
   }
 
-  const normalizedRoot = packageRoot ? toPosixPath(packageRoot).replace(/\/$/, '') : null;
+  const normalizedRoot = packageRoot ? toPortablePath(packageRoot).replace(/\/$/, '') : null;
   if (normalizedRoot && normalizedPath.startsWith(`${normalizedRoot}/`)) {
     return `./${normalizedPath.slice(normalizedRoot.length + 1)}`;
   }
 
   return normalizedPath;
-}
-
-function toPosixPath(value: string): string {
-  return value.replaceAll('\\', '/');
 }

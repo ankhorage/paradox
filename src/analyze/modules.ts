@@ -1,6 +1,7 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
 import { uniqueSortedStrings } from '@ankhorage/utility/array';
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import type { Project } from 'ts-morph';
 
 import type { AnalysisModule } from './types.js';
@@ -32,7 +33,7 @@ export function analyzeModules(
     .getSourceFiles()
     .filter((sourceFile) => {
       const filePath = normalize(sourceFile.getFilePath());
-      const normalizedPath = toPosixPath(filePath);
+      const normalizedPath = toPortablePath(filePath);
       return (
         !sourceFile.isDeclarationFile() &&
         filePath.startsWith(rootPath) &&
@@ -41,7 +42,7 @@ export function analyzeModules(
       );
     })
     .map((sourceFile) => {
-      const path = toPosixPath(relative(options.root, sourceFile.getFilePath()));
+      const path = toPortablePath(relative(options.root, sourceFile.getFilePath()));
       const dependencies = sourceFile
         .getImportDeclarations()
         .map((declaration) => declaration.getModuleSpecifierSourceFile())
@@ -51,9 +52,9 @@ export function analyzeModules(
           (dependency) =>
             dependency.startsWith(rootPath) &&
             !excludedPaths.has(dependency) &&
-            !toPosixPath(dependency).includes('/node_modules/'),
+            !toPortablePath(dependency).includes('/node_modules/'),
         )
-        .map((dependency) => toPosixPath(relative(options.root, dependency)));
+        .map((dependency) => toPortablePath(relative(options.root, dependency)));
       const exports = sourceFile
         .getExportSymbols()
         .map((symbol) => symbol.getName())
@@ -67,11 +68,4 @@ export function analyzeModules(
       } satisfies AnalysisModule;
     })
     .sort((left, right) => left.path.localeCompare(right.path));
-}
-
-/***
- * Normalizes platform-specific path separators for generated documentation output.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }
