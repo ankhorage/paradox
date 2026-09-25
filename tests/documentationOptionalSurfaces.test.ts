@@ -32,9 +32,7 @@ test('usage opt-in still requires one README-promoted example', async () => {
   await mkdir(join(root, 'src', 'cli'), { recursive: true });
   await writeFile(
     join(root, 'src', 'cli', 'usage.ts'),
-    ['/***', ' * CLI usage.', ' * @usage', ' */', "export const usage = 'cli';", ''].join(
-      '\n',
-    ),
+    ['/***', ' * CLI usage.', ' * @usage', ' */', "export const usage = 'cli';", ''].join('\n'),
   );
 
   try {
@@ -98,10 +96,7 @@ async function createBareDocumentationFixtureAsync(): Promise<string> {
 }
 
 /*** Assert one optional-surface policy error. */
-function expectFinding(
-  findings: readonly AnalysisDocumentationFinding[],
-  ruleId: string,
-): void {
+function expectFinding(findings: readonly AnalysisDocumentationFinding[], ruleId: string): void {
   expect(
     findings.some((finding) => finding.ruleId === ruleId && finding.severity === 'error'),
   ).toBe(true);
