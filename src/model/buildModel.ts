@@ -188,9 +188,7 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
       security: [...sourceFunction.security],
       sourceLocation: { ...sourceFunction.sourceLocation },
     })),
-    sequenceScenarios: sortByName(
-      analysis.sequenceScenarios.map((scenario) => ({ ...scenario })),
-    ),
+    sequenceScenarios: sortByName(analysis.sequenceScenarios.map((scenario) => ({ ...scenario }))),
     graphs: {
       imports: [...analysis.graphs.imports],
       calls: [...analysis.graphs.calls],
