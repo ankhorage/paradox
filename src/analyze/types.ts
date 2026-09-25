@@ -1,12 +1,6 @@
 import type { PolicySeverity } from '@ankhorage/policy/status';
 import type { Node } from 'ts-morph';
 
-interface AnalysisExample {
-  title: string | null;
-  language: string | null;
-  code: string;
-}
-
 /***
  * Describes one exported declaration discovered in a package.
  */
@@ -51,7 +45,8 @@ export interface AnalysisExport {
   title: string | null;
   description: string | null;
   isReadme: boolean;
-  examples: AnalysisExample[];
+  see: string[];
+  security: string[];
   kind: 'function' | 'type' | 'value' | 'unknown';
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
@@ -63,13 +58,14 @@ export interface AnalysisExport {
 }
 
 /***
- * Describes one React component and its extracted props.
+ * Describes one React component and its props.
  */
 export interface AnalysisComponent {
   name: string;
   description: string | null;
   isReadme: boolean;
-  examples: AnalysisExample[];
+  see: string[];
+  security: string[];
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
   exportPaths: string[];
@@ -95,6 +91,8 @@ export interface AnalysisUsageEntry {
   code: string;
   sourcePath: string;
   isReadme: boolean;
+  see: string[];
+  security: string[];
 }
 
 export interface AnalysisDocumentationFinding {
@@ -141,6 +139,8 @@ export interface AnalysisSequenceScenario {
 export interface AnalysisSourceFunction {
   name: string;
   description: string | null;
+  see: string[];
+  security: string[];
   sourceLocation: AnalysisSourceLocation;
 }
 
@@ -212,6 +212,8 @@ export interface AnalysisResult {
     title: string | null;
     description: string | null;
     isReadme: boolean;
+    see: string[];
+    security: string[];
     members: AnalysisTypeMember[];
   } | null;
   graphs: AnalysisGraphs;
