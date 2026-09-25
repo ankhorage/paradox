@@ -51,7 +51,7 @@ function collectTags(raw: string, tagRegistry: TagRegistry = defaultTagRegistry)
     const match = /^@([A-Za-z][A-Za-z0-9-]*)(?:\s+(.*))?$/.exec(line.trim());
     if (match === null) return [];
 
-    const name = match[1];
+    const [, name] = match;
     if (!tagRegistry.has(name)) return [];
 
     const value = match.slice(2).join('').trim();
