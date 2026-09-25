@@ -51,10 +51,10 @@ function collectTags(raw: string, tagRegistry: TagRegistry = defaultTagRegistry)
     const match = /^@([A-Za-z][A-Za-z0-9-]*)(?:\s+(.*))?$/.exec(line.trim());
     if (match === null) return [];
 
-    const [, name = '', rawValue] = match;
+    const name = match[1];
     if (!tagRegistry.has(name)) return [];
 
-    const value = rawValue?.trim() ?? '';
+    const value = match.slice(2).join('').trim();
     return [{ name, value: value.length > 0 ? value : null }];
   });
 }
