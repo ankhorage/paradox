@@ -278,7 +278,7 @@ function collectMembersFromType(
     const rawComment = getParadoxComment(declaration);
     const parsed = rawComment
       ? parseParadoxComment(rawComment)
-      : { description: null, isConfig: false, params: {}, returns: null };
+      : { description: null };
     const required = !property.isOptional() && !isUndefinedUnion(propertyType);
     const childReference = shouldExpandType(program, propertyType)
       ? resolveTypeReference(program, propertyType)
