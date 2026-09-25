@@ -1,3 +1,4 @@
+import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { slugifyAscii } from '@ankhorage/utility/string';
 
 import type { DocumentationModel } from '../../model/types.js';
@@ -266,11 +267,22 @@ function renderHomeView(
  * Renders complete CLI and programmatic usage documentation.
  */
 function renderUsagePanel(model: DocumentationModel): string {
+  if (
+    DOCUMENTATION_POLICY.readmeUsage.activation === 'usage-tag' &&
+    model.usageEntries.length === 0
+  ) {
+    return '';
+  }
+
+  const usageEntries = DOCUMENTATION_POLICY.readmeUsage.fullDocumentation.includeAllUsageEntries
+    ? model.usageEntries
+    : [];
+
   return `<section class="panel" data-search="${escapeAttribute(
     [
       'usage',
       model.usage.command,
-      ...model.usageEntries.flatMap((entry) => [
+      ...usageEntries.flatMap((entry) => [
         entry.title ?? '',
         entry.description ?? '',
         entry.sourcePath,
@@ -282,7 +294,7 @@ function renderUsagePanel(model: DocumentationModel): string {
       <h3>CLI</h3>
       <pre>${escapeHtml(model.usage.command)}</pre>
     </article>
-    ${model.usageEntries.map(renderUsageEntry).join('')}
+    ${usageEntries.map(renderUsageEntry).join('')}
   </section>`;
 }
 
