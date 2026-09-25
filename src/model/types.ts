@@ -41,7 +41,7 @@ interface UsageModel {
   command: string;
 }
 
-export interface UsageEntryModel {
+interface UsageEntryModel {
   area: 'cli' | 'examples';
   title: string | null;
   description: string | null;
@@ -53,7 +53,7 @@ export interface UsageEntryModel {
   security: string[];
 }
 
-export interface DocumentationFindingModel {
+interface DocumentationFindingModel {
   ruleId: string;
   severity: PolicySeverity;
   message: string;
