@@ -47,9 +47,6 @@ jobs:
       - name: Run lint
         run: |
           if node -e "const p=require('./package.json'); process.exit(p.scripts?.lint ? 0 : 1)"; then
-            bun run format
-            bun run lint:fix || true
-            git diff -- src tests .changeset package.json
             bun run lint
           else
             echo "No lint script found; skipping."
