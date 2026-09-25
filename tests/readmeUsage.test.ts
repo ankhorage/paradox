@@ -44,7 +44,7 @@ describe('canonical README usage', () => {
       expect(output.readme).toContain('Demonstrates the canonical programmatic entry point.');
       expect(output.readme).toContain("export const basicUsage = 'basic';");
       expect(output.readme).toContain(
-        'This package contains 2 examples. See the generated documentation for the complete set.',
+        'This package contains 1 additional example. See the generated documentation for the complete set.',
       );
       expect(output.readme).not.toContain('Source: `examples/basic-usage/index.ts`');
       expect(output.readme).not.toContain('advancedUsage');
