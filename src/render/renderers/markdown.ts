@@ -1,4 +1,5 @@
 import type { DocumentationModel } from '../../model/types.js';
+import { toFileStem } from '../toFileStem.js';
 import type { RenderContext } from '../types.js';
 
 type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
@@ -503,14 +504,6 @@ function badgeLabel(model: DocumentationModel, badgePath: string): string {
   const badge = model.badges.find((entry) => entry.id === id);
 
   return badge ? `${badge.label}: ${badge.value}` : badgePath;
-}
-
-function toFileStem(value: string): string {
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/[^A-Za-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
 }
 
 const CATEGORY_ORDER = [

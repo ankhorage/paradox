@@ -1,4 +1,5 @@
 import type { DocumentationModel, ModuleModel, SequenceScenarioModel } from '../../model/types.js';
+import { toFileStem } from '../toFileStem.js';
 import type { DiagramArtifact } from '../types.js';
 
 const MAX_SEQUENCE_CALL_EDGES = 12;
@@ -283,14 +284,6 @@ function renderFallbackEdge(modules: readonly ModuleModel[], prefix: string): st
 
 function uniqueSorted(values: readonly string[]): string[] {
   return [...new Set(values)].sort((left, right) => left.localeCompare(right));
-}
-
-function toFileStem(value: string): string {
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/[^A-Za-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
 }
 
 function toMermaidId(value: string): string {
