@@ -88,6 +88,9 @@ function analyzeUsageFile(root: string, project: Project, filePath: string): Ana
  * Returns the exact source statement owned by a usage comment.
  */
 function getStatementCode(statement: Statement): string {
+  if (DOCUMENTATION_POLICY.readmeUsage.sourceCode.extraction !== 'annotated-declaration') {
+    throw new Error('Unsupported documentation usage source extraction policy.');
+  }
   return statement.getText().trim();
 }
 
