@@ -1,4 +1,4 @@
-import type { ParadoxConfig } from './types.js';
+import type { ParadoxConfig } from '../types/config.js';
 
 /***
  * Defines a Paradox configuration object without changing its shape.
