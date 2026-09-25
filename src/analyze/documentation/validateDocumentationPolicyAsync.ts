@@ -24,7 +24,7 @@ export async function validateDocumentationPolicyAsync(options: {
   return [
     ...validateCommentRules(options.comments),
     ...validateUsageRules(options.comments),
-    ...(await validateConfigRulesAsync(options.root, options.project)),
+    ...(await validateConfigRulesAsync(options.root, options.project, options.comments)),
     ...validatePublicApiRules(options.exports),
     ...(await validateReferencesAsync(options.root, options.project, options.comments, {
       validateSeeUrlAsync: options.validateSeeUrlAsync,
@@ -72,6 +72,8 @@ function validateUsageRules(
   comments: readonly CollectedDocumentationComment[],
 ): AnalysisDocumentationFinding[] {
   const usageComments = comments.filter((comment) => comment.parsed.isUsage);
+  if (usageComments.length === 0 && !DOCUMENTATION_POLICY.readmeUsage.required) return [];
+
   const findings = usageComments.flatMap((comment) => validateUsageComment(comment));
   const readmeExamples = usageComments.filter(
     (comment) =>
@@ -143,9 +145,14 @@ function validateUsageComment(
 async function validateConfigRulesAsync(
   root: string,
   project: Project,
+  comments: readonly CollectedDocumentationComment[],
 ): Promise<AnalysisDocumentationFinding[]> {
   const configPath = join(root, DOCUMENTATION_POLICY.config.path);
-  if (!(await fileExistsAsync(configPath))) {
+  const configComments = comments.filter((comment) => comment.parsed.isConfig);
+  const hasConfigFile = await fileExistsAsync(configPath);
+
+  if (!hasConfigFile) {
+    if (!DOCUMENTATION_POLICY.config.required && configComments.length === 0) return [];
     return [
       createDocumentationFinding(
         'documentation.config.file',
