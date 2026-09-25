@@ -1,11 +1,8 @@
 import { normalize, relative } from 'node:path';
 
-export function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
-}
-
+import { toPortablePath } from '@ankhorage/utility/node/path';
 export function relativeToRoot(root: string, filePath: string): string {
-  return toPosixPath(relative(root, filePath));
+  return toPortablePath(relative(root, filePath));
 }
 
 export function isPathInsideRoot(root: string, filePath: string): boolean {
@@ -13,5 +10,5 @@ export function isPathInsideRoot(root: string, filePath: string): boolean {
 }
 
 export function isNodeModulePath(filePath: string): boolean {
-  return toPosixPath(filePath).includes('/node_modules/');
+  return toPortablePath(filePath).includes('/node_modules/');
 }
