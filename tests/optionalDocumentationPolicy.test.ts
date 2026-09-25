@@ -17,8 +17,7 @@ test('optional usage and config surfaces do not require fake documentation', asy
       .map((finding) => finding.ruleId)
       .filter(
         (ruleId) =>
-          ruleId.startsWith('documentation.usage.') ||
-          ruleId.startsWith('documentation.config.'),
+          ruleId.startsWith('documentation.usage.') || ruleId.startsWith('documentation.config.'),
       );
 
     expect(surfaceRuleIds).toEqual([]);
@@ -130,9 +129,6 @@ async function writeExtraFixtureFilesAsync(
 /***
  * Checks whether one documentation finding exists by stable Policy rule id.
  */
-function hasFinding(
-  findings: readonly { readonly ruleId: string }[],
-  ruleId: string,
-): boolean {
+function hasFinding(findings: readonly { readonly ruleId: string }[], ruleId: string): boolean {
   return findings.some((finding) => finding.ruleId === ruleId);
 }
