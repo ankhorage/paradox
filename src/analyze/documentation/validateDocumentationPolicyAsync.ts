@@ -19,13 +19,16 @@ export async function validateDocumentationPolicyAsync(options: {
   project: Project;
   comments: readonly CollectedDocumentationComment[];
   exports: readonly AnalysisExport[];
+  validateSeeUrlAsync?: (url: string) => Promise<unknown>;
 }): Promise<AnalysisDocumentationFinding[]> {
   return [
     ...validateCommentRules(options.comments),
     ...validateUsageRules(options.comments),
     ...(await validateConfigRulesAsync(options.root, options.project)),
     ...validatePublicApiRules(options.exports),
-    ...(await validateReferencesAsync(options.root, options.project, options.comments)),
+    ...(await validateReferencesAsync(options.root, options.project, options.comments, {
+      validateSeeUrlAsync: options.validateSeeUrlAsync,
+    })),
   ];
 }
 
@@ -90,7 +93,10 @@ function validateUsageRules(
   }
 
   for (const comment of readmeExamples) {
-    if (comment.parsed.title === null || comment.parsed.description === null) {
+    if (
+      !hasExactlyOneRequiredTag(comment, DOCUMENTATION_POLICY.readmeUsage.requiredTags) ||
+      comment.parsed.description === null
+    ) {
       findings.push(
         finding(
           'documentation.usage.readme.metadata',
@@ -175,7 +181,10 @@ async function validateConfigRulesAsync(
   }
 
   for (const rootEntry of roots) {
-    if (rootEntry.parsed.title === null || rootEntry.parsed.description === null) {
+    if (
+      !hasExactlyOneRequiredTag(rootEntry, DOCUMENTATION_POLICY.config.requiredTags) ||
+      rootEntry.parsed.description === null
+    ) {
       findings.push(
         createDocumentationFinding(
           'documentation.config.readme.metadata',
@@ -207,6 +216,18 @@ function validatePublicApiRules(
           ),
         ]
       : [],
+  );
+}
+
+/***
+ * Checks that each policy-required tag appears exactly once on one parsed documentation item.
+ */
+function hasExactlyOneRequiredTag(
+  entry: { parsed: CollectedDocumentationComment['parsed'] },
+  requiredTags: readonly string[],
+): boolean {
+  return requiredTags.every(
+    (name) => entry.parsed.tags.filter((tag) => tag.name === name).length === 1,
   );
 }
 
