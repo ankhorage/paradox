@@ -1,135 +1,130 @@
+import { isParadoxDocTagName, type ParadoxDocTagName } from '../../doc-tags/registry.js';
+
+export interface ParsedParadoxTag {
+  readonly name: ParadoxDocTagName;
+  readonly value: string | null;
+}
+
 /***
- * Parsed representation of a Paradox doc comment.
+ * Parsed representation of a Paradox documentation comment.
  */
 export interface ParsedParadoxComment {
   description: string | null;
   isConfig: boolean;
   isReadme: boolean;
   isUsage: boolean;
-  examples: ParsedExample[];
-  params: Record<string, string>;
-  returns: string | null;
-}
-
-interface ParsedExample {
   title: string | null;
-  language: string | null;
-  code: string;
+  see: string[];
+  security: string[];
+  tags: ParsedParadoxTag[];
+  unsupportedTags: string[];
+  hasCodeBlock: boolean;
+  examples: [];
+  params: Record<string, never>;
+  returns: null;
 }
-
-const USAGE_TAG = `${String.fromCharCode(64)}usage`;
 
 /***
- * Parses a Paradox doc comment into structured metadata.
+ * Parses a Paradox comment into prose, supported tags, and validation evidence.
  */
 export function parseParadoxComment(rawComment: string): ParsedParadoxComment {
   const lines = normalizeCommentLines(rawComment);
-  const descriptionLines: string[] = [];
-  const examples: ParsedExample[] = [];
-  let isConfig = false;
-  let isReadme = false;
-  let isUsage = false;
-  const params: Record<string, string> = {};
-  let returns: string | null = null;
-
-  for (let index = 0; index < lines.length; index += 1) {
-    const line = lines[index] ?? '';
-    const trimmed = line.trimStart();
-
-    if (trimmed.startsWith('@config')) {
-      isConfig = true;
-      continue;
-    }
-
-    if (trimmed.startsWith('@readme')) {
-      isReadme = true;
-      continue;
-    }
-
-    if (trimmed.startsWith(USAGE_TAG)) {
-      isUsage = true;
-      continue;
-    }
-
-    if (trimmed.startsWith('@example')) {
-      const parsed = parseExample(lines, index);
-      examples.push(parsed.example);
-      index = parsed.nextIndex;
-      continue;
-    }
-
-    if (trimmed.startsWith('@param ')) {
-      const paramBody = trimmed.slice('@param '.length).trim();
-      const [name, ...descriptionParts] = paramBody.split(/\s+/);
-      if (name) {
-        params[name] = descriptionParts.join(' ').trim();
-      }
-      continue;
-    }
-
-    if (trimmed.startsWith('@returns') || trimmed.startsWith('@return')) {
-      const returnBody = trimmed.replace(/^@returns?/, '').trim();
-      returns = returnBody.length > 0 ? returnBody : null;
-      continue;
-    }
-
-    descriptionLines.push(line);
-  }
-
-  const description = descriptionLines.join('\n').trim();
+  const parsedLines = lines.map(parseCommentLine);
+  const tags = parsedLines.flatMap((line) => line.tag ?? []);
+  const unsupportedTags = parsedLines.flatMap((line) => line.unsupportedTag ?? []);
+  const description = parsedLines
+    .filter((line) => line.tag === undefined && line.unsupportedTag === undefined)
+    .map((line) => line.text)
+    .join('\n')
+    .trim();
 
   return {
     description: description.length > 0 ? description : null,
-    isConfig,
-    isReadme,
-    isUsage,
-    examples,
-    params,
-    returns,
+    isConfig: hasTag(tags, 'config'),
+    isReadme: hasTag(tags, 'readme'),
+    isUsage: hasTag(tags, 'usage'),
+    title: getSingleTagValue(tags, 'title'),
+    see: getTagValues(tags, 'see'),
+    security: getTagValues(tags, 'security'),
+    tags,
+    unsupportedTags,
+    hasCodeBlock: hasCodeBlock(lines),
+    examples: [],
+    params: {},
+    returns: null,
   };
 }
 
-function parseExample(
-  lines: readonly string[],
-  startIndex: number,
-): { example: ParsedExample; nextIndex: number } {
-  const header = lines[startIndex]?.trimStart() ?? '';
-  const title = header.slice('@example'.length).trim();
-  let language: string | null = null;
-  const codeLines: string[] = [];
-  let index = startIndex + 1;
+interface ParsedCommentLine {
+  readonly text: string;
+  readonly tag?: ParsedParadoxTag;
+  readonly unsupportedTag?: string;
+}
 
-  while (index < lines.length && (lines[index] ?? '').trim() === '') {
-    index += 1;
-  }
+/***
+ * Parses one normalized comment line when it has explicit tag-line syntax.
+ */
+function parseCommentLine(text: string): ParsedCommentLine {
+  const trimmed = text.trim();
+  const match = /^@([A-Za-z][A-Za-z0-9-]*)(?:\s+(.*))?$/.exec(trimmed);
+  if (match === null) return { text };
 
-  const firstCodeLine = lines[index]?.trim() ?? '';
-  if (firstCodeLine.startsWith('```')) {
-    language = firstCodeLine.slice('```'.length).trim() || null;
-    index += 1;
-
-    while (index < lines.length) {
-      const current = lines[index] ?? '';
-      if (current.trim() === '```') break;
-      codeLines.push(current);
-      index += 1;
-    }
+  const [, name = '', rawValue] = match;
+  const value = rawValue?.trim() ?? '';
+  if (!isParadoxDocTagName(name)) {
+    return { text, unsupportedTag: name };
   }
 
   return {
-    example: {
-      title: title.length > 0 ? title : null,
-      language,
-      code: codeLines.join('\n').trimEnd(),
+    text,
+    tag: {
+      name,
+      value: value.length > 0 ? value : null,
     },
-    nextIndex: index,
   };
 }
 
+/***
+ * Returns whether a parsed tag set contains the requested tag.
+ */
+function hasTag(tags: readonly ParsedParadoxTag[], name: ParadoxDocTagName): boolean {
+  return tags.some((tag) => tag.name === name);
+}
+
+/***
+ * Returns all non-empty values for a repeatable tag.
+ */
+function getTagValues(tags: readonly ParsedParadoxTag[], name: ParadoxDocTagName): string[] {
+  return tags.flatMap((tag) => (tag.name === name && tag.value !== null ? [tag.value] : []));
+}
+
+/***
+ * Returns the first non-empty value for a singular tag.
+ */
+function getSingleTagValue(
+  tags: readonly ParsedParadoxTag[],
+  name: ParadoxDocTagName,
+): string | null {
+  return getTagValues(tags, name)[0] ?? null;
+}
+
+/***
+ * Detects fenced or Markdown-indented code blocks while leaving inline code spans untouched.
+ */
+function hasCodeBlock(lines: readonly string[]): boolean {
+  return lines.some((line) => {
+    const trimmed = line.trimStart();
+    return trimmed.startsWith('```') || trimmed.startsWith('~~~') || /^(?: {4}|\t)\S/.test(line);
+  });
+}
+
+/***
+ * Removes Paradox comment syntax while preserving prose indentation for code-block validation.
+ */
 function normalizeCommentLines(rawComment: string): string[] {
   return rawComment
     .replace(/^\/\*\*\*/, '')
     .replace(/\*\/$/, '')
     .split('\n')
-    .map((line) => line.replace(/^\s*\*\s?/, '').trimEnd());
+    .map((line) => line.replace(/^\s*\* ?/, '').replace(/\s+$/, ''));
 }
