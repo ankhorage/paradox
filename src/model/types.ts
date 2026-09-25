@@ -12,6 +12,7 @@ export interface DocumentationModel {
   badges: GeneratedBadge[];
   usage: UsageModel;
   usageEntries: UsageEntryModel[];
+  exampleCount: number;
   findings: DocumentationFindingModel[];
   readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
@@ -48,6 +49,8 @@ export interface UsageEntryModel {
   code: string;
   sourcePath: string;
   isReadme: boolean;
+  see: string[];
+  security: string[];
 }
 
 export interface DocumentationFindingModel {
@@ -69,6 +72,8 @@ interface ConfigModel {
   title: string | null;
   description: string | null;
   isReadme: boolean;
+  see: string[];
+  security: string[];
   members: ConfigMemberModel[];
 }
 
@@ -77,7 +82,8 @@ export interface ExportModel {
   title: string | null;
   description: string | null;
   isReadme: boolean;
-  examples: ExampleModel[];
+  see: string[];
+  security: string[];
   kind: ExportKind;
   modulePath: string;
   sourceLocation: SourceLocationModel;
@@ -94,7 +100,8 @@ export interface ComponentModel {
   name: string;
   description: string | null;
   isReadme: boolean;
-  examples: ExampleModel[];
+  see: string[];
+  security: string[];
   modulePath: string;
   sourceLocation: SourceLocationModel;
   exportPaths: string[];
@@ -104,6 +111,8 @@ export interface ComponentModel {
 interface SourceFunctionModel {
   name: string;
   description: string | null;
+  see: string[];
+  security: string[];
   sourceLocation: SourceLocationModel;
 }
 
@@ -121,12 +130,6 @@ export interface ModuleModel {
   isEntrypoint: boolean;
   dependencies: string[];
   exports: string[];
-}
-
-interface ExampleModel {
-  title: string | null;
-  language: string | null;
-  code: string;
 }
 
 interface SourceLocationModel {
