@@ -2,7 +2,7 @@ import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
-import { Node, type Project } from 'ts-morph';
+import { Node, type Project, type SourceFile } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../types.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
@@ -24,7 +24,7 @@ export async function validateDocumentationPolicyAsync(options: {
   return [
     ...validateCommentRules(options.comments),
     ...validateUsageRules(options.comments),
-    ...(await validateConfigRulesAsync(options.root, options.project)),
+    ...(await validateConfigRulesAsync(options.root, options.project, options.comments)),
     ...validatePublicApiRules(options.exports),
     ...(await validateReferencesAsync(options.root, options.project, options.comments, {
       validateSeeUrlAsync: options.validateSeeUrlAsync,
@@ -72,6 +72,8 @@ function validateUsageRules(
   comments: readonly CollectedDocumentationComment[],
 ): AnalysisDocumentationFinding[] {
   const usageComments = comments.filter((comment) => comment.parsed.isUsage);
+  if (usageComments.length === 0) return [];
+
   const findings = usageComments.flatMap((comment) => validateUsageComment(comment));
   const readmeExamples = usageComments.filter(
     (comment) =>
@@ -138,14 +140,19 @@ function validateUsageComment(
 }
 
 /***
- * Validates the canonical configuration file and its one README configuration root.
+ * Validates configuration only after the package opts into that documentation surface.
  */
 async function validateConfigRulesAsync(
   root: string,
   project: Project,
+  comments: readonly CollectedDocumentationComment[],
 ): Promise<AnalysisDocumentationFinding[]> {
   const configPath = join(root, DOCUMENTATION_POLICY.config.path);
-  if (!(await fileExistsAsync(configPath))) {
+  const configExists = await fileExistsAsync(configPath);
+  const configTagged = comments.some((comment) => comment.parsed.isConfig);
+  if (!configExists && !configTagged) return [];
+
+  if (!configExists) {
     return [
       createDocumentationFinding(
         'documentation.config.file',
@@ -155,7 +162,14 @@ async function validateConfigRulesAsync(
   }
 
   const sourceFile = project.getSourceFile(configPath) ?? project.addSourceFileAtPath(configPath);
-  const roots = sourceFile.getStatements().flatMap((statement) => {
+  return validateConfigRoots(collectConfigRoots(sourceFile));
+}
+
+/***
+ * Collects canonical @config + @readme type declarations from the config schema.
+ */
+function collectConfigRoots(sourceFile: SourceFile) {
+  return sourceFile.getStatements().flatMap((statement) => {
     if (!Node.isInterfaceDeclaration(statement) && !Node.isTypeAliasDeclaration(statement)) {
       return [];
     }
@@ -164,8 +178,15 @@ async function validateConfigRulesAsync(
     const parsed = parseParadoxComment(raw);
     return parsed.isConfig && parsed.isReadme ? [{ statement, parsed }] : [];
   });
-  const findings: AnalysisDocumentationFinding[] = [];
+}
 
+/***
+ * Validates cardinality and README metadata for canonical config roots.
+ */
+function validateConfigRoots(
+  roots: ReturnType<typeof collectConfigRoots>,
+): AnalysisDocumentationFinding[] {
+  const findings: AnalysisDocumentationFinding[] = [];
   if (roots.length !== DOCUMENTATION_POLICY.config.exactCount) {
     findings.push(
       createDocumentationFinding(
@@ -191,7 +212,6 @@ async function validateConfigRulesAsync(
       );
     }
   }
-
   return findings;
 }
 
