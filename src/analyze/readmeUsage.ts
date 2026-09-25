@@ -2,7 +2,7 @@ import { readdir } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
-import type { Project, Statement } from 'ts-morph';
+import { Project, type Statement } from 'ts-morph';
 
 import type { AnalysisUsageEntry } from './types.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
@@ -15,8 +15,8 @@ const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']
  */
 export async function analyzeReadmeUsage(options: {
   root: string;
-  project: Project;
 }): Promise<AnalysisUsageEntry[]> {
+  const project = new Project({ skipAddingFilesFromTsConfig: true });
   const files = (
     await Promise.all(
       DOCUMENTATION_POLICY.paths.usageRoots.map((usageRoot) =>
@@ -27,7 +27,7 @@ export async function analyzeReadmeUsage(options: {
     .flat()
     .sort((left, right) => left.localeCompare(right));
 
-  return files.flatMap((filePath) => analyzeUsageFile(options.root, options.project, filePath));
+  return files.flatMap((filePath) => analyzeUsageFile(options.root, project, filePath));
 }
 
 /***
