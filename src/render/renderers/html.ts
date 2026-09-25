@@ -269,7 +269,7 @@ function renderHomeView(
 function renderUsagePanel(model: DocumentationModel): string {
   if (!DOCUMENTATION_POLICY.readmeUsage.required && model.usageEntries.length === 0) return '';
 
-  const usageEntries = model.usageEntries;
+  const { usageEntries } = model;
 
   return `<section class="panel" data-search="${escapeAttribute(
     [
