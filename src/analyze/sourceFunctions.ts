@@ -54,13 +54,13 @@ function createSourceFunction(name: string, node: Node, root: string): AnalysisS
   const sourceFile = node.getSourceFile();
   const { column, line } = sourceFile.getLineAndColumnAtPos(node.getStart(false));
   const rawComment = getParadoxComment(node);
-  const parsedComment = rawComment
-    ? parseParadoxComment(rawComment)
-    : { description: null, isReadme: false };
+  const parsedComment = rawComment === null ? null : parseParadoxComment(rawComment);
 
   return {
     name,
-    description: parsedComment.description,
+    description: parsedComment?.description ?? null,
+    see: parsedComment?.see ?? [],
+    security: parsedComment?.security ?? [],
     sourceLocation: {
       filePath: toPosixPath(relative(root, sourceFile.getFilePath())),
       line,
