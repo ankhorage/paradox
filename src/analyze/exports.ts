@@ -13,7 +13,11 @@ interface AnalyzeExportsResult {
   exports: AnalysisExport[];
   config: {
     exportName: string;
+    title: string | null;
+    description: string | null;
     isReadme: boolean;
+    see: string[];
+    security: string[];
   } | null;
 }
 
@@ -37,10 +41,7 @@ export function analyzeExports(
     for (const symbol of exported) {
       const resolved = resolveExportSymbol(symbol);
       const decl = getFirstDeclaration(resolved.getDeclarations());
-
-      if (decl === null) {
-        continue;
-      }
+      if (decl === null) continue;
 
       const rawComment = getParadoxComment(decl);
       const parsed = rawComment ? parseParadoxComment(rawComment) : createEmptyMetadata();
@@ -49,7 +50,11 @@ export function analyzeExports(
       if (parsed.isConfig) {
         config = {
           exportName: name,
+          title: parsed.title,
+          description: parsed.description,
           isReadme: parsed.isReadme,
+          see: parsed.see,
+          security: parsed.security,
         };
       }
 
@@ -67,9 +72,11 @@ export function analyzeExports(
         existing
           ? {
               ...existing,
+              title: existing.title ?? parsed.title,
               description: existing.description ?? parsed.description,
               isReadme: existing.isReadme || parsed.isReadme,
-              examples: existing.examples.length > 0 ? existing.examples : parsed.examples,
+              see: uniqueSortedStrings([...existing.see, ...parsed.see]),
+              security: uniqueSortedStrings([...existing.security, ...parsed.security]),
               exportPaths: uniqueSortedStrings([...existing.exportPaths, ...metadata.exportPaths]),
               relatedSymbols: uniqueSortedStrings([
                 ...existing.relatedSymbols,
@@ -86,9 +93,11 @@ export function analyzeExports(
           : {
               name,
               node: decl,
+              title: parsed.title,
               description: parsed.description,
               isReadme: parsed.isReadme,
-              examples: parsed.examples,
+              see: parsed.see,
+              security: parsed.security,
               kind: inferKind(decl),
               ...metadata,
             },
@@ -117,7 +126,6 @@ function getEntryPointSourceFiles(
       const absolutePath = normalize(
         isAbsolute(entrypoint) ? entrypoint : join(options.root, entrypoint),
       );
-
       return project.getSourceFile(
         (sourceFile) => normalize(sourceFile.getFilePath()) === absolutePath,
       );
@@ -156,10 +164,10 @@ function toPosixPath(path: string): string {
 function createEmptyMetadata() {
   return {
     description: null,
+    title: null,
     isConfig: false,
     isReadme: false,
-    examples: [],
-    params: {},
-    returns: null,
+    see: [],
+    security: [],
   };
 }
