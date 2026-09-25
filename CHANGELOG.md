@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- 336ea72: Respect capability-aware documentation policy so packages without programmatic usage or
+  configuration surfaces do not require fake README examples or config schemas.
+
 ## 0.2.1
 
 ### Patch Changes
