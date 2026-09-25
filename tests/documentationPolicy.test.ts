@@ -9,6 +9,65 @@ import { validateDocumentationPolicyAsync } from '../src/analyze/documentation/v
 import { createProject } from '../src/analyze/project.js';
 import type { AnalysisDocumentationFinding } from '../src/analyze/types.js';
 
+test('optional usage and config surfaces do not require fake documentation', async () => {
+  const root = await createOptionalSurfaceFixtureAsync();
+
+  try {
+    const analysis = await analyze(
+      { package: { entrypoints: ['src/index.ts'] } },
+      { packageRoot: root },
+    );
+    const surfaceRuleIds = analysis.findings
+      .map((finding) => finding.ruleId)
+      .filter((ruleId) => ruleId.startsWith('documentation.usage.') || ruleId.startsWith('documentation.config.'));
+
+    expect(surfaceRuleIds).toEqual([]);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('usage opt-in still requires one README-promoted canonical example', async () => {
+  const root = await createOptionalSurfaceFixtureAsync({
+    'examples/advanced/index.ts': [
+      '/***',
+      ' * Advanced usage.',
+      ' * @title Advanced Usage',
+      ' * @usage',
+      ' */',
+      "export const advancedUsage = 'advanced';",
+    ].join('\n'),
+  });
+
+  try {
+    const analysis = await analyze(
+      { package: { entrypoints: ['src/index.ts'] } },
+      { packageRoot: root },
+    );
+
+    expectFinding(analysis.findings, 'documentation.usage.readme.unique', 'error');
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('config-file opt-in still requires one canonical README config root', async () => {
+  const root = await createOptionalSurfaceFixtureAsync({
+    'src/types/config.ts': 'export interface OptionalConfig {}\n',
+  });
+
+  try {
+    const analysis = await analyze(
+      { package: { entrypoints: ['src/index.ts'] } },
+      { packageRoot: root },
+    );
+
+    expectFinding(analysis.findings, 'documentation.config.readme.unique', 'error');
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
 test('missing public function documentation produces warning status', async () => {
   const root = await createCanonicalFixtureAsync({
     publicSource: 'export function undocumented(): string { return "warning"; }',
@@ -205,6 +264,23 @@ interface FixtureOptions {
   publicSource?: string;
   readmeUsage?: string;
   extraFiles?: Record<string, string>;
+}
+
+/***
+ * Creates a package with no documentation capabilities unless explicit files opt in.
+ */
+async function createOptionalSurfaceFixtureAsync(
+  files: Readonly<Record<string, string>> = {},
+): Promise<string> {
+  const root = join(import.meta.dir, '.tmp', `optional-${Date.now()}-${Math.random()}`);
+  await mkdir(join(root, 'src'), { recursive: true });
+  await writeFixtureMetadataAsync(root);
+  await writeFile(
+    join(root, 'src', 'index.ts'),
+    '/*** Documented public function. */\nexport function documented(): string { return "ok"; }\n',
+  );
+  await writeExtraFixtureFilesAsync(root, files);
+  return root;
 }
 
 /***
