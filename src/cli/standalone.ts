@@ -35,11 +35,28 @@ async function main(): Promise<void> {
   const { outputDir, outputRoot } = resolveOutputRoot(config, packageRoot);
 
   const analysis = await analyze(config, { packageRoot, configFilePath });
+  assertNoDocumentationErrors(analysis.findings);
   const model = buildModel(analysis);
   const result = render(model, { outputDir });
 
   await write(result, config, { packageRoot, outputRoot });
 }
+
+/***
+ * Refuses to write generated artifacts when canonical documentation policy contains errors.
+ */
+function assertNoDocumentationErrors(
+  findings: readonly { severity: 'warning' | 'error'; ruleId: string; message: string }[],
+): void {
+  const errors = findings.filter((finding) => finding.severity === 'error');
+  if (errors.length === 0) return;
+
+  const details = errors
+    .map((finding) => `- [${finding.ruleId}] ${finding.message}`)
+    .join('\n');
+  throw new Error(`Paradox documentation policy is invalid:\n${details}`);
+}
+
 
 main().catch((error: unknown) => {
   console.error(error);
