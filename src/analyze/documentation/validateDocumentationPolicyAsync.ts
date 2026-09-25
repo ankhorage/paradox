@@ -2,7 +2,7 @@ import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
-import { Node, type Project } from 'ts-morph';
+import { Node, type Project, type SourceFile } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../types.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
@@ -168,7 +168,7 @@ async function validateConfigRulesAsync(
 /***
  * Collects canonical @config + @readme type declarations from the config schema.
  */
-function collectConfigRoots(sourceFile: import('ts-morph').SourceFile) {
+function collectConfigRoots(sourceFile: SourceFile) {
   return sourceFile.getStatements().flatMap((statement) => {
     if (!Node.isInterfaceDeclaration(statement) && !Node.isTypeAliasDeclaration(statement)) {
       return [];
