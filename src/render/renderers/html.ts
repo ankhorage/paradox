@@ -267,16 +267,9 @@ function renderHomeView(
  * Renders complete CLI and programmatic usage documentation.
  */
 function renderUsagePanel(model: DocumentationModel): string {
-  if (
-    DOCUMENTATION_POLICY.readmeUsage.activation === 'usage-tag' &&
-    model.usageEntries.length === 0
-  ) {
-    return '';
-  }
+  if (!DOCUMENTATION_POLICY.readmeUsage.required && model.usageEntries.length === 0) return '';
 
-  const usageEntries = DOCUMENTATION_POLICY.readmeUsage.fullDocumentation.includeAllUsageEntries
-    ? model.usageEntries
-    : [];
+  const usageEntries = model.usageEntries;
 
   return `<section class="panel" data-search="${escapeAttribute(
     [
