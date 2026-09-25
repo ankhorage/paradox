@@ -13,11 +13,11 @@ export const FIXTURE_DOC_TAGS = [
     handler: 'markReadme',
   },
   {
-    name: 'example',
-    syntax: '@example',
-    description: 'Adds an example to generated documentation.',
+    name: 'title',
+    syntax: '@title',
+    description: 'Sets an explicit presentation title.',
     appliesTo: ['symbol'],
-    repeatable: true,
-    handler: 'parseExample',
+    repeatable: false,
+    handler: 'setTitle',
   },
 ] as const;

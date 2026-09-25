@@ -1,10 +1,5 @@
+import type { PolicySeverity } from '@ankhorage/policy/status';
 import type { Node } from 'ts-morph';
-
-interface AnalysisExample {
-  title: string | null;
-  language: string | null;
-  code: string;
-}
 
 /***
  * Describes one exported declaration discovered in a package.
@@ -47,9 +42,11 @@ export interface AnalysisStructuredRow {
 export interface AnalysisExport {
   name: string;
   node: Node;
+  title: string | null;
   description: string | null;
   isReadme: boolean;
-  examples: AnalysisExample[];
+  see: string[];
+  security: string[];
   kind: 'function' | 'type' | 'value' | 'unknown';
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
@@ -61,13 +58,14 @@ export interface AnalysisExport {
 }
 
 /***
- * Describes one React component and its extracted props.
+ * Describes one React component and its props.
  */
 export interface AnalysisComponent {
   name: string;
   description: string | null;
   isReadme: boolean;
-  examples: AnalysisExample[];
+  see: string[];
+  security: string[];
   modulePath: string;
   sourceLocation: AnalysisSourceLocation;
   exportPaths: string[];
@@ -82,33 +80,34 @@ export interface AnalysisComponent {
 
 export interface AnalysisUsage {
   packageName: string;
-  commands: AnalysisUsageCommand[];
+  command: string;
+}
+
+export interface AnalysisUsageEntry {
+  area: 'cli' | 'examples';
+  title: string | null;
+  description: string | null;
+  language: string;
+  code: string;
+  sourcePath: string;
+  isReadme: boolean;
+  see: string[];
+  security: string[];
+}
+
+export interface AnalysisDocumentationFinding {
+  ruleId: string;
+  severity: PolicySeverity;
+  message: string;
+  sourcePath: string | null;
+  line: number | null;
 }
 
 interface AnalysisDonation {
   account: string;
 }
 
-interface AnalysisUsageCommand {
-  name: string;
-  command: string;
-}
-
-interface AnalysisReadmeUsage {
-  title: string | null;
-  description: string | null;
-  language: string;
-  code: string;
-  sourcePath: string;
-}
-
-interface AnalysisReadmeCli {
-  description: string | null;
-  sourcePath: string;
-}
-
 interface AnalysisReadmeConfig {
-  description: string | null;
   language: string;
   code: string;
   sourcePath: string;
@@ -140,6 +139,8 @@ export interface AnalysisSequenceScenario {
 export interface AnalysisSourceFunction {
   name: string;
   description: string | null;
+  see: string[];
+  security: string[];
   sourceLocation: AnalysisSourceLocation;
 }
 
@@ -195,7 +196,6 @@ export interface AnalysisResult {
   description: string | null;
   collaborators: true | null;
   donation: AnalysisDonation | null;
-
   exports: AnalysisExport[];
   components: AnalysisComponent[];
   sourceFunctions: AnalysisSourceFunction[];
@@ -203,16 +203,18 @@ export interface AnalysisResult {
   modules: AnalysisModule[];
   badges: AnalysisBadge[];
   sequenceScenarios: AnalysisSequenceScenario[];
-
-  usage: AnalysisUsage | null;
-  readmeUsageDescription: string | null;
-  readmeUsage: AnalysisReadmeUsage[];
-  readmeCli: AnalysisReadmeCli | null;
+  usage: AnalysisUsage;
+  usageEntries: AnalysisUsageEntry[];
+  exampleCount: number;
+  findings: AnalysisDocumentationFinding[];
   readmeConfig: AnalysisReadmeConfig | null;
-
   config: {
     exportName: string;
+    title: string | null;
+    description: string | null;
     isReadme: boolean;
+    see: string[];
+    security: string[];
     members: AnalysisTypeMember[];
   } | null;
   graphs: AnalysisGraphs;

@@ -1,17 +1,20 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import type { ParadoxConfig } from '../config/types.js';
+import { resolvePolicyStatus } from '@ankhorage/policy/status';
+
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
+import type { ParadoxConfig } from '../types/config.js';
 import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
+import { collectDocumentationCommentsAsync } from './documentation/collectDocumentationCommentsAsync.js';
+import { validateDocumentationPolicyAsync } from './documentation/validateDocumentationPolicyAsync.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
-import { analyzeReadmeCli } from './readmeCli.js';
 import { analyzeReadmeConfig } from './readmeConfig.js';
-import { analyzeReadmeUsage } from './readmeUsage.js';
+import { analyzeReadmeUsage, countExampleDirectoriesAsync } from './readmeUsage.js';
 import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
 import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
 import {
@@ -25,7 +28,7 @@ import type { AnalysisResult } from './types.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
 /***
- * Analyzes a package and returns the complete documentation input model.
+ * Analyzes a package and returns documentation plus canonical policy findings.
  */
 export async function analyze(
   config: ParadoxConfig,
@@ -39,42 +42,22 @@ export async function analyze(
       ? null
       : { account: validateDonationAccount(config.donation.account) };
   const usage = createUsageFromPackageJson(pkg);
-  const badges = await analyzeBadges(root, pkg);
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
-  const readmeUsageDescription = config.docs?.usage?.description ?? null;
-  const usageEntryPoints = config.docs?.usage?.entrypoints ?? [];
-  const readmeUsage = await analyzeReadmeUsage({ root, entrypoints: usageEntryPoints });
-  const readmeCli = await analyzeReadmeCli(root);
+  const program = createTypeScriptProgram({ root, entrypoints, project });
+  const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
+  const components = analyzeComponents(exports, { program });
+  const modules = analyzeModules(project, { root, entrypoints });
+  const sourceFunctions = analyzeSourceFunctions(project, root);
+  const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
+  const usageEntries = await analyzeReadmeUsage({ root });
+  const exampleCount = await countExampleDirectoriesAsync(root);
+  const comments = await collectDocumentationCommentsAsync(root);
   const readmeConfig = await analyzeReadmeConfig({
     root,
     configFilePath: runtime.configFilePath ?? null,
   });
-  const program = createTypeScriptProgram({ root, entrypoints, project });
-  const { config: configMetadata, exports } = analyzeExports(project, { root, entrypoints });
-  const components = analyzeComponents(exports, { program });
-  const modules = analyzeModules(project, {
-    root,
-    entrypoints,
-    excludePaths: usageEntryPoints,
-  });
-  const sourceFunctions = analyzeSourceFunctions(project, root);
-  const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
-  const configExport = configMetadata
-    ? (exports.find((entry) => entry.name === configMetadata.exportName) ?? null)
-    : null;
-  const configMembers =
-    configExport && (configExport.kind === 'type' || configExport.kind === 'unknown')
-      ? collectTypeMembers(
-          program,
-          resolveTypeReference(program, configExport.node) ?? {
-            type: configExport.node.getType(),
-            name: configExport.name,
-            sourcePath: configExport.modulePath,
-            symbol: configExport.node.getSymbol() ?? null,
-          },
-        )
-      : [];
+  const configMembers = collectConfigMembers(program, exports, configMetadata);
   const graphs = {
     imports: collectImportGraph(program),
     calls: collectCallGraph(program),
@@ -87,6 +70,14 @@ export async function analyze(
     ),
     componentComposition: collectComponentCompositionGraph(program),
   };
+  const findings = await validateDocumentationPolicyAsync({
+    root,
+    project,
+    comments,
+    exports,
+  });
+  const documentationStatus = resolvePolicyStatus(findings);
+  const badges = await analyzeBadges(root, pkg, documentationStatus.status);
 
   return {
     packageName: config.docs?.title ?? pkg.name,
@@ -102,19 +93,60 @@ export async function analyze(
     badges,
     sequenceScenarios,
     usage,
-    readmeUsageDescription,
-    readmeUsage,
-    readmeCli,
+    usageEntries,
+    exampleCount,
+    findings,
     readmeConfig,
-    config: configMetadata
-      ? {
-          exportName: configMetadata.exportName,
-          isReadme: configMetadata.isReadme,
-          members: mapTypeMembers(configMembers),
-        }
-      : null,
+    config:
+      configMetadata === null
+        ? null
+        : {
+            exportName: configMetadata.exportName,
+            title: configMetadata.title,
+            description: configMetadata.description,
+            isReadme: configMetadata.isReadme,
+            see: configMetadata.see,
+            security: configMetadata.security,
+            members: mapTypeMembers(configMembers),
+          },
     graphs,
   };
+}
+
+/***
+ * Resolves member metadata for the public configuration root when one exists.
+ */
+function collectConfigMembers(
+  program: ReturnType<typeof createTypeScriptProgram>,
+  exports: AnalysisResult['exports'],
+  configMetadata: {
+    exportName: string;
+    title: string | null;
+    description: string | null;
+    isReadme: boolean;
+    see: string[];
+    security: string[];
+  } | null,
+): ReturnType<typeof collectTypeMembers> {
+  if (configMetadata === null) return [];
+
+  const configExport = exports.find((entry) => entry.name === configMetadata.exportName);
+  if (
+    configExport === undefined ||
+    (configExport.kind !== 'type' && configExport.kind !== 'unknown')
+  ) {
+    return [];
+  }
+
+  return collectTypeMembers(
+    program,
+    resolveTypeReference(program, configExport.node) ?? {
+      type: configExport.node.getType(),
+      name: configExport.name,
+      sourcePath: configExport.modulePath,
+      symbol: configExport.node.getSymbol() ?? null,
+    },
+  );
 }
 
 interface AnalysisTypeMemberOutput {

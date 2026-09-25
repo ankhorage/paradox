@@ -1,3 +1,5 @@
+import type { PolicySeverity } from '@ankhorage/policy/status';
+
 /***
  * Serializable model consumed by renderers and writers.
  */
@@ -8,10 +10,10 @@ export interface DocumentationModel {
   collaborators: true | null;
   donation: DonationModel | null;
   badges: GeneratedBadge[];
-  usage: UsageModel | null;
-  readmeUsageDescription: string | null;
-  readmeUsage: ReadmeUsageModel[];
-  readmeCli: ReadmeCliModel | null;
+  usage: UsageModel;
+  usageEntries: UsageEntryModel[];
+  exampleCount: number;
+  findings: DocumentationFindingModel[];
   readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
@@ -36,29 +38,30 @@ export interface GeneratedBadge {
 
 interface UsageModel {
   packageName: string;
-  commands: UsageCommandModel[];
-}
-
-interface UsageCommandModel {
-  name: string;
   command: string;
 }
 
-interface ReadmeUsageModel {
+interface UsageEntryModel {
+  area: 'cli' | 'examples';
   title: string | null;
   description: string | null;
   language: string;
   code: string;
   sourcePath: string;
+  isReadme: boolean;
+  see: string[];
+  security: string[];
 }
 
-interface ReadmeCliModel {
-  description: string | null;
-  sourcePath: string;
+interface DocumentationFindingModel {
+  ruleId: string;
+  severity: PolicySeverity;
+  message: string;
+  sourcePath: string | null;
+  line: number | null;
 }
 
 interface ReadmeConfigModel {
-  description: string | null;
   language: string;
   code: string;
   sourcePath: string;
@@ -66,15 +69,21 @@ interface ReadmeConfigModel {
 
 interface ConfigModel {
   exportName: string;
+  title: string | null;
+  description: string | null;
   isReadme: boolean;
+  see: string[];
+  security: string[];
   members: ConfigMemberModel[];
 }
 
 export interface ExportModel {
   name: string;
+  title: string | null;
   description: string | null;
   isReadme: boolean;
-  examples: ExampleModel[];
+  see: string[];
+  security: string[];
   kind: ExportKind;
   modulePath: string;
   sourceLocation: SourceLocationModel;
@@ -91,7 +100,8 @@ export interface ComponentModel {
   name: string;
   description: string | null;
   isReadme: boolean;
-  examples: ExampleModel[];
+  see: string[];
+  security: string[];
   modulePath: string;
   sourceLocation: SourceLocationModel;
   exportPaths: string[];
@@ -101,6 +111,8 @@ export interface ComponentModel {
 interface SourceFunctionModel {
   name: string;
   description: string | null;
+  see: string[];
+  security: string[];
   sourceLocation: SourceLocationModel;
 }
 
@@ -118,12 +130,6 @@ export interface ModuleModel {
   isEntrypoint: boolean;
   dependencies: string[];
   exports: string[];
-}
-
-interface ExampleModel {
-  title: string | null;
-  language: string | null;
-  code: string;
 }
 
 interface SourceLocationModel {

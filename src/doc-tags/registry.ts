@@ -1,56 +1,48 @@
+import {
+  DOCUMENTATION_POLICY,
+  type DocumentationTagName,
+  type DocumentationTagTarget,
+  type DocumentationTagValueKind,
+} from '@ankhorage/policy/documentation';
+
+const HANDLERS = {
+  readme: 'markReadme',
+  usage: 'markUsage',
+  config: 'markConfig',
+  title: 'setTitle',
+  see: 'addSee',
+  security: 'addSecurity',
+} as const satisfies Record<DocumentationTagName, string>;
+
+interface ParadoxDocTag {
+  name: DocumentationTagName;
+  syntax: string;
+  description: string;
+  appliesTo: readonly DocumentationTagTarget[];
+  repeatable: boolean;
+  valueKind: DocumentationTagValueKind;
+  handler: (typeof HANDLERS)[DocumentationTagName];
+}
+
 /***
- * Supported Paradox documentation tags.
- *
- * Paradox supports doc tags inside triple-star documentation comments.
+ * Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.
  *
  * @readme
  */
-const DOC_TAG_PREFIX = '\u0040';
-const USAGE_DOC_TAG = `${DOC_TAG_PREFIX}usage` as const;
+export const PARADOX_DOC_TAGS: readonly ParadoxDocTag[] = DOCUMENTATION_POLICY.tags.map((tag) => ({
+  ...tag,
+  syntax: `@${tag.name}`,
+  description: describeTag(tag.name),
+  handler: HANDLERS[tag.name],
+}));
 
-export const PARADOX_DOC_TAGS = [
-  {
-    name: 'readme',
-    syntax: '@readme',
-    description: 'Includes a documentation block or exported symbol in README output.',
-    appliesTo: ['block', 'symbol'],
-    repeatable: false,
-    handler: 'markReadme',
-  },
-  {
-    name: 'config',
-    syntax: '@config',
-    description:
-      'Marks a configuration type, interface, or source block. Pair with @readme to include the schema or actual config source in README Configuration output.',
-    appliesTo: ['block', 'interface', 'type'],
-    repeatable: false,
-    handler: 'markConfig',
-  },
-  {
-    name: 'example',
-    syntax: '@example',
-    description: 'Adds a titled fenced code example to the generated documentation for a symbol.',
-    appliesTo: ['symbol'],
-    repeatable: true,
-    handler: 'parseExample',
-  },
-  {
-    name: 'usage',
-    syntax: USAGE_DOC_TAG,
-    description: 'Promotes a real source example into the generated README Usage section.',
-    appliesTo: ['block', 'symbol'],
-    repeatable: false,
-    handler: 'markUsage',
-  },
-] as const;
-
-export type ParadoxDocTagName = (typeof PARADOX_DOC_TAGS)[number]['name'];
-export type ParadoxDocTagHandlerId = (typeof PARADOX_DOC_TAGS)[number]['handler'];
+export type ParadoxDocTagName = DocumentationTagName;
+export type ParadoxDocTagHandlerId = (typeof HANDLERS)[DocumentationTagName];
 
 /***
  * Looks up documentation tag metadata by tag name.
  */
-export function getParadoxDocTag(name: string): (typeof PARADOX_DOC_TAGS)[number] | null {
+export function getParadoxDocTag(name: string): ParadoxDocTag | null {
   return PARADOX_DOC_TAGS.find((tag) => tag.name === name) ?? null;
 }
 
@@ -59,4 +51,24 @@ export function getParadoxDocTag(name: string): (typeof PARADOX_DOC_TAGS)[number
  */
 export function isParadoxDocTagName(name: string): name is ParadoxDocTagName {
   return getParadoxDocTag(name) !== null;
+}
+
+/***
+ * Describes the rendering meaning of one policy-owned documentation tag.
+ */
+function describeTag(name: DocumentationTagName): string {
+  switch (name) {
+    case 'readme':
+      return 'Promotes the documented item into generated README output.';
+    case 'usage':
+      return 'Marks real source as package usage documentation.';
+    case 'config':
+      return 'Marks the canonical package configuration schema root.';
+    case 'title':
+      return 'Provides an explicit presentation title for a documented item.';
+    case 'see':
+      return 'Adds a validated external documentation reference.';
+    case 'security':
+      return 'Links security-sensitive behavior to an exact colocated executable test.';
+  }
 }

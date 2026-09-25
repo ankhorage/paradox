@@ -19,16 +19,16 @@ export function collectDocBlocks(
   const text = sourceFile.getFullText();
   const sourcePath = relativeToRoot(program.root, sourceFile.getFilePath());
   const blocks: AnalyzedDocBlock[] = [];
+
   for (const match of text.matchAll(DOC_BLOCK_REGEX)) {
     const [raw = ''] = match;
     const start = match.index;
     const end = start + raw.length;
     const { line, column } = sourceFile.getLineAndColumnAtPos(start);
     const parsed = parseDocBlock(raw, tagRegistry);
-    const id = `${sourcePath}:${line}:${column}`;
 
     blocks.push({
-      id,
+      id: `${sourcePath}:${line}:${column}`,
       sourcePath,
       start,
       end,
@@ -36,8 +36,6 @@ export function collectDocBlocks(
       column,
       raw,
       description: parsed.description,
-      params: parsed.params,
-      returns: parsed.returns,
       tags: parsed.tags,
     });
   }
@@ -49,78 +47,43 @@ export function collectDocBlocks(
  * Extracts registered tags from a doc block.
  */
 function collectTags(raw: string, tagRegistry: TagRegistry = defaultTagRegistry): AnalyzedTag[] {
-  const tags: AnalyzedTag[] = [];
-  const lines = normalizeDocBlock(raw);
+  return normalizeDocBlock(raw).flatMap((line): AnalyzedTag[] => {
+    const match = /^@([A-Za-z][A-Za-z0-9-]*)(?:\s+(.*))?$/.exec(line.trim());
+    if (match === null) return [];
 
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed.startsWith('@')) continue;
+    const [, name] = match;
+    if (!tagRegistry.has(name)) return [];
 
-    const [tagName, ...rest] = trimmed.slice(1).split(/\s+/);
-    if (!tagName || !tagRegistry.has(tagName)) continue;
-
-    const value = rest.join(' ').trim();
-    tags.push({
-      name: tagName,
-      value: value.length > 0 ? value : null,
-    });
-  }
-
-  return tags;
+    const value = match.slice(2).join('').trim();
+    return [{ name, value: value.length > 0 ? value : null }];
+  });
 }
 
 interface ParsedDocBlock {
   description: string | null;
   tags: AnalyzedTag[];
-  params: Record<string, string>;
-  returns: string | null;
 }
 
+/***
+ * Parses semantic description and supported tags without interpreting unsupported tag syntax.
+ */
 function parseDocBlock(raw: string, tagRegistry: TagRegistry): ParsedDocBlock {
   const lines = normalizeDocBlock(raw);
   const tags = collectTags(raw, tagRegistry);
-  const params: Record<string, string> = {};
-  let returns: string | null = null;
-
   const description = lines
-    .filter((line) => {
-      const trimmed = line.trim();
-      if (!trimmed.startsWith('@')) return true;
-
-      const [tagName, ...rest] = trimmed.slice(1).split(/\s+/);
-      if (!tagName) return false;
-
-      if (tagName === 'param') {
-        const [name, ...descParts] = rest;
-        if (name) {
-          params[name] = descParts.join(' ').trim();
-        }
-        return false;
-      }
-
-      if (tagName === 'returns' || tagName === 'return') {
-        const returnBody = rest.join(' ').trim();
-        returns = returnBody.length > 0 ? returnBody : null;
-        return false;
-      }
-
-      if (tagRegistry.has(tagName)) {
-        return false;
-      }
-
-      return true;
-    })
+    .filter((line) => !/^@[A-Za-z][A-Za-z0-9-]*(?:\s|$)/.test(line.trim()))
     .join('\n')
     .trim();
 
   return {
     description: description.length > 0 ? description : null,
     tags,
-    params,
-    returns,
   };
 }
 
+/***
+ * Removes Paradox comment delimiters while preserving prose content.
+ */
 function normalizeDocBlock(raw: string): string[] {
   return raw
     .replace(/^\/\*\*\*/, '')

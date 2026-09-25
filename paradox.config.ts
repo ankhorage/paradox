@@ -1,9 +1,3 @@
-/***
- * Canonical Paradox configuration for this package.
- *
- * @config
- * @readme
- */
 import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';
 
 export default defineParadoxConfig({

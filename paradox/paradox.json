@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.1.25",
+      "value": "v0.1.27",
       "color": "cb3837"
     },
     {
@@ -57,35 +57,53 @@
     },
     {
       "id": "docs",
-      "label": "docs",
-      "value": "paradox",
-      "color": "0f766e"
+      "label": "paradox",
+      "value": "canonical",
+      "color": "0a7f3f"
     }
   ],
   "usage": {
     "packageName": "@ankhorage/paradox",
-    "commands": [
-      {
-        "name": "paradox",
-        "command": "bunx @ankhorage/paradox"
-      }
-    ]
+    "command": "ankh paradox --help"
   },
-  "readmeUsageDescription": null,
-  "readmeUsage": [],
-  "readmeCli": {
-    "description": "Generates deterministic documentation for a package through the Paradox CLI.",
-    "sourcePath": "src/cli/index.ts"
-  },
+  "usageEntries": [
+    {
+      "area": "examples",
+      "title": "Basic Usage",
+      "description": "Paradox generates documentation from the canonical package structure. Usage documentation lives\nonly below `examples/**` or `src/cli/**`. A repository may contain multiple `@usage`\nexamples, but exactly one example below `examples/**` is promoted into README with `@readme`.\n\nREADME-promoted usage provides an explicit `@title` and non-empty prose. Code always comes from\nreal source declarations rather than duplicated code blocks inside Paradox comments.",
+      "language": "ts",
+      "code": "export const basicConfig = defineParadoxConfig({\n  mode: 'safe',\n});",
+      "sourcePath": "examples/basic-usage/index.ts",
+      "isReadme": true,
+      "see": [],
+      "security": []
+    },
+    {
+      "area": "cli",
+      "title": "CLI",
+      "description": "Exposes the Paradox command provider through the canonical Ankhorage CLI surface.",
+      "language": "ts",
+      "code": "export { default } from '../docsSurface.js';",
+      "sourcePath": "src/cli/index.ts",
+      "isReadme": false,
+      "see": [],
+      "security": []
+    }
+  ],
+  "exampleCount": 1,
+  "findings": [],
   "readmeConfig": {
-    "description": "Canonical Paradox configuration for this package.",
     "language": "ts",
     "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  collaborators: true,\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
     "sourcePath": "paradox.config.ts"
   },
   "config": {
     "exportName": "ParadoxConfig",
+    "title": "Configuration",
+    "description": "Configures Paradox documentation generation for a package.",
     "isReadme": true,
+    "see": [],
+    "security": [],
     "members": [
       {
         "name": "mode",
@@ -107,7 +125,7 @@
       },
       {
         "name": "docs",
-        "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",
+        "type": "{ title?: string; description?: string; } | undefined",
         "required": false,
         "description": null
       },
@@ -135,10 +153,11 @@
       "dependencies": [
         "src/analyze/badges.ts",
         "src/analyze/components.ts",
+        "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
         "src/analyze/project.ts",
-        "src/analyze/readmeCli.ts",
         "src/analyze/readmeConfig.ts",
         "src/analyze/readmeUsage.ts",
         "src/analyze/semantic/createTypeScriptProgram.ts",
@@ -148,9 +167,9 @@
         "src/analyze/sourceFunctions.ts",
         "src/analyze/types.ts",
         "src/analyze/usage.ts",
-        "src/config/types.ts",
         "src/config/utils/validateCollaborators.ts",
-        "src/config/utils/validateDonationAccount.ts"
+        "src/config/utils/validateDonationAccount.ts",
+        "src/types/config.ts"
       ],
       "exports": [
         "analyze"
@@ -180,6 +199,54 @@
       ],
       "exports": [
         "analyzeComponents"
+      ]
+    },
+    {
+      "path": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/utils/parseParadoxComment.ts"
+      ],
+      "exports": [
+        "collectDocumentationCommentsAsync",
+        "CollectedDocumentationComment"
+      ]
+    },
+    {
+      "path": "src/analyze/documentation/findings.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/types.ts"
+      ],
+      "exports": [
+        "createDocumentationFinding"
+      ]
+    },
+    {
+      "path": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "src/analyze/documentation/findings.ts",
+        "src/analyze/documentation/validateReferencesAsync.ts",
+        "src/analyze/types.ts",
+        "src/analyze/utils/getParadoxComment.ts",
+        "src/analyze/utils/parseParadoxComment.ts"
+      ],
+      "exports": [
+        "validateDocumentationPolicyAsync"
+      ]
+    },
+    {
+      "path": "src/analyze/documentation/validateReferencesAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "src/analyze/documentation/findings.ts",
+        "src/analyze/types.ts"
+      ],
+      "exports": [
+        "validateReferencesAsync"
       ]
     },
     {
@@ -215,22 +282,9 @@
       ]
     },
     {
-      "path": "src/analyze/readmeCli.ts",
-      "isEntrypoint": false,
-      "dependencies": [
-        "src/analyze/utils/getLeadingParadoxComment.ts"
-      ],
-      "exports": [
-        "AnalysisReadmeCli",
-        "analyzeReadmeCli"
-      ]
-    },
-    {
       "path": "src/analyze/readmeConfig.ts",
       "isEntrypoint": false,
-      "dependencies": [
-        "src/analyze/utils/getLeadingParadoxComment.ts"
-      ],
+      "dependencies": [],
       "exports": [
         "AnalysisReadmeConfig",
         "analyzeReadmeConfig"
@@ -240,11 +294,13 @@
       "path": "src/analyze/readmeUsage.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/analyze/types.ts",
+        "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/parseParadoxComment.ts"
       ],
       "exports": [
-        "AnalysisReadmeUsage",
-        "analyzeReadmeUsage"
+        "analyzeReadmeUsage",
+        "countExampleDirectoriesAsync"
       ]
     },
     {
@@ -432,6 +488,7 @@
       "exports": [
         "AnalysisBadge",
         "AnalysisComponent",
+        "AnalysisDocumentationFinding",
         "AnalysisExport",
         "AnalysisMember",
         "AnalysisModule",
@@ -442,7 +499,8 @@
         "AnalysisSourceFunction",
         "AnalysisSourceLocation",
         "AnalysisStructuredRow",
-        "AnalysisUsage"
+        "AnalysisUsage",
+        "AnalysisUsageEntry"
       ]
     },
     {
@@ -475,17 +533,6 @@
       ],
       "exports": [
         "getExportMetadata"
-      ]
-    },
-    {
-      "path": "src/analyze/utils/getLeadingParadoxComment.ts",
-      "isEntrypoint": false,
-      "dependencies": [
-        "src/analyze/utils/parseParadoxComment.ts"
-      ],
-      "exports": [
-        "getLeadingParadoxComment",
-        "LeadingParadoxComment"
       ]
     },
     {
@@ -528,7 +575,9 @@
     {
       "path": "src/analyze/utils/parseParadoxComment.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": [
+        "src/doc-tags/registry.ts"
+      ],
       "exports": [
         "ParsedParadoxComment",
         "parseParadoxComment"
@@ -566,18 +615,10 @@
       "path": "src/config/defineParadoxConfig.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/config/types.ts"
+        "src/types/config.ts"
       ],
       "exports": [
         "defineParadoxConfig"
-      ]
-    },
-    {
-      "path": "src/config/types.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": [
-        "ParadoxConfig"
       ]
     },
     {
@@ -691,7 +732,7 @@
       "path": "src/paths/policy.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/config/types.ts"
+        "src/types/config.ts"
       ],
       "exports": [
         "findParadoxConfigFile",
@@ -744,6 +785,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
+        "src/render/toFileStem.ts",
         "src/render/types.ts"
       ],
       "exports": [
@@ -793,6 +835,14 @@
       ]
     },
     {
+      "path": "src/render/toFileStem.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "toFileStem"
+      ]
+    },
+    {
       "path": "src/render/types.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -803,6 +853,14 @@
         "DiagramArtifact",
         "RenderContext",
         "RenderResult"
+      ]
+    },
+    {
+      "path": "src/types/config.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ParadoxConfig"
       ]
     },
     {
@@ -825,8 +883,8 @@
       "path": "src/write/write.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/config/types.ts",
         "src/render/types.ts",
+        "src/types/config.ts",
         "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "src/write/utils/syncFundingFileAsync.ts"
       ],
@@ -838,9 +896,11 @@
   "exports": [
     {
       "name": "defineParadoxConfig",
+      "title": null,
       "description": "Defines a Paradox configuration object without changing its shape.",
       "isReadme": true,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/config/defineParadoxConfig.ts",
       "sourceLocation": {
@@ -874,14 +934,16 @@
     },
     {
       "name": "getParadoxDocTag",
+      "title": null,
       "description": "Looks up documentation tag metadata by tag name.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 53,
+        "line": 45,
         "column": 1
       },
       "exportPaths": [
@@ -890,7 +952,7 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(name: string) => { readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a configuration type, interface, or source block. Pair with @readme to include the schema or actual config source in README Configuration output.\"; readonly appliesTo: readonly [\"block\", \"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | { readonly name: \"usage\"; readonly syntax: \"@usage\"; readonly description: \"Promotes a real source example into the generated README Usage section.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markUsage\"; } | null",
+          "label": "(name: string) => ParadoxDocTag | null",
           "parameters": [
             {
               "name": "name",
@@ -899,7 +961,7 @@
               "description": null
             }
           ],
-          "returnType": "{ readonly name: \"readme\"; readonly syntax: \"@readme\"; readonly description: \"Includes a documentation block or exported symbol in README output.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markReadme\"; } | { readonly name: \"config\"; readonly syntax: \"@config\"; readonly description: \"Marks a configuration type, interface, or source block. Pair with @readme to include the schema or actual config source in README Configuration output.\"; readonly appliesTo: readonly [\"block\", \"interface\", \"type\"]; readonly repeatable: false; readonly handler: \"markConfig\"; } | { readonly name: \"example\"; readonly syntax: \"@example\"; readonly description: \"Adds a titled fenced code example to the generated documentation for a symbol.\"; readonly appliesTo: readonly [\"symbol\"]; readonly repeatable: true; readonly handler: \"parseExample\"; } | { readonly name: \"usage\"; readonly syntax: \"@usage\"; readonly description: \"Promotes a real source example into the generated README Usage section.\"; readonly appliesTo: readonly [\"block\", \"symbol\"]; readonly repeatable: false; readonly handler: \"markUsage\"; } | null",
+          "returnType": "ParadoxDocTag | null",
           "returnDescription": null
         }
       ],
@@ -908,14 +970,16 @@
     },
     {
       "name": "isParadoxDocTagName",
+      "title": null,
       "description": "Checks whether a string is a supported Paradox documentation tag name.",
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 60,
+        "line": 52,
         "column": 1
       },
       "exportPaths": [
@@ -942,9 +1006,11 @@
     },
     {
       "name": "packageMetadata",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/packageMetadata.ts",
       "sourceLocation": {
@@ -962,14 +1028,16 @@
     },
     {
       "name": "PARADOX_DOC_TAGS",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
+      "title": null,
+      "description": "Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.",
+      "isReadme": true,
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 11,
+        "line": 32,
         "column": 14
       },
       "exportPaths": [
@@ -978,58 +1046,20 @@
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
-      "structuredRows": [
-        {
-          "values": {
-            "name": "readme",
-            "syntax": "@readme",
-            "description": "Includes a documentation block or exported symbol in README output.",
-            "appliesTo": "block, symbol",
-            "repeatable": "false",
-            "handler": "markReadme"
-          }
-        },
-        {
-          "values": {
-            "name": "config",
-            "syntax": "@config",
-            "description": "Marks a configuration type, interface, or source block. Pair with @readme to include the schema or actual config source in README Configuration output.",
-            "appliesTo": "block, interface, type",
-            "repeatable": "false",
-            "handler": "markConfig"
-          }
-        },
-        {
-          "values": {
-            "name": "example",
-            "syntax": "@example",
-            "description": "Adds a titled fenced code example to the generated documentation for a symbol.",
-            "appliesTo": "symbol",
-            "repeatable": "true",
-            "handler": "parseExample"
-          }
-        },
-        {
-          "values": {
-            "name": "usage",
-            "description": "Promotes a real source example into the generated README Usage section.",
-            "appliesTo": "block, symbol",
-            "repeatable": "false",
-            "handler": "markUsage"
-          }
-        }
-      ]
+      "structuredRows": []
     },
     {
       "name": "ParadoxConfig",
-      "description": "Configuration for running Paradox.",
+      "title": "Configuration",
+      "description": "Configures Paradox documentation generation for a package.",
       "isReadme": true,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
-      "modulePath": "src/config/types.ts",
+      "modulePath": "src/types/config.ts",
       "sourceLocation": {
-        "filePath": "src/config/types.ts",
-        "line": 7,
+        "filePath": "src/types/config.ts",
+        "line": 9,
         "column": 1
       },
       "exportPaths": [
@@ -1048,7 +1078,7 @@
         {
           "name": "docs",
           "kind": "property",
-          "type": "{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } | undefined",
+          "type": "{ title?: string; description?: string; } | undefined",
           "required": false,
           "description": null
         },
@@ -1085,14 +1115,16 @@
     },
     {
       "name": "ParadoxDocTagHandlerId",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 48,
+        "line": 40,
         "column": 1
       },
       "exportPaths": [
@@ -1105,14 +1137,16 @@
     },
     {
       "name": "ParadoxDocTagName",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 47,
+        "line": 39,
         "column": 1
       },
       "exportPaths": [
@@ -1128,196 +1162,262 @@
   "sourceFunctions": [
     {
       "name": "analyze",
-      "description": "Analyzes a package and returns the complete documentation input model.",
+      "description": "Analyzes a package and returns documentation plus canonical policy findings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 30,
+        "line": 33,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectConfigMembers",
+      "description": "Resolves member metadata for the public configuration root when one exists.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/analyze.ts",
+        "line": 119,
         "column": 1
       }
     },
     {
       "name": "mapTypeMembers",
       "description": "Converts semantic type members into serializable analysis output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 133,
+        "line": 165,
         "column": 1
       }
     },
     {
       "name": "readPackageJson",
       "description": "Reads package metadata from the analyzed package root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 150,
+        "line": 182,
         "column": 1
       }
     },
     {
       "name": "analyzeBadges",
       "description": "Derives deterministic repository metadata badges from local repository files.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 63,
+        "line": 65,
         "column": 1
       }
     },
     {
       "name": "hasAnyFile",
       "description": "Checks whether any candidate file exists under the repository root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 176,
+        "line": 182,
         "column": 1
       }
     },
     {
       "name": "hasTypeScriptStrictMode",
       "description": "Reads tsconfig metadata and detects strict TypeScript mode.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 189,
+        "line": 195,
         "column": 1
       }
     },
     {
       "name": "readCoveragePercent",
       "description": "Reads the line coverage percentage from a coverage summary file when present.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 197,
+        "line": 203,
         "column": 1
       }
     },
     {
       "name": "formatPercent",
       "description": "Formats integer and fractional percentages for badge labels.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 209,
+        "line": 215,
         "column": 1
       }
     },
     {
       "name": "getCoverageColor",
       "description": "Selects the coverage badge color from the coverage percentage.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 216,
+        "line": 222,
         "column": 1
       }
     },
     {
       "name": "hasScript",
       "description": "Checks whether a named package script is configured.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 226,
+        "line": 232,
         "column": 1
       }
     },
     {
       "name": "scriptContains",
       "description": "Checks whether a package script contains a specific command fragment.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 233,
+        "line": 239,
         "column": 1
       }
     },
     {
       "name": "supportsBun",
       "description": "Detects whether package metadata or workflows indicate Bun support.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 240,
+        "line": 246,
         "column": 1
       }
     },
     {
       "name": "workflowRunsScript",
       "description": "Checks whether any workflow file invokes a named package script.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 264,
+        "line": 270,
         "column": 1
       }
     },
     {
       "name": "escapeRegExp",
       "description": "Escapes regular expression syntax in a script name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 279,
+        "line": 285,
         "column": 1
       }
     },
     {
       "name": "readWorkflowFiles",
       "description": "Reads all GitHub Actions workflow files from the repository.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 286,
+        "line": 292,
         "column": 1
       }
     },
     {
       "name": "readDirectory",
       "description": "Reads a directory and treats a missing path as an empty directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 303,
+        "line": 309,
         "column": 1
       }
     },
     {
       "name": "isNotFoundError",
       "description": "Checks whether an unknown error is a file-not-found filesystem error.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 318,
+        "line": 324,
         "column": 1
       }
     },
     {
       "name": "readJsonFile",
       "description": "Reads and parses a JSON file, returning null when the file does not exist.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 325,
+        "line": 331,
         "column": 1
       }
     },
     {
       "name": "fileExists",
       "description": "Checks whether a filesystem path exists.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 347,
+        "line": 353,
         "column": 1
       }
     },
     {
       "name": "sortBadges",
       "description": "Sorts badges into the stable preferred display order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 363,
+        "line": 369,
         "column": 1
       }
     },
     {
       "name": "getBadgeOrder",
       "description": "Returns the configured display order index for a badge id.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/badges.ts",
-        "line": 373,
+        "line": 379,
+        "column": 1
+      }
+    },
+    {
+      "name": "getDocumentationStatusColor",
+      "description": "Maps the shared traffic-light status to a deterministic badge color.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/badges.ts",
+        "line": 387,
         "column": 1
       }
     },
     {
       "name": "analyzeComponents",
       "description": "Extracts React components and their props from analyzed exports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/components.ts",
         "line": 11,
@@ -1325,35 +1425,340 @@
       }
     },
     {
+      "name": "collectDocumentationCommentsAsync",
+      "description": "Collects real Paradox comments from canonical source roots and source-like repository root files.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 21,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectSourceFilesAsync",
+      "description": "Collects supported source files recursively while treating missing canonical roots as empty.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectRootSourceFilesAsync",
+      "description": "Collects source-like files directly at repository root.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 60,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectFileCommentsAsync",
+      "description": "Collects Paradox comments from one source file with stable line locations.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "isMissingPathError",
+      "description": "Checks whether a filesystem error reports a missing path.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 91,
+        "column": 1
+      }
+    },
+    {
+      "name": "toPosixPath",
+      "description": "Normalizes filesystem separators for stable documentation paths.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "line": 98,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDocumentationFinding",
+      "description": "Creates a finding from one canonical documentation policy rule.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/findings.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateDocumentationPolicyAsync",
+      "description": "Evaluates package documentation evidence against the canonical Ankhorage documentation policy.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateCommentRules",
+      "description": "Validates generic comment syntax rules shared by all documentation contexts.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateUsageRules",
+      "description": "Validates canonical usage locations and the single README-promoted programmatic example.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 71,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateUsageComment",
+      "description": "Validates one usage comment location and forbidden CLI README promotion.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 112,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateConfigRulesAsync",
+      "description": "Validates the canonical configuration file and its one README configuration root.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 143,
+        "column": 1
+      }
+    },
+    {
+      "name": "validatePublicApiRules",
+      "description": "Warns when a public callable export has no Paradox description.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 201,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasExactlyOneRequiredTag",
+      "description": "Checks that each policy-required tag appears exactly once on one parsed documentation item.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 221,
+        "column": 1
+      }
+    },
+    {
+      "name": "finding",
+      "description": "Creates a finding at one collected comment location.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 233,
+        "column": 1
+      }
+    },
+    {
+      "name": "isBelow",
+      "description": "Checks whether a source path is contained in one canonical root.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 244,
+        "column": 1
+      }
+    },
+    {
+      "name": "fileExistsAsync",
+      "description": "Checks whether a required canonical file exists.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "line": 251,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateReferencesAsync",
+      "description": "Validates external and executable references carried by documentation comments.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSeeReferencesAsync",
+      "description": "Validates every @see value through syntax policy and the hardened public HTTPS utility.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseSeeUrl",
+      "description": "Parses one @see value according to the policy-owned URL syntax contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSecurityReferencesAsync",
+      "description": "Validates every @security reference against one exact colocated executable test.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 90,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateSecurityReferenceAsync",
+      "description": "Resolves one colocated security test reference and requires exactly one matching test declaration.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 106,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseSecurityReference",
+      "description": "Parses a same-directory test filename and exact test name from an @security value.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 139,
+        "column": 1
+      }
+    },
+    {
+      "name": "isNamedTestCall",
+      "description": "Checks whether a ts-morph node is test()/it() with the exact static string name.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 157,
+        "column": 1
+      }
+    },
+    {
+      "name": "securityFinding",
+      "description": "Creates the canonical security-reference finding at a comment location.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 169,
+        "column": 1
+      }
+    },
+    {
+      "name": "referenceFinding",
+      "description": "Creates a reference finding at the owning comment location.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 179,
+        "column": 1
+      }
+    },
+    {
+      "name": "fileExistsAsync",
+      "description": "Checks whether a referenced test file exists.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 190,
+        "column": 1
+      }
+    },
+    {
+      "name": "readErrorMessage",
+      "description": "Converts an unknown thrown value into a stable diagnostic string.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "line": 202,
+        "column": 1
+      }
+    },
+    {
       "name": "analyzeExports",
       "description": "Collects exported declarations from configured package entrypoints.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 22,
+        "line": 26,
         "column": 1
       }
     },
     {
       "name": "getEntryPointSourceFiles",
       "description": "Resolves configured entrypoint paths to source files in the TypeScript project.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 107,
+        "line": 116,
         "column": 1
       }
     },
     {
       "name": "getFirstDeclaration",
       "description": "Returns the first declaration for a symbol, or null when none exists.",
-      "sourceLocation": {
-        "filePath": "src/analyze/exports.ts",
-        "line": 130,
-        "column": 1
-      }
-    },
-    {
-      "name": "inferKind",
-      "description": "Infers the public export kind from the declaration shape.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
         "line": 138,
@@ -1361,35 +1766,54 @@
       }
     },
     {
-      "name": "uniqueSorted",
-      "description": "Returns unique string values sorted for deterministic generated output.",
+      "name": "inferKind",
+      "description": "Infers the public export kind from the declaration shape.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 148,
+        "line": 146,
+        "column": 1
+      }
+    },
+    {
+      "name": "uniqueSorted",
+      "description": "Returns unique string values sorted for deterministic generated output.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/exports.ts",
+        "line": 156,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
       "description": "Normalizes platform-specific path separators for generated documentation output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 155,
+        "line": 163,
         "column": 1
       }
     },
     {
       "name": "createEmptyMetadata",
       "description": "Creates empty documentation metadata for exports without Paradox comments.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/exports.ts",
-        "line": 162,
+        "line": 170,
         "column": 1
       }
     },
     {
       "name": "analyzeModules",
       "description": "Builds a deterministic module relationship graph for documentation renderers.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/modules.ts",
         "line": 10,
@@ -1399,6 +1823,8 @@
     {
       "name": "uniqueSorted",
       "description": "Returns unique string values sorted for deterministic generated output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/modules.ts",
         "line": 74,
@@ -1408,6 +1834,8 @@
     {
       "name": "toPosixPath",
       "description": "Normalizes platform-specific path separators for generated documentation output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/modules.ts",
         "line": 81,
@@ -1417,6 +1845,8 @@
     {
       "name": "createProject",
       "description": "Creates the ts-morph project used by the analyzer.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/project.ts",
         "line": 6,
@@ -1424,125 +1854,153 @@
       }
     },
     {
-      "name": "analyzeReadmeCli",
-      "description": "Collects README CLI metadata from the canonical Ankhorage CLI entrypoint when its leading\nParadox comment opts into README output with @readme.",
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeCli.ts",
-        "line": 17,
-        "column": 1
-      }
-    },
-    {
-      "name": "isMissingPathError",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeCli.ts",
-        "line": 37,
-        "column": 1
-      }
-    },
-    {
       "name": "analyzeReadmeConfig",
-      "description": "Collects a README configuration example from the actual Paradox config file when its\nleading Paradox comment is marked with both @config and @readme.",
+      "description": "Collects the concrete Paradox configuration instance as a README configuration example.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 17,
-        "column": 1
-      }
-    },
-    {
-      "name": "removeRange",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeConfig.ts",
-        "line": 39,
+        "line": 13,
         "column": 1
       }
     },
     {
       "name": "getLanguage",
-      "description": null,
+      "description": "Returns the Markdown fence language for a configuration source path.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 49,
+        "line": 32,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
-      "description": null,
+      "description": "Normalizes filesystem separators for stable documentation paths.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeConfig.ts",
-        "line": 58,
+        "line": 42,
         "column": 1
       }
     },
     {
       "name": "analyzeReadmeUsage",
-      "description": "Collects README usage examples from configured real source files.",
+      "description": "Collects every canonical usage declaration from examples and CLI source roots.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 25,
+        "line": 16,
         "column": 1
       }
     },
     {
-      "name": "analyzeUsageEntrypoint",
-      "description": null,
+      "name": "collectSourceFilesAsync",
+      "description": "Collects supported source files recursively below one canonical usage root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 36,
+        "line": 34,
         "column": 1
       }
     },
     {
-      "name": "findUsageComments",
-      "description": null,
+      "name": "analyzeUsageFile",
+      "description": "Extracts usage-marked top-level statements from one real source file.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 58,
+        "line": 57,
         "column": 1
       }
     },
     {
-      "name": "removeRange",
-      "description": null,
+      "name": "getStatementCode",
+      "description": "Returns the exact source statement owned by a usage comment.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 76,
+        "line": 89,
         "column": 1
       }
     },
     {
-      "name": "getUsageTitle",
-      "description": null,
+      "name": "deriveUsageTitle",
+      "description": "Derives a deterministic title from the canonical example or CLI structure.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 86,
+        "line": 96,
+        "column": 1
+      }
+    },
+    {
+      "name": "titleCase",
+      "description": "Converts a kebab-case structural segment into presentation words.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/readmeUsage.ts",
+        "line": 118,
         "column": 1
       }
     },
     {
       "name": "getLanguage",
-      "description": null,
+      "description": "Returns the Markdown fence language for a usage source path.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 92,
+        "line": 129,
+        "column": 1
+      }
+    },
+    {
+      "name": "countExampleDirectoriesAsync",
+      "description": "Counts real example directories directly below the canonical examples root.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/readmeUsage.ts",
+        "line": 141,
+        "column": 1
+      }
+    },
+    {
+      "name": "isMissingPathError",
+      "description": "Checks whether a filesystem error reports a missing path.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/readmeUsage.ts",
+        "line": 156,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
-      "description": null,
+      "description": "Normalizes filesystem separators for stable documentation paths.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/readmeUsage.ts",
-        "line": 103,
+        "line": 168,
         "column": 1
       }
     },
     {
       "name": "analyzeProject",
       "description": "Runs the semantic analyzer pipeline for a project.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/analyzeProject.ts",
         "line": 29,
@@ -1552,6 +2010,8 @@
     {
       "name": "associateDocBlocksWithSymbols",
       "description": "Attaches doc blocks and tags to their nearest symbol declarations.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/associateDocBlocksWithSymbols.ts",
         "line": 7,
@@ -1561,6 +2021,8 @@
     {
       "name": "collectSourceFiles",
       "description": "Collects stable source file metadata for the analyzer.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/collectSourceFiles.ts",
         "line": 9,
@@ -1570,6 +2032,8 @@
     {
       "name": "createTypeScriptProgram",
       "description": "Creates or reuses a ts-morph project for analysis.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/createTypeScriptProgram.ts",
         "line": 18,
@@ -1579,6 +2043,8 @@
     {
       "name": "collectDocBlocks",
       "description": "Collects all Paradox doc blocks from a source file.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/docBlocks.ts",
         "line": 13,
@@ -1588,33 +2054,41 @@
     {
       "name": "collectTags",
       "description": "Extracts registered tags from a doc block.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/docBlocks.ts",
-        "line": 51,
+        "line": 49,
         "column": 1
       }
     },
     {
       "name": "parseDocBlock",
-      "description": null,
+      "description": "Parses semantic description and supported tags without interpreting unsupported tag syntax.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/docBlocks.ts",
-        "line": 79,
+        "line": 70,
         "column": 1
       }
     },
     {
       "name": "normalizeDocBlock",
-      "description": null,
+      "description": "Removes Paradox comment delimiters while preserving prose content.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/docBlocks.ts",
-        "line": 124,
+        "line": 87,
         "column": 1
       }
     },
     {
       "name": "collectExports",
       "description": "Collects exported declarations from configured entrypoints.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 20,
@@ -1624,6 +2098,8 @@
     {
       "name": "detectExportKind",
       "description": "Determines the kind of export for documentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 65,
@@ -1633,6 +2109,8 @@
     {
       "name": "getExportSignature",
       "description": "Returns a human-readable signature for callable exports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 80,
@@ -1642,6 +2120,8 @@
     {
       "name": "resolveTypeReference",
       "description": "Resolves a named type reference from a node or symbol.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 110,
@@ -1651,6 +2131,8 @@
     {
       "name": "collectTypeMembers",
       "description": "Collects nested type members for interfaces and type literals.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 139,
@@ -1660,6 +2142,8 @@
     {
       "name": "collectPropsForExport",
       "description": "Extracts props metadata for a callable export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 176,
@@ -1669,6 +2153,8 @@
     {
       "name": "collectDefaultValuesFromBinding",
       "description": "Collects default values from destructured bindings.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 218,
@@ -1678,6 +2164,8 @@
     {
       "name": "collectRelatedTypes",
       "description": "Collects related types referenced by an export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 236,
@@ -1687,6 +2175,8 @@
     {
       "name": "collectMembersFromType",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
         "line": 263,
@@ -1696,114 +2186,140 @@
     {
       "name": "getDeclaredTypeText",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 312,
+        "line": 310,
         "column": 1
       }
     },
     {
       "name": "getDeclaredMembers",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 323,
+        "line": 321,
         "column": 1
       }
     },
     {
       "name": "shouldExpandType",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 353,
+        "line": 351,
         "column": 1
       }
     },
     {
       "name": "flattenMembers",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 376,
+        "line": 374,
         "column": 1
       }
     },
     {
       "name": "isUndefinedUnion",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 383,
+        "line": 381,
         "column": 1
       }
     },
     {
       "name": "getFirstDeclaration",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 388,
+        "line": 386,
         "column": 1
       }
     },
     {
       "name": "resolveExportSymbol",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 393,
+        "line": 391,
         "column": 1
       }
     },
     {
       "name": "getDeclarationName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 397,
+        "line": 395,
         "column": 1
       }
     },
     {
       "name": "getParameterTypeText",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 406,
+        "line": 404,
         "column": 1
       }
     },
     {
       "name": "appendUndefinedIfOptional",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 416,
+        "line": 414,
         "column": 1
       }
     },
     {
       "name": "getCallableNode",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 421,
+        "line": 419,
         "column": 1
       }
     },
     {
       "name": "uniqueSorted",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/exports.ts",
-        "line": 441,
+        "line": 439,
         "column": 1
       }
     },
     {
       "name": "collectImportGraph",
       "description": "Collects local import relationships between source files.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 17,
@@ -1813,6 +2329,8 @@
     {
       "name": "collectCallGraph",
       "description": "Collects call relationships between local symbols.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 51,
@@ -1822,6 +2340,8 @@
     {
       "name": "collectComponentCompositionGraph",
       "description": "Collects component composition edges for React components.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 76,
@@ -1831,6 +2351,8 @@
     {
       "name": "toCallEdge",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 106,
@@ -1840,6 +2362,8 @@
     {
       "name": "findJsxElements",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 135,
@@ -1849,6 +2373,8 @@
     {
       "name": "getEnclosingSymbolName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 148,
@@ -1858,6 +2384,8 @@
     {
       "name": "uniqueEdges",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/graphs.ts",
         "line": 174,
@@ -1867,6 +2395,8 @@
     {
       "name": "isReactComponent",
       "description": "Detects simple React component declarations by name and return type.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/isReactComponent.ts",
         "line": 6,
@@ -1876,6 +2406,8 @@
     {
       "name": "getDeclarationName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/isReactComponent.ts",
         "line": 19,
@@ -1885,6 +2417,8 @@
     {
       "name": "getCallSignature",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/isReactComponent.ts",
         "line": 25,
@@ -1894,24 +2428,19 @@
     {
       "name": "getParadoxComment",
       "description": "Reads the nearest Paradox doc comment attached to a declaration.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/paradoxComment.ts",
-        "line": 6,
-        "column": 1
-      }
-    },
-    {
-      "name": "parseParadoxComment",
-      "description": "Parses a Paradox doc comment into structured metadata.",
-      "sourceLocation": {
-        "filePath": "src/analyze/semantic/paradoxComment.ts",
-        "line": 38,
+        "line": 8,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
         "line": 3,
@@ -1921,6 +2450,8 @@
     {
       "name": "relativeToRoot",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
         "line": 7,
@@ -1930,6 +2461,8 @@
     {
       "name": "isPathInsideRoot",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
         "line": 11,
@@ -1939,6 +2472,8 @@
     {
       "name": "isNodeModulePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/semantic/utils.ts",
         "line": 15,
@@ -1948,6 +2483,8 @@
     {
       "name": "analyzeSequenceScenarios",
       "description": "Finds scenario roots that can be rendered as sequence diagrams.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 33,
@@ -1957,6 +2494,8 @@
     {
       "name": "analyzeBinSequenceScenarios",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 45,
@@ -1966,6 +2505,8 @@
     {
       "name": "analyzeExportSequenceScenarios",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 70,
@@ -1975,6 +2516,8 @@
     {
       "name": "getBinEntries",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 89,
@@ -1984,6 +2527,8 @@
     {
       "name": "resolveBinSourceFile",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 106,
@@ -1993,6 +2538,8 @@
     {
       "name": "getBinSourceCandidates",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 119,
@@ -2002,6 +2549,8 @@
     {
       "name": "getSourceFileByRelativePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 140,
@@ -2011,6 +2560,8 @@
     {
       "name": "findTopLevelInvokedLocalCallable",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 152,
@@ -2020,6 +2571,8 @@
     {
       "name": "getParsedParadoxComment",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 178,
@@ -2029,6 +2582,8 @@
     {
       "name": "getLocalFunctionDeclarationForCall",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 194,
@@ -2038,6 +2593,8 @@
     {
       "name": "isInsideCallable",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 211,
@@ -2047,6 +2604,8 @@
     {
       "name": "getPackageBaseName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 224,
@@ -2056,6 +2615,8 @@
     {
       "name": "uniqueScenarios",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 228,
@@ -2065,6 +2626,8 @@
     {
       "name": "uniqueByFunctionName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 240,
@@ -2074,6 +2637,8 @@
     {
       "name": "uniqueSorted",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sequenceScenarios.ts",
         "line": 250,
@@ -2083,6 +2648,8 @@
     {
       "name": "analyzeSourceFunctions",
       "description": "Collects callable declarations from analyzed source files for source-area documentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sourceFunctions.ts",
         "line": 12,
@@ -2092,6 +2659,8 @@
     {
       "name": "createSourceFunction",
       "description": "Converts a callable declaration into source documentation metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sourceFunctions.ts",
         "line": 53,
@@ -2101,6 +2670,8 @@
     {
       "name": "toPosixPath",
       "description": "Normalizes platform-specific path separators for generated documentation output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/sourceFunctions.ts",
         "line": 75,
@@ -2109,7 +2680,9 @@
     },
     {
       "name": "createUsageFromPackageJson",
-      "description": "Builds executable CLI commands from package metadata.",
+      "description": "Builds the canonical Ankh package help command from package metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/usage.ts",
         "line": 18,
@@ -2119,15 +2692,19 @@
     {
       "name": "getPackageBaseName",
       "description": "Extracts the unscoped package name from a package id.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/usage.ts",
-        "line": 63,
+        "line": 30,
         "column": 1
       }
     },
     {
       "name": "getComponentPropsType",
       "description": "Returns the first parameter type for a React component declaration.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getComponentPropsType.ts",
         "line": 6,
@@ -2137,6 +2714,8 @@
     {
       "name": "getCallSignature",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getComponentPropsType.ts",
         "line": 16,
@@ -2146,6 +2725,8 @@
     {
       "name": "getExportMetadata",
       "description": "Extracts computed metadata for an exported declaration.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
         "line": 34,
@@ -2155,6 +2736,8 @@
     {
       "name": "getSourceLocation",
       "description": "Resolves the source location for a declaration relative to the package root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
         "line": 80,
@@ -2164,6 +2747,8 @@
     {
       "name": "getSignatures",
       "description": "Extracts callable signatures for exported functions and callable values.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
         "line": 94,
@@ -2173,60 +2758,85 @@
     {
       "name": "getSignature",
       "description": "Builds one normalized call signature from a callable declaration.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 114,
+        "line": 113,
         "column": 1
       }
     },
     {
       "name": "getMembers",
       "description": "Extracts members for interface and type literal exports.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 146,
+        "line": 136,
         "column": 1
       }
     },
     {
       "name": "getMembersFromProperties",
       "description": "Converts TypeScript properties into documented member metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 165,
+        "line": 155,
         "column": 1
       }
     },
     {
       "name": "getStructuredRows",
       "description": "Extracts table-like rows from exported const arrays of object literals.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 203,
+        "line": 184,
         "column": 1
       }
     },
     {
       "name": "getStructuredArrayLiteral",
       "description": "Resolves const assertions and returns the array literal used for structured docs.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 221,
+        "line": 202,
         "column": 1
       }
     },
     {
       "name": "getVariableDeclaration",
       "description": "Resolves a variable declaration from declaration nodes used by export symbols.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 231,
+        "line": 212,
         "column": 1
       }
     },
     {
       "name": "getObjectLiteralValues",
       "description": "Extracts primitive and string-array values from one object literal.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/getExportMetadata.ts",
+        "line": 236,
+        "column": 1
+      }
+    },
+    {
+      "name": "getLiteralValue",
+      "description": "Converts supported literal expressions into displayable string values.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
         "line": 255,
@@ -2234,98 +2844,87 @@
       }
     },
     {
-      "name": "getLiteralValue",
-      "description": "Converts supported literal expressions into displayable string values.",
-      "sourceLocation": {
-        "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 274,
-        "column": 1
-      }
-    },
-    {
       "name": "getFirstDeclaration",
       "description": "Returns the first declaration for a symbol, or null when none exists.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 294,
+        "line": 275,
         "column": 1
       }
     },
     {
       "name": "getCallableDeclarations",
       "description": "Finds callable declarations associated with an export symbol.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 302,
+        "line": 283,
         "column": 1
       }
     },
     {
       "name": "getCallableNode",
       "description": "Returns the callable node represented by a declaration when one exists.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 320,
+        "line": 301,
         "column": 1
       }
     },
     {
       "name": "isMemberMethodDeclaration",
       "description": "Checks whether a node is a method declaration or method signature.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 343,
-        "column": 1
-      }
-    },
-    {
-      "name": "readParadoxMetadata",
-      "description": "Reads Paradox comment metadata from a declaration.",
-      "sourceLocation": {
-        "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 350,
+        "line": 324,
         "column": 1
       }
     },
     {
       "name": "collectRelatedSymbols",
       "description": "Finds related exported symbols mentioned in signature and member type text.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 367,
+        "line": 331,
         "column": 1
       }
     },
     {
       "name": "toPosixPath",
       "description": "Normalizes platform-specific path separators for generated documentation output.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 389,
+        "line": 353,
         "column": 1
       }
     },
     {
       "name": "uniqueBy",
       "description": "Returns unique items by a caller-provided key while preserving first occurrence order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getExportMetadata.ts",
-        "line": 396,
-        "column": 1
-      }
-    },
-    {
-      "name": "getLeadingParadoxComment",
-      "description": "Parses a leading Paradox comment from a source file.",
-      "sourceLocation": {
-        "filePath": "src/analyze/utils/getLeadingParadoxComment.ts",
-        "line": 12,
+        "line": 360,
         "column": 1
       }
     },
     {
       "name": "getParadoxComment",
       "description": "Reads the nearest Paradox doc comment attached to a declaration.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getParadoxComment.ts",
         "line": 6,
@@ -2335,6 +2934,8 @@
     {
       "name": "getCommentTargetStarts",
       "description": "Returns declaration positions that may own a leading Paradox comment.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getParadoxComment.ts",
         "line": 23,
@@ -2344,6 +2945,8 @@
     {
       "name": "readCommentBefore",
       "description": "Reads a Paradox doc comment directly before a target position.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getParadoxComment.ts",
         "line": 41,
@@ -2353,6 +2956,8 @@
     {
       "name": "getPropsFromType",
       "description": "Extracts prop names, types, required flags, and descriptions from a type.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/getPropsFromType.ts",
         "line": 11,
@@ -2362,6 +2967,8 @@
     {
       "name": "isReactComponent",
       "description": "Detects simple React component declarations by name and return type.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/isReactComponent.ts",
         "line": 6,
@@ -2371,6 +2978,8 @@
     {
       "name": "getDeclarationName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/isReactComponent.ts",
         "line": 19,
@@ -2380,6 +2989,8 @@
     {
       "name": "getCallSignature",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/isReactComponent.ts",
         "line": 25,
@@ -2389,6 +3000,8 @@
     {
       "name": "normalizeTypeText",
       "description": "Removes machine-specific absolute paths from TypeScript import type text.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/normalizeTypeText.ts",
         "line": 4,
@@ -2398,6 +3011,8 @@
     {
       "name": "normalizeImportPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/normalizeTypeText.ts",
         "line": 18,
@@ -2407,6 +3022,8 @@
     {
       "name": "toPosixPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/normalizeTypeText.ts",
         "line": 37,
@@ -2415,34 +3032,86 @@
     },
     {
       "name": "parseParadoxComment",
-      "description": "Parses a Paradox doc comment into structured metadata.",
+      "description": "Parses a Paradox comment into prose, supported tags, and validation evidence.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/parseParadoxComment.ts",
-        "line": 25,
+        "line": 27,
         "column": 1
       }
     },
     {
-      "name": "parseExample",
-      "description": null,
+      "name": "parseCommentLine",
+      "description": "Parses one normalized comment line when it has explicit tag-line syntax.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/parseParadoxComment.ts",
-        "line": 92,
+        "line": 61,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasTag",
+      "description": "Returns whether a parsed tag set contains the requested tag.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/parseParadoxComment.ts",
+        "line": 84,
+        "column": 1
+      }
+    },
+    {
+      "name": "getTagValues",
+      "description": "Returns all non-empty values for a repeatable tag.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/parseParadoxComment.ts",
+        "line": 91,
+        "column": 1
+      }
+    },
+    {
+      "name": "getSingleTagValue",
+      "description": "Returns the first non-empty value for a singular tag.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/parseParadoxComment.ts",
+        "line": 98,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasCodeBlock",
+      "description": "Detects fenced or Markdown-indented code blocks while leaving inline code spans untouched.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/utils/parseParadoxComment.ts",
+        "line": 108,
         "column": 1
       }
     },
     {
       "name": "normalizeCommentLines",
-      "description": null,
+      "description": "Removes Paradox comment syntax while preserving prose indentation for code-block validation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/parseParadoxComment.ts",
-        "line": 129,
+        "line": 118,
         "column": 1
       }
     },
     {
       "name": "resolveExportSymbol",
       "description": "Resolves aliased export symbols to their underlying declarations.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/utils/resolveExportSymbol.ts",
         "line": 6,
@@ -2452,6 +3121,8 @@
     {
       "name": "main",
       "description": "Runs the Paradox CLI.\n\nThe command discovers the nearest Paradox config, resolves the package and output roots,\nanalyzes the package, builds the documentation model, renders all documentation artifacts,\nand writes them to the configured output directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
         "line": 22,
@@ -2459,8 +3130,21 @@
       }
     },
     {
+      "name": "assertNoDocumentationErrors",
+      "description": "Refuses to write generated artifacts when canonical documentation policy contains errors.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/standalone.ts",
+        "line": 48,
+        "column": 1
+      }
+    },
+    {
       "name": "defineParadoxConfig",
       "description": "Defines a Paradox configuration object without changing its shape.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/config/defineParadoxConfig.ts",
         "line": 8,
@@ -2470,6 +3154,8 @@
     {
       "name": "validateCollaborators",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/config/utils/validateCollaborators.ts",
         "line": 1,
@@ -2479,6 +3165,8 @@
     {
       "name": "validateDonationAccount",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/config/utils/validateDonationAccount.ts",
         "line": 1,
@@ -2488,60 +3176,85 @@
     {
       "name": "getParadoxDocTag",
       "description": "Looks up documentation tag metadata by tag name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 53,
+        "line": 45,
         "column": 1
       }
     },
     {
       "name": "isParadoxDocTagName",
       "description": "Checks whether a string is a supported Paradox documentation tag name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 60,
+        "line": 52,
+        "column": 1
+      }
+    },
+    {
+      "name": "describeTag",
+      "description": "Describes the rendering meaning of one policy-owned documentation tag.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/doc-tags/registry.ts",
+        "line": 59,
         "column": 1
       }
     },
     {
       "name": "buildModel",
       "description": "Converts analysis output into a serializable documentation model.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 175,
+        "line": 142,
         "column": 1
       }
     },
     {
       "name": "mapExport",
       "description": "Maps one analyzed export into the serializable documentation shape.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 286,
+        "line": 204,
         "column": 1
       }
     },
     {
       "name": "mapComponent",
       "description": "Maps an analyzed component while preserving export metadata when available.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 338,
+        "line": 239,
         "column": 1
       }
     },
     {
       "name": "sortByName",
-      "description": "Returns a copy of items sorted by their `name` property.",
+      "description": "Returns a copy of items sorted by their name property.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 370,
+        "line": 260,
         "column": 1
       }
     },
     {
       "name": "findParadoxConfigFile",
       "description": "Searches upward from a start directory until it finds a supported Paradox config file.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 17,
@@ -2551,6 +3264,8 @@
     {
       "name": "loadParadoxConfig",
       "description": "Loads a Paradox config module and returns its default export or an empty config.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 42,
@@ -2560,6 +3275,8 @@
     {
       "name": "resolvePackageRoot",
       "description": "Resolves and validates the package root from config and config directory.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 51,
@@ -2569,6 +3286,8 @@
     {
       "name": "resolveOutputRoot",
       "description": "Resolves the configured output directory and enforces that it stays inside the package root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 73,
@@ -2578,6 +3297,8 @@
     {
       "name": "pathExists",
       "description": "Checks whether a filesystem path can be accessed.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 93,
@@ -2587,6 +3308,8 @@
     {
       "name": "assertPathExists",
       "description": "Throws a supplied error message when a required path does not exist.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 105,
@@ -2596,6 +3319,8 @@
     {
       "name": "validateOutputDir",
       "description": "Validates an output directory string before resolving it against the package root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 114,
@@ -2605,6 +3330,8 @@
     {
       "name": "splitPathSegments",
       "description": "Splits a configured path into normalized non-empty path segments.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 141,
@@ -2614,6 +3341,8 @@
     {
       "name": "assertWithinRoot",
       "description": "Throws when a resolved path is outside the expected package root.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/paths/policy.ts",
         "line": 149,
@@ -2623,6 +3352,8 @@
     {
       "name": "render",
       "description": "Renders the documentation model into README and artifact files.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/render.ts",
         "line": 14,
@@ -2632,6 +3363,8 @@
     {
       "name": "renderBadgeArtifacts",
       "description": "Renders deterministic local SVG badges for repository metadata.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/badges.ts",
         "line": 7,
@@ -2641,6 +3374,8 @@
     {
       "name": "renderBadgeSvg",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/badges.ts",
         "line": 14,
@@ -2650,6 +3385,8 @@
     {
       "name": "getTextWidth",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/badges.ts",
         "line": 37,
@@ -2659,6 +3396,8 @@
     {
       "name": "escapeXml",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/badges.ts",
         "line": 41,
@@ -2668,6 +3407,8 @@
     {
       "name": "renderCollaborators",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/collaborators.ts",
         "line": 3,
@@ -2677,6 +3418,8 @@
     {
       "name": "renderCollaboratorsReadme",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/collaborators.ts",
         "line": 27,
@@ -2686,6 +3429,8 @@
     {
       "name": "renderCollaboratorsWorkflowYaml",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/collaborators.ts",
         "line": 31,
@@ -2695,204 +3440,239 @@
     {
       "name": "renderDiagramArtifacts",
       "description": "Generates deterministic Mermaid diagrams for the documentation app.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 11,
+        "line": 12,
         "column": 1
       }
     },
     {
       "name": "renderArchitectureOverview",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 32,
+        "line": 33,
         "column": 1
       }
     },
     {
       "name": "renderModuleRelationships",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 60,
+        "line": 61,
         "column": 1
       }
     },
     {
       "name": "renderExportGraph",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 79,
+        "line": 80,
         "column": 1
       }
     },
     {
       "name": "renderSequenceArtifacts",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 100,
+        "line": 101,
         "column": 1
       }
     },
     {
       "name": "renderSequenceScenario",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 115,
+        "line": 116,
         "column": 1
       }
     },
     {
       "name": "renderBinSequenceScenario",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 126,
+        "line": 127,
         "column": 1
       }
     },
     {
       "name": "renderNestedSequenceScenario",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 154,
+        "line": 155,
         "column": 1
       }
     },
     {
       "name": "collectDirectCallEdges",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 182,
+        "line": 183,
         "column": 1
       }
     },
     {
       "name": "collectReachableCallEdges",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 189,
+        "line": 190,
         "column": 1
       }
     },
     {
       "name": "visitCallEdges",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 202,
+        "line": 203,
         "column": 1
       }
     },
     {
       "name": "renderCallFlow",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 217,
+        "line": 218,
         "column": 1
       }
     },
     {
       "name": "renderNestedCalls",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 228,
+        "line": 229,
         "column": 1
       }
     },
     {
       "name": "groupCallsBySource",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 247,
+        "line": 248,
         "column": 1
       }
     },
     {
       "name": "collectSequenceParticipants",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 261,
+        "line": 262,
         "column": 1
       }
     },
     {
       "name": "getCallEdgeKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 265,
+        "line": 266,
         "column": 1
       }
     },
     {
       "name": "formatCallLabel",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 269,
+        "line": 270,
         "column": 1
       }
     },
     {
       "name": "renderFallbackEdge",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 273,
+        "line": 274,
         "column": 1
       }
     },
     {
       "name": "uniqueSorted",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 284,
-        "column": 1
-      }
-    },
-    {
-      "name": "toFileStem",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/diagrams.ts",
-        "line": 288,
+        "line": 285,
         "column": 1
       }
     },
     {
       "name": "toMermaidId",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 296,
+        "line": 289,
         "column": 1
       }
     },
     {
       "name": "escapeLabel",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 300,
+        "line": 293,
         "column": 1
       }
     },
     {
       "name": "renderDonation",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/donation.ts",
         "line": 3,
@@ -2902,6 +3682,8 @@
     {
       "name": "renderDonationHtml",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/donation.ts",
         "line": 18,
@@ -2911,6 +3693,8 @@
     {
       "name": "renderDonationReadme",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/donation.ts",
         "line": 37,
@@ -2920,6 +3704,8 @@
     {
       "name": "renderFundingYaml",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/funding.ts",
         "line": 3,
@@ -2929,15 +3715,19 @@
     {
       "name": "renderHtml",
       "description": "Renders a deterministic static HTML documentation app.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 18,
+        "line": 19,
         "column": 1
       }
     },
     {
       "name": "renderHomeView",
       "description": "Renders the Home view that keeps public API and package-level information together.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
         "line": 218,
@@ -2945,8 +3735,10 @@
       }
     },
     {
-      "name": "renderCliPanel",
-      "description": "Renders the Home CLI chapter for detected bin scenarios.",
+      "name": "renderUsagePanel",
+      "description": "Renders complete CLI and programmatic usage documentation.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
         "line": 268,
@@ -2954,422 +3746,450 @@
       }
     },
     {
-      "name": "renderSourceNavItem",
-      "description": "Renders one source file entry in the left navigation.",
+      "name": "renderUsageEntry",
+      "description": "Renders one source-backed usage entry in the complete documentation app.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 307,
+        "line": 292,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderFindingsPanel",
+      "description": "Renders policy findings so complete docs expose the same evidence consumed by Doctor.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/html.ts",
+        "line": 313,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderSourceNavItem",
+      "description": "Renders one source file entry in the left navigation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/html.ts",
+        "line": 337,
         "column": 1
       }
     },
     {
       "name": "renderSourceAreaView",
       "description": "Renders the right-hand source area view for a selected file.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 319,
+        "line": 349,
         "column": 1
       }
     },
     {
       "name": "renderSourceFunctionCard",
       "description": "Renders one source function card in a source-area view.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 333,
+        "line": 363,
         "column": 1
       }
     },
     {
       "name": "getSourceAreas",
       "description": "Groups analyzed source functions by their source file path.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 346,
-        "column": 1
-      }
-    },
-    {
-      "name": "getReadmeCliScenarios",
-      "description": "Selects bin scenarios that should be shown on the Home page.",
-      "sourceLocation": {
-        "filePath": "src/render/renderers/html.ts",
-        "line": 355,
-        "column": 1
-      }
-    },
-    {
-      "name": "findScenarioDiagram",
-      "description": "Finds the generated Mermaid artifact for a sequence scenario.",
-      "sourceLocation": {
-        "filePath": "src/render/renderers/html.ts",
-        "line": 365,
+        "line": 383,
         "column": 1
       }
     },
     {
       "name": "renderModuleCard",
       "description": "Renders module metadata on the Home page.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 377,
+        "line": 392,
         "column": 1
       }
     },
     {
       "name": "renderExportCard",
       "description": "Renders one public API export card on the Home page.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 391,
+        "line": 406,
         "column": 1
       }
     },
     {
       "name": "renderSignatureBlock",
       "description": "Renders all call signatures for a public API export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 415,
+        "line": 435,
         "column": 1
       }
     },
     {
       "name": "renderMemberTable",
       "description": "Renders the members table for a type-like public API export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 451,
+        "line": 471,
         "column": 1
       }
     },
     {
       "name": "renderComponentCard",
       "description": "Renders one detected component card on the Home page.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 473,
+        "line": 493,
         "column": 1
       }
     },
     {
       "name": "renderDiagramCard",
       "description": "Renders one Mermaid diagram card.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 507,
+        "line": 530,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderReferenceMetadata",
+      "description": "Renders validated external references and security-test evidence.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/html.ts",
+        "line": 545,
         "column": 1
       }
     },
     {
       "name": "renderInlineCodeList",
       "description": "Renders an inline comma-separated list of code values.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 522,
+        "line": 567,
         "column": 1
       }
     },
     {
       "name": "renderChipList",
       "description": "Renders a compact chip list for related symbols.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 533,
+        "line": 578,
         "column": 1
       }
     },
     {
       "name": "groupBy",
       "description": "Groups items by a string key and returns deterministic key order.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 542,
-        "column": 1
-      }
-    },
-    {
-      "name": "toAnchorId",
-      "description": "Converts a label to a stable HTML anchor id fragment.",
-      "sourceLocation": {
-        "filePath": "src/render/renderers/html.ts",
-        "line": 561,
-        "column": 1
-      }
-    },
-    {
-      "name": "toFileStem",
-      "description": "Converts a scenario name to the generated Mermaid file stem.",
-      "sourceLocation": {
-        "filePath": "src/render/renderers/html.ts",
-        "line": 571,
+        "line": 587,
         "column": 1
       }
     },
     {
       "name": "escapeHtml",
       "description": "Escapes user-controlled text for safe HTML rendering.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 582,
+        "line": 606,
         "column": 1
       }
     },
     {
       "name": "escapeAttribute",
       "description": "Escapes text for use inside HTML attribute values.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 594,
+        "line": 618,
         "column": 1
       }
     },
     {
       "name": "renderMarkdown",
       "description": "Renders markdown artifacts from the documentation model.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 23,
+        "line": 25,
         "column": 1
       }
     },
     {
       "name": "renderReadme",
-      "description": null,
+      "description": "Renders the generated package README.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 36,
+        "line": 41,
         "column": 1
       }
     },
     {
-      "name": "renderReadmeUsage",
-      "description": null,
+      "name": "renderUsage",
+      "description": "Renders the canonical CLI-first Usage chapter.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 73,
+        "line": 77,
         "column": 1
       }
     },
     {
-      "name": "renderReadmeCli",
-      "description": null,
+      "name": "getPackageDisplayName",
+      "description": "Returns a human-readable package command name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 100,
-        "column": 1
-      }
-    },
-    {
-      "name": "findScenarioDiagram",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 138,
+        "line": 117,
         "column": 1
       }
     },
     {
       "name": "renderConfiguration",
-      "description": null,
+      "description": "Renders the canonical Configuration chapter from the tagged schema plus concrete config instance.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 147,
+        "line": 124,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderReferences",
+      "description": "Renders links and security evidence owned by one documented item.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 169,
         "column": 1
       }
     },
     {
       "name": "renderGeneratedDocumentation",
-      "description": null,
+      "description": "Renders links to generated documentation artifacts.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 181,
+        "line": 184,
         "column": 1
       }
     },
     {
       "name": "renderReadmeApi",
-      "description": null,
+      "description": "Renders README-promoted public API entries.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 195,
+        "line": 202,
         "column": 1
       }
     },
     {
       "name": "renderComponentAccordion",
-      "description": null,
+      "description": "Renders one README-promoted component.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 210,
+        "line": 222,
         "column": 1
       }
     },
     {
       "name": "renderExportAccordion",
-      "description": null,
+      "description": "Renders one README-promoted non-component export.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 243,
+        "line": 258,
         "column": 1
       }
     },
     {
       "name": "renderSignature",
-      "description": null,
+      "description": "Renders the primary signature for a README public API entry.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 262,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderExamples",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 270,
+        "line": 280,
         "column": 1
       }
     },
     {
       "name": "renderStructuredRows",
-      "description": null,
+      "description": "Renders structured const-array rows as a Markdown table.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 279,
+        "line": 291,
         "column": 1
       }
     },
     {
       "name": "getStructuredColumns",
-      "description": null,
+      "description": "Returns stable structured-row columns.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 301,
+        "line": 316,
         "column": 1
       }
     },
     {
       "name": "formatStructuredColumnHeader",
-      "description": null,
+      "description": "Formats one structured-row column header.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 310,
+        "line": 327,
         "column": 1
       }
     },
     {
       "name": "formatStructuredCell",
-      "description": null,
+      "description": "Formats one structured-row table cell.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 314,
+        "line": 334,
         "column": 1
       }
     },
     {
       "name": "getReadmeGroups",
-      "description": null,
+      "description": "Groups README-promoted API entries by presentation category.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 322,
+        "line": 345,
         "column": 1
       }
     },
     {
       "name": "addReadmeItem",
-      "description": null,
+      "description": "Adds one public API item to a README category.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 350,
+        "line": 377,
         "column": 1
       }
     },
     {
       "name": "sortReadmeItems",
-      "description": null,
+      "description": "Sorts README category items by symbol name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 356,
+        "line": 384,
         "column": 1
       }
     },
     {
       "name": "getReadmeItemName",
-      "description": null,
+      "description": "Returns one README item's source symbol name.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 362,
+        "line": 393,
         "column": 1
       }
     },
     {
       "name": "getReadmeCategory",
-      "description": null,
+      "description": "Derives a stable README public API category from a module path.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 366,
+        "line": 400,
         "column": 1
       }
     },
     {
       "name": "renderExports",
-      "description": null,
+      "description": "Renders the complete public API reference.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 379,
+        "line": 416,
         "column": 1
       }
     },
     {
       "name": "renderComponents",
-      "description": null,
+      "description": "Renders the complete component registry.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 431,
+        "line": 469,
         "column": 1
       }
     },
     {
       "name": "escapeTableCell",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 466,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderDefault",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 470,
-        "column": 1
-      }
-    },
-    {
-      "name": "flattenConfigMembers",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 474,
-        "column": 1
-      }
-    },
-    {
-      "name": "badgeLabel",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/render/renderers/markdown.ts",
-        "line": 498,
-        "column": 1
-      }
-    },
-    {
-      "name": "toFileStem",
-      "description": null,
+      "description": "Escapes one Markdown table cell.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
         "line": 508,
@@ -3377,8 +4197,54 @@
       }
     },
     {
+      "name": "renderDefault",
+      "description": "Renders an optional default value.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 515,
+        "column": 1
+      }
+    },
+    {
+      "name": "flattenConfigMembers",
+      "description": "Flattens nested configuration members into dot paths.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 522,
+        "column": 1
+      }
+    },
+    {
+      "name": "badgeLabel",
+      "description": "Returns the accessible badge label stored in a rendered badge artifact.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/markdown.ts",
+        "line": 549,
+        "column": 1
+      }
+    },
+    {
+      "name": "toFileStem",
+      "description": "Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/toFileStem.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
       "name": "syncCollaboratorsWorkflowAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "line": 4,
@@ -3388,6 +4254,8 @@
     {
       "name": "isParadoxOwnedCollaboratorsWorkflow",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "line": 34,
@@ -3397,6 +4265,8 @@
     {
       "name": "readCollaboratorsWorkflowAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "line": 38,
@@ -3406,6 +4276,8 @@
     {
       "name": "syncFundingFileAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncFundingFileAsync.ts",
         "line": 4,
@@ -3415,6 +4287,8 @@
     {
       "name": "isParadoxOwnedFunding",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncFundingFileAsync.ts",
         "line": 26,
@@ -3424,6 +4298,8 @@
     {
       "name": "readFundingFileAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/utils/syncFundingFileAsync.ts",
         "line": 30,
@@ -3433,6 +4309,8 @@
     {
       "name": "write",
       "description": "Writes generated documentation artifacts to the configured output paths.",
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/write/write.ts",
         "line": 12,
@@ -3488,17 +4366,17 @@
       },
       {
         "fromPath": "src/index.ts",
-        "toPath": "src/config/types.ts",
-        "sourcePath": "src/index.ts"
-      },
-      {
-        "fromPath": "src/index.ts",
         "toPath": "src/doc-tags/registry.ts",
         "sourcePath": "src/index.ts"
       },
       {
         "fromPath": "src/index.ts",
         "toPath": "src/packageMetadata.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/config.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -3513,11 +4391,6 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
-        "toPath": "src/config/types.ts",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/config/utils/validateCollaborators.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
@@ -3528,12 +4401,27 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/types/config.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/badges.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/components.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -3549,11 +4437,6 @@
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/project.ts",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromPath": "src/analyze/analyze.ts",
-        "toPath": "src/analyze/readmeCli.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -3672,14 +4555,14 @@
         "sourcePath": "src/analyze/modules.ts"
       },
       {
-        "fromPath": "src/analyze/readmeCli.ts",
-        "toPath": "src/analyze/utils/getLeadingParadoxComment.ts",
-        "sourcePath": "src/analyze/readmeCli.ts"
+        "fromPath": "src/analyze/readmeUsage.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromPath": "src/analyze/readmeConfig.ts",
-        "toPath": "src/analyze/utils/getLeadingParadoxComment.ts",
-        "sourcePath": "src/analyze/readmeConfig.ts"
+        "fromPath": "src/analyze/readmeUsage.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
         "fromPath": "src/analyze/readmeUsage.ts",
@@ -3763,7 +4646,7 @@
       },
       {
         "fromPath": "src/config/defineParadoxConfig.ts",
-        "toPath": "src/config/types.ts",
+        "toPath": "src/types/config.ts",
         "sourcePath": "src/config/defineParadoxConfig.ts"
       },
       {
@@ -3773,7 +4656,7 @@
       },
       {
         "fromPath": "src/paths/policy.ts",
-        "toPath": "src/config/types.ts",
+        "toPath": "src/types/config.ts",
         "sourcePath": "src/paths/policy.ts"
       },
       {
@@ -3828,12 +4711,12 @@
       },
       {
         "fromPath": "src/write/write.ts",
-        "toPath": "src/config/types.ts",
+        "toPath": "src/render/types.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
         "fromPath": "src/write/write.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/config.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -3845,6 +4728,61 @@
         "fromPath": "src/write/write.ts",
         "toPath": "src/write/utils/syncFundingFileAsync.ts",
         "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/findings.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/documentation/findings.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/utils/getParadoxComment.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/documentation/findings.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toPath": "src/analyze/types.ts",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toPath": "src/analyze/documentation/findings.ts",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
       },
       {
         "fromPath": "src/analyze/semantic/analyzeProject.ts",
@@ -3967,6 +4905,11 @@
         "sourcePath": "src/analyze/semantic/graphs.ts"
       },
       {
+        "fromPath": "src/analyze/semantic/paradoxComment.ts",
+        "toPath": "src/analyze/utils/parseParadoxComment.ts",
+        "sourcePath": "src/analyze/semantic/paradoxComment.ts"
+      },
+      {
         "fromPath": "src/analyze/utils/getExportMetadata.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
@@ -3987,11 +4930,6 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
-        "fromPath": "src/analyze/utils/getLeadingParadoxComment.ts",
-        "toPath": "src/analyze/utils/parseParadoxComment.ts",
-        "sourcePath": "src/analyze/utils/getLeadingParadoxComment.ts"
-      },
-      {
         "fromPath": "src/analyze/utils/getPropsFromType.ts",
         "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
@@ -4010,6 +4948,11 @@
         "fromPath": "src/analyze/utils/getPropsFromType.ts",
         "toPath": "src/analyze/utils/parseParadoxComment.ts",
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
+      },
+      {
+        "fromPath": "src/analyze/utils/parseParadoxComment.ts",
+        "toPath": "src/doc-tags/registry.ts",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
       },
       {
         "fromPath": "src/render/renderers/badges.ts",
@@ -4029,6 +4972,11 @@
       {
         "fromPath": "src/render/renderers/diagrams.ts",
         "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/renderers/diagrams.ts"
+      },
+      {
+        "fromPath": "src/render/renderers/diagrams.ts",
+        "toPath": "src/render/toFileStem.ts",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
@@ -4154,32 +5102,8 @@
       },
       {
         "fromSymbol": "analyze",
-        "toSymbol": "analyzeBadges",
-        "callExpression": "analyzeBadges",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
         "toSymbol": "createProject",
         "callExpression": "createProject",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
-        "toSymbol": "analyzeReadmeUsage",
-        "callExpression": "analyzeReadmeUsage",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
-        "toSymbol": "analyzeReadmeCli",
-        "callExpression": "analyzeReadmeCli",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
-        "toSymbol": "analyzeReadmeConfig",
-        "callExpression": "analyzeReadmeConfig",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4220,14 +5144,32 @@
       },
       {
         "fromSymbol": "analyze",
-        "toSymbol": "collectTypeMembers",
-        "callExpression": "collectTypeMembers",
+        "toSymbol": "analyzeReadmeUsage",
+        "callExpression": "analyzeReadmeUsage",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
         "fromSymbol": "analyze",
-        "toSymbol": "resolveTypeReference",
-        "callExpression": "resolveTypeReference",
+        "toSymbol": "countExampleDirectoriesAsync",
+        "callExpression": "countExampleDirectoriesAsync",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectDocumentationCommentsAsync",
+        "callExpression": "collectDocumentationCommentsAsync",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeReadmeConfig",
+        "callExpression": "analyzeReadmeConfig",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "collectConfigMembers",
+        "callExpression": "collectConfigMembers",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4250,8 +5192,38 @@
       },
       {
         "fromSymbol": "analyze",
+        "toSymbol": "validateDocumentationPolicyAsync",
+        "callExpression": "validateDocumentationPolicyAsync",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "resolvePolicyStatus",
+        "callExpression": "resolvePolicyStatus",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "analyzeBadges",
+        "callExpression": "analyzeBadges",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
         "toSymbol": "mapTypeMembers",
         "callExpression": "mapTypeMembers",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "collectConfigMembers",
+        "toSymbol": "collectTypeMembers",
+        "callExpression": "collectTypeMembers",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "collectConfigMembers",
+        "toSymbol": "resolveTypeReference",
+        "callExpression": "resolveTypeReference",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4330,6 +5302,12 @@
         "fromSymbol": "analyzeBadges",
         "toSymbol": "getCoverageColor",
         "callExpression": "getCoverageColor",
+        "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromSymbol": "analyzeBadges",
+        "toSymbol": "getDocumentationStatusColor",
+        "callExpression": "getDocumentationStatusColor",
         "sourcePath": "src/analyze/badges.ts"
       },
       {
@@ -4597,39 +5575,9 @@
         "sourcePath": "src/analyze/modules.ts"
       },
       {
-        "fromSymbol": "analyzeReadmeCli",
-        "toSymbol": "join",
-        "callExpression": "join",
-        "sourcePath": "src/analyze/readmeCli.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeCli",
-        "toSymbol": "readFile",
-        "callExpression": "readFile",
-        "sourcePath": "src/analyze/readmeCli.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeCli",
-        "toSymbol": "isMissingPathError",
-        "callExpression": "isMissingPathError",
-        "sourcePath": "src/analyze/readmeCli.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeCli",
-        "toSymbol": "getLeadingParadoxComment",
-        "callExpression": "getLeadingParadoxComment",
-        "sourcePath": "src/analyze/readmeCli.ts"
-      },
-      {
         "fromSymbol": "analyzeReadmeConfig",
         "toSymbol": "readFile",
         "callExpression": "readFile",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "getLeadingParadoxComment",
-        "callExpression": "getLeadingParadoxComment",
         "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
@@ -4651,12 +5599,6 @@
         "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "removeRange",
-        "callExpression": "removeRange",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
         "fromSymbol": "getLanguage",
         "toSymbol": "extname",
         "callExpression": "extname",
@@ -4664,44 +5606,56 @@
       },
       {
         "fromSymbol": "src/analyze/readmeUsage.ts",
-        "toSymbol": "analyzeUsageEntrypoint",
-        "callExpression": "analyzeUsageEntrypoint",
+        "toSymbol": "collectSourceFilesAsync",
+        "callExpression": "collectSourceFilesAsync",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromSymbol": "analyzeUsageEntrypoint",
-        "toSymbol": "isAbsolute",
-        "callExpression": "isAbsolute",
-        "sourcePath": "src/analyze/readmeUsage.ts"
-      },
-      {
-        "fromSymbol": "analyzeUsageEntrypoint",
+        "fromSymbol": "src/analyze/readmeUsage.ts",
         "toSymbol": "join",
         "callExpression": "join",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromSymbol": "analyzeUsageEntrypoint",
-        "toSymbol": "readFile",
-        "callExpression": "readFile",
+        "fromSymbol": "src/analyze/readmeUsage.ts",
+        "toSymbol": "analyzeUsageFile",
+        "callExpression": "analyzeUsageFile",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromSymbol": "analyzeUsageEntrypoint",
+        "fromSymbol": "collectSourceFilesAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "collectSourceFilesAsync",
+        "toSymbol": "isMissingPathError",
+        "callExpression": "isMissingPathError",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/readmeUsage.ts",
+        "toSymbol": "extname",
+        "callExpression": "extname",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "analyzeUsageFile",
         "toSymbol": "toPosixPath",
         "callExpression": "toPosixPath",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromSymbol": "analyzeUsageEntrypoint",
+        "fromSymbol": "analyzeUsageFile",
         "toSymbol": "relative",
         "callExpression": "relative",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
-        "fromSymbol": "analyzeUsageEntrypoint",
-        "toSymbol": "findUsageComments",
-        "callExpression": "findUsageComments",
+        "fromSymbol": "src/analyze/readmeUsage.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
@@ -4712,8 +5666,8 @@
       },
       {
         "fromSymbol": "src/analyze/readmeUsage.ts",
-        "toSymbol": "getUsageTitle",
-        "callExpression": "getUsageTitle",
+        "toSymbol": "deriveUsageTitle",
+        "callExpression": "deriveUsageTitle",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
@@ -4724,14 +5678,38 @@
       },
       {
         "fromSymbol": "src/analyze/readmeUsage.ts",
-        "toSymbol": "removeRange",
-        "callExpression": "removeRange",
+        "toSymbol": "getStatementCode",
+        "callExpression": "getStatementCode",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "deriveUsageTitle",
+        "toSymbol": "titleCase",
+        "callExpression": "titleCase",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
         "fromSymbol": "getLanguage",
         "toSymbol": "extname",
         "callExpression": "extname",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "countExampleDirectoriesAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "countExampleDirectoriesAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/readmeUsage.ts"
+      },
+      {
+        "fromSymbol": "countExampleDirectoriesAsync",
+        "toSymbol": "isMissingPathError",
+        "callExpression": "isMissingPathError",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
@@ -4946,6 +5924,12 @@
       },
       {
         "fromSymbol": "main",
+        "toSymbol": "assertNoDocumentationErrors",
+        "callExpression": "assertNoDocumentationErrors",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
         "toSymbol": "buildModel",
         "callExpression": "buildModel",
         "sourcePath": "src/cli/standalone.ts"
@@ -4967,6 +5951,12 @@
         "toSymbol": "main",
         "callExpression": "main",
         "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "src/doc-tags/registry.ts",
+        "toSymbol": "describeTag",
+        "callExpression": "describeTag",
+        "sourcePath": "src/doc-tags/registry.ts"
       },
       {
         "fromSymbol": "isParadoxDocTagName",
@@ -5189,6 +6179,312 @@
         "toSymbol": "syncFundingFileAsync",
         "callExpression": "syncFundingFileAsync",
         "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toSymbol": "collectSourceFilesAsync",
+        "callExpression": "collectSourceFilesAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectDocumentationCommentsAsync",
+        "toSymbol": "collectRootSourceFilesAsync",
+        "callExpression": "collectRootSourceFilesAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toSymbol": "collectFileCommentsAsync",
+        "callExpression": "collectFileCommentsAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectSourceFilesAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectSourceFilesAsync",
+        "toSymbol": "isMissingPathError",
+        "callExpression": "isMissingPathError",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toSymbol": "extname",
+        "callExpression": "extname",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectRootSourceFilesAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectFileCommentsAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectFileCommentsAsync",
+        "toSymbol": "toPosixPath",
+        "callExpression": "toPosixPath",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "collectFileCommentsAsync",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
+      },
+      {
+        "fromSymbol": "validateDocumentationPolicyAsync",
+        "toSymbol": "validateCommentRules",
+        "callExpression": "validateCommentRules",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateDocumentationPolicyAsync",
+        "toSymbol": "validateUsageRules",
+        "callExpression": "validateUsageRules",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateDocumentationPolicyAsync",
+        "toSymbol": "validateConfigRulesAsync",
+        "callExpression": "validateConfigRulesAsync",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateDocumentationPolicyAsync",
+        "toSymbol": "validatePublicApiRules",
+        "callExpression": "validatePublicApiRules",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateDocumentationPolicyAsync",
+        "toSymbol": "validateReferencesAsync",
+        "callExpression": "validateReferencesAsync",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "validateUsageComment",
+        "callExpression": "validateUsageComment",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "isBelow",
+        "callExpression": "isBelow",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateUsageRules",
+        "toSymbol": "createDocumentationFinding",
+        "callExpression": "createDocumentationFinding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateUsageRules",
+        "toSymbol": "hasExactlyOneRequiredTag",
+        "callExpression": "hasExactlyOneRequiredTag",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateUsageRules",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateUsageComment",
+        "toSymbol": "finding",
+        "callExpression": "finding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateUsageComment",
+        "toSymbol": "isBelow",
+        "callExpression": "isBelow",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateConfigRulesAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateConfigRulesAsync",
+        "toSymbol": "fileExistsAsync",
+        "callExpression": "fileExistsAsync",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateConfigRulesAsync",
+        "toSymbol": "createDocumentationFinding",
+        "callExpression": "createDocumentationFinding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "parseParadoxComment",
+        "callExpression": "parseParadoxComment",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "validateConfigRulesAsync",
+        "toSymbol": "hasExactlyOneRequiredTag",
+        "callExpression": "hasExactlyOneRequiredTag",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toSymbol": "createDocumentationFinding",
+        "callExpression": "createDocumentationFinding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "finding",
+        "toSymbol": "createDocumentationFinding",
+        "callExpression": "createDocumentationFinding",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "fileExistsAsync",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "validateSeeReferencesAsync",
+        "callExpression": "validateSeeReferencesAsync",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "validateSecurityReferencesAsync",
+        "callExpression": "validateSecurityReferencesAsync",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "parseSeeUrl",
+        "callExpression": "parseSeeUrl",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "referenceFinding",
+        "callExpression": "referenceFinding",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "validateSeeUrlAsync",
+        "callExpression": "validateSeeUrlAsync",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "readErrorMessage",
+        "callExpression": "readErrorMessage",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "validateSecurityReferenceAsync",
+        "callExpression": "validateSecurityReferenceAsync",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "validateSecurityReferenceAsync",
+        "toSymbol": "parseSecurityReference",
+        "callExpression": "parseSecurityReference",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "validateSecurityReferenceAsync",
+        "toSymbol": "securityFinding",
+        "callExpression": "securityFinding",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "validateSecurityReferenceAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "validateSecurityReferenceAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "validateSecurityReferenceAsync",
+        "toSymbol": "fileExistsAsync",
+        "callExpression": "fileExistsAsync",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "toSymbol": "isNamedTestCall",
+        "callExpression": "isNamedTestCall",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "parseSecurityReference",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "securityFinding",
+        "toSymbol": "referenceFinding",
+        "callExpression": "referenceFinding",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "referenceFinding",
+        "toSymbol": "createDocumentationFinding",
+        "callExpression": "createDocumentationFinding",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+      },
+      {
+        "fromSymbol": "fileExistsAsync",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
       },
       {
         "fromSymbol": "analyzeProject",
@@ -5762,12 +7058,6 @@
       },
       {
         "fromSymbol": "getSignatures",
-        "toSymbol": "readParadoxMetadata",
-        "callExpression": "readParadoxMetadata",
-        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
-      },
-      {
-        "fromSymbol": "getSignatures",
         "toSymbol": "getCallableDeclarations",
         "callExpression": "getCallableDeclarations",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
@@ -5881,28 +7171,10 @@
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
-        "fromSymbol": "readParadoxMetadata",
-        "toSymbol": "getParadoxComment",
-        "callExpression": "getParadoxComment",
-        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
-      },
-      {
-        "fromSymbol": "readParadoxMetadata",
-        "toSymbol": "parseParadoxComment",
-        "callExpression": "parseParadoxComment",
-        "sourcePath": "src/analyze/utils/getExportMetadata.ts"
-      },
-      {
         "fromSymbol": "src/analyze/utils/getExportMetadata.ts",
         "toSymbol": "key",
         "callExpression": "key",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
-      },
-      {
-        "fromSymbol": "getLeadingParadoxComment",
-        "toSymbol": "parseParadoxComment",
-        "callExpression": "parseParadoxComment",
-        "sourcePath": "src/analyze/utils/getLeadingParadoxComment.ts"
       },
       {
         "fromSymbol": "getParadoxComment",
@@ -5966,8 +7238,38 @@
       },
       {
         "fromSymbol": "parseParadoxComment",
-        "toSymbol": "parseExample",
-        "callExpression": "parseExample",
+        "toSymbol": "hasTag",
+        "callExpression": "hasTag",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "parseParadoxComment",
+        "toSymbol": "getSingleTagValue",
+        "callExpression": "getSingleTagValue",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "parseParadoxComment",
+        "toSymbol": "getTagValues",
+        "callExpression": "getTagValues",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "parseParadoxComment",
+        "toSymbol": "hasCodeBlock",
+        "callExpression": "hasCodeBlock",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "parseCommentLine",
+        "toSymbol": "isParadoxDocTagName",
+        "callExpression": "isParadoxDocTagName",
+        "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
+      },
+      {
+        "fromSymbol": "getSingleTagValue",
+        "toSymbol": "getTagValues",
+        "callExpression": "getTagValues",
         "sourcePath": "src/analyze/utils/parseParadoxComment.ts"
       },
       {
@@ -6242,12 +7544,6 @@
       },
       {
         "fromSymbol": "renderHtml",
-        "toSymbol": "getReadmeCliScenarios",
-        "callExpression": "getReadmeCliScenarios",
-        "sourcePath": "src/render/renderers/html.ts"
-      },
-      {
-        "fromSymbol": "renderHtml",
         "toSymbol": "groupBy",
         "callExpression": "groupBy",
         "sourcePath": "src/render/renderers/html.ts"
@@ -6272,8 +7568,14 @@
       },
       {
         "fromSymbol": "renderHomeView",
-        "toSymbol": "renderCliPanel",
-        "callExpression": "renderCliPanel",
+        "toSymbol": "renderUsagePanel",
+        "callExpression": "renderUsagePanel",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderHomeView",
+        "toSymbol": "renderFindingsPanel",
+        "callExpression": "renderFindingsPanel",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6283,33 +7585,39 @@
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
-        "fromSymbol": "renderCliPanel",
+        "fromSymbol": "renderUsagePanel",
         "toSymbol": "escapeAttribute",
         "callExpression": "escapeAttribute",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
-        "fromSymbol": "renderCliPanel",
+        "fromSymbol": "renderUsagePanel",
         "toSymbol": "escapeHtml",
         "callExpression": "escapeHtml",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
-        "fromSymbol": "src/render/renderers/html.ts",
-        "toSymbol": "findScenarioDiagram",
-        "callExpression": "findScenarioDiagram",
+        "fromSymbol": "renderUsageEntry",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderUsageEntry",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderUsageEntry",
+        "toSymbol": "renderReferenceMetadata",
+        "callExpression": "renderReferenceMetadata",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
         "fromSymbol": "src/render/renderers/html.ts",
         "toSymbol": "escapeAttribute",
         "callExpression": "escapeAttribute",
-        "sourcePath": "src/render/renderers/html.ts"
-      },
-      {
-        "fromSymbol": "src/render/renderers/html.ts",
-        "toSymbol": "renderDiagramCard",
-        "callExpression": "renderDiagramCard",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6326,8 +7634,8 @@
       },
       {
         "fromSymbol": "renderSourceAreaView",
-        "toSymbol": "toAnchorId",
-        "callExpression": "toAnchorId",
+        "toSymbol": "slugifyAscii",
+        "callExpression": "slugifyAscii",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6352,18 +7660,18 @@
         "fromSymbol": "renderSourceFunctionCard",
         "toSymbol": "escapeHtml",
         "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderSourceFunctionCard",
+        "toSymbol": "renderReferenceMetadata",
+        "callExpression": "renderReferenceMetadata",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
         "fromSymbol": "getSourceAreas",
         "toSymbol": "groupBy",
         "callExpression": "groupBy",
-        "sourcePath": "src/render/renderers/html.ts"
-      },
-      {
-        "fromSymbol": "src/render/renderers/html.ts",
-        "toSymbol": "toFileStem",
-        "callExpression": "toFileStem",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6386,8 +7694,8 @@
       },
       {
         "fromSymbol": "renderExportCard",
-        "toSymbol": "toAnchorId",
-        "callExpression": "toAnchorId",
+        "toSymbol": "slugifyAscii",
+        "callExpression": "slugifyAscii",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6400,6 +7708,12 @@
         "fromSymbol": "renderExportCard",
         "toSymbol": "escapeHtml",
         "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderExportCard",
+        "toSymbol": "renderReferenceMetadata",
+        "callExpression": "renderReferenceMetadata",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6428,8 +7742,8 @@
       },
       {
         "fromSymbol": "renderComponentCard",
-        "toSymbol": "toAnchorId",
-        "callExpression": "toAnchorId",
+        "toSymbol": "slugifyAscii",
+        "callExpression": "slugifyAscii",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6442,6 +7756,12 @@
         "fromSymbol": "renderComponentCard",
         "toSymbol": "escapeHtml",
         "callExpression": "escapeHtml",
+        "sourcePath": "src/render/renderers/html.ts"
+      },
+      {
+        "fromSymbol": "renderComponentCard",
+        "toSymbol": "renderReferenceMetadata",
+        "callExpression": "renderReferenceMetadata",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -6500,14 +7820,8 @@
       },
       {
         "fromSymbol": "renderReadme",
-        "toSymbol": "renderReadmeUsage",
-        "callExpression": "renderReadmeUsage",
-        "sourcePath": "src/render/renderers/markdown.ts"
-      },
-      {
-        "fromSymbol": "renderReadme",
-        "toSymbol": "renderReadmeCli",
-        "callExpression": "renderReadmeCli",
+        "toSymbol": "renderUsage",
+        "callExpression": "renderUsage",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6529,15 +7843,21 @@
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "renderReadmeCli",
-        "toSymbol": "findScenarioDiagram",
-        "callExpression": "findScenarioDiagram",
+        "fromSymbol": "renderUsage",
+        "toSymbol": "getPackageDisplayName",
+        "callExpression": "getPackageDisplayName",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "src/render/renderers/markdown.ts",
-        "toSymbol": "toFileStem",
-        "callExpression": "toFileStem",
+        "fromSymbol": "renderUsage",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderConfiguration",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6584,8 +7904,8 @@
       },
       {
         "fromSymbol": "renderComponentAccordion",
-        "toSymbol": "renderExamples",
-        "callExpression": "renderExamples",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6608,14 +7928,14 @@
       },
       {
         "fromSymbol": "renderExportAccordion",
-        "toSymbol": "renderStructuredRows",
-        "callExpression": "renderStructuredRows",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
         "fromSymbol": "renderExportAccordion",
-        "toSymbol": "renderExamples",
-        "callExpression": "renderExamples",
+        "toSymbol": "renderStructuredRows",
+        "callExpression": "renderStructuredRows",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6668,6 +7988,12 @@
       },
       {
         "fromSymbol": "renderExports",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderExports",
         "toSymbol": "renderStructuredRows",
         "callExpression": "renderStructuredRows",
         "sourcePath": "src/render/renderers/markdown.ts"
@@ -6676,6 +8002,12 @@
         "fromSymbol": "renderExports",
         "toSymbol": "escapeTableCell",
         "callExpression": "escapeTableCell",
+        "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromSymbol": "renderComponents",
+        "toSymbol": "renderReferences",
+        "callExpression": "renderReferences",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
@@ -6807,42 +8139,7 @@
       },
       {
         "fromSymbol": "getParadoxDocTag",
-        "toType": "Adds",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Configuration",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Includes",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Marks",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Pair",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Promotes",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "README",
-        "sourcePath": "src/doc-tags/registry.ts"
-      },
-      {
-        "fromSymbol": "getParadoxDocTag",
-        "toType": "Usage",
+        "toType": "ParadoxDocTag",
         "sourcePath": "src/doc-tags/registry.ts"
       }
     ],

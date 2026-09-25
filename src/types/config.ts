@@ -1,5 +1,7 @@
 /***
- * Configuration for running Paradox.
+ * @title Configuration
+ *
+ * Configures Paradox documentation generation for a package.
  *
  * @config
  * @readme
@@ -19,10 +21,6 @@ export interface ParadoxConfig {
   docs?: {
     title?: string;
     description?: string;
-    usage?: {
-      description?: string;
-      entrypoints?: string[];
-    };
   };
 
   package?: {

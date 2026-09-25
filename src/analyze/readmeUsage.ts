@@ -1,105 +1,170 @@
-import { readFile } from 'node:fs/promises';
-import { extname, isAbsolute, join, relative } from 'node:path';
+import { readdir } from 'node:fs/promises';
+import { extname, join, relative } from 'node:path';
 
+import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+import { Project, type Statement } from 'ts-morph';
+
+import type { AnalysisUsageEntry } from './types.js';
+import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 
-export interface AnalysisReadmeUsage {
-  title: string | null;
-  description: string | null;
-  language: string;
-  code: string;
-  sourcePath: string;
-}
-
-interface UsageCommentMatch {
-  comment: string;
-  start: number;
-  end: number;
-}
-
-const USAGE_TAG = `${String.fromCharCode(64)}usage`;
+const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
 
 /***
- * Collects README usage examples from configured real source files.
+ * Collects every canonical usage declaration from examples and CLI source roots.
  */
-export async function analyzeReadmeUsage(options: {
-  root: string;
-  entrypoints: readonly string[];
-}): Promise<AnalysisReadmeUsage[]> {
-  const entries = await Promise.all(
-    options.entrypoints.map(async (entrypoint) => analyzeUsageEntrypoint(options.root, entrypoint)),
-  );
+export async function analyzeReadmeUsage(options: { root: string }): Promise<AnalysisUsageEntry[]> {
+  const project = new Project({ skipAddingFilesFromTsConfig: true });
+  const files = (
+    await Promise.all(
+      DOCUMENTATION_POLICY.paths.usageRoots.map((usageRoot) =>
+        collectSourceFilesAsync(join(options.root, usageRoot)),
+      ),
+    )
+  )
+    .flat()
+    .sort((left, right) => left.localeCompare(right));
 
-  return entries.flat().sort((left, right) => left.sourcePath.localeCompare(right.sourcePath));
+  return files.flatMap((filePath) => analyzeUsageFile(options.root, project, filePath));
 }
 
-async function analyzeUsageEntrypoint(
-  root: string,
-  entrypoint: string,
-): Promise<AnalysisReadmeUsage[]> {
-  const absolutePath = isAbsolute(entrypoint) ? entrypoint : join(root, entrypoint);
-  const source = await readFile(absolutePath, 'utf-8');
-  const sourcePath = toPosixPath(relative(root, absolutePath));
-  const matches = findUsageComments(source);
+/***
+ * Collects supported source files recursively below one canonical usage root.
+ */
+async function collectSourceFilesAsync(root: string): Promise<string[]> {
+  let entries;
+  try {
+    entries = await readdir(root, { withFileTypes: true });
+  } catch (error) {
+    if (isMissingPathError(error)) return [];
+    throw error;
+  }
 
-  return matches.map((match) => {
-    const parsed = parseParadoxComment(match.comment);
+  const nested = await Promise.all(
+    entries.map(async (entry): Promise<string[]> => {
+      const path = join(root, entry.name);
+      if (entry.isDirectory()) return collectSourceFilesAsync(path);
+      return entry.isFile() && SOURCE_EXTENSIONS.has(extname(entry.name)) ? [path] : [];
+    }),
+  );
 
-    return {
-      title: getUsageTitle(parsed.description, sourcePath),
-      description: parsed.description,
-      language: getLanguage(sourcePath),
-      code: removeRange(source, match.start, match.end).trim(),
-      sourcePath,
-    };
+  return nested.flat();
+}
+
+/***
+ * Extracts usage-marked top-level statements from one real source file.
+ */
+function analyzeUsageFile(root: string, project: Project, filePath: string): AnalysisUsageEntry[] {
+  const sourceFile = project.getSourceFile(filePath) ?? project.addSourceFileAtPath(filePath);
+  const sourcePath = toPosixPath(relative(root, filePath));
+
+  return sourceFile.getStatements().flatMap((statement): AnalysisUsageEntry[] => {
+    const comment = getParadoxComment(statement);
+    if (comment === null) return [];
+
+    const parsed = parseParadoxComment(comment);
+    if (!parsed.isUsage) return [];
+
+    return [
+      {
+        area: sourcePath.startsWith(`${DOCUMENTATION_POLICY.paths.examplesRoot}/`)
+          ? 'examples'
+          : 'cli',
+        title: parsed.title ?? deriveUsageTitle(sourcePath),
+        description: parsed.description,
+        language: getLanguage(sourcePath),
+        code: getStatementCode(statement),
+        sourcePath,
+        isReadme: parsed.isReadme,
+        see: parsed.see,
+        security: parsed.security,
+      },
+    ];
   });
 }
 
-function findUsageComments(source: string): UsageCommentMatch[] {
-  const matches: UsageCommentMatch[] = [];
-  const pattern = /\/\*\*\*[\s\S]*?\*\//g;
+/***
+ * Returns the exact source statement owned by a usage comment.
+ */
+function getStatementCode(statement: Statement): string {
+  return statement.getText().trim();
+}
 
-  for (const match of source.matchAll(pattern)) {
-    const [comment] = match;
-    if (!comment.includes(USAGE_TAG)) continue;
-
-    matches.push({
-      comment,
-      start: match.index,
-      end: match.index + comment.length,
-    });
+/***
+ * Derives a deterministic title from the canonical example or CLI structure.
+ */
+function deriveUsageTitle(sourcePath: string): string {
+  const parts = sourcePath.split('/');
+  if (parts[0] === DOCUMENTATION_POLICY.paths.examplesRoot) {
+    return titleCase(parts[1] ?? 'usage');
   }
 
-  return matches;
+  if (sourcePath === `${DOCUMENTATION_POLICY.paths.cliRoot}/index.ts`) {
+    return 'CLI';
+  }
+
+  const commandsIndex = parts.indexOf('commands');
+  const commandParts =
+    commandsIndex === -1 ? [parts.at(-1) ?? 'cli'] : parts.slice(commandsIndex + 1);
+  return commandParts
+    .map((part) => part.replace(/\.[^.]+$/, ''))
+    .map(titleCase)
+    .join(' ');
 }
 
-function removeRange(source: string, start: number, end: number): string {
-  const before = source.slice(0, start).trimEnd();
-  const after = source.slice(end).trimStart();
-
-  if (before.length === 0) return after;
-  if (after.length === 0) return before;
-
-  return `${before}\n\n${after}`;
+/***
+ * Converts a kebab-case structural segment into presentation words.
+ */
+function titleCase(value: string): string {
+  return value
+    .split('-')
+    .filter((word) => word.length > 0)
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+    .join(' ');
 }
 
-function getUsageTitle(description: string | null, sourcePath: string): string | null {
-  if (description === null) return sourcePath;
-  const [firstLine = sourcePath] = description.split('\n');
-  return firstLine.trim() || sourcePath;
-}
-
+/***
+ * Returns the Markdown fence language for a usage source path.
+ */
 function getLanguage(sourcePath: string): string {
   const extension = extname(sourcePath).toLowerCase();
-
   if (extension === '.tsx') return 'tsx';
   if (extension === '.ts') return 'ts';
   if (extension === '.jsx') return 'jsx';
-  if (extension === '.js') return 'js';
-
+  if (extension === '.js' || extension === '.mjs' || extension === '.cjs') return 'js';
   return '';
 }
 
+/***
+ * Counts real example directories directly below the canonical examples root.
+ */
+export async function countExampleDirectoriesAsync(root: string): Promise<number> {
+  try {
+    const entries = await readdir(join(root, DOCUMENTATION_POLICY.paths.examplesRoot), {
+      withFileTypes: true,
+    });
+    return entries.filter((entry) => entry.isDirectory()).length;
+  } catch (error) {
+    if (isMissingPathError(error)) return 0;
+    throw error;
+  }
+}
+
+/***
+ * Checks whether a filesystem error reports a missing path.
+ */
+function isMissingPathError(error: unknown): error is NodeJS.ErrnoException {
+  return (
+    error instanceof Error &&
+    'code' in error &&
+    typeof error.code === 'string' &&
+    error.code === 'ENOENT'
+  );
+}
+
+/***
+ * Normalizes filesystem separators for stable documentation paths.
+ */
 function toPosixPath(path: string): string {
   return path.replaceAll('\\', '/');
 }

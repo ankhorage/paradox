@@ -92,9 +92,8 @@ function getSourceLocation(node: Node, root: string): AnalysisSourceLocation {
  * Extracts callable signatures for exported functions and callable values.
  */
 function getSignatures(symbol: MorphSymbol, node: Node, root: string): AnalysisSignature[] {
-  const parsed = readParadoxMetadata(node);
   const signatures = getCallableDeclarations(symbol, node).map((declaration) =>
-    getSignature(declaration, parsed.params, parsed.returns, root),
+    getSignature(declaration, root),
   );
 
   return uniqueBy(
@@ -111,22 +110,13 @@ function getSignatures(symbol: MorphSymbol, node: Node, root: string): AnalysisS
 /***
  * Builds one normalized call signature from a callable declaration.
  */
-function getSignature(
-  declaration: CallableDeclaration,
-  params: Record<string, string>,
-  returns: string | null,
-  root: string,
-): AnalysisSignature {
-  const normalizedParameters = declaration.getParameters().map((parameter): AnalysisParameter => {
-    const parameterDescription = params[parameter.getName()];
-
-    return {
-      name: parameter.getName(),
-      type: normalizeTypeText(parameter.getType().getText(parameter), root),
-      required: !parameter.isOptional(),
-      description: parameterDescription ? parameterDescription.trim() : null,
-    };
-  });
+function getSignature(declaration: CallableDeclaration, root: string): AnalysisSignature {
+  const normalizedParameters = declaration.getParameters().map((parameter): AnalysisParameter => ({
+    name: parameter.getName(),
+    type: normalizeTypeText(parameter.getType().getText(parameter), root),
+    required: !parameter.isOptional(),
+    description: null,
+  }));
   const returnType = normalizeTypeText(declaration.getReturnType().getText(declaration), root);
   const parameterLabel = normalizedParameters
     .map((parameter) => `${parameter.name}${parameter.required ? '' : '?'}: ${parameter.type}`)
@@ -136,7 +126,7 @@ function getSignature(
     label: `(${parameterLabel})${returnType === 'void' ? '' : ` => ${returnType}`}`,
     parameters: normalizedParameters,
     returnType,
-    returnDescription: returns,
+    returnDescription: null,
   };
 }
 
@@ -174,16 +164,7 @@ function getMembersFromProperties(
     }
 
     const rawComment = getParadoxComment(declaration);
-    const parsed = rawComment
-      ? parseParadoxComment(rawComment)
-      : {
-          description: null,
-          isConfig: false,
-          isReadme: false,
-          examples: [],
-          params: {},
-          returns: null,
-        };
+    const parsed = rawComment === null ? null : parseParadoxComment(rawComment);
 
     return [
       {
@@ -191,7 +172,7 @@ function getMembersFromProperties(
         kind: isMemberMethodDeclaration(declaration) ? 'method' : 'property',
         type: normalizeTypeText(property.getTypeAtLocation(declaration).getText(declaration), root),
         required: !property.isOptional(),
-        description: parsed.description,
+        description: parsed?.description ?? null,
       } satisfies AnalysisMember,
     ];
   });
@@ -342,23 +323,6 @@ function getCallableNode(node: Node): CallableDeclaration | null {
  */
 function isMemberMethodDeclaration(node: Node): node is MethodDeclaration | MethodSignature {
   return Node.isMethodDeclaration(node) || Node.isMethodSignature(node);
-}
-
-/***
- * Reads Paradox comment metadata from a declaration.
- */
-function readParadoxMetadata(node: Node) {
-  const rawComment = getParadoxComment(node);
-  return rawComment
-    ? parseParadoxComment(rawComment)
-    : {
-        description: null,
-        isConfig: false,
-        isReadme: false,
-        examples: [],
-        params: {},
-        returns: null,
-      };
 }
 
 /***

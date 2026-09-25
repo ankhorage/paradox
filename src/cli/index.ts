@@ -1,6 +1,7 @@
 /***
- * Generates deterministic documentation for a package through the Paradox CLI.
+ * Exposes the Paradox command provider through the canonical Ankhorage CLI surface.
  *
- * @readme
+ * @title CLI
+ * @usage
  */
 export { default } from '../docsSurface.js';

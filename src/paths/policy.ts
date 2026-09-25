@@ -2,7 +2,7 @@ import { access } from 'node:fs/promises';
 import { dirname, isAbsolute, join, normalize, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-import type { ParadoxConfig } from '../config/types.js';
+import type { ParadoxConfig } from '../types/config.js';
 
 const CONFIG_FILENAMES = [
   'paradox.config.ts',

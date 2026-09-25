@@ -23,8 +23,6 @@ export interface AnalyzedDocBlock {
   column: number;
   raw: string;
   description: string | null;
-  params: Record<string, string>;
-  returns: string | null;
   tags: AnalyzedTag[];
 }
 

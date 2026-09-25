@@ -1,6 +1,8 @@
 import { access, readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import type { PolicyStatus } from '@ankhorage/policy/status';
+
 import type { AnalysisBadge } from './types.js';
 import type { PackageJsonModel } from './usage.js';
 
@@ -60,7 +62,11 @@ interface CoverageSummaryModel {
 /***
  * Derives deterministic repository metadata badges from local repository files.
  */
-export async function analyzeBadges(root: string, pkg: PackageJsonModel): Promise<AnalysisBadge[]> {
+export async function analyzeBadges(
+  root: string,
+  pkg: PackageJsonModel,
+  documentationStatus: PolicyStatus,
+): Promise<AnalysisBadge[]> {
   const workflowFiles = await readWorkflowFiles(root);
   const badges: AnalysisBadge[] = [];
 
@@ -162,9 +168,9 @@ export async function analyzeBadges(root: string, pkg: PackageJsonModel): Promis
 
   badges.push({
     id: 'docs',
-    label: 'docs',
-    value: 'paradox',
-    color: '0f766e',
+    label: 'paradox',
+    value: documentationStatus,
+    color: getDocumentationStatusColor(documentationStatus),
   });
 
   return sortBadges(badges);
@@ -373,4 +379,13 @@ function sortBadges(badges: readonly AnalysisBadge[]): AnalysisBadge[] {
 function getBadgeOrder(id: string): number {
   const index = BADGE_ORDER.indexOf(id as (typeof BADGE_ORDER)[number]);
   return index === -1 ? BADGE_ORDER.length : index;
+}
+
+/***
+ * Maps the shared traffic-light status to a deterministic badge color.
+ */
+function getDocumentationStatusColor(status: PolicyStatus): string {
+  if (status === 'invalid') return 'dc2626';
+  if (status === 'warnings') return 'ca8a04';
+  return '0a7f3f';
 }
