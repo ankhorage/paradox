@@ -4,11 +4,7 @@ import { join } from 'node:path';
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { Node, type Project } from 'ts-morph';
 
-import type {
-  AnalysisDocumentationFinding,
-  AnalysisExport,
-  AnalysisUsageEntry,
-} from '../types.js';
+import type { AnalysisDocumentationFinding, AnalysisExport } from '../types.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
 import { parseParadoxComment } from '../utils/parseParadoxComment.js';
 import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
@@ -22,7 +18,6 @@ export async function validateDocumentationPolicyAsync(options: {
   root: string;
   project: Project;
   comments: readonly CollectedDocumentationComment[];
-  usageEntries: readonly AnalysisUsageEntry[];
   exports: readonly AnalysisExport[];
 }): Promise<AnalysisDocumentationFinding[]> {
   return [
@@ -57,7 +52,17 @@ function validateCommentRules(
           ),
         ]
       : [];
-    return [...unsupported, ...code];
+    const configLocation =
+      comment.parsed.isConfig && comment.sourcePath !== DOCUMENTATION_POLICY.config.path
+        ? [
+            finding(
+              'documentation.config.location',
+              `@config is allowed only in ${DOCUMENTATION_POLICY.config.path}.`,
+              comment,
+            ),
+          ]
+        : [];
+    return [...unsupported, ...code, ...configLocation];
   });
 }
 
