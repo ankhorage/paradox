@@ -1,5 +1,6 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisExport } from './types.js';
@@ -69,8 +70,8 @@ export function analyzeExports(
               description: existing.description ?? parsed.description,
               isReadme: existing.isReadme || parsed.isReadme,
               examples: existing.examples.length > 0 ? existing.examples : parsed.examples,
-              exportPaths: uniqueSorted([...existing.exportPaths, ...metadata.exportPaths]),
-              relatedSymbols: uniqueSorted([
+              exportPaths: uniqueSortedStrings([...existing.exportPaths, ...metadata.exportPaths]),
+              relatedSymbols: uniqueSortedStrings([
                 ...existing.relatedSymbols,
                 ...metadata.relatedSymbols,
               ]),
@@ -142,12 +143,6 @@ function inferKind(node: Node): AnalysisExport['kind'] {
   return 'unknown';
 }
 
-/***
- * Returns unique string values sorted for deterministic generated output.
- */
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
-}
 
 /***
  * Normalizes platform-specific path separators for generated documentation output.
