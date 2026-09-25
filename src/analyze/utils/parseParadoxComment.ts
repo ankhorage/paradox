@@ -1,6 +1,6 @@
 import { isParadoxDocTagName, type ParadoxDocTagName } from '../../doc-tags/registry.js';
 
-export interface ParsedParadoxTag {
+interface ParsedParadoxTag {
   readonly name: ParadoxDocTagName;
   readonly value: string | null;
 }
