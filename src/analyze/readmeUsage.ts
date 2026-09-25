@@ -101,6 +101,10 @@ function deriveUsageTitle(sourcePath: string): string {
     return titleCase(parts[1] ?? 'usage');
   }
 
+  if (sourcePath === `${DOCUMENTATION_POLICY.paths.cliRoot}/index.ts`) {
+    return 'CLI';
+  }
+
   const commandsIndex = parts.indexOf('commands');
   const commandParts =
     commandsIndex === -1 ? [parts.at(-1) ?? 'cli'] : parts.slice(commandsIndex + 1);
