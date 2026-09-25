@@ -63,8 +63,8 @@ function parseCommentLine(text: string): ParsedCommentLine {
   const match = /^@([A-Za-z][A-Za-z0-9-]*)(?:\s+(.*))?$/.exec(trimmed);
   if (match === null) return { text };
 
-  const [, name = '', rawValue] = match;
-  const value = rawValue?.trim() ?? '';
+  const name = match[1];
+  const value = match.slice(2).join('').trim();
   if (!isParadoxDocTagName(name)) {
     return { text, unsupportedTag: name };
   }
