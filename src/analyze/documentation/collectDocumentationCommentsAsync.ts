@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
 import { toPortablePath } from '@ankhorage/utility/node/path';
+
 import type { ParsedParadoxComment } from '../utils/parseParadoxComment.js';
 import { parseParadoxComment } from '../utils/parseParadoxComment.js';
 
@@ -92,4 +93,3 @@ async function collectFileCommentsAsync(
 function isMissingPathError(error: unknown): error is NodeJS.ErrnoException {
   return error instanceof Error && 'code' in error && error.code === 'ENOENT';
 }
-

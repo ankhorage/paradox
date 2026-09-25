@@ -69,4 +69,3 @@ function createSourceFunction(name: string, node: Node, root: string): AnalysisS
     },
   };
 }
-

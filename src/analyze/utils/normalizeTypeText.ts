@@ -35,4 +35,3 @@ function normalizeImportPath(importPath: string, packageRoot?: string): string {
 
   return normalizedPath;
 }
-

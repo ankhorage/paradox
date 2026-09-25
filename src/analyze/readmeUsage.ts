@@ -162,4 +162,3 @@ function isMissingPathError(error: unknown): error is NodeJS.ErrnoException {
     error.code === 'ENOENT'
   );
 }
-

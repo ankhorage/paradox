@@ -69,4 +69,3 @@ export function analyzeModules(
     })
     .sort((left, right) => left.path.localeCompare(right.path));
 }
-

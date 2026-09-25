@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { extname, relative } from 'node:path';
 
 import { toPortablePath } from '@ankhorage/utility/node/path';
+
 export interface AnalysisReadmeConfig {
   language: string;
   code: string;
@@ -36,4 +37,3 @@ function getLanguage(sourcePath: string): string {
   if (extension === '.js' || extension === '.mjs' || extension === '.cjs') return 'js';
   return '';
 }
-
