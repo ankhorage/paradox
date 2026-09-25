@@ -51,12 +51,9 @@ function assertNoDocumentationErrors(
   const errors = findings.filter((finding) => finding.severity === 'error');
   if (errors.length === 0) return;
 
-  const details = errors
-    .map((finding) => `- [${finding.ruleId}] ${finding.message}`)
-    .join('\n');
+  const details = errors.map((finding) => `- [${finding.ruleId}] ${finding.message}`).join('\n');
   throw new Error(`Paradox documentation policy is invalid:\n${details}`);
 }
-
 
 main().catch((error: unknown) => {
   console.error(error);
