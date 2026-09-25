@@ -1,3 +1,5 @@
+import type { PolicySeverity } from '@ankhorage/policy/status';
+
 /***
  * Serializable model consumed by renderers and writers.
  */
@@ -8,10 +10,9 @@ export interface DocumentationModel {
   collaborators: true | null;
   donation: DonationModel | null;
   badges: GeneratedBadge[];
-  usage: UsageModel | null;
-  readmeUsageDescription: string | null;
-  readmeUsage: ReadmeUsageModel[];
-  readmeCli: ReadmeCliModel | null;
+  usage: UsageModel;
+  usageEntries: UsageEntryModel[];
+  findings: DocumentationFindingModel[];
   readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
@@ -36,29 +37,28 @@ export interface GeneratedBadge {
 
 interface UsageModel {
   packageName: string;
-  commands: UsageCommandModel[];
-}
-
-interface UsageCommandModel {
-  name: string;
   command: string;
 }
 
-interface ReadmeUsageModel {
+export interface UsageEntryModel {
+  area: 'cli' | 'examples';
   title: string | null;
   description: string | null;
   language: string;
   code: string;
   sourcePath: string;
+  isReadme: boolean;
 }
 
-interface ReadmeCliModel {
-  description: string | null;
-  sourcePath: string;
+export interface DocumentationFindingModel {
+  ruleId: string;
+  severity: PolicySeverity;
+  message: string;
+  sourcePath: string | null;
+  line: number | null;
 }
 
 interface ReadmeConfigModel {
-  description: string | null;
   language: string;
   code: string;
   sourcePath: string;
@@ -66,12 +66,15 @@ interface ReadmeConfigModel {
 
 interface ConfigModel {
   exportName: string;
+  title: string | null;
+  description: string | null;
   isReadme: boolean;
   members: ConfigMemberModel[];
 }
 
 export interface ExportModel {
   name: string;
+  title: string | null;
   description: string | null;
   isReadme: boolean;
   examples: ExampleModel[];
