@@ -1,5 +1,6 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisExport } from './types.js';
@@ -74,10 +75,10 @@ export function analyzeExports(
               title: existing.title ?? parsed.title,
               description: existing.description ?? parsed.description,
               isReadme: existing.isReadme || parsed.isReadme,
-              see: uniqueSorted([...existing.see, ...parsed.see]),
-              security: uniqueSorted([...existing.security, ...parsed.security]),
-              exportPaths: uniqueSorted([...existing.exportPaths, ...metadata.exportPaths]),
-              relatedSymbols: uniqueSorted([
+              see: uniqueSortedStrings([...existing.see, ...parsed.see]),
+              security: uniqueSortedStrings([...existing.security, ...parsed.security]),
+              exportPaths: uniqueSortedStrings([...existing.exportPaths, ...metadata.exportPaths]),
+              relatedSymbols: uniqueSortedStrings([
                 ...existing.relatedSymbols,
                 ...metadata.relatedSymbols,
               ]),
@@ -148,13 +149,6 @@ function inferKind(node: Node): AnalysisExport['kind'] {
   if ('getProperties' in node || 'getMembers' in node) return 'type';
   if (Node.isVariableDeclaration(node)) return 'value';
   return 'unknown';
-}
-
-/***
- * Returns unique string values sorted for deterministic generated output.
- */
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
 /***

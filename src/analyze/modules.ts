@@ -1,5 +1,6 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import type { Project } from 'ts-morph';
 
 import type { AnalysisModule } from './types.js';
@@ -61,18 +62,11 @@ export function analyzeModules(
       return {
         path,
         isEntrypoint: entrypointPaths.has(normalize(sourceFile.getFilePath())),
-        dependencies: uniqueSorted(dependencies),
-        exports: uniqueSorted(exports),
+        dependencies: uniqueSortedStrings(dependencies),
+        exports: uniqueSortedStrings(exports),
       } satisfies AnalysisModule;
     })
     .sort((left, right) => left.path.localeCompare(right.path));
-}
-
-/***
- * Returns unique string values sorted for deterministic generated output.
- */
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
 /***

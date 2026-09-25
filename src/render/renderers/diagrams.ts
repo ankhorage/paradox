@@ -1,3 +1,5 @@
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
+
 import type { DocumentationModel, ModuleModel, SequenceScenarioModel } from '../../model/types.js';
 import { toFileStem } from '../toFileStem.js';
 import type { DiagramArtifact } from '../types.js';
@@ -260,7 +262,7 @@ function groupCallsBySource(
 }
 
 function collectSequenceParticipants(callEdges: DocumentationModel['graphs']['calls']): string[] {
-  return uniqueSorted(callEdges.flatMap((edge) => [edge.fromSymbol, edge.toSymbol]));
+  return uniqueSortedStrings(callEdges.flatMap((edge) => [edge.fromSymbol, edge.toSymbol]));
 }
 
 function getCallEdgeKey(edge: DocumentationModel['graphs']['calls'][number]): string {
@@ -280,10 +282,6 @@ function renderFallbackEdge(modules: readonly ModuleModel[], prefix: string): st
     const previous = modules[index];
     return `  ${toMermaidId(`${prefix}-${previous.path}`)} -.-> ${toMermaidId(`${prefix}-${module.path}`)}`;
   });
-}
-
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
 function toMermaidId(value: string): string {

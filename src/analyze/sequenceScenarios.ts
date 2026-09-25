@@ -1,5 +1,6 @@
 import { isAbsolute, join, normalize } from 'node:path';
 
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import {
   type CallExpression,
   type FunctionDeclaration,
@@ -134,7 +135,7 @@ function getBinSourceCandidates(targetPath: string): string[] {
     candidates.push(normalized.replace(/\.jsx?$/, '.tsx'));
   }
 
-  return uniqueSorted(candidates);
+  return uniqueSortedStrings(candidates);
 }
 
 function getSourceFileByRelativePath(
@@ -245,8 +246,4 @@ function uniqueByFunctionName(declarations: readonly FunctionDeclaration[]): Fun
     seen.add(name);
     return true;
   });
-}
-
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }

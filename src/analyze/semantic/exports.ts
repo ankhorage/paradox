@@ -1,3 +1,4 @@
+import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import type { Node, ParameterDeclaration, Symbol as MorphSymbol, Type } from 'ts-morph';
 import { Node as MorphNode, TypeFormatFlags } from 'ts-morph';
 
@@ -35,7 +36,7 @@ export function collectExports(program: AnalyzedProgram): AnalyzedExport[] {
       const sourcePath = relativeToRoot(program.root, declaration.getSourceFile().getFilePath());
       const existing = exportsByName.get(name);
       const exportPaths = existing
-        ? uniqueSorted([...existing.exportPaths, entrypointPath])
+        ? uniqueSortedStrings([...existing.exportPaths, entrypointPath])
         : [entrypointPath];
       const kind = existing?.kind ?? detectExportKind(declaration);
 
@@ -434,10 +435,6 @@ function getCallableNode(node: Node) {
   }
 
   return null;
-}
-
-function uniqueSorted(values: readonly string[]): string[] {
-  return [...new Set(values)].sort((left, right) => left.localeCompare(right));
 }
 
 const IGNORED_RELATED_SYMBOLS = new Set([
