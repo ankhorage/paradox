@@ -143,7 +143,6 @@ function inferKind(node: Node): AnalysisExport['kind'] {
   return 'unknown';
 }
 
-
 /***
  * Normalizes platform-specific path separators for generated documentation output.
  */

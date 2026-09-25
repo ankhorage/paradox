@@ -439,7 +439,6 @@ function getCallableNode(node: Node) {
   return null;
 }
 
-
 const IGNORED_RELATED_SYMBOLS = new Set([
   'Array',
   'Boolean',

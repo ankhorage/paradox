@@ -69,7 +69,6 @@ export function analyzeModules(
     .sort((left, right) => left.path.localeCompare(right.path));
 }
 
-
 /***
  * Normalizes platform-specific path separators for generated documentation output.
  */

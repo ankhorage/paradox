@@ -247,4 +247,3 @@ function uniqueByFunctionName(declarations: readonly FunctionDeclaration[]): Fun
     return true;
   });
 }
-
