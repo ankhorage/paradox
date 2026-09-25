@@ -1,3 +1,5 @@
+import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+
 import type { DocumentationModel } from '../../model/types.js';
 import type { RenderContext } from '../types.js';
 
@@ -75,11 +77,24 @@ function renderReadme(
  * Renders the canonical CLI-first Usage chapter.
  */
 function renderUsage(lines: string[], model: DocumentationModel): void {
+  if (!DOCUMENTATION_POLICY.readmeUsage.required && model.usageEntries.length === 0) return;
+
   const readmeExample = model.usageEntries.find(
     (entry) => entry.area === 'examples' && entry.isReadme,
   );
 
   lines.push('## Usage', '');
+  for (const section of DOCUMENTATION_POLICY.readmeUsage.sectionOrder) {
+    if (section === 'cli') {
+      renderCliUsage(lines, model);
+    } else {
+      renderProgrammaticUsage(lines, model, readmeExample);
+    }
+  }
+}
+
+/*** Renders the canonical CLI usage section from package metadata. */
+function renderCliUsage(lines: string[], model: DocumentationModel): void {
   lines.push('### CLI', '');
   lines.push(
     'Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.',
@@ -91,7 +106,14 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
   lines.push(`# Show usage information for ${getPackageDisplayName(model.packageId)}`);
   lines.push(model.usage.command);
   lines.push('```', '');
+}
 
+/*** Renders the single README-promoted programmatic usage declaration. */
+function renderProgrammaticUsage(
+  lines: string[],
+  model: DocumentationModel,
+  readmeExample: DocumentationModel['usageEntries'][number] | undefined,
+): void {
   if (readmeExample === undefined) return;
 
   lines.push(`### ${readmeExample.title ?? 'Programmatic Usage'}`, '');

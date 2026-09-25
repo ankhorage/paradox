@@ -4,6 +4,8 @@ import { dirname, join } from 'node:path';
 import { expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
+import { buildModel } from '../src/model/buildModel.js';
+import { render } from '../src/render/render.js';
 
 test('optional usage and config surfaces do not require fake documentation', async () => {
   const root = await createOptionalSurfaceFixtureAsync();
@@ -21,6 +23,9 @@ test('optional usage and config surfaces do not require fake documentation', asy
       );
 
     expect(surfaceRuleIds).toEqual([]);
+    const output = render(buildModel(analysis), { outputDir: 'paradox' });
+    expect(output.readme).not.toContain('## Usage');
+    expect(output.indexHtml).not.toContain('<h2>Usage</h2>');
   } finally {
     await rm(root, { force: true, recursive: true });
   }

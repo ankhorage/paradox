@@ -72,13 +72,12 @@ function validateUsageRules(
   comments: readonly CollectedDocumentationComment[],
 ): AnalysisDocumentationFinding[] {
   const usageComments = comments.filter((comment) => comment.parsed.isUsage);
-  if (usageComments.length === 0) return [];
+  if (!DOCUMENTATION_POLICY.readmeUsage.required && usageComments.length === 0) return [];
 
   const findings = usageComments.flatMap((comment) => validateUsageComment(comment));
   const readmeExamples = usageComments.filter(
     (comment) =>
-      isBelow(comment.sourcePath, DOCUMENTATION_POLICY.paths.examplesRoot) &&
-      comment.parsed.isReadme,
+      isBelow(comment.sourcePath, DOCUMENTATION_POLICY.readmeUsage.root) && comment.parsed.isReadme,
   );
 
   if (readmeExamples.length !== DOCUMENTATION_POLICY.readmeUsage.exactCount) {
