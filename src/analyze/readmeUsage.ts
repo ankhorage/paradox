@@ -13,9 +13,7 @@ const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']
 /***
  * Collects every canonical usage declaration from examples and CLI source roots.
  */
-export async function analyzeReadmeUsage(options: {
-  root: string;
-}): Promise<AnalysisUsageEntry[]> {
+export async function analyzeReadmeUsage(options: { root: string }): Promise<AnalysisUsageEntry[]> {
   const project = new Project({ skipAddingFilesFromTsConfig: true });
   const files = (
     await Promise.all(
