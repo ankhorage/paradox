@@ -70,6 +70,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
+    "@ankhorage/utility": "^1.8.0",
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
