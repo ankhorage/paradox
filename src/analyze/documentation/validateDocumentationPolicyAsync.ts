@@ -151,15 +151,7 @@ async function validateConfigRulesAsync(
   const configComments = comments.filter((comment) => comment.parsed.isConfig);
   const hasConfigFile = await fileExistsAsync(configPath);
 
-  if (!hasConfigFile) {
-    if (!DOCUMENTATION_POLICY.config.required && configComments.length === 0) return [];
-    return [
-      createDocumentationFinding(
-        'documentation.config.file',
-        `Missing canonical config schema: ${DOCUMENTATION_POLICY.config.path}`,
-      ),
-    ];
-  }
+  if (!hasConfigFile) return validateMissingConfigFile(configComments);
 
   const sourceFile = project.getSourceFile(configPath) ?? project.addSourceFileAtPath(configPath);
   const roots = sourceFile.getStatements().flatMap((statement) => {
@@ -200,6 +192,19 @@ async function validateConfigRulesAsync(
   }
 
   return findings;
+}
+
+/*** Resolve findings when the canonical config file is absent. */
+function validateMissingConfigFile(
+  configComments: readonly CollectedDocumentationComment[],
+): AnalysisDocumentationFinding[] {
+  if (!DOCUMENTATION_POLICY.config.required && configComments.length === 0) return [];
+  return [
+    createDocumentationFinding(
+      'documentation.config.file',
+      `Missing canonical config schema: ${DOCUMENTATION_POLICY.config.path}`,
+    ),
+  ];
 }
 
 /***

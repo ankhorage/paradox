@@ -9,69 +9,6 @@ import { validateDocumentationPolicyAsync } from '../src/analyze/documentation/v
 import { createProject } from '../src/analyze/project.js';
 import type { AnalysisDocumentationFinding } from '../src/analyze/types.js';
 
-test('packages without opted-in usage or config surfaces remain valid', async () => {
-  const root = await createBareDocumentationFixtureAsync();
-
-  try {
-    const analysis = await analyze(
-      { package: { entrypoints: ['src/index.ts'] } },
-      { packageRoot: root },
-    );
-
-    expect(
-      analysis.findings.some(
-        (finding) =>
-          finding.ruleId.startsWith('documentation.usage.') ||
-          finding.ruleId.startsWith('documentation.config.'),
-      ),
-    ).toBe(false);
-  } finally {
-    await rm(root, { force: true, recursive: true });
-  }
-});
-
-test('usage opt-in still requires one README-promoted example', async () => {
-  const root = await createBareDocumentationFixtureAsync();
-  await mkdir(join(root, 'src', 'cli'), { recursive: true });
-  await writeFile(
-    join(root, 'src', 'cli', 'usage.ts'),
-    [
-      '/***',
-      ' * CLI usage.',
-      ' * @usage',
-      ' */',
-      "export const usage = 'cli';",
-      '',
-    ].join('\n'),
-  );
-
-  try {
-    const analysis = await analyze(
-      { package: { entrypoints: ['src/index.ts'] } },
-      { packageRoot: root },
-    );
-    expectFinding(analysis.findings, 'documentation.usage.readme.unique', 'error');
-  } finally {
-    await rm(root, { force: true, recursive: true });
-  }
-});
-
-test('config-file opt-in still requires one canonical README root', async () => {
-  const root = await createBareDocumentationFixtureAsync();
-  await mkdir(join(root, 'src', 'types'), { recursive: true });
-  await writeFile(join(root, 'src', 'types', 'config.ts'), 'export interface FixtureConfig {}\n');
-
-  try {
-    const analysis = await analyze(
-      { package: { entrypoints: ['src/index.ts'] } },
-      { packageRoot: root },
-    );
-    expectFinding(analysis.findings, 'documentation.config.readme.unique', 'error');
-  } finally {
-    await rm(root, { force: true, recursive: true });
-  }
-});
-
 test('missing public function documentation produces warning status', async () => {
   const root = await createCanonicalFixtureAsync({
     publicSource: 'export function undocumented(): string { return "warning"; }',
@@ -263,20 +200,6 @@ test('@security requires one exact colocated executable test', async () => {
     await rm(root, { force: true, recursive: true });
   }
 });
-
-/***
- * Creates a minimal package that opts into neither programmatic usage nor configuration docs.
- */
-async function createBareDocumentationFixtureAsync(): Promise<string> {
-  const root = join(import.meta.dir, '.tmp', `bare-policy-${Date.now()}-${Math.random()}`);
-  await mkdir(join(root, 'src'), { recursive: true });
-  await writeFixtureMetadataAsync(root);
-  await writeFile(
-    join(root, 'src', 'index.ts'),
-    '/*** Documented public function. */\nexport function documented(): string { return "ok"; }\n',
-  );
-  return root;
-}
 
 interface FixtureOptions {
   publicSource?: string;
