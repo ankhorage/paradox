@@ -72,7 +72,7 @@ function validateUsageRules(
   comments: readonly CollectedDocumentationComment[],
 ): AnalysisDocumentationFinding[] {
   const usageComments = comments.filter((comment) => comment.parsed.isUsage);
-  if (usageComments.length === 0 && !DOCUMENTATION_POLICY.readmeUsage.required) return [];
+  if (usageComments.length === 0) return [];
 
   const findings = usageComments.flatMap((comment) => validateUsageComment(comment));
   const readmeExamples = usageComments.filter(
@@ -140,7 +140,7 @@ function validateUsageComment(
 }
 
 /***
- * Validates the canonical configuration file and its one README configuration root.
+ * Validates configuration only after the package opts into that documentation surface.
  */
 async function validateConfigRulesAsync(
   root: string,
@@ -149,11 +149,8 @@ async function validateConfigRulesAsync(
 ): Promise<AnalysisDocumentationFinding[]> {
   const configPath = join(root, DOCUMENTATION_POLICY.config.path);
   const configExists = await fileExistsAsync(configPath);
-  const configOptedIn =
-    DOCUMENTATION_POLICY.config.required ||
-    configExists ||
-    comments.some((comment) => comment.parsed.isConfig);
-  if (!configOptedIn) return [];
+  const configTagged = comments.some((comment) => comment.parsed.isConfig);
+  if (!configExists && !configTagged) return [];
 
   if (!configExists) {
     return [
@@ -165,7 +162,14 @@ async function validateConfigRulesAsync(
   }
 
   const sourceFile = project.getSourceFile(configPath) ?? project.addSourceFileAtPath(configPath);
-  const roots = sourceFile.getStatements().flatMap((statement) => {
+  return validateConfigRoots(collectConfigRoots(sourceFile));
+}
+
+/***
+ * Collects canonical @config + @readme type declarations from the config schema.
+ */
+function collectConfigRoots(sourceFile: import('ts-morph').SourceFile) {
+  return sourceFile.getStatements().flatMap((statement) => {
     if (!Node.isInterfaceDeclaration(statement) && !Node.isTypeAliasDeclaration(statement)) {
       return [];
     }
@@ -174,8 +178,15 @@ async function validateConfigRulesAsync(
     const parsed = parseParadoxComment(raw);
     return parsed.isConfig && parsed.isReadme ? [{ statement, parsed }] : [];
   });
-  const findings: AnalysisDocumentationFinding[] = [];
+}
 
+/***
+ * Validates cardinality and README metadata for canonical config roots.
+ */
+function validateConfigRoots(
+  roots: ReturnType<typeof collectConfigRoots>,
+): AnalysisDocumentationFinding[] {
+  const findings: AnalysisDocumentationFinding[] = [];
   if (roots.length !== DOCUMENTATION_POLICY.config.exactCount) {
     findings.push(
       createDocumentationFinding(
@@ -201,7 +212,6 @@ async function validateConfigRulesAsync(
       );
     }
   }
-
   return findings;
 }
 
