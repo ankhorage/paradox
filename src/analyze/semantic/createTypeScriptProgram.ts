@@ -1,9 +1,9 @@
 import { isAbsolute, join, normalize } from 'node:path';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Project } from 'ts-morph';
 
 import type { AnalyzedProgram } from './model.js';
-import { toPosixPath } from './utils.js';
 
 interface CreateProgramOptions {
   root: string;
@@ -32,7 +32,7 @@ export function createTypeScriptProgram(options: CreateProgramOptions): Analyzed
     project,
     typeChecker: project.getTypeChecker(),
     root,
-    entrypoints: entrypoints.map((entrypoint) => toPosixPath(entrypoint)),
+    entrypoints: entrypoints.map((entrypoint) => toPortablePath(entrypoint)),
     entrypointFilePaths,
   };
 }

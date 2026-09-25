@@ -2,6 +2,8 @@ import { access } from 'node:fs/promises';
 import { dirname, isAbsolute, join, normalize, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+import { toPortablePath } from '@ankhorage/utility/node/path';
+
 import type { ParadoxConfig } from '../types/config.js';
 
 const CONFIG_FILENAMES = [
@@ -139,7 +141,7 @@ function validateOutputDir(outputDir: string): void {
  * Splits a configured path into normalized non-empty path segments.
  */
 function splitPathSegments(path: string): string[] {
-  const normalized = path.replaceAll('\\', '/');
+  const normalized = toPortablePath(path);
   return normalized.split('/').filter((segment) => segment.length > 0 && segment !== '.');
 }
 

@@ -1,6 +1,7 @@
 import { isAbsolute, join, normalize } from 'node:path';
 
 import { uniqueSortedStrings } from '@ankhorage/utility/array';
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import {
   type CallExpression,
   type FunctionDeclaration,
@@ -9,7 +10,7 @@ import {
   type SourceFile,
 } from 'ts-morph';
 
-import { relativeToRoot, toPosixPath } from './semantic/utils.js';
+import { relativeToRoot } from './semantic/utils.js';
 import type { AnalysisExport, AnalysisSequenceScenario } from './types.js';
 import type { PackageJsonModel } from './usage.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
@@ -118,7 +119,7 @@ function resolveBinSourceFile(
 }
 
 function getBinSourceCandidates(targetPath: string): string[] {
-  const normalized = toPosixPath(targetPath).replace(/^\.\//, '');
+  const normalized = toPortablePath(targetPath).replace(/^\.\//, '');
   const candidates: string[] = [];
 
   if (/^src\/.*\.tsx?$/.test(normalized)) {
