@@ -1,6 +1,7 @@
 import { isAbsolute, join, normalize, relative } from 'node:path';
 
 import { uniqueSortedStrings } from '@ankhorage/utility/array';
+import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisExport } from './types.js';
@@ -35,7 +36,7 @@ export function analyzeExports(
   let config: AnalyzeExportsResult['config'] = null;
 
   for (const sourceFile of getEntryPointSourceFiles(project, options)) {
-    const entrypointPath = toPosixPath(relative(options.root, sourceFile.getFilePath()));
+    const entrypointPath = toPortablePath(relative(options.root, sourceFile.getFilePath()));
     const exported = sourceFile.getExportSymbols();
 
     for (const symbol of exported) {
@@ -149,13 +150,6 @@ function inferKind(node: Node): AnalysisExport['kind'] {
   if ('getProperties' in node || 'getMembers' in node) return 'type';
   if (Node.isVariableDeclaration(node)) return 'value';
   return 'unknown';
-}
-
-/***
- * Normalizes platform-specific path separators for generated documentation output.
- */
-function toPosixPath(path: string): string {
-  return path.replaceAll('\\', '/');
 }
 
 /***
