@@ -1,6 +1,7 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { describe, expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
@@ -33,6 +34,9 @@ describe('canonical README usage', () => {
       expect(analysis.exampleCount).toBe(2);
       expect(analysis.usageEntries).toHaveLength(4);
 
+      expect(DOCUMENTATION_POLICY.readmeUsage.chapterCount).toBe(1);
+      expect(DOCUMENTATION_POLICY.readmeUsage.sectionOrder).toEqual(['cli', 'programmatic']);
+
       const usageStart = output.readme.indexOf('## Usage');
       const cliStart = output.readme.indexOf('### CLI');
       const exampleStart = output.readme.indexOf('### Basic Usage');
@@ -46,11 +50,13 @@ describe('canonical README usage', () => {
       expect(output.readme).toContain(
         'This package contains 1 additional example. See the generated documentation for the complete set.',
       );
+      expect(DOCUMENTATION_POLICY.readmeUsage.sourceCode.includeSourcePath).toBe(false);
       expect(output.readme).not.toContain('Source: `examples/basic-usage/index.ts`');
       expect(output.readme).not.toContain('advancedUsage');
       expect(output.readme).not.toContain('/***');
       expect(output.readme).not.toContain('@usage');
 
+      expect(DOCUMENTATION_POLICY.readmeUsage.fullDocumentation.includeAllUsageEntries).toBe(true);
       expect(output.indexHtml).toContain('Advanced Usage');
       expect(output.indexHtml).toContain('Second Advanced Usage');
       expect(output.indexHtml).toContain('examples/advanced/index.ts');
