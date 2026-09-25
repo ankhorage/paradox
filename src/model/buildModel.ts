@@ -43,6 +43,7 @@ interface BuildModelInput {
   }[];
   exports: {
     name: string;
+    title: string | null;
     description: string | null;
     isReadme: boolean;
     examples: ExampleInput[];
@@ -108,31 +109,33 @@ interface BuildModelInput {
   }[];
   usage: {
     packageName: string;
-    commands: {
-      name: string;
-      command: string;
-    }[];
-  } | null;
-  readmeUsageDescription: string | null;
-  readmeUsage: {
+    command: string;
+  };
+  usageEntries: {
+    area: 'cli' | 'examples';
     title: string | null;
     description: string | null;
     language: string;
     code: string;
     sourcePath: string;
+    isReadme: boolean;
   }[];
-  readmeCli: {
-    description: string | null;
-    sourcePath: string;
-  } | null;
+  findings: {
+    ruleId: string;
+    severity: 'warning' | 'error';
+    message: string;
+    sourcePath: string | null;
+    line: number | null;
+  }[];
   readmeConfig: {
-    description: string | null;
     language: string;
     code: string;
     sourcePath: string;
   } | null;
   config: {
     exportName: string;
+    title: string | null;
+    description: string | null;
     isReadme: boolean;
     members: ConfigMemberInput[];
   } | null;
@@ -191,48 +194,28 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
       value: badge.value,
       color: badge.color,
     })),
-    usage:
-      analysis.usage !== null
-        ? {
-            packageName: analysis.usage.packageName,
-            commands: sortByName(
-              analysis.usage.commands.map((command) => ({
-                name: command.name,
-                command: command.command,
-              })),
-            ),
-          }
-        : null,
-    readmeUsageDescription: analysis.readmeUsageDescription,
-    readmeUsage: analysis.readmeUsage
-      .map((usageEntry) => ({
-        title: usageEntry.title,
-        description: usageEntry.description,
-        language: usageEntry.language,
-        code: usageEntry.code,
-        sourcePath: usageEntry.sourcePath,
-      }))
+    usage: {
+      packageName: analysis.usage.packageName,
+      command: analysis.usage.command,
+    },
+    usageEntries: analysis.usageEntries
+      .map((entry) => ({ ...entry }))
       .sort((left, right) => left.sourcePath.localeCompare(right.sourcePath)),
-    readmeCli:
-      analysis.readmeCli !== null
-        ? {
-            description: analysis.readmeCli.description,
-            sourcePath: analysis.readmeCli.sourcePath,
-          }
-        : null,
+    findings: analysis.findings.map((finding) => ({ ...finding })),
     readmeConfig:
-      analysis.readmeConfig !== null
-        ? {
-            description: analysis.readmeConfig.description,
+      analysis.readmeConfig === null
+        ? null
+        : {
             language: analysis.readmeConfig.language,
             code: analysis.readmeConfig.code,
             sourcePath: analysis.readmeConfig.sourcePath,
-          }
-        : null,
+          },
     config:
       analysis.config !== null
         ? {
             exportName: analysis.config.exportName,
+            title: analysis.config.title,
+            description: analysis.config.description,
             isReadme: analysis.config.isReadme,
             members: analysis.config.members,
           }
@@ -289,6 +272,7 @@ function mapExport(
 ): ExportModel {
   return {
     name: item.name,
+    title: item.title,
     description: item.description,
     isReadme: item.isReadme,
     examples: item.examples.map((example) => ({ ...example })),
