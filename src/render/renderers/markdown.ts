@@ -168,10 +168,7 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
  */
 function renderReferences(lines: string[], metadata: ReferenceMetadata): void {
   if (metadata.see.length > 0) {
-    lines.push(
-      `See also: ${metadata.see.map((url) => `[${url}](${url})`).join(', ')}`,
-      '',
-    );
+    lines.push(`See also: ${metadata.see.map((url) => `[${url}](${url})`).join(', ')}`, '');
   }
   if (metadata.security.length > 0) {
     lines.push(
@@ -247,9 +244,7 @@ function renderComponentAccordion(
       lines.push(
         `| ${escapeTableCell(prop.name)} | \`${escapeTableCell(prop.type)}\` | ${
           prop.required ? 'yes' : 'no'
-        } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(
-          prop.description ?? '',
-        )} |`,
+        } | ${renderDefault(prop.defaultValue)} | ${escapeTableCell(prop.description ?? '')} |`,
       );
     }
     lines.push('', '</details>', '');
@@ -370,7 +365,9 @@ function getReadmeGroups(model: DocumentationModel): ReadmeGroup[] {
 
   return CATEGORY_ORDER.flatMap((title) => {
     const items = groups.get(title);
-    return items === undefined || items.length === 0 ? [] : [{ title, items: sortReadmeItems(items) }];
+    return items === undefined || items.length === 0
+      ? []
+      : [{ title, items: sortReadmeItems(items) }];
   });
 }
 
