@@ -6,10 +6,11 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_analyze_ts
   module_src_analyze_analyze_ts --> module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --> module_src_analyze_components_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_analyze_ts --> module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
   module_src_analyze_analyze_ts --> module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --> module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --> module_src_analyze_project_ts
-  module_src_analyze_analyze_ts --> module_src_analyze_readmeCli_ts
   module_src_analyze_analyze_ts --> module_src_analyze_readmeConfig_ts
   module_src_analyze_analyze_ts --> module_src_analyze_readmeUsage_ts
   module_src_analyze_analyze_ts --> module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -19,9 +20,9 @@ graph TD
   module_src_analyze_analyze_ts --> module_src_analyze_sourceFunctions_ts
   module_src_analyze_analyze_ts --> module_src_analyze_types_ts
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
-  module_src_analyze_analyze_ts --> module_src_config_types_ts
   module_src_analyze_analyze_ts --> module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --> module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --> module_src_types_config_ts
   module_src_analyze_badges_ts["src/analyze/badges.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_badges_ts
   module_src_analyze_badges_ts --> module_src_analyze_types_ts
@@ -34,6 +35,25 @@ graph TD
   module_src_analyze_components_ts --> module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --> module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_components_ts --> module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_documentation_collectDocumentationCommentsAsync_ts["src/analyze/documentation/collectDocumentationCommentsAsync.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_collectDocumentationCommentsAsync_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_documentation_findings_ts["src/analyze/documentation/findings.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_documentation_findings_ts
+  module_src_analyze_documentation_findings_ts --> module_src_analyze_types_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts["src/analyze/documentation/validateDocumentationPolicyAsync.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_documentation_findings_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_documentation_validateReferencesAsync_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_types_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_documentation_validateReferencesAsync_ts["src/analyze/documentation/validateReferencesAsync.ts"]
+  package__ankhorage_paradox -.-> module_src_analyze_documentation_validateReferencesAsync_ts
+  module_src_analyze_documentation_validateReferencesAsync_ts --> module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_validateReferencesAsync_ts --> module_src_analyze_documentation_findings_ts
+  module_src_analyze_documentation_validateReferencesAsync_ts --> module_src_analyze_types_ts
   module_src_analyze_exports_ts["src/analyze/exports.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_exports_ts
   module_src_analyze_exports_ts --> module_src_analyze_types_ts
@@ -46,14 +66,12 @@ graph TD
   module_src_analyze_modules_ts --> module_src_analyze_types_ts
   module_src_analyze_project_ts["src/analyze/project.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_project_ts
-  module_src_analyze_readmeCli_ts["src/analyze/readmeCli.ts"]
-  package__ankhorage_paradox -.-> module_src_analyze_readmeCli_ts
-  module_src_analyze_readmeCli_ts --> module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeConfig_ts["src/analyze/readmeConfig.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_readmeConfig_ts
-  module_src_analyze_readmeConfig_ts --> module_src_analyze_utils_getLeadingParadoxComment_ts
   module_src_analyze_readmeUsage_ts["src/analyze/readmeUsage.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_readmeUsage_ts
+  module_src_analyze_readmeUsage_ts --> module_src_analyze_types_ts
+  module_src_analyze_readmeUsage_ts --> module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_readmeUsage_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_semantic_analyzeProject_ts["src/analyze/semantic/analyzeProject.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_semantic_analyzeProject_ts
@@ -128,9 +146,6 @@ graph TD
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --> module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_utils_getLeadingParadoxComment_ts["src/analyze/utils/getLeadingParadoxComment.ts"]
-  package__ankhorage_paradox -.-> module_src_analyze_utils_getLeadingParadoxComment_ts
-  module_src_analyze_utils_getLeadingParadoxComment_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getParadoxComment_ts["src/analyze/utils/getParadoxComment.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts["src/analyze/utils/getPropsFromType.ts"]
@@ -145,6 +160,7 @@ graph TD
   package__ankhorage_paradox -.-> module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_parseParadoxComment_ts["src/analyze/utils/parseParadoxComment.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_parseParadoxComment_ts --> module_src_doc_tags_registry_ts
   module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_resolveExportSymbol_ts
   module_src_cli_index_ts["src/cli/index.ts"]
@@ -158,9 +174,7 @@ graph TD
   module_src_cli_standalone_ts --> module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts["src/config/defineParadoxConfig.ts"]
   package__ankhorage_paradox -.-> module_src_config_defineParadoxConfig_ts
-  module_src_config_defineParadoxConfig_ts --> module_src_config_types_ts
-  module_src_config_types_ts["src/config/types.ts"]
-  package__ankhorage_paradox -.-> module_src_config_types_ts
+  module_src_config_defineParadoxConfig_ts --> module_src_types_config_ts
   module_src_config_utils_validateCollaborators_ts["src/config/utils/validateCollaborators.ts"]
   package__ankhorage_paradox -.-> module_src_config_utils_validateCollaborators_ts
   module_src_config_utils_validateDonationAccount_ts["src/config/utils/validateDonationAccount.ts"]
@@ -188,7 +202,7 @@ graph TD
   package__ankhorage_paradox -.-> module_src_packageMetadata_ts
   module_src_paths_policy_ts["src/paths/policy.ts"]
   package__ankhorage_paradox -.-> module_src_paths_policy_ts
-  module_src_paths_policy_ts --> module_src_config_types_ts
+  module_src_paths_policy_ts --> module_src_types_config_ts
   module_src_render_render_ts["src/render/render.ts"]
   package__ankhorage_paradox -.-> module_src_render_render_ts
   module_src_render_render_ts --> module_src_model_types_ts
@@ -210,6 +224,7 @@ graph TD
   module_src_render_renderers_diagrams_ts["src/render/renderers/diagrams.ts"]
   package__ankhorage_paradox -.-> module_src_render_renderers_diagrams_ts
   module_src_render_renderers_diagrams_ts --> module_src_model_types_ts
+  module_src_render_renderers_diagrams_ts --> module_src_render_toFileStem_ts
   module_src_render_renderers_diagrams_ts --> module_src_render_types_ts
   module_src_render_renderers_donation_ts["src/render/renderers/donation.ts"]
   package__ankhorage_paradox -.-> module_src_render_renderers_donation_ts
@@ -225,16 +240,20 @@ graph TD
   package__ankhorage_paradox -.-> module_src_render_renderers_markdown_ts
   module_src_render_renderers_markdown_ts --> module_src_model_types_ts
   module_src_render_renderers_markdown_ts --> module_src_render_types_ts
+  module_src_render_toFileStem_ts["src/render/toFileStem.ts"]
+  package__ankhorage_paradox -.-> module_src_render_toFileStem_ts
   module_src_render_types_ts["src/render/types.ts"]
   package__ankhorage_paradox -.-> module_src_render_types_ts
   module_src_render_types_ts --> module_src_model_types_ts
+  module_src_types_config_ts["src/types/config.ts"]
+  package__ankhorage_paradox -.-> module_src_types_config_ts
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts["src/write/utils/syncCollaboratorsWorkflowAsync.ts"]
   package__ankhorage_paradox -.-> module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_utils_syncFundingFileAsync_ts["src/write/utils/syncFundingFileAsync.ts"]
   package__ankhorage_paradox -.-> module_src_write_utils_syncFundingFileAsync_ts
   module_src_write_write_ts["src/write/write.ts"]
   package__ankhorage_paradox -.-> module_src_write_write_ts
-  module_src_write_write_ts --> module_src_config_types_ts
   module_src_write_write_ts --> module_src_render_types_ts
+  module_src_write_write_ts --> module_src_types_config_ts
   module_src_write_write_ts --> module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --> module_src_write_utils_syncFundingFileAsync_ts
