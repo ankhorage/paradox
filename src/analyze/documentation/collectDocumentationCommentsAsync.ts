@@ -26,7 +26,9 @@ export async function collectDocumentationCommentsAsync(
   ).flat();
   const rootFiles = await collectRootSourceFilesAsync(root);
   const files = [...new Set([...nestedFiles, ...rootFiles])].sort((a, b) => a.localeCompare(b));
-  const comments = await Promise.all(files.map((filePath) => collectFileCommentsAsync(root, filePath)));
+  const comments = await Promise.all(
+    files.map((filePath) => collectFileCommentsAsync(root, filePath)),
+  );
   return comments.flat();
 }
 
@@ -58,9 +60,7 @@ async function collectSourceFilesAsync(root: string): Promise<string[]> {
 async function collectRootSourceFilesAsync(root: string): Promise<string[]> {
   const entries = await readdir(root, { withFileTypes: true });
   return entries.flatMap((entry) =>
-    entry.isFile() && SOURCE_EXTENSIONS.has(extname(entry.name))
-      ? [join(root, entry.name)]
-      : [],
+    entry.isFile() && SOURCE_EXTENSIONS.has(extname(entry.name)) ? [join(root, entry.name)] : [],
   );
 }
 
@@ -75,7 +75,7 @@ async function collectFileCommentsAsync(
   const sourcePath = toPosixPath(relative(root, filePath));
 
   return [...source.matchAll(COMMENT_PATTERN)].map((match) => {
-    const raw = match[0] ?? '';
+    const raw = match[0];
     return {
       sourcePath,
       line: source.slice(0, match.index).split('\n').length,
