@@ -1,12 +1,15 @@
 import { access } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 
+import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { validatePublicHttpsUrlAsync } from '@ankhorage/utility/node/http';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding } from '../types.js';
 import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
 import { createDocumentationFinding } from './findings.js';
+
+type SeeUrlValidator = (url: string) => Promise<unknown>;
 
 /***
  * Validates external and executable references carried by documentation comments.
@@ -15,10 +18,12 @@ export async function validateReferencesAsync(
   root: string,
   project: Project,
   comments: readonly CollectedDocumentationComment[],
+  options: { validateSeeUrlAsync?: SeeUrlValidator } = {},
 ): Promise<AnalysisDocumentationFinding[]> {
+  const validateSeeUrlAsync = options.validateSeeUrlAsync ?? validatePublicHttpsUrlAsync;
   const findings = await Promise.all(
     comments.map(async (comment) => [
-      ...(await validateSeeReferencesAsync(comment)),
+      ...(await validateSeeReferencesAsync(comment, validateSeeUrlAsync)),
       ...(await validateSecurityReferencesAsync(root, project, comment)),
     ]),
   );
@@ -26,20 +31,28 @@ export async function validateReferencesAsync(
 }
 
 /***
- * Validates every @see value through the canonical hardened public HTTPS utility.
+ * Validates every @see value through syntax policy and the hardened public HTTPS utility.
  */
 async function validateSeeReferencesAsync(
   comment: CollectedDocumentationComment,
+  validateSeeUrlAsync: SeeUrlValidator,
 ): Promise<AnalysisDocumentationFinding[]> {
   const seeTags = comment.parsed.tags.filter((tag) => tag.name === 'see');
   const findings = await Promise.all(
     seeTags.map(async (tag): Promise<AnalysisDocumentationFinding[]> => {
-      if (tag.value === null) {
-        return [referenceFinding('documentation.see.value', '@see requires a URL.', comment)];
+      const url = parseSeeUrl(tag.value);
+      if (url === null) {
+        return [
+          referenceFinding(
+            'documentation.see.value',
+            '@see requires a public HTTPS URL without credentials.',
+            comment,
+          ),
+        ];
       }
 
       try {
-        await validatePublicHttpsUrlAsync(tag.value);
+        await validateSeeUrlAsync(url);
         return [];
       } catch (error) {
         return [
@@ -53,6 +66,22 @@ async function validateSeeReferencesAsync(
     }),
   );
   return findings.flat();
+}
+
+/***
+ * Parses one @see value according to the policy-owned URL syntax contract.
+ */
+function parseSeeUrl(value: string | null): string | null {
+  if (value === null) return null;
+
+  try {
+    const url = new URL(value);
+    if (url.protocol !== DOCUMENTATION_POLICY.see.protocol) return null;
+    if (url.username || url.password || url.hostname.length === 0) return null;
+    return url.toString();
+  } catch {
+    return null;
+  }
 }
 
 /***
@@ -91,7 +120,9 @@ async function validateSecurityReferenceAsync(
   }
 
   const sourceFile = project.getSourceFile(testPath) ?? project.addSourceFileAtPath(testPath);
-  const matches = sourceFile.getDescendants().filter((node) => isNamedTestCall(node, reference.testName));
+  const matches = sourceFile
+    .getDescendants()
+    .filter((node) => isNamedTestCall(node, reference.testName));
   return matches.length === 1
     ? []
     : [
