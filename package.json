@@ -64,10 +64,11 @@
     "lint": "ankhorage-eslint . --max-warnings=0",
     "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
     "prepack": "bun run build",
-    "test": "bun test",
+    "test": "bun test --path-ignore-patterns '**/*.e2e.test.ts'",
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "ankhorage-changeset version",
-    "knip:check": "ankhorage-knip"
+    "knip:check": "ankhorage-knip",
+    "test:standalone": "bun test tests/cli.e2e.test.ts"
   },
   "dependencies": {
     "ts-morph": "^28.0.0"
