@@ -14,7 +14,7 @@ import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
 import { analyzeReadmeConfig } from './readmeConfig.js';
-import { analyzeReadmeUsage } from './readmeUsage.js';
+import { analyzeReadmeUsage, countExampleDirectoriesAsync } from './readmeUsage.js';
 import { createTypeScriptProgram } from './semantic/createTypeScriptProgram.js';
 import { collectTypeMembers, resolveTypeReference } from './semantic/exports.js';
 import {
@@ -51,6 +51,7 @@ export async function analyze(
   const sourceFunctions = analyzeSourceFunctions(project, root);
   const sequenceScenarios = analyzeSequenceScenarios({ project, root, pkg, exports });
   const usageEntries = await analyzeReadmeUsage({ root });
+  const exampleCount = await countExampleDirectoriesAsync(root);
   const comments = await collectDocumentationCommentsAsync(root);
   const readmeConfig = await analyzeReadmeConfig({
     root,
@@ -93,6 +94,7 @@ export async function analyze(
     sequenceScenarios,
     usage,
     usageEntries,
+    exampleCount,
     findings,
     readmeConfig,
     config:
@@ -103,6 +105,8 @@ export async function analyze(
             title: configMetadata.title,
             description: configMetadata.description,
             isReadme: configMetadata.isReadme,
+            see: configMetadata.see,
+            security: configMetadata.security,
             members: mapTypeMembers(configMembers),
           },
     graphs,
@@ -120,6 +124,8 @@ function collectConfigMembers(
     title: string | null;
     description: string | null;
     isReadme: boolean;
+    see: string[];
+    security: string[];
   } | null,
 ): ReturnType<typeof collectTypeMembers> {
   if (configMetadata === null) return [];
