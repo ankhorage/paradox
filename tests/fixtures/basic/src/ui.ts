@@ -8,14 +8,10 @@ declare namespace JSX {
  * Props accepted by the fixture button.
  */
 export interface ButtonProps {
-  /***
-   * Visible button label.
-   */
+  /*** Visible button label. */
   label: string;
 
-  /***
-   * Optional disabled state.
-   */
+  /*** Optional disabled state. */
   disabled?: boolean;
 }
 
@@ -23,12 +19,6 @@ export interface ButtonProps {
  * Renders the fixture button component.
  *
  * @readme
- * @example Basic button
- * ```tsx
- * <Button label="Save" />
- * ```
- * @param props Props that configure the rendered button state.
- * @returns The rendered JSX element descriptor.
  */
 export function Button(props: ButtonProps): JSX.Element {
   return {
@@ -38,10 +28,6 @@ export function Button(props: ButtonProps): JSX.Element {
 
 /***
  * Builds button props from raw inputs.
- *
- * @param label Visible button label.
- * @param disabled Whether the button should be disabled.
- * @returns A normalized button props object.
  */
 export function createButtonState(label: string): ButtonProps;
 export function createButtonState(label: string, disabled: boolean): ButtonProps;

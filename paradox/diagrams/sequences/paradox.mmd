@@ -1,5 +1,6 @@
 sequenceDiagram
   participant participant_analyze as analyze
+  participant participant_assertNoDocumentationErrors as assertNoDocumentationErrors
   participant participant_buildModel as buildModel
   participant participant_dirname as dirname
   participant participant_findParadoxConfigFile as findParadoxConfigFile
@@ -21,6 +22,8 @@ sequenceDiagram
   participant_resolveOutputRoot-->>participant_main: return
   participant_main->>participant_analyze: analyze()
   participant_analyze-->>participant_main: return
+  participant_main->>participant_assertNoDocumentationErrors: assertNoDocumentationErrors()
+  participant_assertNoDocumentationErrors-->>participant_main: return
   participant_main->>participant_buildModel: buildModel()
   participant_buildModel-->>participant_main: return
   participant_main->>participant_render: render()

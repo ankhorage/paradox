@@ -3,66 +3,44 @@
 
 # @ankhorage/paradox
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.1.25](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.1.27](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
 
 Deterministic documentation generator for TypeScript packages.
 
-## CLI
+## Usage
 
-Generates deterministic documentation for a package through the Paradox CLI.
+### CLI
 
-```bash
-bunx @ankhorage/paradox
+Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
+
+```zsh
+# Install the Ankhorage CLI
+bun add --global @ankhorage/ankh
+
+# Show usage information for paradox
+ankh paradox --help
 ```
 
-<details>
-<summary>paradox</summary>
+### Basic Usage
 
-Runs the Paradox CLI.
+Paradox generates documentation from the canonical package structure. Usage documentation lives
+only below `examples/**` or `src/cli/**`. A repository may contain multiple `@usage`
+examples, but exactly one example below `examples/**` is promoted into README with `@readme`.
 
-The command discovers the nearest Paradox config, resolves the package and output roots,
-analyzes the package, builds the documentation model, renders all documentation artifacts,
-and writes them to the configured output directory.
+README-promoted usage provides an explicit `@title` and non-empty prose. Code always comes from
+real source declarations rather than duplicated code blocks inside Paradox comments.
 
-Diagram: [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
-
-```mermaid
-sequenceDiagram
-  participant participant_analyze as analyze
-  participant participant_buildModel as buildModel
-  participant participant_dirname as dirname
-  participant participant_findParadoxConfigFile as findParadoxConfigFile
-  participant participant_loadParadoxConfig as loadParadoxConfig
-  participant participant_main as main
-  participant participant_render as render
-  participant participant_resolveOutputRoot as resolveOutputRoot
-  participant participant_resolvePackageRoot as resolvePackageRoot
-  participant participant_write as write
-  participant_main->>participant_findParadoxConfigFile: findParadoxConfigFile()
-  participant_findParadoxConfigFile-->>participant_main: return
-  participant_main->>participant_dirname: dirname()
-  participant_dirname-->>participant_main: return
-  participant_main->>participant_loadParadoxConfig: loadParadoxConfig()
-  participant_loadParadoxConfig-->>participant_main: return
-  participant_main->>participant_resolvePackageRoot: resolvePackageRoot()
-  participant_resolvePackageRoot-->>participant_main: return
-  participant_main->>participant_resolveOutputRoot: resolveOutputRoot()
-  participant_resolveOutputRoot-->>participant_main: return
-  participant_main->>participant_analyze: analyze()
-  participant_analyze-->>participant_main: return
-  participant_main->>participant_buildModel: buildModel()
-  participant_buildModel-->>participant_main: return
-  participant_main->>participant_render: render()
-  participant_render-->>participant_main: return
-  participant_main->>participant_write: write()
-  participant_write-->>participant_main: return
+```ts
+export const basicConfig = defineParadoxConfig({
+  mode: 'safe',
+});
 ```
-
-</details>
 
 ## Configuration
 
-Canonical Paradox configuration for this package.
+Configures Paradox documentation generation for a package.
+
+### Example
 
 ```ts
 import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';
@@ -89,14 +67,14 @@ export default defineParadoxConfig({
 <details>
 <summary>Configuration options</summary>
 
-| Field         | Type                                                                                                                | Required | Default | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ----------- |
-| mode          | `'safe' \| 'write' \| undefined`                                                                                    | no       | —       |             |
-| collaborators | `true \| undefined`                                                                                                 | no       | —       |             |
-| donation      | `{ account: string; } \| undefined`                                                                                 | no       | —       |             |
-| docs          | `{ title?: string; description?: string; usage?: { description?: string; entrypoints?: string[]; }; } \| undefined` | no       | —       |             |
-| package       | `{ root?: string; entrypoints?: string[]; } \| undefined`                                                           | no       | —       |             |
-| output        | `{ dir?: string; } \| undefined`                                                                                    | no       | —       |             |
+| Field         | Type                                                      | Required | Default | Description |
+| ------------- | --------------------------------------------------------- | -------- | ------- | ----------- |
+| mode          | `'safe' \| 'write' \| undefined`                          | no       | —       |             |
+| collaborators | `true \| undefined`                                       | no       | —       |             |
+| donation      | `{ account: string; } \| undefined`                       | no       | —       |             |
+| docs          | `{ title?: string; description?: string; } \| undefined`  | no       | —       |             |
+| package       | `{ root?: string; entrypoints?: string[]; } \| undefined` | no       | —       |             |
+| output        | `{ dir?: string; } \| undefined`                          | no       | —       |             |
 
 </details>
 
@@ -130,13 +108,27 @@ Related symbols: `ParadoxConfig`
 
 </details>
 
+### Documentation
+
 <details>
-<summary>ParadoxConfig</summary>
+<summary>PARADOX_DOC_TAGS</summary>
 
-Configuration for running Paradox.
+Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.
 
-Module: `src/config/types.ts`
-Source: `src/config/types.ts:7:1`
+Module: `src/doc-tags/registry.ts`
+Source: `src/doc-tags/registry.ts:32:14`
+
+</details>
+
+### Types
+
+<details>
+<summary>Configuration</summary>
+
+Configures Paradox documentation generation for a package.
+
+Module: `src/types/config.ts`
+Source: `src/types/config.ts:9:1`
 
 </details>
 

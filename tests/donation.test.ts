@@ -4,9 +4,9 @@ import { join } from 'node:path';
 import { expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
-import type { ParadoxConfig } from '../src/config/types.js';
 import { buildModel } from '../src/model/buildModel.js';
 import { render } from '../src/render/render.js';
+import type { ParadoxConfig } from '../src/types/config.js';
 import { write } from '../src/write/write.js';
 
 test('keeps donation support disabled when config is undefined', async () => {

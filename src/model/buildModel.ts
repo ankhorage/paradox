@@ -1,11 +1,5 @@
 import type { ComponentModel, DocumentationModel, ExportKind, ExportModel } from './types.js';
 
-interface ExampleInput {
-  title: string | null;
-  language: string | null;
-  code: string;
-}
-
 interface ExportMemberInput {
   name: string;
   kind: 'property' | 'method';
@@ -32,27 +26,18 @@ interface BuildModelInput {
   packageId: string;
   description: string | null;
   collaborators: true | null;
-  donation: {
-    account: string;
-  } | null;
-  badges: {
-    id: string;
-    label: string;
-    value: string;
-    color: string;
-  }[];
+  donation: { account: string } | null;
+  badges: { id: string; label: string; value: string; color: string }[];
   exports: {
     name: string;
+    title: string | null;
     description: string | null;
     isReadme: boolean;
-    examples: ExampleInput[];
+    see: string[];
+    security: string[];
     kind: ExportKind;
     modulePath: string;
-    sourceLocation: {
-      filePath: string;
-      line: number;
-      column: number;
-    };
+    sourceLocation: { filePath: string; line: number; column: number };
     exportPaths: string[];
     relatedSymbols: string[];
     signatures: {
@@ -73,13 +58,10 @@ interface BuildModelInput {
     name: string;
     description: string | null;
     isReadme: boolean;
-    examples: ExampleInput[];
+    see: string[];
+    security: string[];
     modulePath: string;
-    sourceLocation: {
-      filePath: string;
-      line: number;
-      column: number;
-    };
+    sourceLocation: { filePath: string; line: number; column: number };
     exportPaths: string[];
     props: {
       name: string;
@@ -92,11 +74,9 @@ interface BuildModelInput {
   sourceFunctions: {
     name: string;
     description: string | null;
-    sourceLocation: {
-      filePath: string;
-      line: number;
-      column: number;
-    };
+    see: string[];
+    security: string[];
+    sourceLocation: { filePath: string; line: number; column: number };
   }[];
   sequenceScenarios: {
     kind: 'bin' | 'export';
@@ -106,34 +86,34 @@ interface BuildModelInput {
     description: string | null;
     isReadme: boolean;
   }[];
-  usage: {
-    packageName: string;
-    commands: {
-      name: string;
-      command: string;
-    }[];
-  } | null;
-  readmeUsageDescription: string | null;
-  readmeUsage: {
+  usage: { packageName: string; command: string };
+  usageEntries: {
+    area: 'cli' | 'examples';
     title: string | null;
     description: string | null;
     language: string;
     code: string;
     sourcePath: string;
+    isReadme: boolean;
+    see: string[];
+    security: string[];
   }[];
-  readmeCli: {
-    description: string | null;
-    sourcePath: string;
-  } | null;
-  readmeConfig: {
-    description: string | null;
-    language: string;
-    code: string;
-    sourcePath: string;
-  } | null;
+  exampleCount: number;
+  findings: {
+    ruleId: string;
+    severity: 'warning' | 'error';
+    message: string;
+    sourcePath: string | null;
+    line: number | null;
+  }[];
+  readmeConfig: { language: string; code: string; sourcePath: string } | null;
   config: {
     exportName: string;
+    title: string | null;
+    description: string | null;
     isReadme: boolean;
+    see: string[];
+    security: string[];
     members: ConfigMemberInput[];
   } | null;
   entrypoints: string[];
@@ -144,22 +124,9 @@ interface BuildModelInput {
     exports: string[];
   }[];
   graphs: {
-    imports: {
-      fromPath: string;
-      toPath: string;
-      sourcePath: string;
-    }[];
-    calls: {
-      fromSymbol: string;
-      toSymbol: string;
-      callExpression: string;
-      sourcePath: string;
-    }[];
-    typeReferences: {
-      fromSymbol: string;
-      toType: string;
-      sourcePath: string;
-    }[];
+    imports: { fromPath: string; toPath: string; sourcePath: string }[];
+    calls: { fromSymbol: string; toSymbol: string; callExpression: string; sourcePath: string }[];
+    typeReferences: { fromSymbol: string; toType: string; sourcePath: string }[];
     componentComposition: {
       fromComponent: string;
       toComponent: string;
@@ -177,7 +144,6 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
   const exportsByName = new Map(
     analysis.exports.map((item) => [item.name, mapExport(item, exportNames)]),
   );
-  const exports = sortByName([...exportsByName.values()]);
 
   return {
     packageName: analysis.packageName,
@@ -185,92 +151,44 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
     description: analysis.description,
     collaborators: analysis.collaborators,
     donation: analysis.donation === null ? null : { account: analysis.donation.account },
-    badges: analysis.badges.map((badge) => ({
-      id: badge.id,
-      label: badge.label,
-      value: badge.value,
-      color: badge.color,
-    })),
-    usage:
-      analysis.usage !== null
-        ? {
-            packageName: analysis.usage.packageName,
-            commands: sortByName(
-              analysis.usage.commands.map((command) => ({
-                name: command.name,
-                command: command.command,
-              })),
-            ),
-          }
-        : null,
-    readmeUsageDescription: analysis.readmeUsageDescription,
-    readmeUsage: analysis.readmeUsage
-      .map((usageEntry) => ({
-        title: usageEntry.title,
-        description: usageEntry.description,
-        language: usageEntry.language,
-        code: usageEntry.code,
-        sourcePath: usageEntry.sourcePath,
-      }))
+    badges: analysis.badges.map((badge) => ({ ...badge })),
+    usage: { ...analysis.usage },
+    usageEntries: analysis.usageEntries
+      .map((entry) => ({ ...entry, see: [...entry.see], security: [...entry.security] }))
       .sort((left, right) => left.sourcePath.localeCompare(right.sourcePath)),
-    readmeCli:
-      analysis.readmeCli !== null
-        ? {
-            description: analysis.readmeCli.description,
-            sourcePath: analysis.readmeCli.sourcePath,
-          }
-        : null,
-    readmeConfig:
-      analysis.readmeConfig !== null
-        ? {
-            description: analysis.readmeConfig.description,
-            language: analysis.readmeConfig.language,
-            code: analysis.readmeConfig.code,
-            sourcePath: analysis.readmeConfig.sourcePath,
-          }
-        : null,
+    exampleCount: analysis.exampleCount,
+    findings: analysis.findings.map((finding) => ({ ...finding })),
+    readmeConfig: analysis.readmeConfig === null ? null : { ...analysis.readmeConfig },
     config:
-      analysis.config !== null
-        ? {
-            exportName: analysis.config.exportName,
-            isReadme: analysis.config.isReadme,
+      analysis.config === null
+        ? null
+        : {
+            ...analysis.config,
+            see: [...analysis.config.see],
+            security: [...analysis.config.security],
             members: analysis.config.members,
-          }
-        : null,
+          },
     entrypoints: [...analysis.entrypoints].sort((a, b) => a.localeCompare(b)),
     modules: [...analysis.modules]
       .map((module) => ({
-        path: module.path,
-        isEntrypoint: module.isEntrypoint,
+        ...module,
         dependencies: [...module.dependencies].sort((a, b) => a.localeCompare(b)),
         exports: [...module.exports].sort((a, b) => a.localeCompare(b)),
       }))
       .sort((left, right) => left.path.localeCompare(right.path)),
-    exports,
+    exports: sortByName([...exportsByName.values()]),
     components: sortByName(
       analysis.components.map((component) =>
         mapComponent(component, exportsByName.get(component.name)),
       ),
     ),
     sourceFunctions: analysis.sourceFunctions.map((sourceFunction) => ({
-      name: sourceFunction.name,
-      description: sourceFunction.description,
-      sourceLocation: {
-        filePath: sourceFunction.sourceLocation.filePath,
-        line: sourceFunction.sourceLocation.line,
-        column: sourceFunction.sourceLocation.column,
-      },
+      ...sourceFunction,
+      see: [...sourceFunction.see],
+      security: [...sourceFunction.security],
+      sourceLocation: { ...sourceFunction.sourceLocation },
     })),
-    sequenceScenarios: sortByName(
-      analysis.sequenceScenarios.map((scenario) => ({
-        kind: scenario.kind,
-        name: scenario.name,
-        sourcePath: scenario.sourcePath,
-        symbolName: scenario.symbolName,
-        description: scenario.description,
-        isReadme: scenario.isReadme,
-      })),
-    ),
+    sequenceScenarios: sortByName(analysis.sequenceScenarios.map((scenario) => ({ ...scenario }))),
     graphs: {
       imports: [...analysis.graphs.imports],
       calls: [...analysis.graphs.calls],
@@ -289,42 +207,25 @@ function mapExport(
 ): ExportModel {
   return {
     name: item.name,
+    title: item.title,
     description: item.description,
     isReadme: item.isReadme,
-    examples: item.examples.map((example) => ({ ...example })),
+    see: [...item.see],
+    security: [...item.security],
     kind: item.kind,
     modulePath: item.modulePath,
-    sourceLocation: {
-      filePath: item.sourceLocation.filePath,
-      line: item.sourceLocation.line,
-      column: item.sourceLocation.column,
-    },
+    sourceLocation: { ...item.sourceLocation },
     exportPaths: [...item.exportPaths].sort((a, b) => a.localeCompare(b)),
     relatedSymbols: item.relatedSymbols
       .filter((symbol) => exportNames.has(symbol))
       .sort((a, b) => a.localeCompare(b)),
     signatures: item.signatures.map((signature) => ({
-      label: signature.label,
-      parameters: sortByName(
-        signature.parameters.map((parameter) => ({
-          name: parameter.name,
-          type: parameter.type,
-          required: parameter.required,
-          description: parameter.description,
-        })),
-      ),
-      returnType: signature.returnType,
-      returnDescription: signature.returnDescription,
+      ...signature,
+      parameters: sortByName(signature.parameters.map((parameter) => ({ ...parameter }))),
     })),
     members: sortByName(
       item.members.map((member) => ({
-        name: member.name,
-        kind: member.kind,
-        type: member.type,
-        required: member.required,
-        description: member.description,
-        defaultValue: member.defaultValue,
-        inheritedFrom: member.inheritedFrom,
+        ...member,
         children: member.children,
       })),
     ),
@@ -343,29 +244,18 @@ function mapComponent(
     name: component.name,
     description: component.description,
     isReadme: component.isReadme,
-    examples: component.examples.map((example) => ({ ...example })),
+    see: [...component.see],
+    security: [...component.security],
     modulePath: component.modulePath,
-    sourceLocation: {
-      filePath: component.sourceLocation.filePath,
-      line: component.sourceLocation.line,
-      column: component.sourceLocation.column,
-    },
+    sourceLocation: { ...component.sourceLocation },
     exportPaths:
       exportModel?.exportPaths ?? [...component.exportPaths].sort((a, b) => a.localeCompare(b)),
-    props: sortByName(
-      component.props.map((prop) => ({
-        name: prop.name,
-        type: prop.type,
-        required: prop.required,
-        defaultValue: prop.defaultValue,
-        description: prop.description,
-      })),
-    ),
+    props: sortByName(component.props.map((prop) => ({ ...prop }))),
   };
 }
 
 /***
- * Returns a copy of items sorted by their `name` property.
+ * Returns a copy of items sorted by their name property.
  */
 function sortByName<T extends { name: string }>(items: readonly T[]): T[] {
   return [...items].sort((a, b) => a.name.localeCompare(b.name));
