@@ -53,9 +53,7 @@ describe('canonical README configuration', () => {
 
       expect(configuration).toContain('Controls canonical fixture behavior.');
       expect(configuration).toContain('### Example');
-      expect(configuration).toContain(
-        "import { defineFixtureConfig } from './src/index.js';",
-      );
+      expect(configuration).toContain("import { defineFixtureConfig } from './src/index.js';");
       expect(configuration).toContain("mode: 'write'");
       expect(configuration).toContain('<summary>Configuration options</summary>');
       expect(configuration).not.toContain('@config');
@@ -113,7 +111,7 @@ async function createConfigFixtureAsync(): Promise<{
       ' * @readme',
       ' */',
       'export interface FixtureConfig {',
-      "  /*** Write behavior. */",
+      '  /*** Write behavior. */',
       "  mode?: 'safe' | 'write';",
       '}',
       '',
