@@ -19,9 +19,6 @@ export interface ParsedParadoxComment {
   tags: ParsedParadoxTag[];
   unsupportedTags: string[];
   hasCodeBlock: boolean;
-  examples: [];
-  params: Record<string, never>;
-  returns: null;
 }
 
 /***
@@ -49,9 +46,6 @@ export function parseParadoxComment(rawComment: string): ParsedParadoxComment {
     tags,
     unsupportedTags,
     hasCodeBlock: hasCodeBlock(lines),
-    examples: [],
-    params: {},
-    returns: null,
   };
 }
 
