@@ -267,11 +267,15 @@ function renderHomeView(
  */
 function renderUsagePanel(model: DocumentationModel): string {
   return `<section class="panel" data-search="${escapeAttribute(
-    ['usage', model.usage.command, ...model.usageEntries.flatMap((entry) => [
-      entry.title ?? '',
-      entry.description ?? '',
-      entry.sourcePath,
-    ])].join(' '),
+    [
+      'usage',
+      model.usage.command,
+      ...model.usageEntries.flatMap((entry) => [
+        entry.title ?? '',
+        entry.description ?? '',
+        entry.sourcePath,
+      ]),
+    ].join(' '),
   )}">
     <h2>Usage</h2>
     <article class="item">
@@ -546,10 +550,7 @@ function renderReferenceMetadata(metadata: {
     metadata.see.length === 0
       ? ''
       : `<p><strong>See also:</strong> ${metadata.see
-          .map(
-            (url) =>
-              `<a href="${escapeAttribute(url)}" rel="noreferrer">${escapeHtml(url)}</a>`,
-          )
+          .map((url) => `<a href="${escapeAttribute(url)}" rel="noreferrer">${escapeHtml(url)}</a>`)
           .join(', ')}</p>`;
   const security =
     metadata.security.length === 0
