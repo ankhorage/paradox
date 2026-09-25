@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-import type { ParadoxConfig } from '../config/types.js';
+import type { ParadoxConfig } from '../types/config.js';
 import type { RenderResult } from '../render/types.js';
 import { syncCollaboratorsWorkflowAsync } from './utils/syncCollaboratorsWorkflowAsync.js';
 import { syncFundingFileAsync } from './utils/syncFundingFileAsync.js';
