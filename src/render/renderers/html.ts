@@ -5,7 +5,6 @@ type ExportEntry = DocumentationModel['exports'][number];
 type ComponentEntry = DocumentationModel['components'][number];
 type ModuleEntry = DocumentationModel['modules'][number];
 type SourceFunctionEntry = DocumentationModel['sourceFunctions'][number];
-type SequenceScenarioEntry = DocumentationModel['sequenceScenarios'][number];
 
 interface SourceArea {
   path: string;
@@ -20,7 +19,6 @@ export function renderHtml({
   model,
 }: RenderContext): Pick<RenderContext['result'], 'indexHtml'> {
   const sourceAreas = getSourceAreas(model);
-  const cliScenarios = getReadmeCliScenarios(model);
   const exportsByModule = groupBy(model.exports, (item) => item.modulePath);
 
   return {
@@ -158,7 +156,7 @@ export function renderHtml({
       </aside>
       <main class="content">
         <section id="view-home" class="view" data-view="home">
-          ${renderHomeView(model, diagrams, cliScenarios, exportsByModule)}
+          ${renderHomeView(model, diagrams, exportsByModule)}
         </section>
         ${sourceAreas.map(renderSourceAreaView).join('')}
       </main>
@@ -218,7 +216,6 @@ export function renderHtml({
 function renderHomeView(
   model: DocumentationModel,
   diagrams: readonly DiagramArtifact[],
-  cliScenarios: readonly SequenceScenarioEntry[],
   exportsByModule: ReadonlyMap<string, ExportEntry[]>,
 ): string {
   return `
@@ -235,7 +232,8 @@ function renderHomeView(
         ${model.entrypoints.map((entrypoint) => `<li><code>${escapeHtml(entrypoint)}</code></li>`).join('')}
       </ul>
     </section>
-    ${model.readmeCli !== null ? renderCliPanel(model, diagrams, cliScenarios) : ''}
+    ${renderUsagePanel(model)}
+    ${renderFindingsPanel(model)}
     <section class="panel">
       <h2>Modules</h2>
       ${model.modules.map(renderModuleCard).join('')}
@@ -263,38 +261,59 @@ function renderHomeView(
 }
 
 /***
- * Renders the Home CLI chapter for detected bin scenarios.
+ * Renders complete CLI and programmatic usage documentation.
  */
-function renderCliPanel(
-  model: DocumentationModel,
-  diagrams: readonly DiagramArtifact[],
-  scenarios: readonly SequenceScenarioEntry[],
-): string {
-  const commands = model.usage?.commands ?? [];
-  const searchText = [
-    'cli',
-    model.readmeCli?.description ?? '',
-    ...commands.map((command) => command.command),
-    ...scenarios.map((scenario) => scenario.name),
-  ].join(' ');
+function renderUsagePanel(model: DocumentationModel): string {
+  return `<section class="panel" data-search="${escapeAttribute(
+    ['usage', model.usage.command, ...model.usageEntries.flatMap((entry) => [
+      entry.title ?? '',
+      entry.description ?? '',
+      entry.sourcePath,
+    ])].join(' '),
+  )}">
+    <h2>Usage</h2>
+    <article class="item">
+      <h3>CLI</h3>
+      <pre>${escapeHtml(model.usage.command)}</pre>
+    </article>
+    ${model.usageEntries.map(renderUsageEntry).join('')}
+  </section>`;
+}
 
-  return `<section class="panel" data-search="${escapeAttribute(searchText)}">
-    <h2>CLI</h2>
-    ${model.readmeCli?.description === null || model.readmeCli?.description === undefined ? '' : `<p>${escapeHtml(model.readmeCli.description)}</p>`}
-    ${commands.length === 0 ? '' : `<pre>${escapeHtml(commands.map((command) => command.command).join('\n'))}</pre>`}
-    ${scenarios
-      .map((scenario) => {
-        const diagram = findScenarioDiagram(diagrams, scenario);
-        if (scenario.description === null && diagram === undefined) return '';
+/***
+ * Renders one source-backed usage entry in the complete documentation app.
+ */
+function renderUsageEntry(entry: DocumentationModel['usageEntries'][number]): string {
+  return `<article class="item" data-search="${escapeAttribute(
+    [entry.title ?? '', entry.description ?? '', entry.sourcePath].join(' '),
+  )}">
+    <h3>${escapeHtml(entry.title ?? 'Usage')}</h3>
+    <p class="muted"><code>${escapeHtml(entry.sourcePath)}</code></p>
+    ${entry.description === null ? '' : `<p>${escapeHtml(entry.description)}</p>`}
+    <pre>${escapeHtml(entry.code)}</pre>
+  </article>`;
+}
 
-        return `<article class="item" data-search="${escapeAttribute(
-          [scenario.name, scenario.description ?? ''].join(' '),
+/***
+ * Renders policy findings so complete docs expose the same evidence consumed by Doctor.
+ */
+function renderFindingsPanel(model: DocumentationModel): string {
+  if (model.findings.length === 0) {
+    return '<section class="panel"><h2>Policy</h2><p>No documentation findings.</p></section>';
+  }
+
+  return `<section class="panel">
+    <h2>Policy findings</h2>
+    ${model.findings
+      .map(
+        (finding) => `<article class="item" data-search="${escapeAttribute(
+          [finding.ruleId, finding.severity, finding.message, finding.sourcePath ?? ''].join(' '),
         )}">
-          <h3>${escapeHtml(scenario.name)}</h3>
-          ${scenario.description === null ? '' : `<p>${escapeHtml(scenario.description)}</p>`}
-          ${diagram === undefined ? '' : renderDiagramCard(diagram)}
-        </article>`;
-      })
+          <h3>${escapeHtml(finding.ruleId)}</h3>
+          <p><strong>${escapeHtml(finding.severity)}</strong> — ${escapeHtml(finding.message)}</p>
+          ${finding.sourcePath === null ? '' : `<p class="muted"><code>${escapeHtml(finding.sourcePath)}${finding.line === null ? '' : `:${finding.line}`}</code></p>`}
+        </article>`,
+      )
       .join('')}
   </section>`;
 }
@@ -347,28 +366,6 @@ function getSourceAreas(model: DocumentationModel): SourceArea[] {
   return [...groupBy(model.sourceFunctions, (item) => item.sourceLocation.filePath).entries()]
     .map(([path, functions]) => ({ path, functions }))
     .sort((left, right) => left.path.localeCompare(right.path));
-}
-
-/***
- * Selects bin scenarios that should be shown on the Home page.
- */
-function getReadmeCliScenarios(model: DocumentationModel): SequenceScenarioEntry[] {
-  if (model.readmeCli === null) return [];
-  return model.sequenceScenarios.filter((scenario) => scenario.kind === 'bin');
-}
-
-/***
- * Finds the generated Mermaid artifact for a sequence scenario.
-/***
- * Finds the generated Mermaid artifact for a sequence scenario.
- */
-function findScenarioDiagram(
-  diagrams: readonly DiagramArtifact[],
-  scenario: SequenceScenarioEntry,
-): DiagramArtifact | undefined {
-  return diagrams.find(
-    (diagram) => diagram.path === `diagrams/sequences/${toFileStem(scenario.name)}.mmd`,
-  );
 }
 
 /***
@@ -563,17 +560,6 @@ function toAnchorId(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
-}
-
-/***
- * Converts a scenario name to the generated Mermaid file stem.
- */
-function toFileStem(value: string): string {
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/[^A-Za-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .toLowerCase();
 }
 
 /***
