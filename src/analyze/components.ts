@@ -14,11 +14,11 @@ export function analyzeComponents(
 ): AnalysisComponent[] {
   const components: AnalysisComponent[] = [];
 
-  for (const e of exports) {
-    if (!isReactComponent(e.node)) continue;
+  for (const entry of exports) {
+    if (!isReactComponent(entry.node)) continue;
 
     const propsFromAnalyzer = options.program
-      ? collectPropsForExport(options.program, { name: e.name, node: e.node })
+      ? collectPropsForExport(options.program, { name: entry.name, node: entry.node })
       : undefined;
     const analyzerProps =
       propsFromAnalyzer?.members.map((member) => ({
@@ -28,18 +28,19 @@ export function analyzeComponents(
         ...(member.defaultValue !== undefined ? { defaultValue: member.defaultValue } : {}),
         description: member.description ?? null,
       })) ?? [];
-    const propsType = getComponentPropsType(e.node);
+    const propsType = getComponentPropsType(entry.node);
     const legacyProps = propsType != null ? getPropsFromType(propsType, options.program?.root) : [];
     const props = analyzerProps.length > 0 ? analyzerProps : legacyProps;
 
     components.push({
-      name: e.name,
-      description: e.description,
-      isReadme: e.isReadme,
-      examples: e.examples,
-      modulePath: e.modulePath,
-      sourceLocation: e.sourceLocation,
-      exportPaths: e.exportPaths,
+      name: entry.name,
+      description: entry.description,
+      isReadme: entry.isReadme,
+      see: entry.see,
+      security: entry.security,
+      modulePath: entry.modulePath,
+      sourceLocation: entry.sourceLocation,
+      exportPaths: entry.exportPaths,
       props,
     });
   }
