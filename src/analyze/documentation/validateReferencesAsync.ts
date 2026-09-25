@@ -159,7 +159,6 @@ function isNamedTestCall(node: Node, expectedName: string): boolean {
   const callee = node.getExpression().getText();
   if (callee !== 'test' && callee !== 'it') return false;
   const [name] = node.getArguments();
-  if (name === undefined) return false;
   if (!Node.isStringLiteral(name) && !Node.isNoSubstitutionTemplateLiteral(name)) return false;
   return name.getLiteralText() === expectedName;
 }
