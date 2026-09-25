@@ -94,7 +94,8 @@ describe('cli e2e', () => {
         join(pkgRoot, 'tsconfig.json'),
         JSON.stringify({ compilerOptions: { target: 'ES2022', module: 'ESNext' } }, null, 2),
       );
-      await mkdir(join(pkgRoot, 'src'), { recursive: true });
+      await mkdir(join(pkgRoot, 'src', 'types'), { recursive: true });
+  await mkdir(join(pkgRoot, 'examples', 'basic-usage'), { recursive: true });
       await writeFile(join(pkgRoot, 'src', 'index.ts'), 'export const value = 1;\n');
 
       const before = await listFiles(tempRoot);
@@ -202,6 +203,40 @@ describe('cli e2e', () => {
     }
   });
 
+
+  test('rejects invalid documentation policy before writing artifacts', async () => {
+    const tempRoot = await createTempDir('paradox-cli-policy-');
+    try {
+      const pkgRoot = join(tempRoot, 'pkg');
+      await writeFixturePackage(pkgRoot, {
+        name: '@fixture/cli-invalid-policy',
+        mode: 'write',
+      });
+      await writeFile(
+        join(pkgRoot, 'src', 'invalid.ts'),
+        [
+          '/***',
+          ' * Invalid usage location.',
+          ' * @usage',
+          ' */',
+          "export const invalidUsage = 'invalid';",
+          '',
+        ].join('\n'),
+      );
+
+      const before = await listFiles(tempRoot);
+      const result = await runCli({ cwd: pkgRoot });
+      const after = await listFiles(tempRoot);
+
+      expect(result.exitCode).not.toBe(0);
+      expect(result.stderr).toContain('Paradox documentation policy is invalid');
+      expect(result.stderr).toContain('documentation.usage.location');
+      expect(after).toEqual(before);
+    } finally {
+      await rm(tempRoot, { recursive: true, force: true });
+    }
+  });
+
   test('rejects output.dir with parent traversal and does not write any artifacts', async () => {
     const tempRoot = await createTempDir('paradox-cli-e2e-');
     try {
@@ -252,14 +287,47 @@ async function writeFixturePackage(
           moduleResolution: 'Bundler',
           strict: true,
         },
-        include: ['src/**/*.ts'],
+        include: ['src/**/*.ts', 'examples/**/*.ts'],
       },
       null,
       2,
     ),
   );
 
-  await writeFile(join(pkgRoot, 'src', 'index.ts'), 'export const value = 1;\n');
+  await writeFile(
+    join(pkgRoot, 'src', 'types', 'config.ts'),
+    [
+      '/***',
+      ' * @title Configuration',
+      ' *',
+      ' * Configures the CLI fixture.',
+      ' *',
+      ' * @config',
+      ' * @readme',
+      ' */',
+      'export interface CliFixtureConfig {}',
+      '',
+    ].join('\n'),
+  );
+  await writeFile(
+    join(pkgRoot, 'src', 'index.ts'),
+    "export type { CliFixtureConfig } from './types/config.js';\n",
+  );
+  await writeFile(
+    join(pkgRoot, 'examples', 'basic-usage', 'index.ts'),
+    [
+      '/***',
+      ' * @title Basic Usage',
+      ' *',
+      ' * Demonstrates the CLI fixture.',
+      ' *',
+      ' * @usage',
+      ' * @readme',
+      ' */',
+      "export const basicUsage = 'cli';",
+      '',
+    ].join('\n'),
+  );
   await writeFile(join(pkgRoot, 'README.md'), '# Fixture\n');
 
   await overwriteFixtureConfig(pkgRoot, { mode: options.mode, outputDir: options.outputDir });
