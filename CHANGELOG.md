@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5
+
+### Patch Changes
+
+- 0c09385: Consume the complete Policy-owned README usage contract, including capability-aware rendering and canonical section ordering.
+
 ## 0.2.4
 
 ### Patch Changes
