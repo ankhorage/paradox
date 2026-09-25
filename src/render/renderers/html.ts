@@ -1,3 +1,5 @@
+import { slugifyAscii } from '@ankhorage/utility/string';
+
 import type { DocumentationModel } from '../../model/types.js';
 import type { DiagramArtifact, RenderContext } from '../types.js';
 
@@ -341,7 +343,7 @@ function renderSourceNavItem(area: SourceArea): string {
  * Renders the right-hand source area view for a selected file.
  */
 function renderSourceAreaView(area: SourceArea): string {
-  return `<section id="view-${toAnchorId(area.path)}" class="view" data-view="${escapeAttribute(
+  return `<section id="view-${slugifyAscii(area.path)}" class="view" data-view="${escapeAttribute(
     area.path,
   )}" hidden>
     <section class="panel">
@@ -398,7 +400,7 @@ function renderModuleCard(module: ModuleEntry): string {
  * Renders one public API export card on the Home page.
  */
 function renderExportCard(item: ExportEntry): string {
-  return `<article class="item" id="symbol-${toAnchorId(item.name)}" data-search="${escapeAttribute(
+  return `<article class="item" id="symbol-${slugifyAscii(item.name)}" data-search="${escapeAttribute(
     [
       item.name,
       item.title ?? '',
@@ -485,7 +487,7 @@ function renderMemberTable(item: ExportEntry): string {
  * Renders one detected component card on the Home page.
  */
 function renderComponentCard(component: ComponentEntry): string {
-  return `<article class="item" id="component-${toAnchorId(component.name)}" data-search="${escapeAttribute(
+  return `<article class="item" id="component-${slugifyAscii(component.name)}" data-search="${escapeAttribute(
     [
       component.name,
       component.modulePath,
@@ -595,16 +597,6 @@ function groupBy<T>(items: readonly T[], key: (item: T) => string): Map<string, 
   }
 
   return new Map([...groups.entries()].sort(([left], [right]) => left.localeCompare(right)));
-}
-
-/***
- * Converts a label to a stable HTML anchor id fragment.
- */
-function toAnchorId(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
 }
 
 /***
