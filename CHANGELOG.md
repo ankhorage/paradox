@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- 9fe93b9: Adopt the canonical Ankhorage documentation policy: fixed usage and config locations, source-backed
+  examples, explicit titles, validated external and security references, policy-derived status
+  badges, and hard failures for invalid documentation contracts.
+
 ## 0.1.27
 
 ### Patch Changes
