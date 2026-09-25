@@ -99,7 +99,7 @@ describe('cli e2e', () => {
         JSON.stringify({ compilerOptions: { target: 'ES2022', module: 'ESNext' } }, null, 2),
       );
       await mkdir(join(pkgRoot, 'src', 'types'), { recursive: true });
-  await mkdir(join(pkgRoot, 'examples', 'basic-usage'), { recursive: true });
+      await mkdir(join(pkgRoot, 'examples', 'basic-usage'), { recursive: true });
       await writeFile(join(pkgRoot, 'src', 'index.ts'), 'export const value = 1;\n');
 
       const before = await listFiles(tempRoot);
@@ -206,7 +206,6 @@ describe('cli e2e', () => {
       await rm(tempRoot, { recursive: true, force: true });
     }
   });
-
 
   test('rejects invalid documentation policy before writing artifacts', async () => {
     const tempRoot = await createTempDir('paradox-cli-policy-');
