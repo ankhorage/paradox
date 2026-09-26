@@ -137,7 +137,7 @@ Source: `src/types/config.ts:9:1`
 <!-- readme: collaborators -start -->
 <table>
 	<tbody>
-	<tbody>
+	</tbody>
 </table>
 <!-- readme: collaborators -end -->
 
