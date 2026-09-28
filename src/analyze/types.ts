@@ -107,12 +107,6 @@ interface AnalysisDonation {
   account: string;
 }
 
-interface AnalysisReadmeConfig {
-  language: string;
-  code: string;
-  sourcePath: string;
-}
-
 export interface AnalysisBadge {
   id: string;
   label: string;
@@ -207,7 +201,6 @@ export interface AnalysisResult {
   usageEntries: AnalysisUsageEntry[];
   exampleCount: number;
   findings: AnalysisDocumentationFinding[];
-  readmeConfig: AnalysisReadmeConfig | null;
   config: {
     exportName: string;
     title: string | null;
