@@ -34,6 +34,11 @@ jobs:
           fetch-depth: 0
           token: ${{ steps.release-token.outputs.token }}
 
+      - name: Synchronize latest main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -63,9 +68,6 @@ jobs:
         id: release
         if: hashFiles('.changeset/config.json') != ''
         run: |
-          git fetch origin main
-          git checkout -B main origin/main
-
           if [ -z "$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name README.md -print -quit)" ]; then
             echo "versioned=false" >> "$GITHUB_OUTPUT"
             exit 0
