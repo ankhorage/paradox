@@ -48,6 +48,17 @@ jobs:
             bun run changeset:status
           fi
 
+      - name: Reject direct edits to release-owned docs
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          direct="$(git diff --name-only "$BASE_SHA"...HEAD | grep -E '^(README\.md|paradox/)' || true)"
+          if [ -n "$direct" ]; then
+            echo "::error title=Release-owned docs edited directly::$direct"
+            exit 1
+          fi
+
       - name: Generate docs
         run: bun run docs
 
