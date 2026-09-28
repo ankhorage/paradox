@@ -8,7 +8,7 @@ import { buildModel } from '../src/model/buildModel.js';
 import { render } from '../src/render/render.js';
 
 describe('canonical README configuration', () => {
-  test('renders schema metadata from src/types/config.ts and the concrete config instance', async () => {
+  test('renders package-owned schema metadata without the Paradox generator config', async () => {
     const fixture = await createConfigFixtureAsync();
 
     try {
@@ -24,7 +24,6 @@ describe('canonical README configuration', () => {
         },
         {
           packageRoot: fixture.root,
-          configFilePath: fixture.configFilePath,
         },
       );
 
@@ -34,31 +33,55 @@ describe('canonical README configuration', () => {
         description: 'Controls canonical fixture behavior.',
         isReadme: true,
       });
-      expect(analysis.readmeConfig).toEqual({
-        language: 'ts',
-        code: [
-          "import { defineFixtureConfig } from './src/index.js';",
-          '',
-          'export default defineFixtureConfig({',
-          "  mode: 'write',",
-          '});',
-        ].join('\n'),
-        sourcePath: 'paradox.config.ts',
-      });
-
       const output = render(buildModel(analysis), { outputDir: 'paradox' });
       const configurationStart = output.readme.indexOf('## Configuration');
       const generatedDocsStart = output.readme.indexOf('## Generated documentation');
       const configuration = output.readme.slice(configurationStart, generatedDocsStart);
 
       expect(configuration).toContain('Controls canonical fixture behavior.');
-      expect(configuration).toContain('### Example');
-      expect(configuration).toContain("import { defineFixtureConfig } from './src/index.js';");
-      expect(configuration).toContain("mode: 'write'");
+      expect(configuration).not.toContain('### Example');
+      expect(configuration).not.toContain("import { defineFixtureConfig } from './src/index.js';");
+      expect(configuration).not.toContain("mode: 'write'");
       expect(configuration).toContain('<summary>Configuration options</summary>');
       expect(configuration).not.toContain('@config');
       expect(configuration).not.toContain('@readme');
       expect(configuration).not.toContain('/***');
+    } finally {
+      await rm(fixture.root, { force: true, recursive: true });
+    }
+  });
+
+  test('does not create package configuration from paradox.config.ts alone', async () => {
+    const fixture = await createConfigFixtureAsync();
+
+    try {
+      await rm(join(fixture.root, 'src', 'types', 'config.ts'));
+      await writeFile(
+        join(fixture.root, 'src', 'index.ts'),
+        [
+          '/*** Defines fixture configuration without changing its shape. */',
+          'export function defineFixtureConfig(config: unknown) {',
+          '  return config;',
+          '}',
+          '',
+        ].join('\n'),
+      );
+
+      const analysis = await analyze(
+        {
+          docs: {
+            title: 'Config Fixture',
+            description: 'Fixture docs for canonical configuration.',
+          },
+          package: { entrypoints: ['src/index.ts'] },
+        },
+        { packageRoot: fixture.root },
+      );
+      const output = render(buildModel(analysis), { outputDir: 'paradox' });
+
+      expect(output.readme).not.toContain('## Configuration');
+      expect(output.readme).not.toContain('paradox.config.ts');
+      expect(output.readme).not.toContain("mode: 'write'");
     } finally {
       await rm(fixture.root, { force: true, recursive: true });
     }
@@ -70,7 +93,6 @@ describe('canonical README configuration', () => {
  */
 async function createConfigFixtureAsync(): Promise<{
   root: string;
-  configFilePath: string;
 }> {
   const root = join(import.meta.dir, '.tmp', `config-${Date.now()}-${Math.random()}`);
   const configFilePath = join(root, 'paradox.config.ts');
@@ -156,5 +178,5 @@ async function createConfigFixtureAsync(): Promise<{
     ].join('\n'),
   );
 
-  return { root, configFilePath };
+  return { root };
 }
