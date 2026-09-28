@@ -141,31 +141,21 @@ function getPackageDisplayName(packageId: string): string {
 }
 
 /***
- * Renders the canonical Configuration chapter from the tagged schema plus concrete config instance.
+ * Renders the package-owned Configuration chapter from the canonical tagged schema.
  */
 function renderConfiguration(lines: string[], model: DocumentationModel): void {
   const config = model.config?.isReadme ? model.config : null;
-  const example = model.readmeConfig;
-  if (config === null && example === null) return;
+  if (config === null) return;
 
   lines.push('## Configuration', '');
 
-  if (config !== null) {
-    if (config.title !== null && config.title !== 'Configuration') {
-      lines.push(`### ${config.title}`, '');
-    }
-    if (config.description !== null) lines.push(config.description, '');
-    renderReferences(lines, config);
+  if (config.title !== null && config.title !== 'Configuration') {
+    lines.push(`### ${config.title}`, '');
   }
+  if (config.description !== null) lines.push(config.description, '');
+  renderReferences(lines, config);
 
-  if (example !== null) {
-    lines.push('### Example', '');
-    lines.push('```' + example.language);
-    lines.push(example.code);
-    lines.push('```', '');
-  }
-
-  if (config === null || config.members.length === 0) return;
+  if (config.members.length === 0) return;
 
   lines.push('<details>');
   lines.push('<summary>Configuration options</summary>', '');
@@ -184,7 +174,6 @@ function renderConfiguration(lines: string[], model: DocumentationModel): void {
 
   lines.push('', '</details>', '');
 }
-
 /***
  * Renders links and security evidence owned by one documented item.
  */

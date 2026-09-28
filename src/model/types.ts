@@ -14,7 +14,6 @@ export interface DocumentationModel {
   usageEntries: UsageEntryModel[];
   exampleCount: number;
   findings: DocumentationFindingModel[];
-  readmeConfig: ReadmeConfigModel | null;
   config: ConfigModel | null;
   entrypoints: string[];
   modules: ModuleModel[];
@@ -59,12 +58,6 @@ interface DocumentationFindingModel {
   message: string;
   sourcePath: string | null;
   line: number | null;
-}
-
-interface ReadmeConfigModel {
-  language: string;
-  code: string;
-  sourcePath: string;
 }
 
 interface ConfigModel {
