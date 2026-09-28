@@ -75,6 +75,11 @@ jobs:
           bun run version-packages
           after_version="$(node -p "require('./package.json').version")"
 
+          if [ "$before_version" != "$after_version" ]; then
+            bun run docs
+            ./node_modules/.bin/ankhorage-prettier --write README.md paradox
+          fi
+
           if git diff --quiet; then
             echo "versioned=false" >> "$GITHUB_OUTPUT"
             exit 0
