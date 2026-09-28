@@ -56,7 +56,13 @@ jobs:
 
       - name: Validate generated docs scope
         run: |
-          unexpected="$(git diff --name-only | grep -Ev '^(README\.md|paradox/)' || true)"
+          changed="$(
+            {
+              git diff --name-only
+              git ls-files --others --exclude-standard
+            } | sort -u
+          )"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(README\.md|paradox/)' || true)"
           if [ -n "$unexpected" ]; then
             echo "::error title=Docs generation modified non-generated files::$unexpected"
             exit 1
