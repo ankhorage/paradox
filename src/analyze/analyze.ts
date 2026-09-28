@@ -56,10 +56,7 @@ export async function analyze(
   const comments = await collectDocumentationCommentsAsync(root);
   const readmeConfig =
     configMetadata?.isReadme === true
-      ? await analyzeReadmeConfig({
-          root,
-          configFilePath: runtime.configFilePath ?? null,
-        })
+      ? await analyzeReadmeConfig({ root, configFilePath: runtime.configFilePath ?? null })
       : null;
   const configMembers = collectConfigMembers(program, exports, configMetadata);
   const graphs = {
