@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.4",
+      "value": "v0.2.6",
       "color": "cb3837"
     },
     {
@@ -92,11 +92,6 @@
   ],
   "exampleCount": 1,
   "findings": [],
-  "readmeConfig": {
-    "language": "ts",
-    "code": "import { defineParadoxConfig } from './src/config/defineParadoxConfig.js';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n\n  collaborators: true,\n\n  donation: {\n    account: 'ankhorage',\n  },\n\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n\n  output: {\n    dir: 'paradox',\n  },\n});",
-    "sourcePath": "paradox.config.ts"
-  },
   "config": {
     "exportName": "ParadoxConfig",
     "title": "Configuration",
@@ -158,7 +153,6 @@
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
         "src/analyze/project.ts",
-        "src/analyze/readmeConfig.ts",
         "src/analyze/readmeUsage.ts",
         "src/analyze/semantic/createTypeScriptProgram.ts",
         "src/analyze/semantic/exports.ts",
@@ -279,15 +273,6 @@
       "dependencies": [],
       "exports": [
         "createProject"
-      ]
-    },
-    {
-      "path": "src/analyze/readmeConfig.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": [
-        "AnalysisReadmeConfig",
-        "analyzeReadmeConfig"
       ]
     },
     {
@@ -1165,7 +1150,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 34,
+        "line": 33,
         "column": 1
       }
     },
@@ -1176,7 +1161,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 120,
+        "line": 114,
         "column": 1
       }
     },
@@ -1187,7 +1172,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 166,
+        "line": 160,
         "column": 1
       }
     },
@@ -1198,7 +1183,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 183,
+        "line": 177,
         "column": 1
       }
     },
@@ -1815,28 +1800,6 @@
       "sourceLocation": {
         "filePath": "src/analyze/project.ts",
         "line": 6,
-        "column": 1
-      }
-    },
-    {
-      "name": "analyzeReadmeConfig",
-      "description": "Collects the concrete Paradox configuration instance as a README configuration example.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeConfig.ts",
-        "line": 15,
-        "column": 1
-      }
-    },
-    {
-      "name": "getLanguage",
-      "description": "Returns the Markdown fence language for a configuration source path.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/readmeConfig.ts",
-        "line": 34,
         "column": 1
       }
     },
@@ -3090,7 +3053,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 142,
+        "line": 141,
         "column": 1
       }
     },
@@ -3101,7 +3064,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 204,
+        "line": 202,
         "column": 1
       }
     },
@@ -3112,7 +3075,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 239,
+        "line": 237,
         "column": 1
       }
     },
@@ -3123,7 +3086,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 260,
+        "line": 258,
         "column": 1
       }
     },
@@ -3877,7 +3840,7 @@
     },
     {
       "name": "renderConfiguration",
-      "description": "Renders the canonical Configuration chapter from the tagged schema plus concrete config instance.",
+      "description": "Renders the package-owned Configuration chapter from the canonical tagged schema.",
       "see": [],
       "security": [],
       "sourceLocation": {
@@ -3893,7 +3856,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 191,
+        "line": 180,
         "column": 1
       }
     },
@@ -3904,7 +3867,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 206,
+        "line": 195,
         "column": 1
       }
     },
@@ -3915,7 +3878,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 224,
+        "line": 213,
         "column": 1
       }
     },
@@ -3926,7 +3889,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 244,
+        "line": 233,
         "column": 1
       }
     },
@@ -3937,7 +3900,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 280,
+        "line": 269,
         "column": 1
       }
     },
@@ -3948,7 +3911,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 302,
+        "line": 291,
         "column": 1
       }
     },
@@ -3959,7 +3922,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 313,
+        "line": 302,
         "column": 1
       }
     },
@@ -3970,7 +3933,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 338,
+        "line": 327,
         "column": 1
       }
     },
@@ -3981,7 +3944,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 349,
+        "line": 338,
         "column": 1
       }
     },
@@ -3992,7 +3955,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 356,
+        "line": 345,
         "column": 1
       }
     },
@@ -4003,7 +3966,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 367,
+        "line": 356,
         "column": 1
       }
     },
@@ -4014,7 +3977,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 399,
+        "line": 388,
         "column": 1
       }
     },
@@ -4025,7 +3988,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 406,
+        "line": 395,
         "column": 1
       }
     },
@@ -4036,7 +3999,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 415,
+        "line": 404,
         "column": 1
       }
     },
@@ -4047,7 +4010,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 422,
+        "line": 411,
         "column": 1
       }
     },
@@ -4058,7 +4021,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 438,
+        "line": 427,
         "column": 1
       }
     },
@@ -4069,7 +4032,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 491,
+        "line": 480,
         "column": 1
       }
     },
@@ -4080,7 +4043,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 530,
+        "line": 519,
         "column": 1
       }
     },
@@ -4091,7 +4054,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 537,
+        "line": 526,
         "column": 1
       }
     },
@@ -4102,7 +4065,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 544,
+        "line": 533,
         "column": 1
       }
     },
@@ -4113,7 +4076,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 571,
+        "line": 560,
         "column": 1
       }
     },
@@ -4325,11 +4288,6 @@
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/project.ts",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromPath": "src/analyze/analyze.ts",
-        "toPath": "src/analyze/readmeConfig.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -5045,12 +5003,6 @@
       },
       {
         "fromSymbol": "analyze",
-        "toSymbol": "analyzeReadmeConfig",
-        "callExpression": "analyzeReadmeConfig",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
         "toSymbol": "collectConfigMembers",
         "callExpression": "collectConfigMembers",
         "sourcePath": "src/analyze/analyze.ts"
@@ -5456,36 +5408,6 @@
         "toSymbol": "uniqueSortedStrings",
         "callExpression": "uniqueSortedStrings",
         "sourcePath": "src/analyze/modules.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "readFile",
-        "callExpression": "readFile",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "toPortablePath",
-        "callExpression": "toPortablePath",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "relative",
-        "callExpression": "relative",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "analyzeReadmeConfig",
-        "toSymbol": "getLanguage",
-        "callExpression": "getLanguage",
-        "sourcePath": "src/analyze/readmeConfig.ts"
-      },
-      {
-        "fromSymbol": "getLanguage",
-        "toSymbol": "extname",
-        "callExpression": "extname",
-        "sourcePath": "src/analyze/readmeConfig.ts"
       },
       {
         "fromSymbol": "src/analyze/readmeUsage.ts",
