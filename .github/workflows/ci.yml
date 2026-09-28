@@ -87,8 +87,13 @@ jobs:
       - name: Check changesets
         if: github.event_name == 'pull_request'
         run: |
-          if node -e "const p=require('./package.json'); process.exit(p.scripts?.['changeset:status'] ? 0 : 1)"; then
+          if [ -f ./scripts/check-changeset-status.sh ]; then
+            bash ./scripts/check-changeset-status.sh
+          elif [ -z "$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name README.md -print -quit)" ]; then
+            echo "No Changeset: no package release requested."
+          elif node -e "const p=require('./package.json'); process.exit(p.scripts?.['changeset:status'] ? 0 : 1)"; then
             bun run changeset:status
           else
-            echo "No changeset:status script found; skipping."
+            echo "::error title=Changeset validation unavailable::Release intent exists but no changeset validator is configured."
+            exit 1
           fi
