@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.14
+
+### Patch Changes
+
+- 177ee92: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 0.2.13
 
 ### Patch Changes
