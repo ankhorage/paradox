@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9
+
+### Patch Changes
+
+- cd67330: Update Ankhorage dependencies: `@ankhorage/policy`, `@ankhorage/utility`.
+
 ## 0.2.8
 
 ### Patch Changes
