@@ -2,7 +2,7 @@ import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { slugifyAscii } from '@ankhorage/utility/string';
 
 import type { DocumentationModel } from '../../model/types.js';
-import type { DiagramArtifact, RenderContext } from '../types.js';
+import type { DiagramArtifact, RenderContext } from '../../types/render.js';
 
 type ExportEntry = DocumentationModel['exports'][number];
 type ComponentEntry = DocumentationModel['components'][number];

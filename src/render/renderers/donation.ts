@@ -1,4 +1,4 @@
-import type { RenderContext } from '../types.js';
+import type { RenderContext } from '../../types/render.js';
 
 export function renderDonation(
   context: RenderContext,

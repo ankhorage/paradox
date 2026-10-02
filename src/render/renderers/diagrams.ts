@@ -2,7 +2,7 @@ import { uniqueSortedStrings } from '@ankhorage/utility/array';
 
 import type { DocumentationModel, ModuleModel, SequenceScenarioModel } from '../../model/types.js';
 import { toFileStem } from '../toFileStem.js';
-import type { DiagramArtifact } from '../types.js';
+import type { DiagramArtifact } from '../../types/render.js';
 
 const MAX_SEQUENCE_CALL_EDGES = 12;
 const MAX_SEQUENCE_PARTICIPANTS = 8;

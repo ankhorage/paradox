@@ -6,7 +6,7 @@ import { renderDonation } from './renderers/donation.js';
 import { renderFundingYaml } from './renderers/funding.js';
 import { renderHtml } from './renderers/html.js';
 import { renderMarkdown } from './renderers/markdown.js';
-import type { RenderContext, RenderResult } from './types.js';
+import type { RenderContext, RenderResult } from '../types/render.js';
 
 /***
  * Renders the documentation model into README and artifact files.
