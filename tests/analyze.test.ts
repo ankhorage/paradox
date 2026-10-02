@@ -221,7 +221,7 @@ describe('analyze', () => {
     expect(findExport(analysis, 'parseHexColor').description).toBe('Parses a hex color value.');
   });
 
-  test('derives the documentation badge from policy status', async () => {
+  test('derives the documentation badge from Rules status', async () => {
     const analysis = await analyze(
       {
         docs: {

@@ -132,7 +132,7 @@ async function writeExtraFixtureFilesAsync(
 }
 
 /***
- * Checks whether one documentation finding exists by stable Policy rule id.
+ * Checks whether one documentation finding exists by stable Rules rule id.
  */
 function hasFinding(findings: readonly { readonly ruleId: string }[], ruleId: string): boolean {
   return findings.some((finding) => finding.ruleId === ruleId);

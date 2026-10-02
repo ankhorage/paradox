@@ -5,7 +5,7 @@ import { expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
 import { collectDocumentationCommentsAsync } from '../src/analyze/documentation/collectDocumentationCommentsAsync.js';
-import { validateDocumentationPolicyAsync } from '../src/analyze/documentation/validateDocumentationPolicyAsync.js';
+import { evaluateDocumentationRulesAsync } from '../src/analyze/documentation/evaluateDocumentationRulesAsync.js';
 import { createProject } from '../src/analyze/project.js';
 import type { AnalysisDocumentationFinding } from '../src/types/analysis.js';
 
@@ -141,7 +141,7 @@ test('@see distinguishes invalid values from unreachable public URLs', async () 
     const project = createProject(root);
     const comments = await collectDocumentationCommentsAsync(root);
     const attempted: string[] = [];
-    const findings = await validateDocumentationPolicyAsync({
+    const analysis = await evaluateDocumentationRulesAsync({
       root,
       project,
       comments,
@@ -152,8 +152,8 @@ test('@see distinguishes invalid values from unreachable public URLs', async () 
       },
     });
 
-    expectFinding(findings, 'documentation.see.value', 'error');
-    expectFinding(findings, 'documentation.see.reachable', 'error');
+    expectFinding(analysis.findings, 'documentation.see.value', 'error');
+    expectFinding(analysis.findings, 'documentation.see.reachable', 'error');
     expect(attempted).toEqual(['https://docs.example.com/missing']);
   } finally {
     await rm(root, { force: true, recursive: true });
@@ -208,10 +208,10 @@ interface FixtureOptions {
 }
 
 /***
- * Creates the minimal canonical documentation structure for policy tests.
+ * Creates the minimal canonical documentation structure for Rules tests.
  */
 async function createCanonicalFixtureAsync(options: FixtureOptions = {}): Promise<string> {
-  const root = join(import.meta.dir, '.tmp', `policy-${Date.now()}-${Math.random()}`);
+  const root = join(import.meta.dir, '.tmp', `rules-${Date.now()}-${Math.random()}`);
   await mkdir(join(root, 'src', 'types'), { recursive: true });
   await mkdir(join(root, 'examples', 'basic-usage'), { recursive: true });
   await writeFixtureMetadataAsync(root);
@@ -223,15 +223,15 @@ async function createCanonicalFixtureAsync(options: FixtureOptions = {}): Promis
 }
 
 /***
- * Writes package and TypeScript metadata for one policy fixture.
+ * Writes package and TypeScript metadata for one Rules fixture.
  */
 async function writeFixtureMetadataAsync(root: string): Promise<void> {
   await writeFile(
     join(root, 'package.json'),
     JSON.stringify({
-      name: '@fixture/policy',
+      name: '@fixture/rules',
       version: '1.0.0',
-      description: 'Policy fixture.',
+      description: 'Rules fixture.',
       license: 'MIT',
     }),
   );
@@ -251,7 +251,7 @@ async function writeFixtureMetadataAsync(root: string): Promise<void> {
 }
 
 /***
- * Writes the canonical configuration schema used by policy fixtures.
+ * Writes the canonical configuration schema used by Rules fixtures.
  */
 async function writeConfigFixtureAsync(root: string): Promise<void> {
   await writeFile(
@@ -260,7 +260,7 @@ async function writeConfigFixtureAsync(root: string): Promise<void> {
       '/***',
       ' * @title Configuration',
       ' *',
-      ' * Configures the policy fixture.',
+      ' * Configures the Rules fixture.',
       ' *',
       ' * @config',
       ' * @readme',
@@ -298,7 +298,7 @@ async function writeUsageFixtureAsync(root: string, source?: string): Promise<vo
         '/***',
         ' * @title Basic Usage',
         ' *',
-        ' * Demonstrates the policy fixture.',
+        ' * Demonstrates the Rules fixture.',
         ' *',
         ' * @usage',
         ' * @readme',
@@ -324,7 +324,7 @@ async function writeExtraFixtureFilesAsync(
 }
 
 /***
- * Asserts one exact policy finding without unsafe matcher widening.
+ * Asserts one exact Rules finding without unsafe matcher widening.
  */
 function expectFinding(
   findings: readonly AnalysisDocumentationFinding[],

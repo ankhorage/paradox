@@ -1,4 +1,4 @@
-import type { PolicySeverity } from '@ankhorage/policy/status';
+import type { RuleSeverity } from '@ankhorage/rules';
 import type { Node } from 'ts-morph';
 
 /***
@@ -97,7 +97,7 @@ export interface AnalysisUsageEntry {
 
 export interface AnalysisDocumentationFinding {
   ruleId: string;
-  severity: PolicySeverity;
+  severity: RuleSeverity;
   message: string;
   sourcePath: string | null;
   line: number | null;

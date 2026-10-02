@@ -1,4 +1,4 @@
-import type { PolicySeverity } from '@ankhorage/policy/status';
+import type { RuleSeverity } from '@ankhorage/rules';
 
 /***
  * Serializable model consumed by renderers and writers.
@@ -54,7 +54,7 @@ interface UsageEntryModel {
 
 interface DocumentationFindingModel {
   ruleId: string;
-  severity: PolicySeverity;
+  severity: RuleSeverity;
   message: string;
   sourcePath: string | null;
   line: number | null;

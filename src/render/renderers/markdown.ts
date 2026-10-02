@@ -1,4 +1,4 @@
-import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 
 import type { DocumentationModel } from '../../model/types.js';
 import type { RenderContext } from '../../types/render.js';
@@ -77,14 +77,14 @@ function renderReadme(
  * Renders the canonical CLI-first Usage chapter.
  */
 function renderUsage(lines: string[], model: DocumentationModel): void {
-  if (!DOCUMENTATION_POLICY.readmeUsage.required && model.usageEntries.length === 0) return;
+  if (model.usageEntries.length === 0) return;
 
   const readmeExample = model.usageEntries.find(
     (entry) => entry.area === 'examples' && entry.isReadme,
   );
 
   lines.push('## Usage', '');
-  for (const section of DOCUMENTATION_POLICY.readmeUsage.sectionOrder) {
+  for (const section of DOCUMENTATION_RULE_METADATA.readmeUsage.sectionOrder) {
     if (section === 'cli') {
       renderCliUsage(lines, model);
     } else {

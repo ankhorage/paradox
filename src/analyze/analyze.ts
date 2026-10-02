@@ -1,7 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { resolvePolicyStatus } from '@ankhorage/policy/status';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
@@ -11,7 +10,7 @@ import type { ParadoxConfig } from '../types/config.js';
 import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
 import { collectDocumentationCommentsAsync } from './documentation/collectDocumentationCommentsAsync.js';
-import { validateDocumentationPolicyAsync } from './documentation/validateDocumentationPolicyAsync.js';
+import { evaluateDocumentationRulesAsync } from './documentation/evaluateDocumentationRulesAsync.js';
 import { analyzeExports } from './exports.js';
 import { analyzeModules } from './modules.js';
 import { createProject } from './project.js';
@@ -66,14 +65,14 @@ export async function analyze(
     ),
     componentComposition: collectComponentCompositionGraph(program),
   };
-  const findings = await validateDocumentationPolicyAsync({
+  const documentationRules = await evaluateDocumentationRulesAsync({
     root,
     project,
     comments,
     exports,
   });
-  const documentationStatus = resolvePolicyStatus(findings);
-  const badges = await analyzeBadges(root, pkg, documentationStatus.status);
+  const findings = [...documentationRules.findings];
+  const badges = await analyzeBadges(root, pkg, documentationRules.status);
 
   return {
     packageName: config.docs?.title ?? pkg.name,

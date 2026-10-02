@@ -1,3 +1,5 @@
+import type { RuleSeverity } from '@ankhorage/rules';
+
 import type { ComponentModel, DocumentationModel, ExportKind, ExportModel } from './types.js';
 
 interface ExportMemberInput {
@@ -101,7 +103,7 @@ interface BuildModelInput {
   exampleCount: number;
   findings: {
     ruleId: string;
-    severity: 'warning' | 'error';
+    severity: RuleSeverity;
     message: string;
     sourcePath: string | null;
     line: number | null;
