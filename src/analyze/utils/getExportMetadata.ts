@@ -21,7 +21,7 @@ import type {
   AnalysisSignature,
   AnalysisSourceLocation,
   AnalysisStructuredRow,
-} from '../types.js';
+} from '../../types/analysis.js';
 import { getParadoxComment } from './getParadoxComment.js';
 import { normalizeTypeText } from './normalizeTypeText.js';
 import { parseParadoxComment } from './parseParadoxComment.js';

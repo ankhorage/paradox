@@ -4,7 +4,7 @@ import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Node, type Project } from 'ts-morph';
 
-import type { AnalysisExport } from './types.js';
+import type { AnalysisExport } from '../types/analysis.js';
 import { getExportMetadata } from './utils/getExportMetadata.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';

@@ -4,7 +4,7 @@ import { uniqueSortedStrings } from '@ankhorage/utility/array';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 import type { Project } from 'ts-morph';
 
-import type { AnalysisModule } from './types.js';
+import type { AnalysisModule } from '../types/analysis.js';
 
 /***
  * Builds a deterministic module relationship graph for documentation renderers.

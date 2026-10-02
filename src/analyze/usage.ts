@@ -1,4 +1,4 @@
-import type { AnalysisUsage } from './types.js';
+import type { AnalysisUsage } from '../types/analysis.js';
 
 export interface PackageJsonModel {
   name: string;

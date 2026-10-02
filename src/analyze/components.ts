@@ -1,6 +1,6 @@
+import type { AnalysisComponent, AnalysisExport } from '../types/analysis.js';
 import { collectPropsForExport } from './semantic/exports.js';
 import type { AnalyzedProgram } from './semantic/model.js';
-import type { AnalysisComponent, AnalysisExport } from './types.js';
 import { getComponentPropsType } from './utils/getComponentPropsType.js';
 import { getPropsFromType } from './utils/getPropsFromType.js';
 import { isReactComponent } from './utils/isReactComponent.js';

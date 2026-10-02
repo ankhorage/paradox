@@ -1,6 +1,6 @@
 import type { Type } from 'ts-morph';
 
-import type { AnalysisComponent } from '../types.js';
+import type { AnalysisComponent } from '../../types/analysis.js';
 import { getParadoxComment } from './getParadoxComment.js';
 import { normalizeTypeText } from './normalizeTypeText.js';
 import { parseParadoxComment } from './parseParadoxComment.js';

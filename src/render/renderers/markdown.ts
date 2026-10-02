@@ -1,7 +1,7 @@
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 
 import type { DocumentationModel } from '../../model/types.js';
-import type { RenderContext } from '../types.js';
+import type { RenderContext } from '../../types/render.js';
 
 type ConfigMembers = NonNullable<DocumentationModel['config']>['members'];
 type ComponentEntry = DocumentationModel['components'][number];

@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { Node, type Project, type SourceFile } from 'ts-morph';
 
-import type { AnalysisDocumentationFinding, AnalysisExport } from '../types.js';
+import type { AnalysisDocumentationFinding, AnalysisExport } from '../../types/analysis.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
 import { parseParadoxComment } from '../utils/parseParadoxComment.js';
 import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';

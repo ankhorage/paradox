@@ -7,7 +7,7 @@ import { analyze } from '../src/analyze/analyze.js';
 import { collectDocumentationCommentsAsync } from '../src/analyze/documentation/collectDocumentationCommentsAsync.js';
 import { validateDocumentationPolicyAsync } from '../src/analyze/documentation/validateDocumentationPolicyAsync.js';
 import { createProject } from '../src/analyze/project.js';
-import type { AnalysisDocumentationFinding } from '../src/analyze/types.js';
+import type { AnalysisDocumentationFinding } from '../src/types/analysis.js';
 
 test('missing public function documentation produces warning status', async () => {
   const root = await createCanonicalFixtureAsync({

@@ -1,4 +1,5 @@
 import type { DocumentationModel } from '../model/types.js';
+import type { RenderContext, RenderResult } from '../types/render.js';
 import { renderBadgeArtifacts } from './renderers/badges.js';
 import { renderCollaborators } from './renderers/collaborators.js';
 import { renderDiagramArtifacts } from './renderers/diagrams.js';
@@ -6,7 +7,6 @@ import { renderDonation } from './renderers/donation.js';
 import { renderFundingYaml } from './renderers/funding.js';
 import { renderHtml } from './renderers/html.js';
 import { renderMarkdown } from './renderers/markdown.js';
-import type { RenderContext, RenderResult } from './types.js';
 
 /***
  * Renders the documentation model into README and artifact files.

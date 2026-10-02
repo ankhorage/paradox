@@ -1,5 +1,5 @@
 import type { DocumentationModel, GeneratedBadge } from '../../model/types.js';
-import type { BadgeArtifact } from '../types.js';
+import type { BadgeArtifact } from '../../types/render.js';
 
 /***
  * Renders deterministic local SVG badges for repository metadata.

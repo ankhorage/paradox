@@ -5,7 +5,7 @@ import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { validatePublicHttpsUrlAsync } from '@ankhorage/utility/node/http';
 import { Node, type Project } from 'ts-morph';
 
-import type { AnalysisDocumentationFinding } from '../types.js';
+import type { AnalysisDocumentationFinding } from '../../types/analysis.js';
 import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
 import { createDocumentationFinding } from './findings.js';
 

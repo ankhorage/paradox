@@ -5,7 +5,7 @@ import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Project, type Statement } from 'ts-morph';
 
-import type { AnalysisUsageEntry } from './types.js';
+import type { AnalysisUsageEntry } from '../types/analysis.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 
