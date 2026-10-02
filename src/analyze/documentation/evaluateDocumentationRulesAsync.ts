@@ -1,6 +1,7 @@
 import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { resolveRulesStatus } from '@ankhorage/rules';
 import {
   DOCUMENTATION_RULE_METADATA,
   evaluateDocumentation,
@@ -10,7 +11,6 @@ import {
   type DocumentationTagFact,
   type DocumentationTagTarget,
 } from '@ankhorage/rules-documentation';
-import { resolveRulesStatus, type RulesStatusDescriptor } from '@ankhorage/rules';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../../types/analysis.js';
@@ -20,7 +20,7 @@ import type { CollectedDocumentationComment } from './collectDocumentationCommen
 
 export interface DocumentationRulesAnalysis {
   readonly findings: readonly AnalysisDocumentationFinding[];
-  readonly status: RulesStatusDescriptor['status'];
+  readonly status: ReturnType<typeof resolveRulesStatus>['status'];
 }
 
 /***
