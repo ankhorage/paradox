@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.27
+
+### Patch Changes
+
+- 7917382: Update dependencies
+
 ## 0.2.26
 
 ### Patch Changes
