@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "@ankhorage/policy": "^0.6.0",
-    "@ankhorage/utility": "^1.9.40",
+    "@ankhorage/utility": "^1.9.42",
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
