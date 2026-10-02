@@ -63,6 +63,50 @@ describe('canonical README configuration', () => {
       await rm(fixture.root, { force: true, recursive: true });
     }
   });
+
+  test('does not render generator config without a package configuration contract', async () => {
+    const fixture = await createConfigFixtureAsync();
+
+    try {
+      await rm(join(fixture.root, 'src', 'types', 'config.ts'));
+      await writeFile(
+        join(fixture.root, 'src', 'index.ts'),
+        [
+          '/*** Defines a fixture operation unrelated to package configuration. */',
+          'export function runFixture(): string {',
+          "  return 'ok';",
+          '}',
+          '',
+        ].join('\n'),
+      );
+      await writeFile(fixture.configFilePath, 'export default {};\n');
+
+      const analysis = await analyze(
+        {
+          docs: {
+            title: 'Configless Fixture',
+            description: 'Fixture docs without package configuration.',
+          },
+          package: {
+            entrypoints: ['src/index.ts'],
+          },
+        },
+        {
+          packageRoot: fixture.root,
+          configFilePath: fixture.configFilePath,
+        },
+      );
+
+      expect(analysis.config).toBeNull();
+      expect(analysis.readmeConfig).toBeNull();
+
+      const output = render(buildModel(analysis), { outputDir: 'paradox' });
+      expect(output.readme).not.toContain('## Configuration');
+      expect(output.readme).not.toContain('export default {}');
+    } finally {
+      await rm(fixture.root, { force: true, recursive: true });
+    }
+  });
 });
 
 /***

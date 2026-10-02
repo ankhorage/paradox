@@ -1,5 +1,107 @@
 # Changelog
 
+## 0.2.23
+
+### Patch Changes
+
+- 6037036: Only render a README configuration example when the analyzed package explicitly owns an @config + @readme package configuration contract.
+
+## 0.2.22
+
+### Patch Changes
+
+- 2088665: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.21
+
+### Patch Changes
+
+- 022e2e3: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.20
+
+### Patch Changes
+
+- 7d0af79: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.19
+
+### Patch Changes
+
+- 6bd0a86: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.18
+
+### Patch Changes
+
+- 12fcb0f: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.17
+
+### Patch Changes
+
+- ea45cc3: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.16
+
+### Patch Changes
+
+- b238785: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.15
+
+### Patch Changes
+
+- a6a0542: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.14
+
+### Patch Changes
+
+- 177ee92: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.13
+
+### Patch Changes
+
+- 5dd6164: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.12
+
+### Patch Changes
+
+- a5640bf: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.11
+
+### Patch Changes
+
+- 4dc8ef3: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.10
+
+### Patch Changes
+
+- 7c9ee56: Update Ankhorage dependencies: `@ankhorage/utility`.
+
+## 0.2.9
+
+### Patch Changes
+
+- cd67330: Update Ankhorage dependencies: `@ankhorage/policy`, `@ankhorage/utility`.
+
+## 0.2.8
+
+### Patch Changes
+
+- c7ab2c1: Update dependencies from Renovate pull request #144.
+
+## 0.2.7
+
+### Patch Changes
+
+- d9ff9c8: Update dependencies from Renovate pull request #143.
+
 ## 0.2.6
 
 ### Patch Changes
