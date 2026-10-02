@@ -10,8 +10,8 @@ import {
   type SourceFile,
 } from 'ts-morph';
 
-import { relativeToRoot } from './semantic/utils.js';
 import type { AnalysisExport, AnalysisSequenceScenario } from '../types/analysis.js';
+import { relativeToRoot } from './semantic/utils.js';
 import type { PackageJsonModel } from './usage.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';

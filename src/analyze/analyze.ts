@@ -6,6 +6,7 @@ import { toPortablePath } from '@ankhorage/utility/node/path';
 
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
+import type { AnalysisResult } from '../types/analysis.js';
 import type { ParadoxConfig } from '../types/config.js';
 import { analyzeBadges } from './badges.js';
 import { analyzeComponents } from './components.js';
@@ -24,7 +25,6 @@ import {
 } from './semantic/graphs.js';
 import { analyzeSequenceScenarios } from './sequenceScenarios.js';
 import { analyzeSourceFunctions } from './sourceFunctions.js';
-import type { AnalysisResult } from '../types/analysis.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
 /***
