@@ -34,7 +34,7 @@ async function main(): Promise<void> {
   const packageRoot = await resolvePackageRoot(config, configDir);
   const { outputDir, outputRoot } = resolveOutputRoot(config, packageRoot);
 
-  const analysis = await analyze(config, { packageRoot, configFilePath });
+  const analysis = await analyze(config, { packageRoot });
   assertNoDocumentationErrors(analysis.findings);
   const model = buildModel(analysis);
   const result = render(model, { outputDir });
