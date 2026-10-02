@@ -53,9 +53,11 @@ jobs:
 
       - name: Run lint
         run: |
-          bun run lint:fix
-          git diff -- src/analyze/documentation/evaluateDocumentationRulesAsync.ts
-          exit 1
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.lint ? 0 : 1)"; then
+            bun run lint
+          else
+            echo "No lint script found; skipping."
+          fi
 
       - name: Run format check
         run: |

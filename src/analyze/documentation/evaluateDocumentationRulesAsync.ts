@@ -1,16 +1,16 @@
 import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { resolveRulesStatus } from '@ankhorage/rules';
 import {
   DOCUMENTATION_RULE_METADATA,
-  evaluateDocumentation,
   type DocumentationCommentFact,
   type DocumentationPublicFunctionFact,
   type DocumentationRuleContext,
   type DocumentationTagFact,
   type DocumentationTagTarget,
+  evaluateDocumentation,
 } from '@ankhorage/rules-documentation';
-import { resolveRulesStatus } from '@ankhorage/rules';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../../types/analysis.js';
