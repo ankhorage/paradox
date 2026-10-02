@@ -15,8 +15,8 @@ import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../../types/analysis.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
-import { collectDocumentationReferenceFactsAsync } from './collectDocumentationReferenceFactsAsync.js';
 import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
+import { collectDocumentationReferenceFactsAsync } from './collectDocumentationReferenceFactsAsync.js';
 
 export interface DocumentationRulesAnalysis {
   readonly findings: readonly AnalysisDocumentationFinding[];
