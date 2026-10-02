@@ -77,7 +77,7 @@ function renderReadme(
  * Renders the canonical CLI-first Usage chapter.
  */
 function renderUsage(lines: string[], model: DocumentationModel): void {
-  if (!DOCUMENTATION_RULE_METADATA.readmeUsage.required && model.usageEntries.length === 0) return;
+  if (model.usageEntries.length === 0) return;
 
   const readmeExample = model.usageEntries.find(
     (entry) => entry.area === 'examples' && entry.isReadme,

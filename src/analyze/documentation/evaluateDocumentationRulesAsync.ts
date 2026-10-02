@@ -1,6 +1,7 @@
 import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { resolveRulesStatus, type RulesStatusDescriptor } from '@ankhorage/rules';
 import {
   DOCUMENTATION_RULE_METADATA,
   evaluateDocumentation,
@@ -10,13 +11,12 @@ import {
   type DocumentationTagFact,
   type DocumentationTagTarget,
 } from '@ankhorage/rules-documentation';
-import { resolveRulesStatus, type RulesStatusDescriptor } from '@ankhorage/rules';
 import { Node, type Project } from 'ts-morph';
 
 import type { AnalysisDocumentationFinding, AnalysisExport } from '../../types/analysis.js';
 import { getParadoxComment } from '../utils/getParadoxComment.js';
-import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
 import { collectDocumentationReferenceFactsAsync } from './collectDocumentationReferenceFactsAsync.js';
+import type { CollectedDocumentationComment } from './collectDocumentationCommentsAsync.js';
 
 export interface DocumentationRulesAnalysis {
   readonly findings: readonly AnalysisDocumentationFinding[];
@@ -63,7 +63,9 @@ async function collectDocumentationRuleContextAsync(options: {
   );
 
   return {
-    comments: options.comments.map((comment) => toCommentFact(options.root, options.project, comment)),
+    comments: options.comments.map((comment) =>
+      toCommentFact(options.root, options.project, comment),
+    ),
     files: configExists ? [DOCUMENTATION_RULE_METADATA.paths.configSchema] : [],
     publicFunctions: toPublicFunctionFacts(options.exports),
     securityReferences: references.securityReferences,

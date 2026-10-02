@@ -267,7 +267,7 @@ function renderHomeView(
  * Renders complete CLI and programmatic usage documentation.
  */
 function renderUsagePanel(model: DocumentationModel): string {
-  if (!DOCUMENTATION_RULE_METADATA.readmeUsage.required && model.usageEntries.length === 0) return '';
+  if (model.usageEntries.length === 0) return '';
 
   const { usageEntries } = model;
 

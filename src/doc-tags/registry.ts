@@ -25,16 +25,17 @@ interface ParadoxDocTag {
 }
 
 /***
- * Supported Paradox documentation tags projected from the canonical Ankhorage documentation Rules provider.
+ * Supported Paradox documentation tags projected from the canonical documentation Rules provider.
  *
  * @readme
  */
-export const PARADOX_DOC_TAGS: readonly ParadoxDocTag[] = DOCUMENTATION_RULE_METADATA.tags.map((tag) => ({
-  ...tag,
-  syntax: `@${tag.name}`,
-  description: describeTag(tag.name),
-  handler: HANDLERS[tag.name],
-}));
+export const PARADOX_DOC_TAGS: readonly ParadoxDocTag[] =
+  DOCUMENTATION_RULE_METADATA.tags.map((tag) => ({
+    ...tag,
+    syntax: `@${tag.name}`,
+    description: describeTag(tag.name),
+    handler: HANDLERS[tag.name],
+  }));
 
 export type ParadoxDocTagName = DocumentationTagName;
 export type ParadoxDocTagHandlerId = (typeof HANDLERS)[DocumentationTagName];
