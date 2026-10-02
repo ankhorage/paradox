@@ -7,3 +7,7 @@ tests/__snapshots__/**/*.html
 tests/__snapshots__/**/*.json
 tests/__snapshots__/**/*.md
 tests/fixtures/**
+node_modules
+dist
+README.md
+paradox/

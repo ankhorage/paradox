@@ -67,14 +67,14 @@ export default defineParadoxConfig({
 <details>
 <summary>Configuration options</summary>
 
-| Field         | Type                                                      | Required | Default | Description |
-| ------------- | --------------------------------------------------------- | -------- | ------- | ----------- |
-| mode          | `'safe' \| 'write' \| undefined`                          | no       | —       |             |
-| collaborators | `true \| undefined`                                       | no       | —       |             |
-| donation      | `{ account: string; } \| undefined`                       | no       | —       |             |
-| docs          | `{ title?: string; description?: string; } \| undefined`  | no       | —       |             |
-| package       | `{ root?: string; entrypoints?: string[]; } \| undefined` | no       | —       |             |
-| output        | `{ dir?: string; } \| undefined`                          | no       | —       |             |
+| Field | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| mode | `'safe' \| 'write' \| undefined` | no | — |  |
+| collaborators | `true \| undefined` | no | — |  |
+| donation | `{ account: string; } \| undefined` | no | — |  |
+| docs | `{ title?: string; description?: string; } \| undefined` | no | — |  |
+| package | `{ root?: string; entrypoints?: string[]; } \| undefined` | no | — |  |
+| output | `{ dir?: string; } \| undefined` | no | — |  |
 
 </details>
 
