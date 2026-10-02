@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/paradox",
-  "version": "0.2.6",
+  "version": "0.2.22",
   "description": "Deterministic documentation generator for TypeScript packages.",
   "license": "MIT",
   "publishConfig": {
@@ -71,14 +71,14 @@
     "test:standalone": "bun test tests/cli.e2e.test.ts"
   },
   "dependencies": {
-    "@ankhorage/policy": "^0.5.1",
-    "@ankhorage/utility": "^1.8.1",
+    "@ankhorage/policy": "^0.6.0",
+    "@ankhorage/utility": "^1.9.54",
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^2.0.0",
-    "@types/bun": "^1.4.1",
-    "@types/node": "^24.13.3",
+    "@ankhorage/devtools": "^2.0.88",
+    "@types/bun": "^1.4.2",
+    "@types/node": "^26.6.3",
     "typescript": "^5.9.3"
   },
   "packageManager": "bun@1.4.2"
