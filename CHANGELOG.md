@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.25
+
+### Patch Changes
+
+- 70d72a8: Stop rendering paradox.config.ts as the documented package's README configuration example; configuration docs now come only from the package-owned @config schema.
+
 ## 0.2.24
 
 ### Patch Changes
