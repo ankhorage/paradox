@@ -1,6 +1,6 @@
 import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
 
-import type { AnalysisDocumentationFinding } from '../types.js';
+import type { AnalysisDocumentationFinding } from '../../types/analysis.js';
 
 /***
  * Creates a finding from one canonical documentation policy rule.

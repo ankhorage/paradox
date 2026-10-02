@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import type { PolicyStatus } from '@ankhorage/policy/status';
 
-import type { AnalysisBadge } from './types.js';
+import type { AnalysisBadge } from '../types/analysis.js';
 import type { PackageJsonModel } from './usage.js';
 
 const ESLINT_CONFIG_FILES = [

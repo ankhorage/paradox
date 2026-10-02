@@ -24,7 +24,7 @@ import {
 } from './semantic/graphs.js';
 import { analyzeSequenceScenarios } from './sequenceScenarios.js';
 import { analyzeSourceFunctions } from './sourceFunctions.js';
-import type { AnalysisResult } from './types.js';
+import type { AnalysisResult } from '../types/analysis.js';
 import { createUsageFromPackageJson, type PackageJsonModel } from './usage.js';
 
 /***

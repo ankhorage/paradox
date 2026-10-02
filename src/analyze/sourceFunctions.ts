@@ -3,7 +3,7 @@ import { relative } from 'node:path';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Node, type Project } from 'ts-morph';
 
-import type { AnalysisSourceFunction } from './types.js';
+import type { AnalysisSourceFunction } from '../types/analysis.js';
 import { getParadoxComment } from './utils/getParadoxComment.js';
 import { parseParadoxComment } from './utils/parseParadoxComment.js';
 
