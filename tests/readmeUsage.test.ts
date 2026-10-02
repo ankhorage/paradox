@@ -56,9 +56,9 @@ describe('canonical README usage', () => {
       expect(output.readme).not.toContain('/***');
       expect(output.readme).not.toContain('@usage');
 
-      expect(
-        DOCUMENTATION_RULE_METADATA.readmeUsage.fullDocumentation.includeAllUsageEntries,
-      ).toBe(true);
+      expect(DOCUMENTATION_RULE_METADATA.readmeUsage.fullDocumentation.includeAllUsageEntries).toBe(
+        true,
+      );
       expect(output.indexHtml).toContain('Advanced Usage');
       expect(output.indexHtml).toContain('Second Advanced Usage');
       expect(output.indexHtml).toContain('examples/advanced/index.ts');

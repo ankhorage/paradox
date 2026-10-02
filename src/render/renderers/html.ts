@@ -1,4 +1,3 @@
-import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 import { slugifyAscii } from '@ankhorage/utility/string';
 
 import type { DocumentationModel } from '../../model/types.js';
