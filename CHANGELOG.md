@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.17
+
+### Patch Changes
+
+- ea45cc3: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 0.2.16
 
 ### Patch Changes
