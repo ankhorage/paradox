@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.23
+
+### Patch Changes
+
+- 6037036: Only render a README configuration example when the analyzed package explicitly owns an @config + @readme package configuration contract.
+
 ## 0.2.22
 
 ### Patch Changes
