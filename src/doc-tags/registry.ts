@@ -1,9 +1,9 @@
 import {
-  DOCUMENTATION_POLICY,
+  DOCUMENTATION_RULE_METADATA,
   type DocumentationTagName,
   type DocumentationTagTarget,
   type DocumentationTagValueKind,
-} from '@ankhorage/policy/documentation';
+} from '@ankhorage/rules-documentation';
 
 const HANDLERS = {
   readme: 'markReadme',
@@ -25,11 +25,11 @@ interface ParadoxDocTag {
 }
 
 /***
- * Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.
+ * Supported Paradox documentation tags projected from the canonical Ankhorage documentation Rules provider.
  *
  * @readme
  */
-export const PARADOX_DOC_TAGS: readonly ParadoxDocTag[] = DOCUMENTATION_POLICY.tags.map((tag) => ({
+export const PARADOX_DOC_TAGS: readonly ParadoxDocTag[] = DOCUMENTATION_RULE_METADATA.tags.map((tag) => ({
   ...tag,
   syntax: `@${tag.name}`,
   description: describeTag(tag.name),
@@ -54,7 +54,7 @@ export function isParadoxDocTagName(name: string): name is ParadoxDocTagName {
 }
 
 /***
- * Describes the rendering meaning of one policy-owned documentation tag.
+ * Describes the rendering meaning of one Rules-owned documentation tag.
  */
 function describeTag(name: DocumentationTagName): string {
   switch (name) {

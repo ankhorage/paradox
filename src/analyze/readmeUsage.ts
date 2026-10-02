@@ -1,7 +1,7 @@
 import { readdir } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
 
-import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 import { toPortablePath } from '@ankhorage/utility/node/path';
 import { Project, type Statement } from 'ts-morph';
 
@@ -18,7 +18,7 @@ export async function analyzeReadmeUsage(options: { root: string }): Promise<Ana
   const project = new Project({ skipAddingFilesFromTsConfig: true });
   const files = (
     await Promise.all(
-      DOCUMENTATION_POLICY.paths.usageRoots.map((usageRoot) =>
+      DOCUMENTATION_RULE_METADATA.paths.usageRoots.map((usageRoot) =>
         collectSourceFilesAsync(join(options.root, usageRoot)),
       ),
     )
@@ -68,7 +68,7 @@ function analyzeUsageFile(root: string, project: Project, filePath: string): Ana
 
     return [
       {
-        area: sourcePath.startsWith(`${DOCUMENTATION_POLICY.paths.examplesRoot}/`)
+        area: sourcePath.startsWith(`${DOCUMENTATION_RULE_METADATA.paths.examplesRoot}/`)
           ? 'examples'
           : 'cli',
         title: parsed.title ?? deriveUsageTitle(sourcePath),
@@ -96,11 +96,11 @@ function getStatementCode(statement: Statement): string {
  */
 function deriveUsageTitle(sourcePath: string): string {
   const parts = sourcePath.split('/');
-  if (parts[0] === DOCUMENTATION_POLICY.paths.examplesRoot) {
+  if (parts[0] === DOCUMENTATION_RULE_METADATA.paths.examplesRoot) {
     return titleCase(parts[1] ?? 'usage');
   }
 
-  if (sourcePath === `${DOCUMENTATION_POLICY.paths.cliRoot}/index.ts`) {
+  if (sourcePath === `${DOCUMENTATION_RULE_METADATA.paths.cliRoot}/index.ts`) {
     return 'CLI';
   }
 
@@ -141,7 +141,7 @@ function getLanguage(sourcePath: string): string {
  */
 export async function countExampleDirectoriesAsync(root: string): Promise<number> {
   try {
-    const entries = await readdir(join(root, DOCUMENTATION_POLICY.paths.examplesRoot), {
+    const entries = await readdir(join(root, DOCUMENTATION_RULE_METADATA.paths.examplesRoot), {
       withFileTypes: true,
     });
     return entries.filter((entry) => entry.isDirectory()).length;

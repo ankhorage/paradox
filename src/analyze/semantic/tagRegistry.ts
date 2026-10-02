@@ -1,7 +1,7 @@
-import { DOCUMENTATION_POLICY } from '@ankhorage/policy/documentation';
+import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 
 export type TagRegistry = ReadonlySet<string>;
 
 export const defaultTagRegistry: TagRegistry = new Set(
-  DOCUMENTATION_POLICY.tags.map((tag) => tag.name),
+  DOCUMENTATION_RULE_METADATA.tags.map((tag) => tag.name),
 );

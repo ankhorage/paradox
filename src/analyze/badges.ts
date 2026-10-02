@@ -1,7 +1,7 @@
 import { access, readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import type { PolicyStatus } from '@ankhorage/policy/status';
+import type { RulesStatusDescriptor } from '@ankhorage/rules';
 
 import type { AnalysisBadge } from '../types/analysis.js';
 import type { PackageJsonModel } from './usage.js';
@@ -65,7 +65,7 @@ interface CoverageSummaryModel {
 export async function analyzeBadges(
   root: string,
   pkg: PackageJsonModel,
-  documentationStatus: PolicyStatus,
+  documentationStatus: RulesStatusDescriptor['status'],
 ): Promise<AnalysisBadge[]> {
   const workflowFiles = await readWorkflowFiles(root);
   const badges: AnalysisBadge[] = [];
@@ -384,7 +384,7 @@ function getBadgeOrder(id: string): number {
 /***
  * Maps the shared traffic-light status to a deterministic badge color.
  */
-function getDocumentationStatusColor(status: PolicyStatus): string {
+function getDocumentationStatusColor(status: RulesStatusDescriptor['status']): string {
   if (status === 'invalid') return 'dc2626';
   if (status === 'warnings') return 'ca8a04';
   return '0a7f3f';
