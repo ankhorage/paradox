@@ -1,6 +1,8 @@
 #!/usr/bin/env bun
 import { dirname } from 'node:path';
 
+import type { RuleSeverity } from '@ankhorage/rules';
+
 import { analyze } from '../analyze/analyze.js';
 import { buildModel } from '../model/buildModel.js';
 import {
@@ -43,16 +45,16 @@ async function main(): Promise<void> {
 }
 
 /***
- * Refuses to write generated artifacts when canonical documentation policy contains errors.
+ * Refuses to write generated artifacts when canonical documentation Rules contains errors.
  */
 function assertNoDocumentationErrors(
-  findings: readonly { severity: 'warning' | 'error'; ruleId: string; message: string }[],
+  findings: readonly { severity: RuleSeverity; ruleId: string; message: string }[],
 ): void {
   const errors = findings.filter((finding) => finding.severity === 'error');
   if (errors.length === 0) return;
 
   const details = errors.map((finding) => `- [${finding.ruleId}] ${finding.message}`).join('\n');
-  throw new Error(`Paradox documentation policy is invalid:\n${details}`);
+  throw new Error(`Paradox documentation Rules is invalid:\n${details}`);
 }
 
 main().catch((error: unknown) => {

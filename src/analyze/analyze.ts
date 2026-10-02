@@ -71,7 +71,7 @@ export async function analyze(
     comments,
     exports,
   });
-  const findings = documentationRules.findings;
+  const findings = [...documentationRules.findings];
   const badges = await analyzeBadges(root, pkg, documentationRules.status);
 
   return {
