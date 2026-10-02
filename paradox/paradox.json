@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.25",
+      "value": "v0.2.26",
       "color": "cb3837"
     },
     {
@@ -149,7 +149,7 @@
         "src/analyze/badges.ts",
         "src/analyze/components.ts",
         "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
         "src/analyze/exports.ts",
         "src/analyze/modules.ts",
         "src/analyze/project.ts",
@@ -159,10 +159,10 @@
         "src/analyze/semantic/graphs.ts",
         "src/analyze/sequenceScenarios.ts",
         "src/analyze/sourceFunctions.ts",
-        "src/analyze/types.ts",
         "src/analyze/usage.ts",
         "src/config/utils/validateCollaborators.ts",
         "src/config/utils/validateDonationAccount.ts",
+        "src/types/analysis.ts",
         "src/types/config.ts"
       ],
       "exports": [
@@ -173,8 +173,8 @@
       "path": "src/analyze/badges.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
-        "src/analyze/usage.ts"
+        "src/analyze/usage.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeBadges"
@@ -186,10 +186,10 @@
       "dependencies": [
         "src/analyze/semantic/exports.ts",
         "src/analyze/semantic/model.ts",
-        "src/analyze/types.ts",
         "src/analyze/utils/getComponentPropsType.ts",
         "src/analyze/utils/getPropsFromType.ts",
-        "src/analyze/utils/isReactComponent.ts"
+        "src/analyze/utils/isReactComponent.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeComponents"
@@ -207,51 +207,39 @@
       ]
     },
     {
-      "path": "src/analyze/documentation/findings.ts",
+      "path": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts"
+        "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
       ],
       "exports": [
-        "createDocumentationFinding"
+        "collectDocumentationReferenceFactsAsync",
+        "DocumentationReferenceFacts"
       ]
     },
     {
-      "path": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+      "path": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "src/analyze/documentation/findings.ts",
-        "src/analyze/documentation/validateReferencesAsync.ts",
-        "src/analyze/types.ts",
+        "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
         "src/analyze/utils/getParadoxComment.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/types/analysis.ts"
       ],
       "exports": [
-        "validateDocumentationPolicyAsync"
-      ]
-    },
-    {
-      "path": "src/analyze/documentation/validateReferencesAsync.ts",
-      "isEntrypoint": false,
-      "dependencies": [
-        "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "src/analyze/documentation/findings.ts",
-        "src/analyze/types.ts"
-      ],
-      "exports": [
-        "validateReferencesAsync"
+        "DocumentationRulesAnalysis",
+        "evaluateDocumentationRulesAsync"
       ]
     },
     {
       "path": "src/analyze/exports.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
         "src/analyze/utils/getExportMetadata.ts",
         "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/parseParadoxComment.ts",
-        "src/analyze/utils/resolveExportSymbol.ts"
+        "src/analyze/utils/resolveExportSymbol.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeExports"
@@ -261,7 +249,7 @@
       "path": "src/analyze/modules.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts"
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeModules"
@@ -279,9 +267,9 @@
       "path": "src/analyze/readmeUsage.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/parseParadoxComment.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeReadmeUsage",
@@ -443,10 +431,10 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/analyze/semantic/utils.ts",
-        "src/analyze/types.ts",
         "src/analyze/usage.ts",
         "src/analyze/utils/getParadoxComment.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/parseParadoxComment.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeSequenceScenarios"
@@ -456,41 +444,19 @@
       "path": "src/analyze/sourceFunctions.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/parseParadoxComment.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "analyzeSourceFunctions"
       ]
     },
     {
-      "path": "src/analyze/types.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": [
-        "AnalysisBadge",
-        "AnalysisComponent",
-        "AnalysisDocumentationFinding",
-        "AnalysisExport",
-        "AnalysisMember",
-        "AnalysisModule",
-        "AnalysisParameter",
-        "AnalysisResult",
-        "AnalysisSequenceScenario",
-        "AnalysisSignature",
-        "AnalysisSourceFunction",
-        "AnalysisSourceLocation",
-        "AnalysisStructuredRow",
-        "AnalysisUsage",
-        "AnalysisUsageEntry"
-      ]
-    },
-    {
       "path": "src/analyze/usage.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts"
+        "src/types/analysis.ts"
       ],
       "exports": [
         "createUsageFromPackageJson",
@@ -509,10 +475,10 @@
       "path": "src/analyze/utils/getExportMetadata.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/normalizeTypeText.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/parseParadoxComment.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "getExportMetadata"
@@ -530,10 +496,10 @@
       "path": "src/analyze/utils/getPropsFromType.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/analyze/types.ts",
         "src/analyze/utils/getParadoxComment.ts",
         "src/analyze/utils/normalizeTypeText.ts",
-        "src/analyze/utils/parseParadoxComment.ts"
+        "src/analyze/utils/parseParadoxComment.ts",
+        "src/types/analysis.ts"
       ],
       "exports": [
         "getPropsFromType"
@@ -736,7 +702,7 @@
         "src/render/renderers/funding.ts",
         "src/render/renderers/html.ts",
         "src/render/renderers/markdown.ts",
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "render"
@@ -747,7 +713,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderBadgeArtifacts"
@@ -757,7 +723,7 @@
       "path": "src/render/renderers/collaborators.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderCollaborators"
@@ -768,8 +734,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
-        "src/render/toFileStem.ts",
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderDiagramArtifacts"
@@ -779,7 +744,7 @@
       "path": "src/render/renderers/donation.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderDonation"
@@ -800,7 +765,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderHtml"
@@ -811,22 +776,44 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts",
-        "src/render/types.ts"
+        "src/types/render.ts"
       ],
       "exports": [
         "renderMarkdown"
       ]
     },
     {
-      "path": "src/render/toFileStem.ts",
+      "path": "src/types/analysis.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
-        "toFileStem"
+        "AnalysisBadge",
+        "AnalysisComponent",
+        "AnalysisDocumentationFinding",
+        "AnalysisExport",
+        "AnalysisMember",
+        "AnalysisModule",
+        "AnalysisParameter",
+        "AnalysisResult",
+        "AnalysisSequenceScenario",
+        "AnalysisSignature",
+        "AnalysisSourceFunction",
+        "AnalysisSourceLocation",
+        "AnalysisStructuredRow",
+        "AnalysisUsage",
+        "AnalysisUsageEntry"
       ]
     },
     {
-      "path": "src/render/types.ts",
+      "path": "src/types/config.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ParadoxConfig"
+      ]
+    },
+    {
+      "path": "src/types/render.ts",
       "isEntrypoint": false,
       "dependencies": [
         "src/model/types.ts"
@@ -836,14 +823,6 @@
         "DiagramArtifact",
         "RenderContext",
         "RenderResult"
-      ]
-    },
-    {
-      "path": "src/types/config.ts",
-      "isEntrypoint": false,
-      "dependencies": [],
-      "exports": [
-        "ParadoxConfig"
       ]
     },
     {
@@ -866,8 +845,8 @@
       "path": "src/write/write.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/render/types.ts",
         "src/types/config.ts",
+        "src/types/render.ts",
         "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
         "src/write/utils/syncFundingFileAsync.ts"
       ],
@@ -926,7 +905,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 45,
+        "line": 47,
         "column": 1
       },
       "exportPaths": [
@@ -962,7 +941,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 52,
+        "line": 54,
         "column": 1
       },
       "exportPaths": [
@@ -1012,7 +991,7 @@
     {
       "name": "PARADOX_DOC_TAGS",
       "title": null,
-      "description": "Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.",
+      "description": "Supported Paradox documentation tags projected from the canonical documentation Rules provider.",
       "isReadme": true,
       "see": [],
       "security": [],
@@ -1107,7 +1086,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 40,
+        "line": 42,
         "column": 1
       },
       "exportPaths": [
@@ -1129,7 +1108,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 39,
+        "line": 41,
         "column": 1
       },
       "exportPaths": [
@@ -1150,7 +1129,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 33,
+        "line": 32,
         "column": 1
       }
     },
@@ -1161,7 +1140,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 114,
+        "line": 113,
         "column": 1
       }
     },
@@ -1172,7 +1151,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 160,
+        "line": 159,
         "column": 1
       }
     },
@@ -1183,7 +1162,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 177,
+        "line": 176,
         "column": 1
       }
     },
@@ -1463,211 +1442,79 @@
       }
     },
     {
-      "name": "createDocumentationFinding",
-      "description": "Creates a finding from one canonical documentation policy rule.",
+      "name": "collectDocumentationReferenceFactsAsync",
+      "description": "Collects external-reference and executable-test facts without deciding rule outcomes.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/findings.ts",
-        "line": 8,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 24,
         "column": 1
       }
     },
     {
-      "name": "validateDocumentationPolicyAsync",
-      "description": "Evaluates package documentation evidence against the canonical Ankhorage documentation policy.",
+      "name": "collectSeeFactsAsync",
+      "description": "Collects reachability evidence only for syntactically safe public-HTTPS candidates.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 17,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 47,
         "column": 1
       }
     },
     {
-      "name": "validateCommentRules",
-      "description": "Validates generic comment syntax rules shared by all documentation contexts.",
+      "name": "normalizeSeeUrl",
+      "description": "Normalizes a syntactically safe @see value without performing network I/O.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 38,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 80,
         "column": 1
       }
     },
     {
-      "name": "validateUsageRules",
-      "description": "Validates canonical usage locations and the single README-promoted programmatic example.",
+      "name": "collectSecurityFactsAsync",
+      "description": "Collects colocated executable-test facts for every @security reference.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 71,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 96,
         "column": 1
       }
     },
     {
-      "name": "validateUsageComment",
-      "description": "Validates one usage comment location and forbidden CLI README promotion.",
+      "name": "collectSecurityFactAsync",
+      "description": "Resolves one @security value to colocated file and exact test-name evidence.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 113,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 111,
         "column": 1
       }
     },
     {
-      "name": "validateConfigRulesAsync",
-      "description": "Validates configuration only after the package opts into that documentation surface.",
+      "name": "securityFact",
+      "description": "Builds one portable security-reference fact.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 144,
-        "column": 1
-      }
-    },
-    {
-      "name": "collectConfigRoots",
-      "description": "Collects canonical @config + @readme type declarations from the config schema.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 170,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateConfigRoots",
-      "description": "Validates cardinality and README metadata for canonical config roots.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 185,
-        "column": 1
-      }
-    },
-    {
-      "name": "validatePublicApiRules",
-      "description": "Warns when a public callable export has no Paradox description.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 220,
-        "column": 1
-      }
-    },
-    {
-      "name": "hasExactlyOneRequiredTag",
-      "description": "Checks that each policy-required tag appears exactly once on one parsed documentation item.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 240,
-        "column": 1
-      }
-    },
-    {
-      "name": "finding",
-      "description": "Creates a finding at one collected comment location.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 252,
-        "column": 1
-      }
-    },
-    {
-      "name": "isBelow",
-      "description": "Checks whether a source path is contained in one canonical root.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 263,
-        "column": 1
-      }
-    },
-    {
-      "name": "fileExistsAsync",
-      "description": "Checks whether a required canonical file exists.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "line": 270,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateReferencesAsync",
-      "description": "Validates external and executable references carried by documentation comments.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 17,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateSeeReferencesAsync",
-      "description": "Validates every @see value through syntax policy and the hardened public HTTPS utility.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 36,
-        "column": 1
-      }
-    },
-    {
-      "name": "parseSeeUrl",
-      "description": "Parses one @see value according to the policy-owned URL syntax contract.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 74,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateSecurityReferencesAsync",
-      "description": "Validates every @security reference against one exact colocated executable test.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 90,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateSecurityReferenceAsync",
-      "description": "Resolves one colocated security test reference and requires exactly one matching test declaration.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 106,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 136,
         "column": 1
       }
     },
     {
       "name": "parseSecurityReference",
-      "description": "Parses a same-directory test filename and exact test name from an @security value.",
+      "description": "Parses one same-directory test filename and exact test name from an @security value.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 139,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 148,
         "column": 1
       }
     },
@@ -1677,52 +1524,96 @@
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 157,
-        "column": 1
-      }
-    },
-    {
-      "name": "securityFinding",
-      "description": "Creates the canonical security-reference finding at a comment location.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 169,
-        "column": 1
-      }
-    },
-    {
-      "name": "referenceFinding",
-      "description": "Creates a reference finding at the owning comment location.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 179,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 165,
         "column": 1
       }
     },
     {
       "name": "fileExistsAsync",
-      "description": "Checks whether a referenced test file exists.",
+      "description": "Checks whether one referenced colocated test path exists.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 190,
+        "filePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "line": 177,
         "column": 1
       }
     },
     {
-      "name": "readErrorMessage",
-      "description": "Converts an unknown thrown value into a stable diagnostic string.",
+      "name": "evaluateDocumentationRulesAsync",
+      "description": "Collects Paradox-owned documentation facts and evaluates them through rules-documentation.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "line": 202,
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 29,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectDocumentationRuleContextAsync",
+      "description": "Builds the portable documentation context while keeping AST, filesystem, and network I/O local.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 48,
+        "column": 1
+      }
+    },
+    {
+      "name": "toCommentFact",
+      "description": "Converts one parsed Paradox comment into the provider's parser-neutral fact shape.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 79,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveCommentTarget",
+      "description": "Resolves the declaration kind that owns one raw Paradox comment.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 107,
+        "column": 1
+      }
+    },
+    {
+      "name": "toPublicFunctionFacts",
+      "description": "Projects analyzed callable exports into provider facts without re-reading source files.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 126,
+        "column": 1
+      }
+    },
+    {
+      "name": "toAnalysisFinding",
+      "description": "Maps generic Rule findings back to Paradox's serializable analysis model.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 146,
+        "column": 1
+      }
+    },
+    {
+      "name": "fileExistsAsync",
+      "description": "Checks whether one canonical documentation path exists.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "line": 161,
         "column": 1
       }
     },
@@ -2965,18 +2856,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
-        "line": 22,
+        "line": 24,
         "column": 1
       }
     },
     {
       "name": "assertNoDocumentationErrors",
-      "description": "Refuses to write generated artifacts when canonical documentation policy contains errors.",
+      "description": "Refuses to write generated artifacts when canonical documentation Rules contains errors.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
-        "line": 48,
+        "line": 50,
         "column": 1
       }
     },
@@ -3020,7 +2911,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 45,
+        "line": 47,
         "column": 1
       }
     },
@@ -3031,18 +2922,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 52,
+        "line": 54,
         "column": 1
       }
     },
     {
       "name": "describeTag",
-      "description": "Describes the rendering meaning of one policy-owned documentation tag.",
+      "description": "Describes the rendering meaning of one Rules-owned documentation tag.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 59,
+        "line": 61,
         "column": 1
       }
     },
@@ -3053,7 +2944,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 141,
+        "line": 143,
         "column": 1
       }
     },
@@ -3064,7 +2955,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 202,
+        "line": 204,
         "column": 1
       }
     },
@@ -3075,7 +2966,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 237,
+        "line": 239,
         "column": 1
       }
     },
@@ -3086,7 +2977,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 258,
+        "line": 260,
         "column": 1
       }
     },
@@ -3284,7 +3175,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 14,
+        "line": 13,
         "column": 1
       }
     },
@@ -3295,7 +3186,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 35,
+        "line": 34,
         "column": 1
       }
     },
@@ -3306,7 +3197,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 63,
+        "line": 62,
         "column": 1
       }
     },
@@ -3317,7 +3208,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 82,
+        "line": 81,
         "column": 1
       }
     },
@@ -3328,7 +3219,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 103,
+        "line": 102,
         "column": 1
       }
     },
@@ -3339,7 +3230,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 118,
+        "line": 117,
         "column": 1
       }
     },
@@ -3350,7 +3241,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 129,
+        "line": 128,
         "column": 1
       }
     },
@@ -3361,7 +3252,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 157,
+        "line": 156,
         "column": 1
       }
     },
@@ -3372,7 +3263,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 185,
+        "line": 184,
         "column": 1
       }
     },
@@ -3383,7 +3274,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 192,
+        "line": 191,
         "column": 1
       }
     },
@@ -3394,7 +3285,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 205,
+        "line": 204,
         "column": 1
       }
     },
@@ -3405,7 +3296,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 220,
+        "line": 219,
         "column": 1
       }
     },
@@ -3416,7 +3307,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 231,
+        "line": 230,
         "column": 1
       }
     },
@@ -3427,7 +3318,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 250,
+        "line": 249,
         "column": 1
       }
     },
@@ -3438,7 +3329,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 264,
+        "line": 263,
         "column": 1
       }
     },
@@ -3449,7 +3340,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 268,
+        "line": 267,
         "column": 1
       }
     },
@@ -3460,7 +3351,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 272,
+        "line": 271,
         "column": 1
       }
     },
@@ -3471,7 +3362,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 276,
+        "line": 275,
         "column": 1
       }
     },
@@ -3482,7 +3373,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 287,
+        "line": 286,
         "column": 1
       }
     },
@@ -3493,7 +3384,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/diagrams.ts",
-        "line": 291,
+        "line": 290,
+        "column": 1
+      }
+    },
+    {
+      "name": "toFileStem",
+      "description": "Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/render/renderers/diagrams.ts",
+        "line": 295,
         "column": 1
       }
     },
@@ -3548,7 +3450,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 20,
+        "line": 19,
         "column": 1
       }
     },
@@ -3559,7 +3461,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 219,
+        "line": 218,
         "column": 1
       }
     },
@@ -3570,7 +3472,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 269,
+        "line": 268,
         "column": 1
       }
     },
@@ -3581,7 +3483,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 297,
+        "line": 296,
         "column": 1
       }
     },
@@ -3592,7 +3494,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 318,
+        "line": 317,
         "column": 1
       }
     },
@@ -3603,7 +3505,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 342,
+        "line": 341,
         "column": 1
       }
     },
@@ -3614,7 +3516,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 354,
+        "line": 353,
         "column": 1
       }
     },
@@ -3625,7 +3527,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 368,
+        "line": 367,
         "column": 1
       }
     },
@@ -3636,7 +3538,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 388,
+        "line": 387,
         "column": 1
       }
     },
@@ -3647,7 +3549,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 397,
+        "line": 396,
         "column": 1
       }
     },
@@ -3658,7 +3560,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 411,
+        "line": 410,
         "column": 1
       }
     },
@@ -3669,7 +3571,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 440,
+        "line": 439,
         "column": 1
       }
     },
@@ -3680,7 +3582,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 476,
+        "line": 475,
         "column": 1
       }
     },
@@ -3691,7 +3593,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 498,
+        "line": 497,
         "column": 1
       }
     },
@@ -3702,7 +3604,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 535,
+        "line": 534,
         "column": 1
       }
     },
@@ -3713,7 +3615,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 550,
+        "line": 549,
         "column": 1
       }
     },
@@ -3724,7 +3626,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 572,
+        "line": 571,
         "column": 1
       }
     },
@@ -3735,7 +3637,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 583,
+        "line": 582,
         "column": 1
       }
     },
@@ -3746,7 +3648,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 592,
+        "line": 591,
         "column": 1
       }
     },
@@ -3757,7 +3659,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 611,
+        "line": 610,
         "column": 1
       }
     },
@@ -3768,7 +3670,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 623,
+        "line": 622,
         "column": 1
       }
     },
@@ -4081,17 +3983,6 @@
       }
     },
     {
-      "name": "toFileStem",
-      "description": "Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/render/toFileStem.ts",
-        "line": 2,
-        "column": 1
-      }
-    },
-    {
       "name": "syncCollaboratorsWorkflowAsync",
       "description": null,
       "see": [],
@@ -4252,6 +4143,11 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/types/analysis.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/types/config.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
@@ -4272,7 +4168,7 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
-        "toPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "toPath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4322,23 +4218,23 @@
       },
       {
         "fromPath": "src/analyze/analyze.ts",
-        "toPath": "src/analyze/types.ts",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/analyze/usage.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
         "fromPath": "src/analyze/badges.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/badges.ts"
       },
       {
         "fromPath": "src/analyze/badges.ts",
         "toPath": "src/analyze/usage.ts",
         "sourcePath": "src/analyze/badges.ts"
+      },
+      {
+        "fromPath": "src/analyze/components.ts",
+        "toPath": "src/types/analysis.ts",
+        "sourcePath": "src/analyze/components.ts"
       },
       {
         "fromPath": "src/analyze/components.ts",
@@ -4348,11 +4244,6 @@
       {
         "fromPath": "src/analyze/components.ts",
         "toPath": "src/analyze/semantic/model.ts",
-        "sourcePath": "src/analyze/components.ts"
-      },
-      {
-        "fromPath": "src/analyze/components.ts",
-        "toPath": "src/analyze/types.ts",
         "sourcePath": "src/analyze/components.ts"
       },
       {
@@ -4372,7 +4263,7 @@
       },
       {
         "fromPath": "src/analyze/exports.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/exports.ts"
       },
       {
@@ -4397,12 +4288,12 @@
       },
       {
         "fromPath": "src/analyze/modules.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/modules.ts"
       },
       {
         "fromPath": "src/analyze/readmeUsage.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/readmeUsage.ts"
       },
       {
@@ -4417,12 +4308,12 @@
       },
       {
         "fromPath": "src/analyze/sequenceScenarios.ts",
-        "toPath": "src/analyze/semantic/utils.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
         "fromPath": "src/analyze/sequenceScenarios.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/analyze/semantic/utils.ts",
         "sourcePath": "src/analyze/sequenceScenarios.ts"
       },
       {
@@ -4442,7 +4333,7 @@
       },
       {
         "fromPath": "src/analyze/sourceFunctions.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/sourceFunctions.ts"
       },
       {
@@ -4457,7 +4348,7 @@
       },
       {
         "fromPath": "src/analyze/usage.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/usage.ts"
       },
       {
@@ -4512,6 +4403,11 @@
       },
       {
         "fromPath": "src/render/render.ts",
+        "toPath": "src/types/render.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
         "toPath": "src/render/renderers/badges.ts",
         "sourcePath": "src/render/render.ts"
       },
@@ -4546,23 +4442,18 @@
         "sourcePath": "src/render/render.ts"
       },
       {
-        "fromPath": "src/render/render.ts",
-        "toPath": "src/render/types.ts",
-        "sourcePath": "src/render/render.ts"
-      },
-      {
-        "fromPath": "src/render/types.ts",
+        "fromPath": "src/types/render.ts",
         "toPath": "src/model/types.ts",
-        "sourcePath": "src/render/types.ts"
-      },
-      {
-        "fromPath": "src/write/write.ts",
-        "toPath": "src/render/types.ts",
-        "sourcePath": "src/write/write.ts"
+        "sourcePath": "src/types/render.ts"
       },
       {
         "fromPath": "src/write/write.ts",
         "toPath": "src/types/config.ts",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromPath": "src/write/write.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -4581,54 +4472,29 @@
         "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
       },
       {
-        "fromPath": "src/analyze/documentation/findings.ts",
-        "toPath": "src/analyze/types.ts",
-        "sourcePath": "src/analyze/documentation/findings.ts"
+        "fromPath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toPath": "src/analyze/types.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "fromPath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "toPath": "src/types/analysis.ts",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
       },
       {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "fromPath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
         "toPath": "src/analyze/utils/getParadoxComment.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
       },
       {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toPath": "src/analyze/utils/parseParadoxComment.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
+        "fromPath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
         "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
       },
       {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toPath": "src/analyze/documentation/findings.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromPath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toPath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toPath": "src/analyze/types.ts",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toPath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromPath": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toPath": "src/analyze/documentation/findings.ts",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "fromPath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "toPath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
       },
       {
         "fromPath": "src/analyze/semantic/analyzeProject.ts",
@@ -4752,7 +4618,7 @@
       },
       {
         "fromPath": "src/analyze/utils/getExportMetadata.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/utils/getExportMetadata.ts"
       },
       {
@@ -4772,7 +4638,7 @@
       },
       {
         "fromPath": "src/analyze/utils/getPropsFromType.ts",
-        "toPath": "src/analyze/types.ts",
+        "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/utils/getPropsFromType.ts"
       },
       {
@@ -4802,12 +4668,12 @@
       },
       {
         "fromPath": "src/render/renderers/badges.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/badges.ts"
       },
       {
         "fromPath": "src/render/renderers/collaborators.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/collaborators.ts"
       },
       {
@@ -4817,17 +4683,12 @@
       },
       {
         "fromPath": "src/render/renderers/diagrams.ts",
-        "toPath": "src/render/toFileStem.ts",
-        "sourcePath": "src/render/renderers/diagrams.ts"
-      },
-      {
-        "fromPath": "src/render/renderers/diagrams.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/diagrams.ts"
       },
       {
         "fromPath": "src/render/renderers/donation.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/donation.ts"
       },
       {
@@ -4842,7 +4703,7 @@
       },
       {
         "fromPath": "src/render/renderers/html.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
@@ -4852,7 +4713,7 @@
       },
       {
         "fromPath": "src/render/renderers/markdown.ts",
-        "toPath": "src/render/types.ts",
+        "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/markdown.ts"
       }
     ],
@@ -5027,14 +4888,8 @@
       },
       {
         "fromSymbol": "analyze",
-        "toSymbol": "validateDocumentationPolicyAsync",
-        "callExpression": "validateDocumentationPolicyAsync",
-        "sourcePath": "src/analyze/analyze.ts"
-      },
-      {
-        "fromSymbol": "analyze",
-        "toSymbol": "resolvePolicyStatus",
-        "callExpression": "resolvePolicyStatus",
+        "toSymbol": "evaluateDocumentationRulesAsync",
+        "callExpression": "evaluateDocumentationRulesAsync",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -6064,256 +5919,154 @@
         "sourcePath": "src/analyze/documentation/collectDocumentationCommentsAsync.ts"
       },
       {
-        "fromSymbol": "validateDocumentationPolicyAsync",
-        "toSymbol": "validateCommentRules",
-        "callExpression": "validateCommentRules",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "toSymbol": "collectSeeFactsAsync",
+        "callExpression": "collectSeeFactsAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateDocumentationPolicyAsync",
-        "toSymbol": "validateUsageRules",
-        "callExpression": "validateUsageRules",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "toSymbol": "collectSecurityFactsAsync",
+        "callExpression": "collectSecurityFactsAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateDocumentationPolicyAsync",
-        "toSymbol": "validateConfigRulesAsync",
-        "callExpression": "validateConfigRulesAsync",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "toSymbol": "normalizeSeeUrl",
+        "callExpression": "normalizeSeeUrl",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateDocumentationPolicyAsync",
-        "toSymbol": "validatePublicApiRules",
-        "callExpression": "validatePublicApiRules",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateDocumentationPolicyAsync",
-        "toSymbol": "validateReferencesAsync",
-        "callExpression": "validateReferencesAsync",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "finding",
-        "callExpression": "finding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "validateUsageComment",
-        "callExpression": "validateUsageComment",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "isBelow",
-        "callExpression": "isBelow",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateUsageRules",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateUsageRules",
-        "toSymbol": "hasExactlyOneRequiredTag",
-        "callExpression": "hasExactlyOneRequiredTag",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateUsageRules",
-        "toSymbol": "finding",
-        "callExpression": "finding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateUsageComment",
-        "toSymbol": "finding",
-        "callExpression": "finding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateUsageComment",
-        "toSymbol": "isBelow",
-        "callExpression": "isBelow",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRulesAsync",
-        "toSymbol": "join",
-        "callExpression": "join",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRulesAsync",
-        "toSymbol": "fileExistsAsync",
-        "callExpression": "fileExistsAsync",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRulesAsync",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRulesAsync",
-        "toSymbol": "validateConfigRoots",
-        "callExpression": "validateConfigRoots",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRulesAsync",
-        "toSymbol": "collectConfigRoots",
-        "callExpression": "collectConfigRoots",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "getParadoxComment",
-        "callExpression": "getParadoxComment",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "parseParadoxComment",
-        "callExpression": "parseParadoxComment",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRoots",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "validateConfigRoots",
-        "toSymbol": "hasExactlyOneRequiredTag",
-        "callExpression": "hasExactlyOneRequiredTag",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateDocumentationPolicyAsync.ts",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "finding",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "fileExistsAsync",
-        "toSymbol": "access",
-        "callExpression": "access",
-        "sourcePath": "src/analyze/documentation/validateDocumentationPolicyAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "validateSeeReferencesAsync",
-        "callExpression": "validateSeeReferencesAsync",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "validateSecurityReferencesAsync",
-        "callExpression": "validateSecurityReferencesAsync",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "parseSeeUrl",
-        "callExpression": "parseSeeUrl",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "referenceFinding",
-        "callExpression": "referenceFinding",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
         "toSymbol": "validateSeeUrlAsync",
         "callExpression": "validateSeeUrlAsync",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "readErrorMessage",
-        "callExpression": "readErrorMessage",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
+        "toSymbol": "collectSecurityFactAsync",
+        "callExpression": "collectSecurityFactAsync",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
-        "toSymbol": "validateSecurityReferenceAsync",
-        "callExpression": "validateSecurityReferenceAsync",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "validateSecurityReferenceAsync",
+        "fromSymbol": "collectSecurityFactAsync",
         "toSymbol": "parseSecurityReference",
         "callExpression": "parseSecurityReference",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateSecurityReferenceAsync",
-        "toSymbol": "securityFinding",
-        "callExpression": "securityFinding",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "fromSymbol": "collectSecurityFactAsync",
+        "toSymbol": "securityFact",
+        "callExpression": "securityFact",
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateSecurityReferenceAsync",
+        "fromSymbol": "collectSecurityFactAsync",
         "toSymbol": "join",
         "callExpression": "join",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateSecurityReferenceAsync",
+        "fromSymbol": "collectSecurityFactAsync",
         "toSymbol": "dirname",
         "callExpression": "dirname",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "validateSecurityReferenceAsync",
+        "fromSymbol": "collectSecurityFactAsync",
         "toSymbol": "fileExistsAsync",
         "callExpression": "fileExistsAsync",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
-        "fromSymbol": "src/analyze/documentation/validateReferencesAsync.ts",
+        "fromSymbol": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts",
         "toSymbol": "isNamedTestCall",
         "callExpression": "isNamedTestCall",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
         "fromSymbol": "parseSecurityReference",
         "toSymbol": "basename",
         "callExpression": "basename",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "securityFinding",
-        "toSymbol": "referenceFinding",
-        "callExpression": "referenceFinding",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
-      },
-      {
-        "fromSymbol": "referenceFinding",
-        "toSymbol": "createDocumentationFinding",
-        "callExpression": "createDocumentationFinding",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
       },
       {
         "fromSymbol": "fileExistsAsync",
         "toSymbol": "access",
         "callExpression": "access",
-        "sourcePath": "src/analyze/documentation/validateReferencesAsync.ts"
+        "sourcePath": "src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts"
+      },
+      {
+        "fromSymbol": "evaluateDocumentationRulesAsync",
+        "toSymbol": "collectDocumentationRuleContextAsync",
+        "callExpression": "collectDocumentationRuleContextAsync",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "evaluateDocumentationRulesAsync",
+        "toSymbol": "evaluateDocumentation",
+        "callExpression": "evaluateDocumentation",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "evaluateDocumentationRulesAsync",
+        "toSymbol": "resolveRulesStatus",
+        "callExpression": "resolveRulesStatus",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "collectDocumentationRuleContextAsync",
+        "toSymbol": "collectDocumentationReferenceFactsAsync",
+        "callExpression": "collectDocumentationReferenceFactsAsync",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "collectDocumentationRuleContextAsync",
+        "toSymbol": "fileExistsAsync",
+        "callExpression": "fileExistsAsync",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "collectDocumentationRuleContextAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "toSymbol": "toCommentFact",
+        "callExpression": "toCommentFact",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "collectDocumentationRuleContextAsync",
+        "toSymbol": "toPublicFunctionFacts",
+        "callExpression": "toPublicFunctionFacts",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "toCommentFact",
+        "toSymbol": "resolveCommentTarget",
+        "callExpression": "resolveCommentTarget",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveCommentTarget",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts",
+        "toSymbol": "getParadoxComment",
+        "callExpression": "getParadoxComment",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
+      },
+      {
+        "fromSymbol": "fileExistsAsync",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/analyze/documentation/evaluateDocumentationRulesAsync.ts"
       },
       {
         "fromSymbol": "analyzeProject",

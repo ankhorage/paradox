@@ -18,7 +18,7 @@ Defines a Paradox configuration object without changing its shape.
 
 Kind: `function`
 Module: `src/doc-tags/registry.ts`
-Source: `src/doc-tags/registry.ts:45:1`
+Source: `src/doc-tags/registry.ts:47:1`
 
 Looks up documentation tag metadata by tag name.
 
@@ -32,7 +32,7 @@ Looks up documentation tag metadata by tag name.
 
 Kind: `function`
 Module: `src/doc-tags/registry.ts`
-Source: `src/doc-tags/registry.ts:52:1`
+Source: `src/doc-tags/registry.ts:54:1`
 
 Checks whether a string is a supported Paradox documentation tag name.
 
@@ -54,7 +54,7 @@ Kind: `value`
 Module: `src/doc-tags/registry.ts`
 Source: `src/doc-tags/registry.ts:32:14`
 
-Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.
+Supported Paradox documentation tags projected from the canonical documentation Rules provider.
 
 ## Configuration
 
@@ -81,10 +81,10 @@ Configures Paradox documentation generation for a package.
 
 Kind: `unknown`
 Module: `src/doc-tags/registry.ts`
-Source: `src/doc-tags/registry.ts:40:1`
+Source: `src/doc-tags/registry.ts:42:1`
 
 ## ParadoxDocTagName
 
 Kind: `unknown`
 Module: `src/doc-tags/registry.ts`
-Source: `src/doc-tags/registry.ts:39:1`
+Source: `src/doc-tags/registry.ts:41:1`

@@ -147,19 +147,14 @@
       <small>5 functions</small>
     </button>
   </li><li>
-    <button class="nav-button" type="button" data-target="src/analyze/documentation/findings.ts">
-      src/analyze/documentation/findings.ts
-      <small>1 function</small>
+    <button class="nav-button" type="button" data-target="src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts">
+      src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts
+      <small>9 functions</small>
     </button>
   </li><li>
-    <button class="nav-button" type="button" data-target="src/analyze/documentation/validateDocumentationPolicyAsync.ts">
-      src/analyze/documentation/validateDocumentationPolicyAsync.ts
-      <small>12 functions</small>
-    </button>
-  </li><li>
-    <button class="nav-button" type="button" data-target="src/analyze/documentation/validateReferencesAsync.ts">
-      src/analyze/documentation/validateReferencesAsync.ts
-      <small>11 functions</small>
+    <button class="nav-button" type="button" data-target="src/analyze/documentation/evaluateDocumentationRulesAsync.ts">
+      src/analyze/documentation/evaluateDocumentationRulesAsync.ts
+      <small>7 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/exports.ts">
@@ -339,7 +334,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/render/renderers/diagrams.ts">
       src/render/renderers/diagrams.ts
-      <small>20 functions</small>
+      <small>21 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/render/renderers/donation.ts">
@@ -360,11 +355,6 @@
     <button class="nav-button" type="button" data-target="src/render/renderers/markdown.ts">
       src/render/renderers/markdown.ts
       <small>28 functions</small>
-    </button>
-  </li><li>
-    <button class="nav-button" type="button" data-target="src/render/toFileStem.ts">
-      src/render/toFileStem.ts
-      <small>1 function</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/write/utils/syncCollaboratorsWorkflowAsync.ts">
@@ -393,7 +383,7 @@
       <div class="summary">
         <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>64</strong><span class="muted">modules</span></div>
+        <div><strong>62</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -431,60 +421,55 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <section class="panel"><h2>Policy</h2><p>No documentation findings.</p></section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/validateDocumentationPolicyAsync.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/usage.ts src/config/utils/validateCollaborators.ts src/config/utils/validateDonationAccount.ts src/types/config.ts analyze">
+      <article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/evaluateDocumentationRulesAsync.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/usage.ts src/config/utils/validateCollaborators.ts src/config/utils/validateDonationAccount.ts src/types/analysis.ts src/types/config.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/validateDocumentationPolicyAsync.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/utils/validateCollaborators.ts</code>, <code>src/config/utils/validateDonationAccount.ts</code>, <code>src/types/config.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/utils/validateCollaborators.ts</code>, <code>src/config/utils/validateDonationAccount.ts</code>, <code>src/types/analysis.ts</code>, <code>src/types/config.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
-  </article><article class="item" data-search="src/analyze/badges.ts src/analyze/types.ts src/analyze/usage.ts analyzeBadges">
+  </article><article class="item" data-search="src/analyze/badges.ts src/analyze/usage.ts src/types/analysis.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/usage.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeBadges</code></p>
-  </article><article class="item" data-search="src/analyze/components.ts src/analyze/semantic/exports.ts src/analyze/semantic/model.ts src/analyze/types.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts analyzeComponents">
+  </article><article class="item" data-search="src/analyze/components.ts src/analyze/semantic/exports.ts src/analyze/semantic/model.ts src/analyze/utils/getComponentPropsType.ts src/analyze/utils/getPropsFromType.ts src/analyze/utils/isReactComponent.ts src/types/analysis.ts analyzeComponents">
     <h3>src/analyze/components.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getComponentPropsType.ts</code>, <code>src/analyze/utils/getPropsFromType.ts</code>, <code>src/analyze/utils/isReactComponent.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/model.ts</code>, <code>src/analyze/utils/getComponentPropsType.ts</code>, <code>src/analyze/utils/getPropsFromType.ts</code>, <code>src/analyze/utils/isReactComponent.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeComponents</code></p>
   </article><article class="item" data-search="src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/utils/parseParadoxComment.ts collectDocumentationCommentsAsync CollectedDocumentationComment">
     <h3>src/analyze/documentation/collectDocumentationCommentsAsync.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/analyze/utils/parseParadoxComment.ts</code></p>
     <p><strong>Exports:</strong> <code>collectDocumentationCommentsAsync</code>, <code>CollectedDocumentationComment</code></p>
-  </article><article class="item" data-search="src/analyze/documentation/findings.ts src/analyze/types.ts createDocumentationFinding">
-    <h3>src/analyze/documentation/findings.ts</h3>
+  </article><article class="item" data-search="src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts collectDocumentationReferenceFactsAsync DocumentationReferenceFacts">
+    <h3>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code></p>
-    <p><strong>Exports:</strong> <code>createDocumentationFinding</code></p>
-  </article><article class="item" data-search="src/analyze/documentation/validateDocumentationPolicyAsync.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/findings.ts src/analyze/documentation/validateReferencesAsync.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts validateDocumentationPolicyAsync">
-    <h3>src/analyze/documentation/validateDocumentationPolicyAsync.ts</h3>
+    <p><strong>Dependencies:</strong> <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code></p>
+    <p><strong>Exports:</strong> <code>collectDocumentationReferenceFactsAsync</code>, <code>DocumentationReferenceFacts</code></p>
+  </article><article class="item" data-search="src/analyze/documentation/evaluateDocumentationRulesAsync.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts src/analyze/utils/getParadoxComment.ts src/types/analysis.ts DocumentationRulesAnalysis evaluateDocumentationRulesAsync">
+    <h3>src/analyze/documentation/evaluateDocumentationRulesAsync.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/findings.ts</code>, <code>src/analyze/documentation/validateReferencesAsync.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
-    <p><strong>Exports:</strong> <code>validateDocumentationPolicyAsync</code></p>
-  </article><article class="item" data-search="src/analyze/documentation/validateReferencesAsync.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/findings.ts src/analyze/types.ts validateReferencesAsync">
-    <h3>src/analyze/documentation/validateReferencesAsync.ts</h3>
-    <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/findings.ts</code>, <code>src/analyze/types.ts</code></p>
-    <p><strong>Exports:</strong> <code>validateReferencesAsync</code></p>
-  </article><article class="item" data-search="src/analyze/exports.ts src/analyze/types.ts src/analyze/utils/getExportMetadata.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/analyze/utils/resolveExportSymbol.ts analyzeExports">
+    <p><strong>Dependencies:</strong> <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
+    <p><strong>Exports:</strong> <code>DocumentationRulesAnalysis</code>, <code>evaluateDocumentationRulesAsync</code></p>
+  </article><article class="item" data-search="src/analyze/exports.ts src/analyze/utils/getExportMetadata.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/analyze/utils/resolveExportSymbol.ts src/types/analysis.ts analyzeExports">
     <h3>src/analyze/exports.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getExportMetadata.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/analyze/utils/resolveExportSymbol.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getExportMetadata.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/analyze/utils/resolveExportSymbol.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeExports</code></p>
-  </article><article class="item" data-search="src/analyze/modules.ts src/analyze/types.ts analyzeModules">
+  </article><article class="item" data-search="src/analyze/modules.ts src/types/analysis.ts analyzeModules">
     <h3>src/analyze/modules.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeModules</code></p>
   </article><article class="item" data-search="src/analyze/project.ts createProject">
     <h3>src/analyze/project.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>createProject</code></p>
-  </article><article class="item" data-search="src/analyze/readmeUsage.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts analyzeReadmeUsage countExampleDirectoriesAsync">
+  </article><article class="item" data-search="src/analyze/readmeUsage.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/types/analysis.ts analyzeReadmeUsage countExampleDirectoriesAsync">
     <h3>src/analyze/readmeUsage.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeReadmeUsage</code>, <code>countExampleDirectoriesAsync</code></p>
   </article><article class="item" data-search="src/analyze/semantic/analyzeProject.ts src/analyze/semantic/associateDocBlocksWithSymbols.ts src/analyze/semantic/collectSourceFiles.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/docBlocks.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/semantic/model.ts src/analyze/semantic/tagRegistry.ts analyzeProject">
     <h3>src/analyze/semantic/analyzeProject.ts</h3>
@@ -546,45 +531,40 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>isNodeModulePath</code>, <code>isPathInsideRoot</code>, <code>relativeToRoot</code></p>
-  </article><article class="item" data-search="src/analyze/sequenceScenarios.ts src/analyze/semantic/utils.ts src/analyze/types.ts src/analyze/usage.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts analyzeSequenceScenarios">
+  </article><article class="item" data-search="src/analyze/sequenceScenarios.ts src/analyze/semantic/utils.ts src/analyze/usage.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/types/analysis.ts analyzeSequenceScenarios">
     <h3>src/analyze/sequenceScenarios.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/utils.ts</code>, <code>src/analyze/types.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/semantic/utils.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeSequenceScenarios</code></p>
-  </article><article class="item" data-search="src/analyze/sourceFunctions.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts analyzeSourceFunctions">
+  </article><article class="item" data-search="src/analyze/sourceFunctions.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/parseParadoxComment.ts src/types/analysis.ts analyzeSourceFunctions">
     <h3>src/analyze/sourceFunctions.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>analyzeSourceFunctions</code></p>
-  </article><article class="item" data-search="src/analyze/types.ts AnalysisBadge AnalysisComponent AnalysisDocumentationFinding AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisStructuredRow AnalysisUsage AnalysisUsageEntry">
-    <h3>src/analyze/types.ts</h3>
-    <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisDocumentationFinding</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisStructuredRow</code>, <code>AnalysisUsage</code>, <code>AnalysisUsageEntry</code></p>
-  </article><article class="item" data-search="src/analyze/usage.ts src/analyze/types.ts createUsageFromPackageJson PackageJsonModel">
+  </article><article class="item" data-search="src/analyze/usage.ts src/types/analysis.ts createUsageFromPackageJson PackageJsonModel">
     <h3>src/analyze/usage.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>createUsageFromPackageJson</code>, <code>PackageJsonModel</code></p>
   </article><article class="item" data-search="src/analyze/utils/getComponentPropsType.ts getComponentPropsType">
     <h3>src/analyze/utils/getComponentPropsType.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>getComponentPropsType</code></p>
-  </article><article class="item" data-search="src/analyze/utils/getExportMetadata.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/normalizeTypeText.ts src/analyze/utils/parseParadoxComment.ts getExportMetadata">
+  </article><article class="item" data-search="src/analyze/utils/getExportMetadata.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/normalizeTypeText.ts src/analyze/utils/parseParadoxComment.ts src/types/analysis.ts getExportMetadata">
     <h3>src/analyze/utils/getExportMetadata.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/normalizeTypeText.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/normalizeTypeText.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>getExportMetadata</code></p>
   </article><article class="item" data-search="src/analyze/utils/getParadoxComment.ts getParadoxComment">
     <h3>src/analyze/utils/getParadoxComment.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>getParadoxComment</code></p>
-  </article><article class="item" data-search="src/analyze/utils/getPropsFromType.ts src/analyze/types.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/normalizeTypeText.ts src/analyze/utils/parseParadoxComment.ts getPropsFromType">
+  </article><article class="item" data-search="src/analyze/utils/getPropsFromType.ts src/analyze/utils/getParadoxComment.ts src/analyze/utils/normalizeTypeText.ts src/analyze/utils/parseParadoxComment.ts src/types/analysis.ts getPropsFromType">
     <h3>src/analyze/utils/getPropsFromType.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/types.ts</code>, <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/normalizeTypeText.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/utils/getParadoxComment.ts</code>, <code>src/analyze/utils/normalizeTypeText.ts</code>, <code>src/analyze/utils/parseParadoxComment.ts</code>, <code>src/types/analysis.ts</code></p>
     <p><strong>Exports:</strong> <code>getPropsFromType</code></p>
   </article><article class="item" data-search="src/analyze/utils/isReactComponent.ts isReactComponent">
     <h3>src/analyze/utils/isReactComponent.ts</h3>
@@ -681,61 +661,61 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/config.ts</code></p>
     <p><strong>Exports:</strong> <code>findParadoxConfigFile</code>, <code>loadParadoxConfig</code>, <code>resolveOutputRoot</code>, <code>resolvePackageRoot</code></p>
-  </article><article class="item" data-search="src/render/render.ts src/model/types.ts src/render/renderers/badges.ts src/render/renderers/collaborators.ts src/render/renderers/diagrams.ts src/render/renderers/donation.ts src/render/renderers/funding.ts src/render/renderers/html.ts src/render/renderers/markdown.ts src/render/types.ts render">
+  </article><article class="item" data-search="src/render/render.ts src/model/types.ts src/render/renderers/badges.ts src/render/renderers/collaborators.ts src/render/renderers/diagrams.ts src/render/renderers/donation.ts src/render/renderers/funding.ts src/render/renderers/html.ts src/render/renderers/markdown.ts src/types/render.ts render">
     <h3>src/render/render.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/renderers/badges.ts</code>, <code>src/render/renderers/collaborators.ts</code>, <code>src/render/renderers/diagrams.ts</code>, <code>src/render/renderers/donation.ts</code>, <code>src/render/renderers/funding.ts</code>, <code>src/render/renderers/html.ts</code>, <code>src/render/renderers/markdown.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/renderers/badges.ts</code>, <code>src/render/renderers/collaborators.ts</code>, <code>src/render/renderers/diagrams.ts</code>, <code>src/render/renderers/donation.ts</code>, <code>src/render/renderers/funding.ts</code>, <code>src/render/renderers/html.ts</code>, <code>src/render/renderers/markdown.ts</code>, <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>render</code></p>
-  </article><article class="item" data-search="src/render/renderers/badges.ts src/model/types.ts src/render/types.ts renderBadgeArtifacts">
+  </article><article class="item" data-search="src/render/renderers/badges.ts src/model/types.ts src/types/render.ts renderBadgeArtifacts">
     <h3>src/render/renderers/badges.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderBadgeArtifacts</code></p>
-  </article><article class="item" data-search="src/render/renderers/collaborators.ts src/render/types.ts renderCollaborators">
+  </article><article class="item" data-search="src/render/renderers/collaborators.ts src/types/render.ts renderCollaborators">
     <h3>src/render/renderers/collaborators.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderCollaborators</code></p>
-  </article><article class="item" data-search="src/render/renderers/diagrams.ts src/model/types.ts src/render/toFileStem.ts src/render/types.ts renderDiagramArtifacts">
+  </article><article class="item" data-search="src/render/renderers/diagrams.ts src/model/types.ts src/types/render.ts renderDiagramArtifacts">
     <h3>src/render/renderers/diagrams.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/toFileStem.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderDiagramArtifacts</code></p>
-  </article><article class="item" data-search="src/render/renderers/donation.ts src/render/types.ts renderDonation">
+  </article><article class="item" data-search="src/render/renderers/donation.ts src/types/render.ts renderDonation">
     <h3>src/render/renderers/donation.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderDonation</code></p>
   </article><article class="item" data-search="src/render/renderers/funding.ts src/model/types.ts renderFundingYaml">
     <h3>src/render/renderers/funding.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
     <p><strong>Exports:</strong> <code>renderFundingYaml</code></p>
-  </article><article class="item" data-search="src/render/renderers/html.ts src/model/types.ts src/render/types.ts renderHtml">
+  </article><article class="item" data-search="src/render/renderers/html.ts src/model/types.ts src/types/render.ts renderHtml">
     <h3>src/render/renderers/html.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderHtml</code></p>
-  </article><article class="item" data-search="src/render/renderers/markdown.ts src/model/types.ts src/render/types.ts renderMarkdown">
+  </article><article class="item" data-search="src/render/renderers/markdown.ts src/model/types.ts src/types/render.ts renderMarkdown">
     <h3>src/render/renderers/markdown.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/render/types.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code>, <code>src/types/render.ts</code></p>
     <p><strong>Exports:</strong> <code>renderMarkdown</code></p>
-  </article><article class="item" data-search="src/render/toFileStem.ts toFileStem">
-    <h3>src/render/toFileStem.ts</h3>
+  </article><article class="item" data-search="src/types/analysis.ts AnalysisBadge AnalysisComponent AnalysisDocumentationFinding AnalysisExport AnalysisMember AnalysisModule AnalysisParameter AnalysisResult AnalysisSequenceScenario AnalysisSignature AnalysisSourceFunction AnalysisSourceLocation AnalysisStructuredRow AnalysisUsage AnalysisUsageEntry">
+    <h3>src/types/analysis.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>toFileStem</code></p>
-  </article><article class="item" data-search="src/render/types.ts src/model/types.ts BadgeArtifact DiagramArtifact RenderContext RenderResult">
-    <h3>src/render/types.ts</h3>
-    <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
-    <p><strong>Exports:</strong> <code>BadgeArtifact</code>, <code>DiagramArtifact</code>, <code>RenderContext</code>, <code>RenderResult</code></p>
+    <p><strong>Exports:</strong> <code>AnalysisBadge</code>, <code>AnalysisComponent</code>, <code>AnalysisDocumentationFinding</code>, <code>AnalysisExport</code>, <code>AnalysisMember</code>, <code>AnalysisModule</code>, <code>AnalysisParameter</code>, <code>AnalysisResult</code>, <code>AnalysisSequenceScenario</code>, <code>AnalysisSignature</code>, <code>AnalysisSourceFunction</code>, <code>AnalysisSourceLocation</code>, <code>AnalysisStructuredRow</code>, <code>AnalysisUsage</code>, <code>AnalysisUsageEntry</code></p>
   </article><article class="item" data-search="src/types/config.ts ParadoxConfig">
     <h3>src/types/config.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>ParadoxConfig</code></p>
+  </article><article class="item" data-search="src/types/render.ts src/model/types.ts BadgeArtifact DiagramArtifact RenderContext RenderResult">
+    <h3>src/types/render.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/model/types.ts</code></p>
+    <p><strong>Exports:</strong> <code>BadgeArtifact</code>, <code>DiagramArtifact</code>, <code>RenderContext</code>, <code>RenderResult</code></p>
   </article><article class="item" data-search="src/write/utils/syncCollaboratorsWorkflowAsync.ts syncCollaboratorsWorkflowAsync">
     <h3>src/write/utils/syncCollaboratorsWorkflowAsync.ts</h3>
     <p class="muted">Referenced module</p>
@@ -746,10 +726,10 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>syncFundingFileAsync</code></p>
-  </article><article class="item" data-search="src/write/write.ts src/render/types.ts src/types/config.ts src/write/utils/syncCollaboratorsWorkflowAsync.ts src/write/utils/syncFundingFileAsync.ts write">
+  </article><article class="item" data-search="src/write/write.ts src/types/config.ts src/types/render.ts src/write/utils/syncCollaboratorsWorkflowAsync.ts src/write/utils/syncFundingFileAsync.ts write">
     <h3>src/write/write.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/render/types.ts</code>, <code>src/types/config.ts</code>, <code>src/write/utils/syncCollaboratorsWorkflowAsync.ts</code>, <code>src/write/utils/syncFundingFileAsync.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/types/config.ts</code>, <code>src/types/render.ts</code>, <code>src/write/utils/syncCollaboratorsWorkflowAsync.ts</code>, <code>src/write/utils/syncFundingFileAsync.ts</code></p>
     <p><strong>Exports:</strong> <code>write</code></p>
   </article>
     </section>
@@ -790,7 +770,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
               <article class="item" id="symbol-getparadoxdoctag" data-search="getParadoxDocTag  function src/doc-tags/registry.ts Looks up documentation tag metadata by tag name. (name: string) =&gt; ParadoxDocTag | null">
     <h4>getParadoxDocTag</h4>
     
-    <p class="muted">function • <code>src/doc-tags/registry.ts:45:1</code></p>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:47:1</code></p>
     <p>Looks up documentation tag metadata by tag name.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -815,7 +795,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   </article><article class="item" id="symbol-isparadoxdoctagname" data-search="isParadoxDocTagName  function src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name. (name: string) =&gt; boolean">
     <h4>isParadoxDocTagName</h4>
     
-    <p class="muted">function • <code>src/doc-tags/registry.ts:52:1</code></p>
+    <p class="muted">function • <code>src/doc-tags/registry.ts:54:1</code></p>
     <p>Checks whether a string is a supported Paradox documentation tag name.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -837,11 +817,11 @@ real source declarations rather than duplicated code blocks inside Paradox comme
         <p><strong>Returns:</strong> <code>boolean</code></p>
       </div>
     
-  </article><article class="item" id="symbol-paradox-doc-tags" data-search="PARADOX_DOC_TAGS  value src/doc-tags/registry.ts Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.">
+  </article><article class="item" id="symbol-paradox-doc-tags" data-search="PARADOX_DOC_TAGS  value src/doc-tags/registry.ts Supported Paradox documentation tags projected from the canonical documentation Rules provider.">
     <h4>PARADOX_DOC_TAGS</h4>
     
     <p class="muted">value • <code>src/doc-tags/registry.ts:32:14</code></p>
-    <p>Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.</p>
+    <p>Supported Paradox documentation tags projected from the canonical documentation Rules provider.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -850,7 +830,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   </article><article class="item" id="symbol-paradoxdoctaghandlerid" data-search="ParadoxDocTagHandlerId  unknown src/doc-tags/registry.ts ">
     <h4>ParadoxDocTagHandlerId</h4>
     
-    <p class="muted">unknown • <code>src/doc-tags/registry.ts:40:1</code></p>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:42:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -860,7 +840,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   </article><article class="item" id="symbol-paradoxdoctagname" data-search="ParadoxDocTagName  unknown src/doc-tags/registry.ts ">
     <h4>ParadoxDocTagName</h4>
     
-    <p class="muted">unknown • <code>src/doc-tags/registry.ts:39:1</code></p>
+    <p class="muted">unknown • <code>src/doc-tags/registry.ts:41:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -957,7 +937,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
@@ -967,59 +947,52 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_badges_ts
-  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_badges_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
-  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_components_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_findings_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_exports_ts
-  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_exports_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_modules_ts
-  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_modules_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
-  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
@@ -1070,36 +1043,34 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
-  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
+  module_src_analyze_sourceFunctions_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_usage_ts
-  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getExportMetadata_ts
-  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getPropsFromType_ts
-  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_isReactComponent_ts
   module_src_analyze_utils_normalizeTypeText_ts[&quot;src/analyze/utils/normalizeTypeText.ts&quot;]
@@ -1159,48 +1130,47 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_render_ts --&gt; module_src_render_renderers_funding_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
-  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_render_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_badges_ts
   module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_collaborators_ts[&quot;src/render/renderers/collaborators.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_collaborators_ts
-  module_src_render_renderers_collaborators_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_collaborators_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_diagrams_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_toFileStem_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_donation_ts[&quot;src/render/renderers/donation.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_donation_ts
-  module_src_render_renderers_donation_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_donation_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_funding_ts
   module_src_render_renderers_funding_ts --&gt; module_src_model_types_ts
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_html_ts
   module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_markdown_ts
   module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_render_toFileStem_ts
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_render_types_ts
-  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_types_render_ts
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_types_analysis_ts
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_types_config_ts
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_types_render_ts
+  module_src_types_render_ts --&gt; module_src_model_types_ts
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_utils_syncFundingFileAsync_ts
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_write_ts
-  module_src_write_write_ts --&gt; module_src_render_types_ts
   module_src_write_write_ts --&gt; module_src_types_config_ts
+  module_src_write_write_ts --&gt; module_src_types_render_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncFundingFileAsync_ts
 </div>
@@ -1215,7 +1185,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
@@ -1225,59 +1195,52 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_badges_ts
-  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_badges_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_components_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
-  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_components_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_findings_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_exports_ts
-  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_analyze_exports_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_modules_ts
-  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_modules_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_project_ts
   module_src_analyze_readmeUsage_ts[&quot;src/analyze/readmeUsage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_readmeUsage_ts
-  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_semantic_analyzeProject_ts[&quot;src/analyze/semantic/analyzeProject.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_semantic_analyzeProject_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
@@ -1328,36 +1291,34 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
-  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_analyze_types_ts
+  module_src_analyze_sourceFunctions_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_usage_ts
-  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_usage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getExportMetadata_ts
-  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getParadoxComment_ts[&quot;src/analyze/utils/getParadoxComment.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts[&quot;src/analyze/utils/getPropsFromType.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_getPropsFromType_ts
-  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_isReactComponent_ts[&quot;src/analyze/utils/isReactComponent.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_analyze_utils_isReactComponent_ts
   module_src_analyze_utils_normalizeTypeText_ts[&quot;src/analyze/utils/normalizeTypeText.ts&quot;]
@@ -1417,48 +1378,47 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_render_ts --&gt; module_src_render_renderers_funding_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
-  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_render_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_badges_ts[&quot;src/render/renderers/badges.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_badges_ts
   module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_collaborators_ts[&quot;src/render/renderers/collaborators.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_collaborators_ts
-  module_src_render_renderers_collaborators_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_collaborators_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_diagrams_ts[&quot;src/render/renderers/diagrams.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_diagrams_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_toFileStem_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_donation_ts[&quot;src/render/renderers/donation.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_donation_ts
-  module_src_render_renderers_donation_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_donation_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_funding_ts
   module_src_render_renderers_funding_ts --&gt; module_src_model_types_ts
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_html_ts
   module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_render_renderers_markdown_ts
   module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_render_toFileStem_ts
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
-  package__ankhorage_paradox -.-&gt; module_src_render_types_ts
-  module_src_render_types_ts --&gt; module_src_model_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_types_render_ts
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_types_analysis_ts
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_types_config_ts
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_types_render_ts
+  module_src_types_render_ts --&gt; module_src_model_types_ts
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_utils_syncFundingFileAsync_ts
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_write_write_ts
-  module_src_write_write_ts --&gt; module_src_render_types_ts
   module_src_write_write_ts --&gt; module_src_types_config_ts
+  module_src_write_write_ts --&gt; module_src_types_render_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncFundingFileAsync_ts
 </pre>
@@ -1471,9 +1431,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
@@ -1492,7 +1451,6 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
@@ -1525,16 +1483,16 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
   module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
@@ -1544,39 +1502,34 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
-  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_badges_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
-  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_components_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_findings_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
-  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_types_analysis_ts
+  module_src_analyze_modules_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1601,22 +1554,22 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
-  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sourceFunctions_ts --&gt; module_src_types_analysis_ts
+  module_src_analyze_usage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_parseParadoxComment_ts --&gt; module_src_doc_tags_registry_ts
   module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
   module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
@@ -1637,22 +1590,21 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_render_ts --&gt; module_src_render_renderers_funding_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
-  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_render_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
-  module_src_render_renderers_collaborators_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_types_render_ts
+  module_src_render_renderers_collaborators_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_toFileStem_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
-  module_src_render_renderers_donation_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_types_render_ts
+  module_src_render_renderers_donation_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_funding_ts --&gt; module_src_model_types_ts
   module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
-  module_src_render_types_ts --&gt; module_src_model_types_ts
-  module_src_write_write_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_types_render_ts
+  module_src_types_render_ts --&gt; module_src_model_types_ts
   module_src_write_write_ts --&gt; module_src_types_config_ts
+  module_src_write_write_ts --&gt; module_src_types_render_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncFundingFileAsync_ts
 </div>
@@ -1663,9 +1615,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
@@ -1684,7 +1635,6 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
@@ -1717,16 +1667,16 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
   module_src_analyze_analyze_ts --&gt; module_src_analyze_badges_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_components_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_validateDocumentationPolicyAsync_ts
+  module_src_analyze_analyze_ts --&gt; module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_exports_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_modules_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_project_ts
@@ -1736,39 +1686,34 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_semantic_graphs_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sequenceScenarios_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_sourceFunctions_ts
-  module_src_analyze_analyze_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
-  module_src_analyze_badges_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
+  module_src_analyze_badges_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_exports_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_semantic_model_ts
-  module_src_analyze_components_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getComponentPropsType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_getPropsFromType_ts
   module_src_analyze_components_ts --&gt; module_src_analyze_utils_isReactComponent_ts
+  module_src_analyze_components_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_findings_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_documentation_validateReferencesAsync_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_documentation_findings_ts
-  module_src_analyze_documentation_validateReferencesAsync_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_exports_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationCommentsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getExportMetadata_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_exports_ts --&gt; module_src_analyze_utils_resolveExportSymbol_ts
-  module_src_analyze_modules_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_exports_ts --&gt; module_src_types_analysis_ts
+  module_src_analyze_modules_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_readmeUsage_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_readmeUsage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_associateDocBlocksWithSymbols_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_collectSourceFiles_ts
   module_src_analyze_semantic_analyzeProject_ts --&gt; module_src_analyze_semantic_createTypeScriptProgram_ts
@@ -1793,22 +1738,22 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_model_ts
   module_src_analyze_semantic_graphs_ts --&gt; module_src_analyze_semantic_utils_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_semantic_utils_ts
-  module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_types_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sequenceScenarios_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sequenceScenarios_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_sourceFunctions_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_usage_ts --&gt; module_src_analyze_types_ts
-  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_sourceFunctions_ts --&gt; module_src_types_analysis_ts
+  module_src_analyze_usage_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
-  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_types_ts
+  module_src_analyze_utils_getExportMetadata_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_getParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_normalizeTypeText_ts
   module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_analyze_utils_parseParadoxComment_ts
+  module_src_analyze_utils_getPropsFromType_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_utils_parseParadoxComment_ts --&gt; module_src_doc_tags_registry_ts
   module_src_cli_standalone_ts --&gt; module_src_analyze_analyze_ts
   module_src_cli_standalone_ts --&gt; module_src_model_buildModel_ts
@@ -1829,22 +1774,21 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_render_ts --&gt; module_src_render_renderers_funding_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_html_ts
   module_src_render_render_ts --&gt; module_src_render_renderers_markdown_ts
-  module_src_render_render_ts --&gt; module_src_render_types_ts
+  module_src_render_render_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_badges_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_badges_ts --&gt; module_src_render_types_ts
-  module_src_render_renderers_collaborators_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_badges_ts --&gt; module_src_types_render_ts
+  module_src_render_renderers_collaborators_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_diagrams_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_toFileStem_ts
-  module_src_render_renderers_diagrams_ts --&gt; module_src_render_types_ts
-  module_src_render_renderers_donation_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_diagrams_ts --&gt; module_src_types_render_ts
+  module_src_render_renderers_donation_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_funding_ts --&gt; module_src_model_types_ts
   module_src_render_renderers_html_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_html_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_html_ts --&gt; module_src_types_render_ts
   module_src_render_renderers_markdown_ts --&gt; module_src_model_types_ts
-  module_src_render_renderers_markdown_ts --&gt; module_src_render_types_ts
-  module_src_render_types_ts --&gt; module_src_model_types_ts
-  module_src_write_write_ts --&gt; module_src_render_types_ts
+  module_src_render_renderers_markdown_ts --&gt; module_src_types_render_ts
+  module_src_types_render_ts --&gt; module_src_model_types_ts
   module_src_write_write_ts --&gt; module_src_types_config_ts
+  module_src_write_write_ts --&gt; module_src_types_render_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --&gt; module_src_write_utils_syncFundingFileAsync_ts
 </pre>
@@ -1857,9 +1801,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
@@ -1878,7 +1821,6 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
@@ -1911,9 +1853,9 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
@@ -1942,9 +1884,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
   module_src_analyze_components_ts[&quot;src/analyze/components.ts&quot;]
   module_src_analyze_documentation_collectDocumentationCommentsAsync_ts[&quot;src/analyze/documentation/collectDocumentationCommentsAsync.ts&quot;]
-  module_src_analyze_documentation_findings_ts[&quot;src/analyze/documentation/findings.ts&quot;]
-  module_src_analyze_documentation_validateDocumentationPolicyAsync_ts[&quot;src/analyze/documentation/validateDocumentationPolicyAsync.ts&quot;]
-  module_src_analyze_documentation_validateReferencesAsync_ts[&quot;src/analyze/documentation/validateReferencesAsync.ts&quot;]
+  module_src_analyze_documentation_collectDocumentationReferenceFactsAsync_ts[&quot;src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts&quot;]
+  module_src_analyze_documentation_evaluateDocumentationRulesAsync_ts[&quot;src/analyze/documentation/evaluateDocumentationRulesAsync.ts&quot;]
   module_src_analyze_exports_ts[&quot;src/analyze/exports.ts&quot;]
   module_src_analyze_modules_ts[&quot;src/analyze/modules.ts&quot;]
   module_src_analyze_project_ts[&quot;src/analyze/project.ts&quot;]
@@ -1963,7 +1904,6 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_semantic_utils_ts[&quot;src/analyze/semantic/utils.ts&quot;]
   module_src_analyze_sequenceScenarios_ts[&quot;src/analyze/sequenceScenarios.ts&quot;]
   module_src_analyze_sourceFunctions_ts[&quot;src/analyze/sourceFunctions.ts&quot;]
-  module_src_analyze_types_ts[&quot;src/analyze/types.ts&quot;]
   module_src_analyze_usage_ts[&quot;src/analyze/usage.ts&quot;]
   module_src_analyze_utils_getComponentPropsType_ts[&quot;src/analyze/utils/getComponentPropsType.ts&quot;]
   module_src_analyze_utils_getExportMetadata_ts[&quot;src/analyze/utils/getExportMetadata.ts&quot;]
@@ -1996,9 +1936,9 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_render_renderers_funding_ts[&quot;src/render/renderers/funding.ts&quot;]
   module_src_render_renderers_html_ts[&quot;src/render/renderers/html.ts&quot;]
   module_src_render_renderers_markdown_ts[&quot;src/render/renderers/markdown.ts&quot;]
-  module_src_render_toFileStem_ts[&quot;src/render/toFileStem.ts&quot;]
-  module_src_render_types_ts[&quot;src/render/types.ts&quot;]
+  module_src_types_analysis_ts[&quot;src/types/analysis.ts&quot;]
   module_src_types_config_ts[&quot;src/types/config.ts&quot;]
+  module_src_types_render_ts[&quot;src/types/render.ts&quot;]
   module_src_write_utils_syncCollaboratorsWorkflowAsync_ts[&quot;src/write/utils/syncCollaboratorsWorkflowAsync.ts&quot;]
   module_src_write_utils_syncFundingFileAsync_ts[&quot;src/write/utils/syncFundingFileAsync.ts&quot;]
   module_src_write_write_ts[&quot;src/write/write.ts&quot;]
@@ -2124,22 +2064,22 @@ real source declarations rather than duplicated code blocks inside Paradox comme
       <h2>src/analyze/analyze.ts</h2>
       <article class="item" data-search="analyze src/analyze/analyze.ts Analyzes a package and returns documentation plus canonical policy findings.">
     <h3>analyze</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:33:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:32:1</code></p>
     <p>Analyzes a package and returns documentation plus canonical policy findings.</p>
     
   </article><article class="item" data-search="collectConfigMembers src/analyze/analyze.ts Resolves member metadata for the public configuration root when one exists.">
     <h3>collectConfigMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:114:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:113:1</code></p>
     <p>Resolves member metadata for the public configuration root when one exists.</p>
     
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:160:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:159:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
     
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:177:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:176:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
     
   </article>
@@ -2284,138 +2224,93 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     
   </article>
     </section>
-  </section><section id="view-src-analyze-documentation-findings-ts" class="view" data-view="src/analyze/documentation/findings.ts" hidden>
+  </section><section id="view-src-analyze-documentation-collectdocumentationreferencefactsasync-ts" class="view" data-view="src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts" hidden>
     <section class="panel">
-      <h2>src/analyze/documentation/findings.ts</h2>
-      <article class="item" data-search="createDocumentationFinding src/analyze/documentation/findings.ts Creates a finding from one canonical documentation policy rule.">
-    <h3>createDocumentationFinding</h3>
-    <p class="muted"><code>src/analyze/documentation/findings.ts:8:1</code></p>
-    <p>Creates a finding from one canonical documentation policy rule.</p>
+      <h2>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts</h2>
+      <article class="item" data-search="collectDocumentationReferenceFactsAsync src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Collects external-reference and executable-test facts without deciding rule outcomes.">
+    <h3>collectDocumentationReferenceFactsAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:24:1</code></p>
+    <p>Collects external-reference and executable-test facts without deciding rule outcomes.</p>
     
-  </article>
-    </section>
-  </section><section id="view-src-analyze-documentation-validatedocumentationpolicyasync-ts" class="view" data-view="src/analyze/documentation/validateDocumentationPolicyAsync.ts" hidden>
-    <section class="panel">
-      <h2>src/analyze/documentation/validateDocumentationPolicyAsync.ts</h2>
-      <article class="item" data-search="validateDocumentationPolicyAsync src/analyze/documentation/validateDocumentationPolicyAsync.ts Evaluates package documentation evidence against the canonical Ankhorage documentation policy.">
-    <h3>validateDocumentationPolicyAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:17:1</code></p>
-    <p>Evaluates package documentation evidence against the canonical Ankhorage documentation policy.</p>
+  </article><article class="item" data-search="collectSeeFactsAsync src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Collects reachability evidence only for syntactically safe public-HTTPS candidates.">
+    <h3>collectSeeFactsAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:47:1</code></p>
+    <p>Collects reachability evidence only for syntactically safe public-HTTPS candidates.</p>
     
-  </article><article class="item" data-search="validateCommentRules src/analyze/documentation/validateDocumentationPolicyAsync.ts Validates generic comment syntax rules shared by all documentation contexts.">
-    <h3>validateCommentRules</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:38:1</code></p>
-    <p>Validates generic comment syntax rules shared by all documentation contexts.</p>
+  </article><article class="item" data-search="normalizeSeeUrl src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Normalizes a syntactically safe @see value without performing network I/O.">
+    <h3>normalizeSeeUrl</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:80:1</code></p>
+    <p>Normalizes a syntactically safe @see value without performing network I/O.</p>
     
-  </article><article class="item" data-search="validateUsageRules src/analyze/documentation/validateDocumentationPolicyAsync.ts Validates canonical usage locations and the single README-promoted programmatic example.">
-    <h3>validateUsageRules</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:71:1</code></p>
-    <p>Validates canonical usage locations and the single README-promoted programmatic example.</p>
+  </article><article class="item" data-search="collectSecurityFactsAsync src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Collects colocated executable-test facts for every @security reference.">
+    <h3>collectSecurityFactsAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:96:1</code></p>
+    <p>Collects colocated executable-test facts for every @security reference.</p>
     
-  </article><article class="item" data-search="validateUsageComment src/analyze/documentation/validateDocumentationPolicyAsync.ts Validates one usage comment location and forbidden CLI README promotion.">
-    <h3>validateUsageComment</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:113:1</code></p>
-    <p>Validates one usage comment location and forbidden CLI README promotion.</p>
+  </article><article class="item" data-search="collectSecurityFactAsync src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Resolves one @security value to colocated file and exact test-name evidence.">
+    <h3>collectSecurityFactAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:111:1</code></p>
+    <p>Resolves one @security value to colocated file and exact test-name evidence.</p>
     
-  </article><article class="item" data-search="validateConfigRulesAsync src/analyze/documentation/validateDocumentationPolicyAsync.ts Validates configuration only after the package opts into that documentation surface.">
-    <h3>validateConfigRulesAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:144:1</code></p>
-    <p>Validates configuration only after the package opts into that documentation surface.</p>
+  </article><article class="item" data-search="securityFact src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Builds one portable security-reference fact.">
+    <h3>securityFact</h3>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:136:1</code></p>
+    <p>Builds one portable security-reference fact.</p>
     
-  </article><article class="item" data-search="collectConfigRoots src/analyze/documentation/validateDocumentationPolicyAsync.ts Collects canonical @config + @readme type declarations from the config schema.">
-    <h3>collectConfigRoots</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:170:1</code></p>
-    <p>Collects canonical @config + @readme type declarations from the config schema.</p>
-    
-  </article><article class="item" data-search="validateConfigRoots src/analyze/documentation/validateDocumentationPolicyAsync.ts Validates cardinality and README metadata for canonical config roots.">
-    <h3>validateConfigRoots</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:185:1</code></p>
-    <p>Validates cardinality and README metadata for canonical config roots.</p>
-    
-  </article><article class="item" data-search="validatePublicApiRules src/analyze/documentation/validateDocumentationPolicyAsync.ts Warns when a public callable export has no Paradox description.">
-    <h3>validatePublicApiRules</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:220:1</code></p>
-    <p>Warns when a public callable export has no Paradox description.</p>
-    
-  </article><article class="item" data-search="hasExactlyOneRequiredTag src/analyze/documentation/validateDocumentationPolicyAsync.ts Checks that each policy-required tag appears exactly once on one parsed documentation item.">
-    <h3>hasExactlyOneRequiredTag</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:240:1</code></p>
-    <p>Checks that each policy-required tag appears exactly once on one parsed documentation item.</p>
-    
-  </article><article class="item" data-search="finding src/analyze/documentation/validateDocumentationPolicyAsync.ts Creates a finding at one collected comment location.">
-    <h3>finding</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:252:1</code></p>
-    <p>Creates a finding at one collected comment location.</p>
-    
-  </article><article class="item" data-search="isBelow src/analyze/documentation/validateDocumentationPolicyAsync.ts Checks whether a source path is contained in one canonical root.">
-    <h3>isBelow</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:263:1</code></p>
-    <p>Checks whether a source path is contained in one canonical root.</p>
-    
-  </article><article class="item" data-search="fileExistsAsync src/analyze/documentation/validateDocumentationPolicyAsync.ts Checks whether a required canonical file exists.">
-    <h3>fileExistsAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateDocumentationPolicyAsync.ts:270:1</code></p>
-    <p>Checks whether a required canonical file exists.</p>
-    
-  </article>
-    </section>
-  </section><section id="view-src-analyze-documentation-validatereferencesasync-ts" class="view" data-view="src/analyze/documentation/validateReferencesAsync.ts" hidden>
-    <section class="panel">
-      <h2>src/analyze/documentation/validateReferencesAsync.ts</h2>
-      <article class="item" data-search="validateReferencesAsync src/analyze/documentation/validateReferencesAsync.ts Validates external and executable references carried by documentation comments.">
-    <h3>validateReferencesAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:17:1</code></p>
-    <p>Validates external and executable references carried by documentation comments.</p>
-    
-  </article><article class="item" data-search="validateSeeReferencesAsync src/analyze/documentation/validateReferencesAsync.ts Validates every @see value through syntax policy and the hardened public HTTPS utility.">
-    <h3>validateSeeReferencesAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:36:1</code></p>
-    <p>Validates every @see value through syntax policy and the hardened public HTTPS utility.</p>
-    
-  </article><article class="item" data-search="parseSeeUrl src/analyze/documentation/validateReferencesAsync.ts Parses one @see value according to the policy-owned URL syntax contract.">
-    <h3>parseSeeUrl</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:74:1</code></p>
-    <p>Parses one @see value according to the policy-owned URL syntax contract.</p>
-    
-  </article><article class="item" data-search="validateSecurityReferencesAsync src/analyze/documentation/validateReferencesAsync.ts Validates every @security reference against one exact colocated executable test.">
-    <h3>validateSecurityReferencesAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:90:1</code></p>
-    <p>Validates every @security reference against one exact colocated executable test.</p>
-    
-  </article><article class="item" data-search="validateSecurityReferenceAsync src/analyze/documentation/validateReferencesAsync.ts Resolves one colocated security test reference and requires exactly one matching test declaration.">
-    <h3>validateSecurityReferenceAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:106:1</code></p>
-    <p>Resolves one colocated security test reference and requires exactly one matching test declaration.</p>
-    
-  </article><article class="item" data-search="parseSecurityReference src/analyze/documentation/validateReferencesAsync.ts Parses a same-directory test filename and exact test name from an @security value.">
+  </article><article class="item" data-search="parseSecurityReference src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Parses one same-directory test filename and exact test name from an @security value.">
     <h3>parseSecurityReference</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:139:1</code></p>
-    <p>Parses a same-directory test filename and exact test name from an @security value.</p>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:148:1</code></p>
+    <p>Parses one same-directory test filename and exact test name from an @security value.</p>
     
-  </article><article class="item" data-search="isNamedTestCall src/analyze/documentation/validateReferencesAsync.ts Checks whether a ts-morph node is test()/it() with the exact static string name.">
+  </article><article class="item" data-search="isNamedTestCall src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Checks whether a ts-morph node is test()/it() with the exact static string name.">
     <h3>isNamedTestCall</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:157:1</code></p>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:165:1</code></p>
     <p>Checks whether a ts-morph node is test()/it() with the exact static string name.</p>
     
-  </article><article class="item" data-search="securityFinding src/analyze/documentation/validateReferencesAsync.ts Creates the canonical security-reference finding at a comment location.">
-    <h3>securityFinding</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:169:1</code></p>
-    <p>Creates the canonical security-reference finding at a comment location.</p>
-    
-  </article><article class="item" data-search="referenceFinding src/analyze/documentation/validateReferencesAsync.ts Creates a reference finding at the owning comment location.">
-    <h3>referenceFinding</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:179:1</code></p>
-    <p>Creates a reference finding at the owning comment location.</p>
-    
-  </article><article class="item" data-search="fileExistsAsync src/analyze/documentation/validateReferencesAsync.ts Checks whether a referenced test file exists.">
+  </article><article class="item" data-search="fileExistsAsync src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts Checks whether one referenced colocated test path exists.">
     <h3>fileExistsAsync</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:190:1</code></p>
-    <p>Checks whether a referenced test file exists.</p>
+    <p class="muted"><code>src/analyze/documentation/collectDocumentationReferenceFactsAsync.ts:177:1</code></p>
+    <p>Checks whether one referenced colocated test path exists.</p>
     
-  </article><article class="item" data-search="readErrorMessage src/analyze/documentation/validateReferencesAsync.ts Converts an unknown thrown value into a stable diagnostic string.">
-    <h3>readErrorMessage</h3>
-    <p class="muted"><code>src/analyze/documentation/validateReferencesAsync.ts:202:1</code></p>
-    <p>Converts an unknown thrown value into a stable diagnostic string.</p>
+  </article>
+    </section>
+  </section><section id="view-src-analyze-documentation-evaluatedocumentationrulesasync-ts" class="view" data-view="src/analyze/documentation/evaluateDocumentationRulesAsync.ts" hidden>
+    <section class="panel">
+      <h2>src/analyze/documentation/evaluateDocumentationRulesAsync.ts</h2>
+      <article class="item" data-search="evaluateDocumentationRulesAsync src/analyze/documentation/evaluateDocumentationRulesAsync.ts Collects Paradox-owned documentation facts and evaluates them through rules-documentation.">
+    <h3>evaluateDocumentationRulesAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:29:1</code></p>
+    <p>Collects Paradox-owned documentation facts and evaluates them through rules-documentation.</p>
+    
+  </article><article class="item" data-search="collectDocumentationRuleContextAsync src/analyze/documentation/evaluateDocumentationRulesAsync.ts Builds the portable documentation context while keeping AST, filesystem, and network I/O local.">
+    <h3>collectDocumentationRuleContextAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:48:1</code></p>
+    <p>Builds the portable documentation context while keeping AST, filesystem, and network I/O local.</p>
+    
+  </article><article class="item" data-search="toCommentFact src/analyze/documentation/evaluateDocumentationRulesAsync.ts Converts one parsed Paradox comment into the provider&#39;s parser-neutral fact shape.">
+    <h3>toCommentFact</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:79:1</code></p>
+    <p>Converts one parsed Paradox comment into the provider&#39;s parser-neutral fact shape.</p>
+    
+  </article><article class="item" data-search="resolveCommentTarget src/analyze/documentation/evaluateDocumentationRulesAsync.ts Resolves the declaration kind that owns one raw Paradox comment.">
+    <h3>resolveCommentTarget</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:107:1</code></p>
+    <p>Resolves the declaration kind that owns one raw Paradox comment.</p>
+    
+  </article><article class="item" data-search="toPublicFunctionFacts src/analyze/documentation/evaluateDocumentationRulesAsync.ts Projects analyzed callable exports into provider facts without re-reading source files.">
+    <h3>toPublicFunctionFacts</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:126:1</code></p>
+    <p>Projects analyzed callable exports into provider facts without re-reading source files.</p>
+    
+  </article><article class="item" data-search="toAnalysisFinding src/analyze/documentation/evaluateDocumentationRulesAsync.ts Maps generic Rule findings back to Paradox&#39;s serializable analysis model.">
+    <h3>toAnalysisFinding</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:146:1</code></p>
+    <p>Maps generic Rule findings back to Paradox&#39;s serializable analysis model.</p>
+    
+  </article><article class="item" data-search="fileExistsAsync src/analyze/documentation/evaluateDocumentationRulesAsync.ts Checks whether one canonical documentation path exists.">
+    <h3>fileExistsAsync</h3>
+    <p class="muted"><code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts:161:1</code></p>
+    <p>Checks whether one canonical documentation path exists.</p>
     
   </article>
     </section>
@@ -3109,17 +3004,17 @@ real source declarations rather than duplicated code blocks inside Paradox comme
       <h2>src/cli/standalone.ts</h2>
       <article class="item" data-search="main src/cli/standalone.ts Runs the Paradox CLI.&#10;&#10;The command discovers the nearest Paradox config, resolves the package and output roots,&#10;analyzes the package, builds the documentation model, renders all documentation artifacts,&#10;and writes them to the configured output directory.">
     <h3>main</h3>
-    <p class="muted"><code>src/cli/standalone.ts:22:1</code></p>
+    <p class="muted"><code>src/cli/standalone.ts:24:1</code></p>
     <p>Runs the Paradox CLI.
 
 The command discovers the nearest Paradox config, resolves the package and output roots,
 analyzes the package, builds the documentation model, renders all documentation artifacts,
 and writes them to the configured output directory.</p>
     
-  </article><article class="item" data-search="assertNoDocumentationErrors src/cli/standalone.ts Refuses to write generated artifacts when canonical documentation policy contains errors.">
+  </article><article class="item" data-search="assertNoDocumentationErrors src/cli/standalone.ts Refuses to write generated artifacts when canonical documentation Rules contains errors.">
     <h3>assertNoDocumentationErrors</h3>
-    <p class="muted"><code>src/cli/standalone.ts:48:1</code></p>
-    <p>Refuses to write generated artifacts when canonical documentation policy contains errors.</p>
+    <p class="muted"><code>src/cli/standalone.ts:50:1</code></p>
+    <p>Refuses to write generated artifacts when canonical documentation Rules contains errors.</p>
     
   </article>
     </section>
@@ -3158,18 +3053,18 @@ and writes them to the configured output directory.</p>
       <h2>src/doc-tags/registry.ts</h2>
       <article class="item" data-search="getParadoxDocTag src/doc-tags/registry.ts Looks up documentation tag metadata by tag name.">
     <h3>getParadoxDocTag</h3>
-    <p class="muted"><code>src/doc-tags/registry.ts:45:1</code></p>
+    <p class="muted"><code>src/doc-tags/registry.ts:47:1</code></p>
     <p>Looks up documentation tag metadata by tag name.</p>
     
   </article><article class="item" data-search="isParadoxDocTagName src/doc-tags/registry.ts Checks whether a string is a supported Paradox documentation tag name.">
     <h3>isParadoxDocTagName</h3>
-    <p class="muted"><code>src/doc-tags/registry.ts:52:1</code></p>
+    <p class="muted"><code>src/doc-tags/registry.ts:54:1</code></p>
     <p>Checks whether a string is a supported Paradox documentation tag name.</p>
     
-  </article><article class="item" data-search="describeTag src/doc-tags/registry.ts Describes the rendering meaning of one policy-owned documentation tag.">
+  </article><article class="item" data-search="describeTag src/doc-tags/registry.ts Describes the rendering meaning of one Rules-owned documentation tag.">
     <h3>describeTag</h3>
-    <p class="muted"><code>src/doc-tags/registry.ts:59:1</code></p>
-    <p>Describes the rendering meaning of one policy-owned documentation tag.</p>
+    <p class="muted"><code>src/doc-tags/registry.ts:61:1</code></p>
+    <p>Describes the rendering meaning of one Rules-owned documentation tag.</p>
     
   </article>
     </section>
@@ -3178,22 +3073,22 @@ and writes them to the configured output directory.</p>
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:141:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:143:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
     
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:202:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:204:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
     
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:237:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:239:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
     
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their name property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:258:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:260:1</code></p>
     <p>Returns a copy of items sorted by their name property.</p>
     
   </article>
@@ -3308,103 +3203,108 @@ and writes them to the configured output directory.</p>
       <h2>src/render/renderers/diagrams.ts</h2>
       <article class="item" data-search="renderDiagramArtifacts src/render/renderers/diagrams.ts Generates deterministic Mermaid diagrams for the documentation app.">
     <h3>renderDiagramArtifacts</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:14:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:13:1</code></p>
     <p>Generates deterministic Mermaid diagrams for the documentation app.</p>
     
   </article><article class="item" data-search="renderArchitectureOverview src/render/renderers/diagrams.ts ">
     <h3>renderArchitectureOverview</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:35:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:34:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderModuleRelationships src/render/renderers/diagrams.ts ">
     <h3>renderModuleRelationships</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:63:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:62:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderExportGraph src/render/renderers/diagrams.ts ">
     <h3>renderExportGraph</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:82:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:81:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderSequenceArtifacts src/render/renderers/diagrams.ts ">
     <h3>renderSequenceArtifacts</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:103:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:102:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderSequenceScenario src/render/renderers/diagrams.ts ">
     <h3>renderSequenceScenario</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:118:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:117:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderBinSequenceScenario src/render/renderers/diagrams.ts ">
     <h3>renderBinSequenceScenario</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:129:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:128:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderNestedSequenceScenario src/render/renderers/diagrams.ts ">
     <h3>renderNestedSequenceScenario</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:157:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:156:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="collectDirectCallEdges src/render/renderers/diagrams.ts ">
     <h3>collectDirectCallEdges</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:185:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:184:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="collectReachableCallEdges src/render/renderers/diagrams.ts ">
     <h3>collectReachableCallEdges</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:192:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:191:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="visitCallEdges src/render/renderers/diagrams.ts ">
     <h3>visitCallEdges</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:205:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:204:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderCallFlow src/render/renderers/diagrams.ts ">
     <h3>renderCallFlow</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:220:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:219:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderNestedCalls src/render/renderers/diagrams.ts ">
     <h3>renderNestedCalls</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:231:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:230:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="groupCallsBySource src/render/renderers/diagrams.ts ">
     <h3>groupCallsBySource</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:250:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:249:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="collectSequenceParticipants src/render/renderers/diagrams.ts ">
     <h3>collectSequenceParticipants</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:264:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:263:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="getCallEdgeKey src/render/renderers/diagrams.ts ">
     <h3>getCallEdgeKey</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:268:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:267:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="formatCallLabel src/render/renderers/diagrams.ts ">
     <h3>formatCallLabel</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:272:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:271:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="renderFallbackEdge src/render/renderers/diagrams.ts ">
     <h3>renderFallbackEdge</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:276:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:275:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="toMermaidId src/render/renderers/diagrams.ts ">
     <h3>toMermaidId</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:287:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:286:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="escapeLabel src/render/renderers/diagrams.ts ">
     <h3>escapeLabel</h3>
-    <p class="muted"><code>src/render/renderers/diagrams.ts:291:1</code></p>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:290:1</code></p>
     <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="toFileStem src/render/renderers/diagrams.ts Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.">
+    <h3>toFileStem</h3>
+    <p class="muted"><code>src/render/renderers/diagrams.ts:295:1</code></p>
+    <p>Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.</p>
     
   </article>
     </section>
@@ -3443,107 +3343,107 @@ and writes them to the configured output directory.</p>
       <h2>src/render/renderers/html.ts</h2>
       <article class="item" data-search="renderHtml src/render/renderers/html.ts Renders a deterministic static HTML documentation app.">
     <h3>renderHtml</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:20:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:19:1</code></p>
     <p>Renders a deterministic static HTML documentation app.</p>
     
   </article><article class="item" data-search="renderHomeView src/render/renderers/html.ts Renders the Home view that keeps public API and package-level information together.">
     <h3>renderHomeView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:219:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:218:1</code></p>
     <p>Renders the Home view that keeps public API and package-level information together.</p>
     
   </article><article class="item" data-search="renderUsagePanel src/render/renderers/html.ts Renders complete CLI and programmatic usage documentation.">
     <h3>renderUsagePanel</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:269:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:268:1</code></p>
     <p>Renders complete CLI and programmatic usage documentation.</p>
     
   </article><article class="item" data-search="renderUsageEntry src/render/renderers/html.ts Renders one source-backed usage entry in the complete documentation app.">
     <h3>renderUsageEntry</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:297:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:296:1</code></p>
     <p>Renders one source-backed usage entry in the complete documentation app.</p>
     
   </article><article class="item" data-search="renderFindingsPanel src/render/renderers/html.ts Renders policy findings so complete docs expose the same evidence consumed by Doctor.">
     <h3>renderFindingsPanel</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:318:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:317:1</code></p>
     <p>Renders policy findings so complete docs expose the same evidence consumed by Doctor.</p>
     
   </article><article class="item" data-search="renderSourceNavItem src/render/renderers/html.ts Renders one source file entry in the left navigation.">
     <h3>renderSourceNavItem</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:342:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:341:1</code></p>
     <p>Renders one source file entry in the left navigation.</p>
     
   </article><article class="item" data-search="renderSourceAreaView src/render/renderers/html.ts Renders the right-hand source area view for a selected file.">
     <h3>renderSourceAreaView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:354:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:353:1</code></p>
     <p>Renders the right-hand source area view for a selected file.</p>
     
   </article><article class="item" data-search="renderSourceFunctionCard src/render/renderers/html.ts Renders one source function card in a source-area view.">
     <h3>renderSourceFunctionCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:368:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:367:1</code></p>
     <p>Renders one source function card in a source-area view.</p>
     
   </article><article class="item" data-search="getSourceAreas src/render/renderers/html.ts Groups analyzed source functions by their source file path.">
     <h3>getSourceAreas</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:388:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:387:1</code></p>
     <p>Groups analyzed source functions by their source file path.</p>
     
   </article><article class="item" data-search="renderModuleCard src/render/renderers/html.ts Renders module metadata on the Home page.">
     <h3>renderModuleCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:397:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:396:1</code></p>
     <p>Renders module metadata on the Home page.</p>
     
   </article><article class="item" data-search="renderExportCard src/render/renderers/html.ts Renders one public API export card on the Home page.">
     <h3>renderExportCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:411:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:410:1</code></p>
     <p>Renders one public API export card on the Home page.</p>
     
   </article><article class="item" data-search="renderSignatureBlock src/render/renderers/html.ts Renders all call signatures for a public API export.">
     <h3>renderSignatureBlock</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:440:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:439:1</code></p>
     <p>Renders all call signatures for a public API export.</p>
     
   </article><article class="item" data-search="renderMemberTable src/render/renderers/html.ts Renders the members table for a type-like public API export.">
     <h3>renderMemberTable</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:476:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:475:1</code></p>
     <p>Renders the members table for a type-like public API export.</p>
     
   </article><article class="item" data-search="renderComponentCard src/render/renderers/html.ts Renders one detected component card on the Home page.">
     <h3>renderComponentCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:498:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:497:1</code></p>
     <p>Renders one detected component card on the Home page.</p>
     
   </article><article class="item" data-search="renderDiagramCard src/render/renderers/html.ts Renders one Mermaid diagram card.">
     <h3>renderDiagramCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:535:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:534:1</code></p>
     <p>Renders one Mermaid diagram card.</p>
     
   </article><article class="item" data-search="renderReferenceMetadata src/render/renderers/html.ts Renders validated external references and security-test evidence.">
     <h3>renderReferenceMetadata</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:550:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:549:1</code></p>
     <p>Renders validated external references and security-test evidence.</p>
     
   </article><article class="item" data-search="renderInlineCodeList src/render/renderers/html.ts Renders an inline comma-separated list of code values.">
     <h3>renderInlineCodeList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:572:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:571:1</code></p>
     <p>Renders an inline comma-separated list of code values.</p>
     
   </article><article class="item" data-search="renderChipList src/render/renderers/html.ts Renders a compact chip list for related symbols.">
     <h3>renderChipList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:583:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:582:1</code></p>
     <p>Renders a compact chip list for related symbols.</p>
     
   </article><article class="item" data-search="groupBy src/render/renderers/html.ts Groups items by a string key and returns deterministic key order.">
     <h3>groupBy</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:592:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:591:1</code></p>
     <p>Groups items by a string key and returns deterministic key order.</p>
     
   </article><article class="item" data-search="escapeHtml src/render/renderers/html.ts Escapes user-controlled text for safe HTML rendering.">
     <h3>escapeHtml</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:611:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:610:1</code></p>
     <p>Escapes user-controlled text for safe HTML rendering.</p>
     
   </article><article class="item" data-search="escapeAttribute src/render/renderers/html.ts Escapes text for use inside HTML attribute values.">
     <h3>escapeAttribute</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:623:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:622:1</code></p>
     <p>Escapes text for use inside HTML attribute values.</p>
     
   </article>
@@ -3690,16 +3590,6 @@ and writes them to the configured output directory.</p>
     <h3>badgeLabel</h3>
     <p class="muted"><code>src/render/renderers/markdown.ts:560:1</code></p>
     <p>Returns the accessible badge label stored in a rendered badge artifact.</p>
-    
-  </article>
-    </section>
-  </section><section id="view-src-render-tofilestem-ts" class="view" data-view="src/render/toFileStem.ts" hidden>
-    <section class="panel">
-      <h2>src/render/toFileStem.ts</h2>
-      <article class="item" data-search="toFileStem src/render/toFileStem.ts Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.">
-    <h3>toFileStem</h3>
-    <p class="muted"><code>src/render/toFileStem.ts:2:1</code></p>
-    <p>Convert a documentation label to the stable lowercase kebab-case file stem used by Paradox render artifacts.</p>
     
   </article>
     </section>

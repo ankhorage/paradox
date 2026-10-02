@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.26
+
+### Patch Changes
+
+- 5990504: Replace direct @ankhorage/policy documentation and status consumption with @ankhorage/rules and
+  @ankhorage/rules-documentation while preserving Paradox documentation behavior.
+
 ## 0.2.25
 
 ### Patch Changes

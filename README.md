@@ -3,7 +3,7 @@
 
 # @ankhorage/paradox
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.2.25](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.2.26](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
 
 Deterministic documentation generator for TypeScript packages.
 
@@ -89,7 +89,7 @@ Related symbols: `ParadoxConfig`
 <details>
 <summary>PARADOX_DOC_TAGS</summary>
 
-Supported Paradox documentation tags projected from the canonical Ankhorage documentation policy.
+Supported Paradox documentation tags projected from the canonical documentation Rules provider.
 
 Module: `src/doc-tags/registry.ts`
 Source: `src/doc-tags/registry.ts:32:14`
