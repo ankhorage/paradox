@@ -12,6 +12,7 @@ const HANDLERS = {
   title: 'setTitle',
   see: 'addSee',
   security: 'addSecurity',
+  performance: 'annotatePerformance',
 } as const satisfies Record<DocumentationTagName, string>;
 
 interface ParadoxDocTag {
@@ -72,5 +73,7 @@ function describeTag(name: DocumentationTagName): string {
       return 'Adds a validated external documentation reference.';
     case 'security':
       return 'Links security-sensitive behavior to an exact colocated executable test.';
+    case 'performance':
+      return 'Marks performance-sensitive behavior and optional optimization notes.';
   }
 }
