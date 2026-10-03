@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.28
+
+### Patch Changes
+
+- 7e11194: Require `@ankhorage/rules-documentation@^0.3.4` and project canonical `@performance` metadata through the Paradox tag registry.
+
 ## 0.2.27
 
 ### Patch Changes

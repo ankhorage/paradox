@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.27",
+      "value": "v0.2.28",
       "color": "cb3837"
     },
     {
@@ -905,7 +905,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 47,
+        "line": 48,
         "column": 1
       },
       "exportPaths": [
@@ -941,7 +941,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 54,
+        "line": 55,
         "column": 1
       },
       "exportPaths": [
@@ -999,7 +999,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 32,
+        "line": 33,
         "column": 14
       },
       "exportPaths": [
@@ -1086,7 +1086,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 42,
+        "line": 43,
         "column": 1
       },
       "exportPaths": [
@@ -1108,7 +1108,7 @@
       "modulePath": "src/doc-tags/registry.ts",
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 41,
+        "line": 42,
         "column": 1
       },
       "exportPaths": [
@@ -2911,7 +2911,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 47,
+        "line": 48,
         "column": 1
       }
     },
@@ -2922,7 +2922,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 54,
+        "line": 55,
         "column": 1
       }
     },
@@ -2933,7 +2933,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
-        "line": 61,
+        "line": 62,
         "column": 1
       }
     },

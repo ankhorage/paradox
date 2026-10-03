@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/paradox",
-  "version": "0.2.27",
+  "version": "0.2.28",
   "description": "Deterministic documentation generator for TypeScript packages.",
   "license": "MIT",
   "publishConfig": {
