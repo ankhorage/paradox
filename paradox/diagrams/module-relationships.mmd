@@ -1,4 +1,5 @@
 graph LR
+  module_package_json["package.json"]
   module_src_analyze_analyze_ts["src/analyze/analyze.ts"]
   module_src_analyze_badges_ts["src/analyze/badges.ts"]
   module_src_analyze_components_ts["src/analyze/components.ts"]
@@ -32,6 +33,8 @@ graph LR
   module_src_analyze_utils_normalizeTypeText_ts["src/analyze/utils/normalizeTypeText.ts"]
   module_src_analyze_utils_parseParadoxComment_ts["src/analyze/utils/parseParadoxComment.ts"]
   module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]
+  module_src_capabilities_index_test_ts["src/capabilities/index.test.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_cli_index_ts["src/cli/index.ts"]
   module_src_cli_standalone_ts["src/cli/standalone.ts"]
   module_src_config_defineParadoxConfig_ts["src/config/defineParadoxConfig.ts"]
@@ -143,13 +146,18 @@ graph LR
   module_src_analyze_utils_getPropsFromType_ts --> module_src_analyze_utils_parseParadoxComment_ts
   module_src_analyze_utils_getPropsFromType_ts --> module_src_types_analysis_ts
   module_src_analyze_utils_parseParadoxComment_ts --> module_src_doc_tags_registry_ts
+  module_src_capabilities_index_test_ts --> module_src_capabilities_index_ts
   module_src_cli_standalone_ts --> module_src_analyze_analyze_ts
   module_src_cli_standalone_ts --> module_src_model_buildModel_ts
   module_src_cli_standalone_ts --> module_src_paths_policy_ts
   module_src_cli_standalone_ts --> module_src_render_render_ts
   module_src_cli_standalone_ts --> module_src_write_write_ts
   module_src_config_defineParadoxConfig_ts --> module_src_types_config_ts
+  module_src_docsSurface_handlers_test_ts --> module_package_json
+  module_src_docsSurface_handlers_test_ts --> module_src_capabilities_index_ts
   module_src_docsSurface_handlers_test_ts --> module_src_docsSurface_ts
+  module_src_docsSurface_ts --> module_package_json
+  module_src_docsSurface_ts --> module_src_capabilities_index_ts
   module_src_model_buildModel_ts --> module_src_model_types_ts
   module_src_packageMetadata_capabilities_test_ts --> module_src_packageMetadata_ts
   module_src_packageMetadata_test_ts --> module_src_packageMetadata_ts

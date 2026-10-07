@@ -2,6 +2,8 @@ graph TD
   package__ankhorage_paradox["@ankhorage/paradox"]
   entrypoint_src_index_ts["src/index.ts"]
   package__ankhorage_paradox --> entrypoint_src_index_ts
+  module_package_json["package.json"]
+  package__ankhorage_paradox -.-> module_package_json
   module_src_analyze_analyze_ts["src/analyze/analyze.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_analyze_ts
   module_src_analyze_analyze_ts --> module_src_analyze_badges_ts
@@ -150,6 +152,11 @@ graph TD
   module_src_analyze_utils_parseParadoxComment_ts --> module_src_doc_tags_registry_ts
   module_src_analyze_utils_resolveExportSymbol_ts["src/analyze/utils/resolveExportSymbol.ts"]
   package__ankhorage_paradox -.-> module_src_analyze_utils_resolveExportSymbol_ts
+  module_src_capabilities_index_test_ts["src/capabilities/index.test.ts"]
+  package__ankhorage_paradox -.-> module_src_capabilities_index_test_ts
+  module_src_capabilities_index_test_ts --> module_src_capabilities_index_ts
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  package__ankhorage_paradox -.-> module_src_capabilities_index_ts
   module_src_cli_index_ts["src/cli/index.ts"]
   package__ankhorage_paradox -.-> module_src_cli_index_ts
   module_src_cli_standalone_ts["src/cli/standalone.ts"]
@@ -170,9 +177,13 @@ graph TD
   package__ankhorage_paradox -.-> module_src_doc_tags_registry_ts
   module_src_docsSurface_handlers_test_ts["src/docsSurface.handlers.test.ts"]
   package__ankhorage_paradox -.-> module_src_docsSurface_handlers_test_ts
+  module_src_docsSurface_handlers_test_ts --> module_package_json
+  module_src_docsSurface_handlers_test_ts --> module_src_capabilities_index_ts
   module_src_docsSurface_handlers_test_ts --> module_src_docsSurface_ts
   module_src_docsSurface_ts["src/docsSurface.ts"]
   package__ankhorage_paradox -.-> module_src_docsSurface_ts
+  module_src_docsSurface_ts --> module_package_json
+  module_src_docsSurface_ts --> module_src_capabilities_index_ts
   module_src_index_ts["src/index.ts"]
   module_src_model_buildModel_ts["src/model/buildModel.ts"]
   package__ankhorage_paradox -.-> module_src_model_buildModel_ts

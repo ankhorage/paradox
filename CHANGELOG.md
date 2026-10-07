@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- ad8bd7a: Publish the canonical documentation-generation capability catalog.
+
 ## 0.2.28
 
 ### Patch Changes

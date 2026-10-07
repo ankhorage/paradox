@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.28",
+      "value": "v0.3.0",
       "color": "cb3837"
     },
     {
@@ -142,6 +142,12 @@
     "src/index.ts"
   ],
   "modules": [
+    {
+      "path": "package.json",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
     {
       "path": "src/analyze/analyze.ts",
       "isEntrypoint": false,
@@ -541,6 +547,22 @@
       ]
     },
     {
+      "path": "src/capabilities/index.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/capabilities/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/capabilities/index.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "CAPABILITIES"
+      ]
+    },
+    {
       "path": "src/cli/index.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -602,6 +624,8 @@
       "path": "src/docsSurface.handlers.test.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "package.json",
+        "src/capabilities/index.ts",
         "src/docsSurface.ts"
       ],
       "exports": []
@@ -609,7 +633,10 @@
     {
       "path": "src/docsSurface.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": [
+        "package.json",
+        "src/capabilities/index.ts"
+      ],
       "exports": [
         "default"
       ]
@@ -4098,8 +4125,28 @@
     "imports": [
       {
         "fromPath": "src/docsSurface.handlers.test.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromPath": "src/docsSurface.handlers.test.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromPath": "src/docsSurface.handlers.test.ts",
         "toPath": "src/docsSurface.ts",
         "sourcePath": "src/docsSurface.handlers.test.ts"
+      },
+      {
+        "fromPath": "src/docsSurface.ts",
+        "toPath": "package.json",
+        "sourcePath": "src/docsSurface.ts"
+      },
+      {
+        "fromPath": "src/docsSurface.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/docsSurface.ts"
       },
       {
         "fromPath": "src/index.ts",
@@ -4350,6 +4397,11 @@
         "fromPath": "src/analyze/usage.ts",
         "toPath": "src/types/analysis.ts",
         "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromPath": "src/capabilities/index.test.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/capabilities/index.test.ts"
       },
       {
         "fromPath": "src/cli/index.ts",
@@ -5545,6 +5597,30 @@
         "toSymbol": "getPackageBaseName",
         "callExpression": "getPackageBaseName",
         "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/index.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/capabilities/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/index.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/capabilities/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/index.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/capabilities/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/index.test.ts",
+        "toSymbol": "isCapability",
+        "callExpression": "isCapability",
+        "sourcePath": "src/capabilities/index.test.ts"
       },
       {
         "fromSymbol": "main",
