@@ -11,7 +11,7 @@ const commandList = [
   {
     path: ['generate'],
     summary: 'Generate package documentation.',
-    capability: CAPABILITIES[0].id,
+    capability: 'docs.generate' satisfies Capability['id'],
   },
 ] as const satisfies readonly (AnkhCommandDescriptor & {
   readonly capability: Capability['id'];

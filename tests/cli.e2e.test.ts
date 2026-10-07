@@ -232,7 +232,7 @@ describe('cli e2e', () => {
       const after = await listFiles(tempRoot);
 
       expect(result.exitCode).not.toBe(0);
-      expect(result.stderr).toContain('Paradox documentation policy is invalid');
+      expect(result.stderr).toContain('Paradox documentation Rules is invalid');
       expect(result.stderr).toContain('documentation.usage.location');
       expect(after).toEqual(before);
     } finally {
