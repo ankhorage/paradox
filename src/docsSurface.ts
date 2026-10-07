@@ -1,15 +1,21 @@
 import { spawnSync } from 'node:child_process';
 
-const packageName = '@ankhorage/paradox';
-const packageVersion = '0.1.14';
+import type { AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
+import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { AnkhCommandDescriptor } from '@ankhorage/contracts/cli';
+
+import packageJson from '../package.json' with { type: 'json' };
+import { CAPABILITIES } from './capabilities/index.js';
 
 const commandList = [
   {
     path: ['generate'],
     summary: 'Generate package documentation.',
-    capability: 'docs.generate',
+    capability: CAPABILITIES[0].id,
   },
-] as const;
+] as const satisfies readonly (AnkhCommandDescriptor & {
+  readonly capability: Capability['id'];
+})[];
 
 const handlers = commandList.map((command) => ({
   path: command.path,
@@ -19,11 +25,13 @@ const handlers = commandList.map((command) => ({
   },
 }));
 
-export default {
-  id: packageName,
+const provider = {
+  id: packageJson.name,
   category: 'docs',
-  version: packageVersion,
-  capabilities: ['docs.generate'],
+  version: packageJson.version,
+  capabilities: CAPABILITIES,
   commands: commandList,
   handlers,
-};
+} as const satisfies AnkhRuntimeCommandProvider;
+
+export default provider;

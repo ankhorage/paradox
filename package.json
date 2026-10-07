@@ -35,6 +35,10 @@
       "types": "./dist/cli/index.d.ts",
       "import": "./dist/cli/index.js"
     },
+    "./capabilities": {
+      "types": "./dist/capabilities/index.d.ts",
+      "import": "./dist/capabilities/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -50,7 +54,21 @@
     "category": "docs",
     "provider": "./dist/cli/index.js",
     "capabilities": [
-      "docs.generate"
+      {
+        "id": "docs.generate",
+        "owner": "@ankhorage/paradox",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Generate documentation",
+        "description": "Generate deterministic package documentation."
+      }
     ]
   },
   "scripts": {
@@ -68,9 +86,11 @@
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "ankhorage-changeset version",
     "knip:check": "ankhorage-knip",
-    "test:standalone": "bun test tests/cli.e2e.test.ts"
+    "test:standalone": "bun run build && bun test tests/cli.e2e.test.ts tests/capabilities.public-import.test.ts"
   },
   "dependencies": {
+    "@ankhorage/ankh": "^0.12.0",
+    "@ankhorage/contracts": "^24.1.0",
     "@ankhorage/rules": "^0.2.0",
     "@ankhorage/rules-documentation": "^0.3.4",
     "@ankhorage/utility": "^1.9.63",
