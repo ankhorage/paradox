@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+### Patch Changes
+
+- 05e9f01: Consume the standalone Capability toolkit for catalog validation and the portable Capability contract.
+
 ## 0.3.2
 
 ### Patch Changes

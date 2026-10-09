@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.3.2",
+      "value": "v0.3.3",
       "color": "cb3837"
     },
     {
@@ -5618,8 +5618,8 @@
       },
       {
         "fromSymbol": "src/capabilities/index.test.ts",
-        "toSymbol": "isCapability",
-        "callExpression": "isCapability",
+        "toSymbol": "isCapabilityCatalog",
+        "callExpression": "isCapabilityCatalog",
         "sourcePath": "src/capabilities/index.test.ts"
       },
       {
