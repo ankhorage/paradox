@@ -1,4 +1,4 @@
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 
 /*** Define the executable documentation operation published by this package. */
 export const CAPABILITIES = [

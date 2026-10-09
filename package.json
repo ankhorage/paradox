@@ -90,7 +90,8 @@
   },
   "dependencies": {
     "@ankhorage/ankh": "^0.13.0",
-    "@ankhorage/contracts": "^24.1.0",
+    "@ankhorage/capability": "^0.2.1",
+    "@ankhorage/contracts": "^25.0.1",
     "@ankhorage/rules": "^0.2.0",
     "@ankhorage/rules-documentation": "^0.3.4",
     "@ankhorage/utility": "^1.9.63",
