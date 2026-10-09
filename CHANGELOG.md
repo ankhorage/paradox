@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+### Patch Changes
+
+- d799e3d: Update Ankhorage dependencies: `@ankhorage/ankh`.
+
 ## 0.3.1
 
 ### Patch Changes
