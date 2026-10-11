@@ -89,7 +89,7 @@
     "test:standalone": "bun run build && bun test tests/cli.e2e.test.ts tests/capabilities.public-import.test.ts"
   },
   "dependencies": {
-    "@ankhorage/ankh": "^0.13.0",
+    "@ankhorage/ankh": "^0.13.1",
     "@ankhorage/capability": "^0.2.1",
     "@ankhorage/contracts": "^25.0.1",
     "@ankhorage/rules": "^0.2.0",
@@ -98,7 +98,7 @@
     "ts-morph": "^28.0.0"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^2.3.14",
+    "@ankhorage/devtools": "^2.3.17",
     "@types/bun": "^1.4.2",
     "@types/node": "^26.6.5",
     "typescript": "^6.0.3"
