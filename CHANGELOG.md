@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.4
+
+### Patch Changes
+
+- fc7787f: Update Ankhorage dependencies: `@ankhorage/ankh`, `@ankhorage/devtools`.
+
 ## 0.3.3
 
 ### Patch Changes
