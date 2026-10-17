@@ -89,7 +89,7 @@
     "test:standalone": "bun run build && bun test tests/cli.e2e.test.ts tests/capabilities.public-import.test.ts"
   },
   "dependencies": {
-    "@ankhorage/ankh": "^0.13.1",
+    "@ankhorage/ankh": "^0.13.2",
     "@ankhorage/capability": "^0.2.1",
     "@ankhorage/contracts": "^25.0.1",
     "@ankhorage/rules": "^0.2.0",
