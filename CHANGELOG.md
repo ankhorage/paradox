@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.6
+
+### Patch Changes
+
+- 26f1b68: Update Ankhorage dependencies: `@ankhorage/ankh`, `@ankhorage/devtools`.
+
 ## 0.3.5
 
 ### Patch Changes
