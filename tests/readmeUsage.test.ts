@@ -1,5 +1,5 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
 import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 import { describe, expect, test } from 'bun:test';
@@ -79,6 +79,11 @@ describe('canonical README usage', () => {
         provider: 'programmatic',
       }),
       createCliAvailabilityFixtureAsync({ name: '@ankhorage/zora', provider: 'zora' }),
+      createCliAvailabilityFixtureAsync({
+        name: '@fixture/package-name',
+        category: 'document',
+        provider: 'commands',
+      }),
     ]);
 
     try {
@@ -87,25 +92,30 @@ describe('canonical README usage', () => {
           fixture,
           analysis: await analyze(
             { package: { entrypoints: ['src/index.ts'] } },
-            { packageRoot: fixture.root },
+            { packageRoot: relative(process.cwd(), fixture.root) },
           ),
+          absoluteUsage: (
+            await analyze(
+              { package: { entrypoints: ['src/index.ts'] } },
+              { packageRoot: fixture.root },
+            )
+          ).usage,
         })),
       );
 
-      for (const { fixture, analysis } of results) {
+      for (const { fixture, analysis, absoluteUsage } of results) {
         const output = render(buildModel(analysis), { outputDir: 'paradox' });
         const paradoxJson = JSON.parse(output.paradoxJson) as { usage: { command: string | null } };
         const hasCli = fixture.provider === 'commands';
-        const command = hasCli ? `ankh ${fixture.name.split('/').pop()} --help` : null;
+        const command = hasCli ? `ankh ${fixture.category} --help` : null;
 
         expect(analysis.usage.command).toBe(command);
+        expect(analysis.usage).toEqual(absoluteUsage);
         expect(paradoxJson.usage.command).toBe(command);
         expect(output.readme.includes('### CLI')).toBe(hasCli);
         expect(output.indexHtml.includes('<h3>CLI</h3>')).toBe(hasCli);
-        expect(output.readme.includes(`ankh ${fixture.name.split('/').pop()} --help`)).toBe(hasCli);
-        expect(output.indexHtml.includes(`ankh ${fixture.name.split('/').pop()} --help`)).toBe(
-          hasCli,
-        );
+        expect(command !== null && output.readme.includes(command)).toBe(hasCli);
+        expect(command !== null && output.indexHtml.includes(command)).toBe(hasCli);
       }
 
       const programmatic = results.find(({ fixture }) => fixture.provider === 'programmatic');

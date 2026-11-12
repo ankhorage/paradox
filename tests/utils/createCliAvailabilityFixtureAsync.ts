@@ -1,16 +1,20 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-export type CliFixtureProvider = 'bin' | 'commands' | 'events' | 'none' | 'programmatic' | 'zora';
+export type CliFixtureProvider =
+  'bin' | 'broken' | 'commands' | 'events' | 'none' | 'programmatic' | 'zora';
 
 export async function createCliAvailabilityFixtureAsync(options: {
+  category?: string;
+  foreignProvider?: boolean;
   name: string;
   provider: CliFixtureProvider;
-}): Promise<{ name: string; provider: CliFixtureProvider; root: string }> {
+}): Promise<{ category: string; name: string; provider: CliFixtureProvider; root: string }> {
   const root = join(import.meta.dir, '..', '.tmp', `cli-${Date.now()}-${Math.random()}`);
   await mkdir(join(root, 'src'), { recursive: true });
   await mkdir(join(root, 'examples', 'programmatic'), { recursive: true });
-  const metadata = createAnkhMetadata(options.name, options.provider);
+  const category = options.category ?? packageBaseName(options.name);
+  const metadata = createAnkhMetadata(options.name, category, options.provider);
   await writeFile(
     join(root, 'package.json'),
     JSON.stringify({
@@ -41,20 +45,20 @@ export async function createCliAvailabilityFixtureAsync(options: {
     ].join('\n'),
   );
   if (options.provider === 'commands' || options.provider === 'events') {
-    const category = packageBaseName(options.name);
     await writeFile(
       join(root, 'provider.mjs'),
       createProviderModule(options.name, category, options.provider),
     );
   }
-  return { ...options, root };
+  if (options.foreignProvider === true) await createForeignProviderFixtureAsync(root);
+  return { category, name: options.name, provider: options.provider, root };
 }
 
 function createAnkhMetadata(
   name: string,
+  category: string,
   provider: CliFixtureProvider,
 ): Record<string, unknown> | null {
-  const category = packageBaseName(name);
   if (provider === 'bin' || provider === 'programmatic') return null;
   if (provider === 'none')
     return {
@@ -68,11 +72,46 @@ function createAnkhMetadata(
       provider: null,
       capabilities: [createEventCapability(name, 'zora.event')],
     };
+  if (provider === 'broken')
+    return {
+      category,
+      provider: './provider.mjs',
+      capabilities: [createActionCapability(name, `${category}.run`)],
+    };
   const capability =
     provider === 'events'
       ? createEventCapability(name, `${category}.event`)
       : createActionCapability(name, `${category}.run`);
   return { category, provider: './provider.mjs', capabilities: [capability] };
+}
+
+async function createForeignProviderFixtureAsync(root: string): Promise<void> {
+  const foreignRoot = join(root, 'node_modules', '@ankhorage', 'foreign');
+  await mkdir(foreignRoot, { recursive: true });
+  const capability = createActionCapability('@ankhorage/foreign', 'foreign.run');
+  await writeFile(
+    join(foreignRoot, 'package.json'),
+    JSON.stringify({
+      name: '@ankhorage/foreign',
+      version: '1.0.0',
+      ankh: { category: 'foreign', provider: './provider.mjs', capabilities: [capability] },
+    }),
+  );
+  await writeFile(
+    join(foreignRoot, 'provider.mjs'),
+    [
+      "import { writeFileSync } from 'node:fs';",
+      `writeFileSync(${JSON.stringify(join(root, 'foreign-provider-executed'))}, 'executed');`,
+      `export default ${JSON.stringify({
+        id: '@ankhorage/foreign',
+        category: 'foreign',
+        version: '1.0.0',
+        capabilities: [capability],
+        commands: [{ path: ['run'], summary: 'Run.', capability: 'foreign.run' }],
+      })};`,
+      '',
+    ].join('\n'),
+  );
 }
 
 function createProviderModule(
