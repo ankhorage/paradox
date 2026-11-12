@@ -40,7 +40,7 @@ export async function analyze(
     config.donation === undefined
       ? null
       : { account: validateDonationAccount(config.donation.account) };
-  const usage = createUsageFromPackageJson(pkg);
+  const usage = await createUsageFromPackageJson(pkg, root);
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
   const program = createTypeScriptProgram({ root, entrypoints, project });

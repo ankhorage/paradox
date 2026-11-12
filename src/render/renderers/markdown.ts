@@ -77,7 +77,7 @@ function renderReadme(
  * Renders the canonical CLI-first Usage chapter.
  */
 function renderUsage(lines: string[], model: DocumentationModel): void {
-  if (model.usageEntries.length === 0) return;
+  if (model.usage.command === null && model.usageEntries.length === 0) return;
 
   const readmeExample = model.usageEntries.find(
     (entry) => entry.area === 'examples' && entry.isReadme,
@@ -86,7 +86,9 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
   lines.push('## Usage', '');
   for (const section of DOCUMENTATION_RULE_METADATA.readmeUsage.sectionOrder) {
     if (section === 'cli') {
-      renderCliUsage(lines, model);
+      if (model.usage.command !== null) {
+        renderCliUsage(lines, model.usage.command, model.packageId);
+      }
     } else {
       renderProgrammaticUsage(lines, model, readmeExample);
     }
@@ -94,7 +96,7 @@ function renderUsage(lines: string[], model: DocumentationModel): void {
 }
 
 /*** Renders the canonical CLI usage section from package metadata. */
-function renderCliUsage(lines: string[], model: DocumentationModel): void {
+function renderCliUsage(lines: string[], command: string, packageId: string): void {
   lines.push('### CLI', '');
   lines.push(
     'Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.',
@@ -103,8 +105,8 @@ function renderCliUsage(lines: string[], model: DocumentationModel): void {
   lines.push('```zsh');
   lines.push('# Install the Ankhorage CLI');
   lines.push('bun add --global @ankhorage/ankh', '');
-  lines.push(`# Show usage information for ${getPackageDisplayName(model.packageId)}`);
-  lines.push(model.usage.command);
+  lines.push(`# Show usage information for ${getPackageDisplayName(packageId)}`);
+  lines.push(command);
   lines.push('```', '');
 }
 

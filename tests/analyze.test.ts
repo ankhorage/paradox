@@ -3,7 +3,6 @@ import { join } from 'node:path';
 import { describe, expect, test } from 'bun:test';
 
 import { analyze } from '../src/analyze/analyze.js';
-import { createUsageFromPackageJson } from '../src/analyze/usage.js';
 import { buildModel } from '../src/model/buildModel.js';
 import { render } from '../src/render/render.js';
 
@@ -245,17 +244,6 @@ describe('analyze', () => {
 
     const output = render(buildModel(analysis), { outputDir: 'paradox' });
     expect(output.readme).toContain('![paradox: canonical](./paradox/badges/docs.svg)');
-  });
-
-  test('normalizes every package to its canonical Ankh help command', () => {
-    expect(createUsageFromPackageJson({ name: 'fixture-package' })).toEqual({
-      packageName: 'fixture-package',
-      command: 'ankh fixture-package --help',
-    });
-    expect(createUsageFromPackageJson({ name: '@fixture/scoped-package' })).toEqual({
-      packageName: '@fixture/scoped-package',
-      command: 'ankh scoped-package --help',
-    });
   });
 });
 

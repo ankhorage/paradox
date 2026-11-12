@@ -88,7 +88,7 @@ interface BuildModelInput {
     description: string | null;
     isReadme: boolean;
   }[];
-  usage: { packageName: string; command: string };
+  usage: { packageName: string; command: string | null };
   usageEntries: {
     area: 'cli' | 'examples';
     title: string | null;

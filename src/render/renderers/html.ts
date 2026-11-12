@@ -266,14 +266,21 @@ function renderHomeView(
  * Renders complete CLI and programmatic usage documentation.
  */
 function renderUsagePanel(model: DocumentationModel): string {
-  if (model.usageEntries.length === 0) return '';
+  if (model.usage.command === null && model.usageEntries.length === 0) return '';
 
   const { usageEntries } = model;
+  const cliUsage =
+    model.usage.command === null
+      ? ''
+      : `<article class="item">
+      <h3>CLI</h3>
+      <pre>${escapeHtml(model.usage.command)}</pre>
+    </article>`;
 
   return `<section class="panel" data-search="${escapeAttribute(
     [
       'usage',
-      model.usage.command,
+      model.usage.command ?? '',
       ...usageEntries.flatMap((entry) => [
         entry.title ?? '',
         entry.description ?? '',
@@ -282,10 +289,7 @@ function renderUsagePanel(model: DocumentationModel): string {
     ].join(' '),
   )}">
     <h2>Usage</h2>
-    <article class="item">
-      <h3>CLI</h3>
-      <pre>${escapeHtml(model.usage.command)}</pre>
-    </article>
+    ${cliUsage}
     ${usageEntries.map(renderUsageEntry).join('')}
   </section>`;
 }
