@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.3.6",
+      "value": "v0.3.7",
       "color": "cb3837"
     },
     {
@@ -64,7 +64,7 @@
   ],
   "usage": {
     "packageName": "@ankhorage/paradox",
-    "command": "ankh paradox --help"
+    "command": "ankh docs --help"
   },
   "usageEntries": [
     {
@@ -2460,23 +2460,45 @@
     },
     {
       "name": "createUsageFromPackageJson",
-      "description": "Builds the canonical Ankh package help command from package metadata.",
+      "description": "Resolves the canonical Ankh package help command from a valid provider manifest.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/usage.ts",
-        "line": 18,
+        "line": 22,
         "column": 1
       }
     },
     {
-      "name": "getPackageBaseName",
-      "description": "Extracts the unscoped package name from a package id.",
+      "name": "throwForDiscoveryErrors",
+      "description": "Throws the canonical Ankh diagnostics that prevent discovery of the documented package.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/usage.ts",
-        "line": 30,
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "throwForProviderErrors",
+      "description": "Throws the canonical Ankh diagnostics that prevent loading a declared provider manifest.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/usage.ts",
+        "line": 76,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderAnkhDiagnostics",
+      "description": "Formats provider failures with the Ankh diagnostic heading used by its CLI boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/analyze/usage.ts",
+        "line": 86,
         "column": 1
       }
     },
@@ -3510,7 +3532,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 296,
+        "line": 300,
         "column": 1
       }
     },
@@ -3521,7 +3543,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 317,
+        "line": 321,
         "column": 1
       }
     },
@@ -3532,7 +3554,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 341,
+        "line": 345,
         "column": 1
       }
     },
@@ -3543,7 +3565,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 353,
+        "line": 357,
         "column": 1
       }
     },
@@ -3554,7 +3576,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 367,
+        "line": 371,
         "column": 1
       }
     },
@@ -3565,7 +3587,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 387,
+        "line": 391,
         "column": 1
       }
     },
@@ -3576,7 +3598,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 396,
+        "line": 400,
         "column": 1
       }
     },
@@ -3587,7 +3609,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 410,
+        "line": 414,
         "column": 1
       }
     },
@@ -3598,7 +3620,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 439,
+        "line": 443,
         "column": 1
       }
     },
@@ -3609,7 +3631,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 475,
+        "line": 479,
         "column": 1
       }
     },
@@ -3620,7 +3642,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 497,
+        "line": 501,
         "column": 1
       }
     },
@@ -3631,7 +3653,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 534,
+        "line": 538,
         "column": 1
       }
     },
@@ -3642,7 +3664,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 549,
+        "line": 553,
         "column": 1
       }
     },
@@ -3653,7 +3675,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 571,
+        "line": 575,
         "column": 1
       }
     },
@@ -3664,7 +3686,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 582,
+        "line": 586,
         "column": 1
       }
     },
@@ -3675,7 +3697,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 591,
+        "line": 595,
         "column": 1
       }
     },
@@ -3686,7 +3708,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 610,
+        "line": 614,
         "column": 1
       }
     },
@@ -3697,7 +3719,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 622,
+        "line": 626,
         "column": 1
       }
     },
@@ -3741,7 +3763,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 97,
+        "line": 99,
         "column": 1
       }
     },
@@ -3752,7 +3774,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 112,
+        "line": 114,
         "column": 1
       }
     },
@@ -3763,7 +3785,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 139,
+        "line": 141,
         "column": 1
       }
     },
@@ -3774,7 +3796,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 146,
+        "line": 148,
         "column": 1
       }
     },
@@ -3785,7 +3807,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 180,
+        "line": 182,
         "column": 1
       }
     },
@@ -3796,7 +3818,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 195,
+        "line": 197,
         "column": 1
       }
     },
@@ -3807,7 +3829,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 213,
+        "line": 215,
         "column": 1
       }
     },
@@ -3818,7 +3840,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 233,
+        "line": 235,
         "column": 1
       }
     },
@@ -3829,7 +3851,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 269,
+        "line": 271,
         "column": 1
       }
     },
@@ -3840,7 +3862,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 291,
+        "line": 293,
         "column": 1
       }
     },
@@ -3851,7 +3873,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 302,
+        "line": 304,
         "column": 1
       }
     },
@@ -3862,7 +3884,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 327,
+        "line": 329,
         "column": 1
       }
     },
@@ -3873,7 +3895,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 338,
+        "line": 340,
         "column": 1
       }
     },
@@ -3884,7 +3906,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 345,
+        "line": 347,
         "column": 1
       }
     },
@@ -3895,7 +3917,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 356,
+        "line": 358,
         "column": 1
       }
     },
@@ -3906,7 +3928,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 388,
+        "line": 390,
         "column": 1
       }
     },
@@ -3917,7 +3939,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 395,
+        "line": 397,
         "column": 1
       }
     },
@@ -3928,7 +3950,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 404,
+        "line": 406,
         "column": 1
       }
     },
@@ -3939,7 +3961,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 411,
+        "line": 413,
         "column": 1
       }
     },
@@ -3950,7 +3972,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 427,
+        "line": 429,
         "column": 1
       }
     },
@@ -3961,7 +3983,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 480,
+        "line": 482,
         "column": 1
       }
     },
@@ -3972,7 +3994,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 519,
+        "line": 521,
         "column": 1
       }
     },
@@ -3983,7 +4005,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 526,
+        "line": 528,
         "column": 1
       }
     },
@@ -3994,7 +4016,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 533,
+        "line": 535,
         "column": 1
       }
     },
@@ -4005,7 +4027,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 560,
+        "line": 562,
         "column": 1
       }
     },
@@ -5594,8 +5616,56 @@
       },
       {
         "fromSymbol": "createUsageFromPackageJson",
-        "toSymbol": "getPackageBaseName",
-        "callExpression": "getPackageBaseName",
+        "toSymbol": "discoverAnkhPackages",
+        "callExpression": "discoverAnkhPackages",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "createUsageFromPackageJson",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "createUsageFromPackageJson",
+        "toSymbol": "throwForDiscoveryErrors",
+        "callExpression": "throwForDiscoveryErrors",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "src/analyze/usage.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "createUsageFromPackageJson",
+        "toSymbol": "loadProviderManifests",
+        "callExpression": "loadProviderManifests",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "createUsageFromPackageJson",
+        "toSymbol": "throwForProviderErrors",
+        "callExpression": "throwForProviderErrors",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "throwForDiscoveryErrors",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "throwForDiscoveryErrors",
+        "toSymbol": "renderAnkhDiagnostics",
+        "callExpression": "renderAnkhDiagnostics",
+        "sourcePath": "src/analyze/usage.ts"
+      },
+      {
+        "fromSymbol": "throwForProviderErrors",
+        "toSymbol": "renderAnkhDiagnostics",
+        "callExpression": "renderAnkhDiagnostics",
         "sourcePath": "src/analyze/usage.ts"
       },
       {
@@ -7244,14 +7314,14 @@
       },
       {
         "fromSymbol": "renderUsagePanel",
-        "toSymbol": "escapeAttribute",
-        "callExpression": "escapeAttribute",
+        "toSymbol": "escapeHtml",
+        "callExpression": "escapeHtml",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {
         "fromSymbol": "renderUsagePanel",
-        "toSymbol": "escapeHtml",
-        "callExpression": "escapeHtml",
+        "toSymbol": "escapeAttribute",
+        "callExpression": "escapeAttribute",
         "sourcePath": "src/render/renderers/html.ts"
       },
       {

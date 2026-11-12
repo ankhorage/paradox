@@ -239,7 +239,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/usage.ts">
       src/analyze/usage.ts
-      <small>2 functions</small>
+      <small>4 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/analyze/utils/getComponentPropsType.ts">
@@ -391,11 +391,11 @@
         <li><code>src/index.ts</code></li>
       </ul>
     </section>
-    <section class="panel" data-search="usage ankh paradox --help Basic Usage Paradox generates documentation from the canonical package structure. Usage documentation lives&#10;only below `examples/**` or `src/cli/**`. A repository may contain multiple `@usage`&#10;examples, but exactly one example below `examples/**` is promoted into README with `@readme`.&#10;&#10;README-promoted usage provides an explicit `@title` and non-empty prose. Code always comes from&#10;real source declarations rather than duplicated code blocks inside Paradox comments. examples/basic-usage/index.ts CLI Exposes the Paradox command provider through the canonical Ankhorage CLI surface. src/cli/index.ts">
+    <section class="panel" data-search="usage ankh docs --help Basic Usage Paradox generates documentation from the canonical package structure. Usage documentation lives&#10;only below `examples/**` or `src/cli/**`. A repository may contain multiple `@usage`&#10;examples, but exactly one example below `examples/**` is promoted into README with `@readme`.&#10;&#10;README-promoted usage provides an explicit `@title` and non-empty prose. Code always comes from&#10;real source declarations rather than duplicated code blocks inside Paradox comments. examples/basic-usage/index.ts CLI Exposes the Paradox command provider through the canonical Ankhorage CLI surface. src/cli/index.ts">
     <h2>Usage</h2>
     <article class="item">
       <h3>CLI</h3>
-      <pre>ankh paradox --help</pre>
+      <pre>ankh docs --help</pre>
     </article>
     <article class="item" data-search="Basic Usage Paradox generates documentation from the canonical package structure. Usage documentation lives&#10;only below `examples/**` or `src/cli/**`. A repository may contain multiple `@usage`&#10;examples, but exactly one example below `examples/**` is promoted into README with `@readme`.&#10;&#10;README-promoted usage provides an explicit `@title` and non-empty prose. Code always comes from&#10;real source declarations rather than duplicated code blocks inside Paradox comments. examples/basic-usage/index.ts">
     <h3>Basic Usage</h3>
@@ -2826,15 +2826,25 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   </section><section id="view-src-analyze-usage-ts" class="view" data-view="src/analyze/usage.ts" hidden>
     <section class="panel">
       <h2>src/analyze/usage.ts</h2>
-      <article class="item" data-search="createUsageFromPackageJson src/analyze/usage.ts Builds the canonical Ankh package help command from package metadata.">
+      <article class="item" data-search="createUsageFromPackageJson src/analyze/usage.ts Resolves the canonical Ankh package help command from a valid provider manifest.">
     <h3>createUsageFromPackageJson</h3>
-    <p class="muted"><code>src/analyze/usage.ts:18:1</code></p>
-    <p>Builds the canonical Ankh package help command from package metadata.</p>
+    <p class="muted"><code>src/analyze/usage.ts:22:1</code></p>
+    <p>Resolves the canonical Ankh package help command from a valid provider manifest.</p>
     
-  </article><article class="item" data-search="getPackageBaseName src/analyze/usage.ts Extracts the unscoped package name from a package id.">
-    <h3>getPackageBaseName</h3>
-    <p class="muted"><code>src/analyze/usage.ts:30:1</code></p>
-    <p>Extracts the unscoped package name from a package id.</p>
+  </article><article class="item" data-search="throwForDiscoveryErrors src/analyze/usage.ts Throws the canonical Ankh diagnostics that prevent discovery of the documented package.">
+    <h3>throwForDiscoveryErrors</h3>
+    <p class="muted"><code>src/analyze/usage.ts:54:1</code></p>
+    <p>Throws the canonical Ankh diagnostics that prevent discovery of the documented package.</p>
+    
+  </article><article class="item" data-search="throwForProviderErrors src/analyze/usage.ts Throws the canonical Ankh diagnostics that prevent loading a declared provider manifest.">
+    <h3>throwForProviderErrors</h3>
+    <p class="muted"><code>src/analyze/usage.ts:76:1</code></p>
+    <p>Throws the canonical Ankh diagnostics that prevent loading a declared provider manifest.</p>
+    
+  </article><article class="item" data-search="renderAnkhDiagnostics src/analyze/usage.ts Formats provider failures with the Ankh diagnostic heading used by its CLI boundary.">
+    <h3>renderAnkhDiagnostics</h3>
+    <p class="muted"><code>src/analyze/usage.ts:86:1</code></p>
+    <p>Formats provider failures with the Ankh diagnostic heading used by its CLI boundary.</p>
     
   </article>
     </section>
@@ -3417,92 +3427,92 @@ and writes them to the configured output directory.</p>
     
   </article><article class="item" data-search="renderUsageEntry src/render/renderers/html.ts Renders one source-backed usage entry in the complete documentation app.">
     <h3>renderUsageEntry</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:296:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:300:1</code></p>
     <p>Renders one source-backed usage entry in the complete documentation app.</p>
     
   </article><article class="item" data-search="renderFindingsPanel src/render/renderers/html.ts Renders policy findings so complete docs expose the same evidence consumed by Doctor.">
     <h3>renderFindingsPanel</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:317:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:321:1</code></p>
     <p>Renders policy findings so complete docs expose the same evidence consumed by Doctor.</p>
     
   </article><article class="item" data-search="renderSourceNavItem src/render/renderers/html.ts Renders one source file entry in the left navigation.">
     <h3>renderSourceNavItem</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:341:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:345:1</code></p>
     <p>Renders one source file entry in the left navigation.</p>
     
   </article><article class="item" data-search="renderSourceAreaView src/render/renderers/html.ts Renders the right-hand source area view for a selected file.">
     <h3>renderSourceAreaView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:353:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:357:1</code></p>
     <p>Renders the right-hand source area view for a selected file.</p>
     
   </article><article class="item" data-search="renderSourceFunctionCard src/render/renderers/html.ts Renders one source function card in a source-area view.">
     <h3>renderSourceFunctionCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:367:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:371:1</code></p>
     <p>Renders one source function card in a source-area view.</p>
     
   </article><article class="item" data-search="getSourceAreas src/render/renderers/html.ts Groups analyzed source functions by their source file path.">
     <h3>getSourceAreas</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:387:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:391:1</code></p>
     <p>Groups analyzed source functions by their source file path.</p>
     
   </article><article class="item" data-search="renderModuleCard src/render/renderers/html.ts Renders module metadata on the Home page.">
     <h3>renderModuleCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:396:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:400:1</code></p>
     <p>Renders module metadata on the Home page.</p>
     
   </article><article class="item" data-search="renderExportCard src/render/renderers/html.ts Renders one public API export card on the Home page.">
     <h3>renderExportCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:410:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:414:1</code></p>
     <p>Renders one public API export card on the Home page.</p>
     
   </article><article class="item" data-search="renderSignatureBlock src/render/renderers/html.ts Renders all call signatures for a public API export.">
     <h3>renderSignatureBlock</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:439:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:443:1</code></p>
     <p>Renders all call signatures for a public API export.</p>
     
   </article><article class="item" data-search="renderMemberTable src/render/renderers/html.ts Renders the members table for a type-like public API export.">
     <h3>renderMemberTable</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:475:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:479:1</code></p>
     <p>Renders the members table for a type-like public API export.</p>
     
   </article><article class="item" data-search="renderComponentCard src/render/renderers/html.ts Renders one detected component card on the Home page.">
     <h3>renderComponentCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:497:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:501:1</code></p>
     <p>Renders one detected component card on the Home page.</p>
     
   </article><article class="item" data-search="renderDiagramCard src/render/renderers/html.ts Renders one Mermaid diagram card.">
     <h3>renderDiagramCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:534:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:538:1</code></p>
     <p>Renders one Mermaid diagram card.</p>
     
   </article><article class="item" data-search="renderReferenceMetadata src/render/renderers/html.ts Renders validated external references and security-test evidence.">
     <h3>renderReferenceMetadata</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:549:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:553:1</code></p>
     <p>Renders validated external references and security-test evidence.</p>
     
   </article><article class="item" data-search="renderInlineCodeList src/render/renderers/html.ts Renders an inline comma-separated list of code values.">
     <h3>renderInlineCodeList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:571:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:575:1</code></p>
     <p>Renders an inline comma-separated list of code values.</p>
     
   </article><article class="item" data-search="renderChipList src/render/renderers/html.ts Renders a compact chip list for related symbols.">
     <h3>renderChipList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:582:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:586:1</code></p>
     <p>Renders a compact chip list for related symbols.</p>
     
   </article><article class="item" data-search="groupBy src/render/renderers/html.ts Groups items by a string key and returns deterministic key order.">
     <h3>groupBy</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:591:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:595:1</code></p>
     <p>Groups items by a string key and returns deterministic key order.</p>
     
   </article><article class="item" data-search="escapeHtml src/render/renderers/html.ts Escapes user-controlled text for safe HTML rendering.">
     <h3>escapeHtml</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:610:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:614:1</code></p>
     <p>Escapes user-controlled text for safe HTML rendering.</p>
     
   </article><article class="item" data-search="escapeAttribute src/render/renderers/html.ts Escapes text for use inside HTML attribute values.">
     <h3>escapeAttribute</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:622:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:626:1</code></p>
     <p>Escapes text for use inside HTML attribute values.</p>
     
   </article>
@@ -3527,127 +3537,127 @@ and writes them to the configured output directory.</p>
     
   </article><article class="item" data-search="renderCliUsage src/render/renderers/markdown.ts Renders the canonical CLI usage section from package metadata.">
     <h3>renderCliUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:97:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:99:1</code></p>
     <p>Renders the canonical CLI usage section from package metadata.</p>
     
   </article><article class="item" data-search="renderProgrammaticUsage src/render/renderers/markdown.ts Renders the single README-promoted programmatic usage declaration.">
     <h3>renderProgrammaticUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:112:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:114:1</code></p>
     <p>Renders the single README-promoted programmatic usage declaration.</p>
     
   </article><article class="item" data-search="getPackageDisplayName src/render/renderers/markdown.ts Returns a human-readable package command name.">
     <h3>getPackageDisplayName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:139:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:141:1</code></p>
     <p>Returns a human-readable package command name.</p>
     
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts Renders the package-owned Configuration chapter from the canonical tagged schema.">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:146:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:148:1</code></p>
     <p>Renders the package-owned Configuration chapter from the canonical tagged schema.</p>
     
   </article><article class="item" data-search="renderReferences src/render/renderers/markdown.ts Renders links and security evidence owned by one documented item.">
     <h3>renderReferences</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:180:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:182:1</code></p>
     <p>Renders links and security evidence owned by one documented item.</p>
     
   </article><article class="item" data-search="renderGeneratedDocumentation src/render/renderers/markdown.ts Renders links to generated documentation artifacts.">
     <h3>renderGeneratedDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:195:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:197:1</code></p>
     <p>Renders links to generated documentation artifacts.</p>
     
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts Renders README-promoted public API entries.">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:213:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:215:1</code></p>
     <p>Renders README-promoted public API entries.</p>
     
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts Renders one README-promoted component.">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:233:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:235:1</code></p>
     <p>Renders one README-promoted component.</p>
     
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts Renders one README-promoted non-component export.">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:269:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:271:1</code></p>
     <p>Renders one README-promoted non-component export.</p>
     
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts Renders the primary signature for a README public API entry.">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:291:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:293:1</code></p>
     <p>Renders the primary signature for a README public API entry.</p>
     
   </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts Renders structured const-array rows as a Markdown table.">
     <h3>renderStructuredRows</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:302:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:304:1</code></p>
     <p>Renders structured const-array rows as a Markdown table.</p>
     
   </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts Returns stable structured-row columns.">
     <h3>getStructuredColumns</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:327:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:329:1</code></p>
     <p>Returns stable structured-row columns.</p>
     
   </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts Formats one structured-row column header.">
     <h3>formatStructuredColumnHeader</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:338:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:340:1</code></p>
     <p>Formats one structured-row column header.</p>
     
   </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts Formats one structured-row table cell.">
     <h3>formatStructuredCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:345:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:347:1</code></p>
     <p>Formats one structured-row table cell.</p>
     
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts Groups README-promoted API entries by presentation category.">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:356:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:358:1</code></p>
     <p>Groups README-promoted API entries by presentation category.</p>
     
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts Adds one public API item to a README category.">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:388:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:390:1</code></p>
     <p>Adds one public API item to a README category.</p>
     
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts Sorts README category items by symbol name.">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:395:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:397:1</code></p>
     <p>Sorts README category items by symbol name.</p>
     
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts Returns one README item&#39;s source symbol name.">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:404:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:406:1</code></p>
     <p>Returns one README item&#39;s source symbol name.</p>
     
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts Derives a stable README public API category from a module path.">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:411:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:413:1</code></p>
     <p>Derives a stable README public API category from a module path.</p>
     
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts Renders the complete public API reference.">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:427:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:429:1</code></p>
     <p>Renders the complete public API reference.</p>
     
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts Renders the complete component registry.">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:480:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:482:1</code></p>
     <p>Renders the complete component registry.</p>
     
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts Escapes one Markdown table cell.">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:519:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:521:1</code></p>
     <p>Escapes one Markdown table cell.</p>
     
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts Renders an optional default value.">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:526:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:528:1</code></p>
     <p>Renders an optional default value.</p>
     
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts Flattens nested configuration members into dot paths.">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:533:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:535:1</code></p>
     <p>Flattens nested configuration members into dot paths.</p>
     
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts Returns the accessible badge label stored in a rendered badge artifact.">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:560:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:562:1</code></p>
     <p>Returns the accessible badge label stored in a rendered badge artifact.</p>
     
   </article>

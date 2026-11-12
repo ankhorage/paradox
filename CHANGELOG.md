@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.7
+
+### Patch Changes
+
+- 1e4050e: Only generate Ankh CLI documentation when the package exposes a valid command provider with declared commands.
+
 ## 0.3.6
 
 ### Patch Changes
