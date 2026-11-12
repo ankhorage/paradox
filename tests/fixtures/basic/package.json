@@ -4,5 +4,17 @@
   "type": "module",
   "bin": {
     "fixture-basic": "./src/index.ts"
+  },
+  "ankh": {
+    "category": "basic",
+    "provider": "./provider.mjs",
+    "capabilities": [
+      {
+        "id": "basic.run",
+        "owner": "@fixture/basic",
+        "access": ["invoke"],
+        "binding": { "kind": "action", "bindableAs": ["target"] }
+      }
+    ]
   }
 }

@@ -37,7 +37,7 @@ export interface GeneratedBadge {
 
 interface UsageModel {
   packageName: string;
-  command: string;
+  command: string | null;
 }
 
 interface UsageEntryModel {

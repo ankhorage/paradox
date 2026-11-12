@@ -1,5 +1,5 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
 import { DOCUMENTATION_RULE_METADATA } from '@ankhorage/rules-documentation';
 import { describe, expect, test } from 'bun:test';
@@ -7,6 +7,7 @@ import { describe, expect, test } from 'bun:test';
 import { analyze } from '../src/analyze/analyze.js';
 import { buildModel } from '../src/model/buildModel.js';
 import { render } from '../src/render/render.js';
+import { createCliAvailabilityFixtureAsync } from './utils/createCliAvailabilityFixtureAsync.js';
 
 describe('canonical README usage', () => {
   test('renders CLI first and promotes exactly one programmatic example', async () => {
@@ -67,6 +68,71 @@ describe('canonical README usage', () => {
     }
   });
 
+  test('keeps CLI availability consistent across generated artifacts', async () => {
+    const fixtures = await Promise.all([
+      createCliAvailabilityFixtureAsync({ name: '@fixture/commands', provider: 'commands' }),
+      createCliAvailabilityFixtureAsync({ name: '@fixture/no-provider', provider: 'none' }),
+      createCliAvailabilityFixtureAsync({ name: '@fixture/events', provider: 'events' }),
+      createCliAvailabilityFixtureAsync({ name: '@fixture/bin', provider: 'bin' }),
+      createCliAvailabilityFixtureAsync({
+        name: '@fixture/programmatic',
+        provider: 'programmatic',
+      }),
+      createCliAvailabilityFixtureAsync({ name: '@ankhorage/zora', provider: 'zora' }),
+      createCliAvailabilityFixtureAsync({
+        name: '@fixture/package-name',
+        category: 'document',
+        provider: 'commands',
+      }),
+    ]);
+
+    try {
+      const results = await Promise.all(
+        fixtures.map(async (fixture) => ({
+          fixture,
+          analysis: await analyze(
+            { package: { entrypoints: ['src/index.ts'] } },
+            { packageRoot: relative(process.cwd(), fixture.root) },
+          ),
+          absoluteUsage: (
+            await analyze(
+              { package: { entrypoints: ['src/index.ts'] } },
+              { packageRoot: fixture.root },
+            )
+          ).usage,
+        })),
+      );
+
+      for (const { fixture, analysis, absoluteUsage } of results) {
+        const output = render(buildModel(analysis), { outputDir: 'paradox' });
+        const paradoxJson = JSON.parse(output.paradoxJson) as { usage: { command: string | null } };
+        const hasCli = fixture.provider === 'commands';
+        const command = hasCli ? `ankh ${fixture.category} --help` : null;
+
+        expect(analysis.usage.command).toBe(command);
+        expect(analysis.usage).toEqual(absoluteUsage);
+        expect(paradoxJson.usage.command).toBe(command);
+        expect(output.readme.includes('### CLI')).toBe(hasCli);
+        expect(output.indexHtml.includes('<h3>CLI</h3>')).toBe(hasCli);
+        expect(command !== null && output.readme.includes(command)).toBe(hasCli);
+        expect(command !== null && output.indexHtml.includes(command)).toBe(hasCli);
+      }
+
+      const programmatic = results.find(({ fixture }) => fixture.provider === 'programmatic');
+      if (programmatic === undefined) throw new Error('Expected a programmatic-only fixture.');
+      expect(programmatic.analysis.usageEntries).toHaveLength(1);
+      const programmaticOutput = render(buildModel(programmatic.analysis), {
+        outputDir: 'paradox',
+      });
+      expect(programmaticOutput.readme).toContain('### Programmatic Usage');
+      expect(programmaticOutput.readme).toContain("export const usage = 'programmatic';");
+    } finally {
+      await Promise.all(
+        fixtures.map((fixture) => rm(fixture.root, { force: true, recursive: true })),
+      );
+    }
+  });
+
   test('extracts only the declaration owned by each usage comment', async () => {
     const root = await createUsageFixtureAsync();
 
@@ -103,6 +169,12 @@ describe('canonical README usage', () => {
  */
 async function createUsageFixtureAsync(): Promise<string> {
   const root = join(import.meta.dir, '.tmp', `usage-${Date.now()}-${Math.random()}`);
+  const capability = {
+    id: 'usage.run',
+    owner: '@fixture/usage',
+    access: ['invoke'],
+    binding: { kind: 'action', bindableAs: ['target'] },
+  };
   await mkdir(join(root, 'src', 'types'), { recursive: true });
   await mkdir(join(root, 'src', 'cli'), { recursive: true });
   await mkdir(join(root, 'examples', 'basic-usage'), { recursive: true });
@@ -115,7 +187,22 @@ async function createUsageFixtureAsync(): Promise<string> {
       version: '1.0.0',
       description: 'Fixture package for canonical usage.',
       license: 'MIT',
+      ankh: {
+        category: 'usage',
+        provider: './provider.mjs',
+        capabilities: [capability],
+      },
     }),
+  );
+  await writeFile(
+    join(root, 'provider.mjs'),
+    `export default ${JSON.stringify({
+      id: '@fixture/usage',
+      category: 'usage',
+      version: '1.0.0',
+      capabilities: [capability],
+      commands: [{ path: ['run'], summary: 'Run the fixture.', capability: 'usage.run' }],
+    })};\n`,
   );
   await writeFile(
     join(root, 'tsconfig.json'),

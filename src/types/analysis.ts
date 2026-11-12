@@ -80,7 +80,7 @@ export interface AnalysisComponent {
 
 export interface AnalysisUsage {
   packageName: string;
-  command: string;
+  command: string | null;
 }
 
 export interface AnalysisUsageEntry {
