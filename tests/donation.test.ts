@@ -110,7 +110,11 @@ test('removes a Paradox-owned funding file when donation is disabled', async () 
 function createConfig(account?: string | false): ParadoxConfig {
   return {
     mode: 'write',
-    ...(account === false ? { donation: false } : account === undefined ? {} : { donation: { account } }),
+    ...(account === false
+      ? { donation: false }
+      : account === undefined
+        ? {}
+        : { donation: { account } }),
     package: { entrypoints: ['src/index.ts'] },
     output: { dir: 'paradox' },
   };
