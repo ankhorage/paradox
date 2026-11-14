@@ -9,10 +9,23 @@ import { render } from '../src/render/render.js';
 import type { ParadoxConfig } from '../src/types/config.js';
 import { write } from '../src/write/write.js';
 
-test('keeps donation support disabled when config is undefined', async () => {
+test('enables the existing ankhorage donation account by default', async () => {
   const root = await createFixtureAsync();
   try {
     const { analysis, result } = await renderFixtureAsync(root);
+    expect(analysis.donation).toEqual({ account: 'ankhorage' });
+    expect(result.fundingYaml).toContain('github: ankhorage');
+    expect(result.readme).toContain('## Donation');
+    expect(result.indexHtml).toContain('https://github.com/sponsors/ankhorage');
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('allows donation to be disabled explicitly', async () => {
+  const root = await createFixtureAsync();
+  try {
+    const { analysis, result } = await renderFixtureAsync(root, false);
     expect(analysis.donation).toBeNull();
     expect(result.fundingYaml).toBeNull();
     expect(result.readme).not.toContain('## Donation');
@@ -83,7 +96,7 @@ test('removes a Paradox-owned funding file when donation is disabled', async () 
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
     });
-    const disabled = await renderFixtureAsync(root);
+    const disabled = await renderFixtureAsync(root, false);
     await write(disabled.result, disabled.config, {
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
@@ -94,10 +107,14 @@ test('removes a Paradox-owned funding file when donation is disabled', async () 
   }
 });
 
-function createConfig(account?: string): ParadoxConfig {
+function createConfig(account?: string | false): ParadoxConfig {
   return {
     mode: 'write',
-    ...(account === undefined ? {} : { donation: { account } }),
+    ...(account === false
+      ? { donation: false }
+      : account === undefined
+        ? {}
+        : { donation: { account } }),
     package: { entrypoints: ['src/index.ts'] },
     output: { dir: 'paradox' },
   };
@@ -132,7 +149,7 @@ async function createFixtureAsync(): Promise<string> {
   return root;
 }
 
-async function renderFixtureAsync(root: string, account?: string) {
+async function renderFixtureAsync(root: string, account?: string | false) {
   const config = createConfig(account);
   const analysis = await analyze(config, { packageRoot: root });
   const result = render(buildModel(analysis), { outputDir: 'paradox' });

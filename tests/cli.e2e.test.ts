@@ -171,7 +171,7 @@ describe('cli e2e', () => {
     }
   });
 
-  test('rejects collaborators false from an untyped config without writing artifacts', async () => {
+  test('rejects invalid collaborators config without writing artifacts', async () => {
     const tempRoot = await createTempDir('paradox-cli-e2e-');
     try {
       const pkgRoot = join(tempRoot, 'pkg');
@@ -185,7 +185,7 @@ describe('cli e2e', () => {
         [
           'export default {',
           "  mode: 'write',",
-          '  collaborators: false,',
+          "  collaborators: 'invalid',",
           "  package: { entrypoints: ['src/index.ts'] },",
           '};',
           '',

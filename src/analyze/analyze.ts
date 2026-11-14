@@ -37,9 +37,9 @@ export async function analyze(
   const pkg = await readPackageJson(root);
   const collaborators = validateCollaborators(config.collaborators);
   const donation =
-    config.donation === undefined
+    config.donation === false
       ? null
-      : { account: validateDonationAccount(config.donation.account) };
+      : { account: validateDonationAccount(config.donation?.account ?? 'ankhorage') };
   const usage = await createUsageFromPackageJson(pkg, root);
   const project = createProject(root);
   const entrypoints = config.package?.entrypoints ?? ['src/index.ts'];
