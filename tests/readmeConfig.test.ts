@@ -35,7 +35,7 @@ describe('canonical README configuration', () => {
       });
       const output = render(buildModel(analysis), { outputDir: 'paradox' });
       const configurationStart = output.readme.indexOf('## Configuration');
-      const generatedDocsStart = output.readme.indexOf('## Generated documentation');
+      const generatedDocsStart = output.readme.indexOf('## Documentation');
       const configuration = output.readme.slice(configurationStart, generatedDocsStart);
 
       expect(configuration).toContain('Controls canonical fixture behavior.');
