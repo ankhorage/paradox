@@ -9,22 +9,35 @@ import { render } from '../src/render/render.js';
 import type { ParadoxConfig } from '../src/types/config.js';
 import { write } from '../src/write/write.js';
 
-test('keeps collaborators support disabled when config is undefined', async () => {
+test('enables contributors by default', async () => {
   const root = await createFixtureAsync();
   try {
     const { analysis, model, result } = await renderFixtureAsync(root);
-    expect(analysis.collaborators).toBeNull();
-    expect(model.collaborators).toBeNull();
-    expect(result.collaboratorsWorkflowYaml).toBeNull();
-    expect(result.readme).not.toContain('## Collaborators');
-    expect(result.readme).not.toContain('<!-- readme: collaborators -start -->');
-    expect(result.indexHtml).not.toContain('<h2>Collaborators</h2>');
+    expect(analysis.collaborators).toBeTrue();
+    expect(model.collaborators).toBeTrue();
+    expect(result.collaboratorsWorkflowYaml).toBe(expectedCollaboratorsWorkflow);
+    expect(result.readme).toContain('## Contributors');
+    expect(result.readme).toContain('<!-- readme: contributors -start -->');
+    expect(result.indexHtml).not.toContain('<h2>Contributors</h2>');
   } finally {
     await rm(root, { force: true, recursive: true });
   }
 });
 
-test('renders the canonical collaborators chapter and workflow', async () => {
+test('disables contributors with explicit false', async () => {
+  const root = await createFixtureAsync();
+  try {
+    const { analysis, result } = await renderFixtureAsync(root, { collaborators: false });
+    expect(analysis.collaborators).toBeNull();
+    expect(result.collaboratorsWorkflowYaml).toBeNull();
+    expect(result.readme).not.toContain('## Contributors');
+    expect(result.readme).not.toContain('<!-- readme: contributors -start -->');
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+});
+
+test('renders the canonical contributors chapter and workflow', async () => {
   const root = await createFixtureAsync();
   try {
     const { analysis, model, result } = await renderFixtureAsync(root, {
@@ -34,10 +47,10 @@ test('renders the canonical collaborators chapter and workflow', async () => {
     expect(model.collaborators).toBeTrue();
     expect(result.readme).toContain(
       [
-        '## Collaborators',
+        '## Contributors',
         '',
-        '<!-- readme: collaborators -start -->',
-        '<!-- readme: collaborators -end -->',
+        '<!-- readme: contributors -start -->',
+        '<!-- readme: contributors -end -->',
         '',
       ].join('\n'),
     );
@@ -48,14 +61,14 @@ test('renders the canonical collaborators chapter and workflow', async () => {
   }
 });
 
-test('renders collaborators before donation when both features are enabled', async () => {
+test('renders contributors before donation when both features are enabled', async () => {
   const root = await createFixtureAsync();
   try {
     const { result } = await renderFixtureAsync(root, {
       collaborators: true,
       donation: true,
     });
-    const collaboratorsIndex = result.readme.indexOf('## Collaborators');
+    const collaboratorsIndex = result.readme.indexOf('## Contributors');
     const donationIndex = result.readme.indexOf('## Donation');
     expect(collaboratorsIndex).toBeGreaterThan(-1);
     expect(donationIndex).toBeGreaterThan(collaboratorsIndex);
@@ -80,7 +93,7 @@ test('does not create or remove the collaborators workflow in safe mode', async 
 
     await mkdir(join(root, '.github', 'workflows'), { recursive: true });
     await writeFile(workflowPath, expectedCollaboratorsWorkflow);
-    const disabled = await renderFixtureAsync(root, { mode: 'safe' });
+    const disabled = await renderFixtureAsync(root, { mode: 'safe', collaborators: false });
     await write(disabled.result, disabled.config, {
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
@@ -114,8 +127,8 @@ test('writes the collaborators workflow idempotently in write mode', async () =>
     await writeFile(
       join(root, 'README.md'),
       firstReadme.replace(
-        '<!-- readme: collaborators -end -->',
-        '<table><tr><td>Populated by the action</td></tr></table>\n<!-- readme: collaborators -end -->',
+        '<!-- readme: contributors -end -->',
+        '<table><tr><td>Populated by the action</td></tr></table>\n<!-- readme: contributors -end -->',
       ),
     );
     await write(enabled.result, enabled.config, {
@@ -143,7 +156,7 @@ test('recognizes CRLF Paradox workflows during rerun and disable', async () => {
     expect(await readFile(workflowPath, 'utf-8')).toBe(expectedCollaboratorsWorkflow);
 
     await writeFile(workflowPath, crlfWorkflow);
-    const disabled = await renderFixtureAsync(root);
+    const disabled = await renderFixtureAsync(root, { collaborators: false });
     await write(disabled.result, disabled.config, {
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
@@ -185,7 +198,7 @@ test('removes a Paradox-owned collaborators workflow when disabled', async () =>
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
     });
-    const disabled = await renderFixtureAsync(root);
+    const disabled = await renderFixtureAsync(root, { collaborators: false });
     await write(disabled.result, disabled.config, {
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
@@ -202,7 +215,7 @@ test('preserves a user-owned collaborators workflow when disabled', async () => 
   try {
     await mkdir(join(root, '.github', 'workflows'), { recursive: true });
     await writeFile(workflowPath, 'name: User workflow\n');
-    const disabled = await renderFixtureAsync(root);
+    const disabled = await renderFixtureAsync(root, { collaborators: false });
     await write(disabled.result, disabled.config, {
       packageRoot: root,
       outputRoot: join(root, 'paradox'),
@@ -214,14 +227,14 @@ test('preserves a user-owned collaborators workflow when disabled', async () => 
 });
 
 interface FixtureOptions {
-  collaborators?: true;
+  collaborators?: boolean;
   donation?: true;
   mode?: 'safe' | 'write';
 }
 
 const expectedCollaboratorsWorkflow = [
   '# Generated by Paradox. Do not edit manually.',
-  'name: Update collaborators',
+  'name: Update contributors',
   '',
   'on:',
   '  schedule:',
@@ -233,15 +246,14 @@ const expectedCollaboratorsWorkflow = [
   '  pull-requests: write',
   '',
   'jobs:',
-  '  collaborators:',
-  '    name: Update collaborators',
+  '  contributors:',
+  '    name: Update contributors',
   '    runs-on: ubuntu-latest',
   '    steps:',
-  '      - name: Update collaborators',
+  '      - name: Update contributors',
   '        uses: akhilmhdh/contributors-readme-action@83ea0b4f1ac928fbfe88b9e8460a932a528eb79f # v2.3.11',
   '        with:',
   '          readme_path: README.md',
-  '          collaborators: direct',
   '        env:',
   '          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}',
   '',
@@ -250,7 +262,7 @@ const expectedCollaboratorsWorkflow = [
 function createConfig(options: FixtureOptions = {}): ParadoxConfig {
   return {
     mode: options.mode ?? 'write',
-    ...(options.collaborators === true ? { collaborators: true } : {}),
+    ...(options.collaborators === undefined ? {} : { collaborators: options.collaborators }),
     ...(options.donation === true ? { donation: { account: 'ankhorage' } } : {}),
     package: { entrypoints: ['src/index.ts'] },
     output: { dir: 'paradox' },
