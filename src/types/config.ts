@@ -13,10 +13,12 @@ export interface ParadoxConfig {
   collaborators?: boolean;
 
   /** Enables GitHub Sponsors integration (defaults to @ankhorage, false disables it). */
-  donation?: false | {
-    /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
-    account: string;
-  };
+  donation?:
+    | false
+    | {
+        /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
+        account: string;
+      };
 
   docs?: {
     title?: string;
