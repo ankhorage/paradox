@@ -3,7 +3,7 @@
 
 # @ankhorage/paradox
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.3.7](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.4.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
 
 Deterministic documentation generator for TypeScript packages.
 
@@ -46,24 +46,21 @@ Configures Paradox documentation generation for a package.
 | Field | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | mode | `'safe' \| 'write' \| undefined` | no | — |  |
-| collaborators | `true \| undefined` | no | — |  |
-| donation | `{ account: string; } \| undefined` | no | — |  |
+| collaborators | `boolean \| undefined` | no | — |  |
+| donation | `\| false
+    \| {
+        /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
+        account: string;
+      } \| undefined` | no | — |  |
 | docs | `{ title?: string; description?: string; } \| undefined` | no | — |  |
 | package | `{ root?: string; entrypoints?: string[]; } \| undefined` | no | — |  |
 | output | `{ dir?: string; } \| undefined` | no | — |  |
 
 </details>
 
-## Generated documentation
+## Documentation
 
-- [Interactive documentation app](./paradox/index.html)
-- [Public API reference](./paradox/exports.md)
-- [Component registry](./paradox/components.md)
-- [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
-- [Module relationships](./paradox/diagrams/module-relationships.mmd)
-- [Export graph](./paradox/diagrams/export-graph.mmd)
-- [isParadoxDocTagName sequence](./paradox/diagrams/sequences/is-paradox-doc-tag-name.mmd)
-- [paradox sequence](./paradox/diagrams/sequences/paradox.mmd)
+Open `paradox/index.html` locally in your browser to browse the complete documentation.
 
 ## Public API
 
@@ -108,10 +105,10 @@ Source: `src/types/config.ts:9:1`
 
 </details>
 
-## Collaborators
+## Contributors
 
-<!-- readme: collaborators -start -->
-<!-- readme: collaborators -end -->
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
 
 ## Donation
 

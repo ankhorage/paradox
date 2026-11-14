@@ -176,7 +176,7 @@
       {
         "name": "collaborators",
         "kind": "property",
-        "type": "true | undefined",
+        "type": "boolean | undefined",
         "required": false,
         "description": null
       },
@@ -190,7 +190,7 @@
       {
         "name": "donation",
         "kind": "property",
-        "type": "{ account: string; } | undefined",
+        "type": "false | { account: string; } | undefined",
         "required": false,
         "description": null
       },

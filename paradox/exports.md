@@ -70,9 +70,9 @@ Configures Paradox documentation generation for a package.
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| collaborators | property | `true \| undefined` | no |  |
+| collaborators | property | `boolean \| undefined` | no |  |
 | docs | property | `{ title?: string; description?: string; } \| undefined` | no |  |
-| donation | property | `{ account: string; } \| undefined` | no |  |
+| donation | property | `false \| { account: string; } \| undefined` | no |  |
 | mode | property | `"safe" \| "write" \| undefined` | no |  |
 | output | property | `{ dir?: string; } \| undefined` | no |  |
 | package | property | `{ root?: string; entrypoints?: string[]; } \| undefined` | no |  |

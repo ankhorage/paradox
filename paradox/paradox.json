@@ -16,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.3.7",
+      "value": "v0.4.0",
       "color": "cb3837"
     },
     {
@@ -108,13 +108,13 @@
       },
       {
         "name": "collaborators",
-        "type": "true | undefined",
+        "type": "boolean | undefined",
         "required": false,
         "description": null
       },
       {
         "name": "donation",
-        "type": "{ account: string; } | undefined",
+        "type": "| false\n    | {\n        /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */\n        account: string;\n      } | undefined",
         "required": false,
         "description": null
       },
@@ -1060,7 +1060,7 @@
         {
           "name": "collaborators",
           "kind": "property",
-          "type": "true | undefined",
+          "type": "boolean | undefined",
           "required": false,
           "description": null
         },
@@ -1074,7 +1074,7 @@
         {
           "name": "donation",
           "kind": "property",
-          "type": "{ account: string; } | undefined",
+          "type": "false | { account: string; } | undefined",
           "required": false,
           "description": null
         },
@@ -2933,12 +2933,12 @@
     },
     {
       "name": "validateCollaborators",
-      "description": null,
+      "description": "Enables contributors by default and validates the explicit opt-out.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/config/utils/validateCollaborators.ts",
-        "line": 1,
+        "line": 4,
         "column": 1
       }
     },
@@ -3741,7 +3741,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 43,
+        "line": 42,
         "column": 1
       }
     },
@@ -3752,7 +3752,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 79,
+        "line": 77,
         "column": 1
       }
     },
@@ -3763,7 +3763,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 99,
+        "line": 97,
         "column": 1
       }
     },
@@ -3774,7 +3774,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 114,
+        "line": 112,
         "column": 1
       }
     },
@@ -3785,7 +3785,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 141,
+        "line": 139,
         "column": 1
       }
     },
@@ -3796,7 +3796,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 148,
+        "line": 146,
         "column": 1
       }
     },
@@ -3807,18 +3807,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 182,
+        "line": 180,
         "column": 1
       }
     },
     {
-      "name": "renderGeneratedDocumentation",
-      "description": "Renders links to generated documentation artifacts.",
+      "name": "renderDocumentation",
+      "description": "Points README readers to the configured interactive documentation entrypoint.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 197,
+        "line": 195,
         "column": 1
       }
     },
@@ -3829,7 +3829,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 215,
+        "line": 206,
         "column": 1
       }
     },
@@ -3840,7 +3840,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 235,
+        "line": 226,
         "column": 1
       }
     },
@@ -3851,7 +3851,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 271,
+        "line": 262,
         "column": 1
       }
     },
@@ -3862,7 +3862,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 293,
+        "line": 284,
         "column": 1
       }
     },
@@ -3873,7 +3873,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 304,
+        "line": 295,
         "column": 1
       }
     },
@@ -3884,7 +3884,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 329,
+        "line": 320,
         "column": 1
       }
     },
@@ -3895,7 +3895,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 340,
+        "line": 331,
         "column": 1
       }
     },
@@ -3906,7 +3906,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 347,
+        "line": 338,
         "column": 1
       }
     },
@@ -3917,7 +3917,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 358,
+        "line": 349,
         "column": 1
       }
     },
@@ -3928,7 +3928,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 390,
+        "line": 381,
         "column": 1
       }
     },
@@ -3939,7 +3939,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 397,
+        "line": 388,
         "column": 1
       }
     },
@@ -3950,7 +3950,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 406,
+        "line": 397,
         "column": 1
       }
     },
@@ -3961,7 +3961,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 413,
+        "line": 404,
         "column": 1
       }
     },
@@ -3972,7 +3972,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 429,
+        "line": 420,
         "column": 1
       }
     },
@@ -3983,7 +3983,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 482,
+        "line": 473,
         "column": 1
       }
     },
@@ -3994,7 +3994,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 521,
+        "line": 512,
         "column": 1
       }
     },
@@ -4005,7 +4005,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 528,
+        "line": 519,
         "column": 1
       }
     },
@@ -4016,7 +4016,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 535,
+        "line": 526,
         "column": 1
       }
     },
@@ -4027,7 +4027,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 562,
+        "line": 553,
         "column": 1
       }
     },
@@ -7560,8 +7560,8 @@
       },
       {
         "fromSymbol": "renderReadme",
-        "toSymbol": "renderGeneratedDocumentation",
-        "callExpression": "renderGeneratedDocumentation",
+        "toSymbol": "renderDocumentation",
+        "callExpression": "renderDocumentation",
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
