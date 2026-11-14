@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+### Patch Changes
+
+- c507e9d: Add canonical repository metadata for package discovery and generated documentation.
+
 ## 0.4.0
 
 ### Minor Changes
