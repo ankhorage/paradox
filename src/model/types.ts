@@ -7,6 +7,7 @@ export interface DocumentationModel {
   packageName: string;
   packageId: string;
   description: string | null;
+  purpose?: string;
   collaborators: true | null;
   donation: DonationModel | null;
   badges: GeneratedBadge[];

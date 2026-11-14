@@ -143,6 +143,7 @@ export function renderHtml({
         <p class="muted">Generated with Paradox</p>
         <h1>${escapeHtml(model.packageName)}</h1>
         <p>${escapeHtml(model.description ?? 'Deterministic package documentation.')}</p>
+        ${model.purpose === undefined ? '' : `<p>${escapeHtml(model.purpose)}</p>`}
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
           <ul class="nav-list">
