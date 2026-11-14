@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ankhorage/paradox • Paradox</title>
+    <title>Ankhorage Paradox • Paradox</title>
     <style>
       :root {
         color-scheme: light;
@@ -115,8 +115,9 @@
     <div class="layout">
       <aside class="sidebar">
         <p class="muted">Generated with Paradox</p>
-        <h1>@ankhorage/paradox</h1>
-        <p>Deterministic documentation generator for TypeScript packages.</p>
+        <h1>Ankhorage Paradox</h1>
+        <p>Generates deterministic documentation for TypeScript packages from source declarations and canonical package structure.</p>
+        <p>Keep package documentation derived from maintained source rather than manually duplicated README content.</p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
           <ul class="nav-list">
@@ -307,6 +308,16 @@
       <small>3 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts">
+      src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts
+      <small>6 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts">
+      src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts
+      <small>12 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/model/buildModel.ts">
       src/model/buildModel.ts
       <small>4 functions</small>
@@ -383,7 +394,7 @@
       <div class="summary">
         <div><strong>8</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>65</strong><span class="muted">modules</span></div>
+        <div><strong>67</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -426,10 +437,10 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
-  </article><article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/evaluateDocumentationRulesAsync.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/usage.ts src/config/utils/validateCollaborators.ts src/config/utils/validateDonationAccount.ts src/types/analysis.ts src/types/config.ts analyze">
+  </article><article class="item" data-search="src/analyze/analyze.ts src/analyze/badges.ts src/analyze/components.ts src/analyze/documentation/collectDocumentationCommentsAsync.ts src/analyze/documentation/evaluateDocumentationRulesAsync.ts src/analyze/exports.ts src/analyze/modules.ts src/analyze/project.ts src/analyze/readmeUsage.ts src/analyze/semantic/createTypeScriptProgram.ts src/analyze/semantic/exports.ts src/analyze/semantic/graphs.ts src/analyze/sequenceScenarios.ts src/analyze/sourceFunctions.ts src/analyze/usage.ts src/config/utils/validateCollaborators.ts src/config/utils/validateDonationAccount.ts src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts src/types/analysis.ts src/types/config.ts analyze">
     <h3>src/analyze/analyze.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/utils/validateCollaborators.ts</code>, <code>src/config/utils/validateDonationAccount.ts</code>, <code>src/types/analysis.ts</code>, <code>src/types/config.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/analyze/badges.ts</code>, <code>src/analyze/components.ts</code>, <code>src/analyze/documentation/collectDocumentationCommentsAsync.ts</code>, <code>src/analyze/documentation/evaluateDocumentationRulesAsync.ts</code>, <code>src/analyze/exports.ts</code>, <code>src/analyze/modules.ts</code>, <code>src/analyze/project.ts</code>, <code>src/analyze/readmeUsage.ts</code>, <code>src/analyze/semantic/createTypeScriptProgram.ts</code>, <code>src/analyze/semantic/exports.ts</code>, <code>src/analyze/semantic/graphs.ts</code>, <code>src/analyze/sequenceScenarios.ts</code>, <code>src/analyze/sourceFunctions.ts</code>, <code>src/analyze/usage.ts</code>, <code>src/config/utils/validateCollaborators.ts</code>, <code>src/config/utils/validateDonationAccount.ts</code>, <code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts</code>, <code>src/types/analysis.ts</code>, <code>src/types/config.ts</code></p>
     <p><strong>Exports:</strong> <code>analyze</code></p>
   </article><article class="item" data-search="src/analyze/badges.ts src/analyze/usage.ts src/types/analysis.ts analyzeBadges">
     <h3>src/analyze/badges.ts</h3>
@@ -641,6 +652,16 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>package.json</code>, <code>src/capabilities/index.ts</code></p>
     <p><strong>Exports:</strong> <code>default</code></p>
+  </article><article class="item" data-search="src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts readRepositoryMetadataAsync">
+    <h3>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts</code></p>
+    <p><strong>Exports:</strong> <code>readRepositoryMetadataAsync</code></p>
+  </article><article class="item" data-search="src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts parseRepositoryMetadata">
+    <h3>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>parseRepositoryMetadata</code></p>
   </article><article class="item" data-search="src/index.ts defineParadoxConfig getParadoxDocTag isParadoxDocTagName PARADOX_DOC_TAGS ParadoxConfig ParadoxDocTagHandlerId ParadoxDocTagName paradoxPackageMetadata">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
@@ -944,7 +965,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <h3>Architecture overview</h3>
     <p class="muted"><code>diagrams/architecture-overview.mmd</code></p>
     <div class="mermaid">graph TD
-  package__ankhorage_paradox[&quot;@ankhorage/paradox&quot;]
+  package__ankhorage_paradox[&quot;Ankhorage Paradox&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_paradox --&gt; entrypoint_src_index_ts
   module_package_json[&quot;package.json&quot;]
@@ -967,6 +988,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
@@ -1129,6 +1151,11 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   package__ankhorage_paradox -.-&gt; module_src_docsSurface_ts
   module_src_docsSurface_ts --&gt; module_package_json
   module_src_docsSurface_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
@@ -1203,7 +1230,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
     <details>
       <summary>View Mermaid source</summary>
       <pre>graph TD
-  package__ankhorage_paradox[&quot;@ankhorage/paradox&quot;]
+  package__ankhorage_paradox[&quot;Ankhorage Paradox&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_paradox --&gt; entrypoint_src_index_ts
   module_package_json[&quot;package.json&quot;]
@@ -1226,6 +1253,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts[&quot;src/analyze/badges.ts&quot;]
@@ -1388,6 +1416,11 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   package__ankhorage_paradox -.-&gt; module_src_docsSurface_ts
   module_src_docsSurface_ts --&gt; module_package_json
   module_src_docsSurface_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
+  package__ankhorage_paradox -.-&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   package__ankhorage_paradox -.-&gt; module_src_model_buildModel_ts
@@ -1508,6 +1541,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_docsSurface_handlers_test_ts[&quot;src/docsSurface.handlers.test.ts&quot;]
   module_src_docsSurface_ts[&quot;src/docsSurface.ts&quot;]
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1545,6 +1580,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
@@ -1623,6 +1659,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_docsSurface_handlers_test_ts --&gt; module_src_docsSurface_ts
   module_src_docsSurface_ts --&gt; module_package_json
   module_src_docsSurface_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
@@ -1700,6 +1737,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_docsSurface_handlers_test_ts[&quot;src/docsSurface.handlers.test.ts&quot;]
   module_src_docsSurface_ts[&quot;src/docsSurface.ts&quot;]
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1737,6 +1776,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_analyze_analyze_ts --&gt; module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --&gt; module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --&gt; module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_analysis_ts
   module_src_analyze_analyze_ts --&gt; module_src_types_config_ts
   module_src_analyze_badges_ts --&gt; module_src_analyze_usage_ts
@@ -1815,6 +1855,7 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_docsSurface_handlers_test_ts --&gt; module_src_docsSurface_ts
   module_src_docsSurface_ts --&gt; module_package_json
   module_src_docsSurface_ts --&gt; module_src_capabilities_index_ts
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --&gt; module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_model_buildModel_ts --&gt; module_src_model_types_ts
   module_src_packageMetadata_capabilities_test_ts --&gt; module_src_packageMetadata_ts
   module_src_packageMetadata_test_ts --&gt; module_src_packageMetadata_ts
@@ -1894,6 +1935,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_docsSurface_handlers_test_ts[&quot;src/docsSurface.handlers.test.ts&quot;]
   module_src_docsSurface_ts[&quot;src/docsSurface.ts&quot;]
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -1980,6 +2023,8 @@ real source declarations rather than duplicated code blocks inside Paradox comme
   module_src_doc_tags_registry_ts[&quot;src/doc-tags/registry.ts&quot;]
   module_src_docsSurface_handlers_test_ts[&quot;src/docsSurface.handlers.test.ts&quot;]
   module_src_docsSurface_ts[&quot;src/docsSurface.ts&quot;]
+  module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts[&quot;src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts&quot;]
+  module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts[&quot;src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_model_buildModel_ts[&quot;src/model/buildModel.ts&quot;]
   module_src_model_types_ts[&quot;src/model/types.ts&quot;]
@@ -2123,22 +2168,22 @@ real source declarations rather than duplicated code blocks inside Paradox comme
       <h2>src/analyze/analyze.ts</h2>
       <article class="item" data-search="analyze src/analyze/analyze.ts Analyzes a package and returns documentation plus canonical policy findings.">
     <h3>analyze</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:32:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:33:1</code></p>
     <p>Analyzes a package and returns documentation plus canonical policy findings.</p>
     
   </article><article class="item" data-search="collectConfigMembers src/analyze/analyze.ts Resolves member metadata for the public configuration root when one exists.">
     <h3>collectConfigMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:113:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:116:1</code></p>
     <p>Resolves member metadata for the public configuration root when one exists.</p>
     
   </article><article class="item" data-search="mapTypeMembers src/analyze/analyze.ts Converts semantic type members into serializable analysis output.">
     <h3>mapTypeMembers</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:159:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:162:1</code></p>
     <p>Converts semantic type members into serializable analysis output.</p>
     
   </article><article class="item" data-search="readPackageJson src/analyze/analyze.ts Reads package metadata from the analyzed package root.">
     <h3>readPackageJson</h3>
-    <p class="muted"><code>src/analyze/analyze.ts:176:1</code></p>
+    <p class="muted"><code>src/analyze/analyze.ts:179:1</code></p>
     <p>Reads package metadata from the analyzed package root.</p>
     
   </article>
@@ -3137,27 +3182,127 @@ and writes them to the configured output directory.</p>
     
   </article>
     </section>
+  </section><section id="view-src-features-repositorymetadata-adapters-readrepositorymetadataasync-ts" class="view" data-view="src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts" hidden>
+    <section class="panel">
+      <h2>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts</h2>
+      <article class="item" data-search="readRepositoryMetadataAsync src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Reads optional canonical repository metadata and rejects an invalid present document.">
+    <h3>readRepositoryMetadataAsync</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:17:1</code></p>
+    <p>Reads optional canonical repository metadata and rejects an invalid present document.</p>
+    
+  </article><article class="item" data-search="assertValidMetadata src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Applies the published report-only metadata policy to one structurally decoded document.">
+    <h3>assertValidMetadata</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:41:1</code></p>
+    <p>Applies the published report-only metadata policy to one structurally decoded document.</p>
+    
+  </article><article class="item" data-search="fileExistsAsync src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Returns whether a path exists as a regular file.">
+    <h3>fileExistsAsync</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:63:1</code></p>
+    <p>Returns whether a path exists as a regular file.</p>
+    
+  </article><article class="item" data-search="directoryExistsAsync src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Returns whether a path exists as a directory.">
+    <h3>directoryExistsAsync</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:68:1</code></p>
+    <p>Returns whether a path exists as a directory.</p>
+    
+  </article><article class="item" data-search="pathMatchesAsync src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Checks a local path without hiding filesystem failures other than absence.">
+    <h3>pathMatchesAsync</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:73:1</code></p>
+    <p>Checks a local path without hiding filesystem failures other than absence.</p>
+    
+  </article><article class="item" data-search="isMissingPathError src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts Identifies the only filesystem error that represents optional absence.">
+    <h3>isMissingPathError</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts:86:1</code></p>
+    <p>Identifies the only filesystem error that represents optional absence.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-repositorymetadata-domain-parserepositorymetadata-ts" class="view" data-view="src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts" hidden>
+    <section class="panel">
+      <h2>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts</h2>
+      <article class="item" data-search="parseRepositoryMetadata src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Decodes one JSON value into the published repository-metadata contract.">
+    <h3>parseRepositoryMetadata</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:24:1</code></p>
+    <p>Decodes one JSON value into the published repository-metadata contract.</p>
+    
+  </article><article class="item" data-search="isMetadataKind src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Recognizes the closed metadata-kind vocabulary from the published contract.">
+    <h3>isMetadataKind</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:47:1</code></p>
+    <p>Recognizes the closed metadata-kind vocabulary from the published contract.</p>
+    
+  </article><article class="item" data-search="requiredString src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Reads one required string field without accepting coercion.">
+    <h3>requiredString</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:52:1</code></p>
+    <p>Reads one required string field without accepting coercion.</p>
+    
+  </article><article class="item" data-search="optionalString src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Preserves one optional string field when it is contract-shaped.">
+    <h3>optionalString</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:58:1</code></p>
+    <p>Preserves one optional string field when it is contract-shaped.</p>
+    
+  </article><article class="item" data-search="optionalStringArray src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Preserves one optional string-array field when every entry is contract-shaped.">
+    <h3>optionalStringArray</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:65:1</code></p>
+    <p>Preserves one optional string-array field when every entry is contract-shaped.</p>
+    
+  </article><article class="item" data-search="optionalArchitecture src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Decodes optional architecture facts without evaluating project code.">
+    <h3>optionalArchitecture</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:74:1</code></p>
+    <p>Decodes optional architecture facts without evaluating project code.</p>
+    
+  </article><article class="item" data-search="optionalImplementations src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Decodes optional explicit implementation relationships from authored JSON.">
+    <h3>optionalImplementations</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:95:1</code></p>
+    <p>Decodes optional explicit implementation relationships from authored JSON.</p>
+    
+  </article><article class="item" data-search="parseImplementationReference src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Decodes one explicit implementation relationship.">
+    <h3>parseImplementationReference</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:104:1</code></p>
+    <p>Decodes one explicit implementation relationship.</p>
+    
+  </article><article class="item" data-search="optionalConstraints src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Decodes optional operational constraints from authored JSON.">
+    <h3>optionalConstraints</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:123:1</code></p>
+    <p>Decodes optional operational constraints from authored JSON.</p>
+    
+  </article><article class="item" data-search="constraintArray src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Preserves one optional constraint list after structural validation.">
+    <h3>constraintArray</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:139:1</code></p>
+    <p>Preserves one optional constraint list after structural validation.</p>
+    
+  </article><article class="item" data-search="isStringArray src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Recognizes a JSON-compatible array containing only strings.">
+    <h3>isStringArray</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:151:1</code></p>
+    <p>Recognizes a JSON-compatible array containing only strings.</p>
+    
+  </article><article class="item" data-search="invalidMetadata src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts Creates one stable structural metadata error.">
+    <h3>invalidMetadata</h3>
+    <p class="muted"><code>src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts:156:1</code></p>
+    <p>Creates one stable structural metadata error.</p>
+    
+  </article>
+    </section>
   </section><section id="view-src-model-buildmodel-ts" class="view" data-view="src/model/buildModel.ts" hidden>
     <section class="panel">
       <h2>src/model/buildModel.ts</h2>
       <article class="item" data-search="buildModel src/model/buildModel.ts Converts analysis output into a serializable documentation model.">
     <h3>buildModel</h3>
-    <p class="muted"><code>src/model/buildModel.ts:143:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:144:1</code></p>
     <p>Converts analysis output into a serializable documentation model.</p>
     
   </article><article class="item" data-search="mapExport src/model/buildModel.ts Maps one analyzed export into the serializable documentation shape.">
     <h3>mapExport</h3>
-    <p class="muted"><code>src/model/buildModel.ts:204:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:206:1</code></p>
     <p>Maps one analyzed export into the serializable documentation shape.</p>
     
   </article><article class="item" data-search="mapComponent src/model/buildModel.ts Maps an analyzed component while preserving export metadata when available.">
     <h3>mapComponent</h3>
-    <p class="muted"><code>src/model/buildModel.ts:239:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:241:1</code></p>
     <p>Maps an analyzed component while preserving export metadata when available.</p>
     
   </article><article class="item" data-search="sortByName src/model/buildModel.ts Returns a copy of items sorted by their name property.">
     <h3>sortByName</h3>
-    <p class="muted"><code>src/model/buildModel.ts:260:1</code></p>
+    <p class="muted"><code>src/model/buildModel.ts:262:1</code></p>
     <p>Returns a copy of items sorted by their name property.</p>
     
   </article>
@@ -3417,102 +3562,102 @@ and writes them to the configured output directory.</p>
     
   </article><article class="item" data-search="renderHomeView src/render/renderers/html.ts Renders the Home view that keeps public API and package-level information together.">
     <h3>renderHomeView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:218:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:219:1</code></p>
     <p>Renders the Home view that keeps public API and package-level information together.</p>
     
   </article><article class="item" data-search="renderUsagePanel src/render/renderers/html.ts Renders complete CLI and programmatic usage documentation.">
     <h3>renderUsagePanel</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:268:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:269:1</code></p>
     <p>Renders complete CLI and programmatic usage documentation.</p>
     
   </article><article class="item" data-search="renderUsageEntry src/render/renderers/html.ts Renders one source-backed usage entry in the complete documentation app.">
     <h3>renderUsageEntry</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:300:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:301:1</code></p>
     <p>Renders one source-backed usage entry in the complete documentation app.</p>
     
   </article><article class="item" data-search="renderFindingsPanel src/render/renderers/html.ts Renders policy findings so complete docs expose the same evidence consumed by Doctor.">
     <h3>renderFindingsPanel</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:321:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:322:1</code></p>
     <p>Renders policy findings so complete docs expose the same evidence consumed by Doctor.</p>
     
   </article><article class="item" data-search="renderSourceNavItem src/render/renderers/html.ts Renders one source file entry in the left navigation.">
     <h3>renderSourceNavItem</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:345:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:346:1</code></p>
     <p>Renders one source file entry in the left navigation.</p>
     
   </article><article class="item" data-search="renderSourceAreaView src/render/renderers/html.ts Renders the right-hand source area view for a selected file.">
     <h3>renderSourceAreaView</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:357:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:358:1</code></p>
     <p>Renders the right-hand source area view for a selected file.</p>
     
   </article><article class="item" data-search="renderSourceFunctionCard src/render/renderers/html.ts Renders one source function card in a source-area view.">
     <h3>renderSourceFunctionCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:371:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:372:1</code></p>
     <p>Renders one source function card in a source-area view.</p>
     
   </article><article class="item" data-search="getSourceAreas src/render/renderers/html.ts Groups analyzed source functions by their source file path.">
     <h3>getSourceAreas</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:391:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:392:1</code></p>
     <p>Groups analyzed source functions by their source file path.</p>
     
   </article><article class="item" data-search="renderModuleCard src/render/renderers/html.ts Renders module metadata on the Home page.">
     <h3>renderModuleCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:400:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:401:1</code></p>
     <p>Renders module metadata on the Home page.</p>
     
   </article><article class="item" data-search="renderExportCard src/render/renderers/html.ts Renders one public API export card on the Home page.">
     <h3>renderExportCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:414:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:415:1</code></p>
     <p>Renders one public API export card on the Home page.</p>
     
   </article><article class="item" data-search="renderSignatureBlock src/render/renderers/html.ts Renders all call signatures for a public API export.">
     <h3>renderSignatureBlock</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:443:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:444:1</code></p>
     <p>Renders all call signatures for a public API export.</p>
     
   </article><article class="item" data-search="renderMemberTable src/render/renderers/html.ts Renders the members table for a type-like public API export.">
     <h3>renderMemberTable</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:479:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:480:1</code></p>
     <p>Renders the members table for a type-like public API export.</p>
     
   </article><article class="item" data-search="renderComponentCard src/render/renderers/html.ts Renders one detected component card on the Home page.">
     <h3>renderComponentCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:501:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:502:1</code></p>
     <p>Renders one detected component card on the Home page.</p>
     
   </article><article class="item" data-search="renderDiagramCard src/render/renderers/html.ts Renders one Mermaid diagram card.">
     <h3>renderDiagramCard</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:538:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:539:1</code></p>
     <p>Renders one Mermaid diagram card.</p>
     
   </article><article class="item" data-search="renderReferenceMetadata src/render/renderers/html.ts Renders validated external references and security-test evidence.">
     <h3>renderReferenceMetadata</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:553:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:554:1</code></p>
     <p>Renders validated external references and security-test evidence.</p>
     
   </article><article class="item" data-search="renderInlineCodeList src/render/renderers/html.ts Renders an inline comma-separated list of code values.">
     <h3>renderInlineCodeList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:575:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:576:1</code></p>
     <p>Renders an inline comma-separated list of code values.</p>
     
   </article><article class="item" data-search="renderChipList src/render/renderers/html.ts Renders a compact chip list for related symbols.">
     <h3>renderChipList</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:586:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:587:1</code></p>
     <p>Renders a compact chip list for related symbols.</p>
     
   </article><article class="item" data-search="groupBy src/render/renderers/html.ts Groups items by a string key and returns deterministic key order.">
     <h3>groupBy</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:595:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:596:1</code></p>
     <p>Groups items by a string key and returns deterministic key order.</p>
     
   </article><article class="item" data-search="escapeHtml src/render/renderers/html.ts Escapes user-controlled text for safe HTML rendering.">
     <h3>escapeHtml</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:614:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:615:1</code></p>
     <p>Escapes user-controlled text for safe HTML rendering.</p>
     
   </article><article class="item" data-search="escapeAttribute src/render/renderers/html.ts Escapes text for use inside HTML attribute values.">
     <h3>escapeAttribute</h3>
-    <p class="muted"><code>src/render/renderers/html.ts:626:1</code></p>
+    <p class="muted"><code>src/render/renderers/html.ts:627:1</code></p>
     <p>Escapes text for use inside HTML attribute values.</p>
     
   </article>
@@ -3532,132 +3677,132 @@ and writes them to the configured output directory.</p>
     
   </article><article class="item" data-search="renderUsage src/render/renderers/markdown.ts Renders the canonical CLI-first Usage chapter.">
     <h3>renderUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:77:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:78:1</code></p>
     <p>Renders the canonical CLI-first Usage chapter.</p>
     
   </article><article class="item" data-search="renderCliUsage src/render/renderers/markdown.ts Renders the canonical CLI usage section from package metadata.">
     <h3>renderCliUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:97:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:98:1</code></p>
     <p>Renders the canonical CLI usage section from package metadata.</p>
     
   </article><article class="item" data-search="renderProgrammaticUsage src/render/renderers/markdown.ts Renders the single README-promoted programmatic usage declaration.">
     <h3>renderProgrammaticUsage</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:112:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:113:1</code></p>
     <p>Renders the single README-promoted programmatic usage declaration.</p>
     
   </article><article class="item" data-search="getPackageDisplayName src/render/renderers/markdown.ts Returns a human-readable package command name.">
     <h3>getPackageDisplayName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:139:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:140:1</code></p>
     <p>Returns a human-readable package command name.</p>
     
   </article><article class="item" data-search="renderConfiguration src/render/renderers/markdown.ts Renders the package-owned Configuration chapter from the canonical tagged schema.">
     <h3>renderConfiguration</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:146:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:147:1</code></p>
     <p>Renders the package-owned Configuration chapter from the canonical tagged schema.</p>
     
   </article><article class="item" data-search="renderReferences src/render/renderers/markdown.ts Renders links and security evidence owned by one documented item.">
     <h3>renderReferences</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:180:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:181:1</code></p>
     <p>Renders links and security evidence owned by one documented item.</p>
     
   </article><article class="item" data-search="renderDocumentation src/render/renderers/markdown.ts Points README readers to the configured interactive documentation entrypoint.">
     <h3>renderDocumentation</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:195:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:196:1</code></p>
     <p>Points README readers to the configured interactive documentation entrypoint.</p>
     
   </article><article class="item" data-search="renderReadmeApi src/render/renderers/markdown.ts Renders README-promoted public API entries.">
     <h3>renderReadmeApi</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:206:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:207:1</code></p>
     <p>Renders README-promoted public API entries.</p>
     
   </article><article class="item" data-search="renderComponentAccordion src/render/renderers/markdown.ts Renders one README-promoted component.">
     <h3>renderComponentAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:226:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:227:1</code></p>
     <p>Renders one README-promoted component.</p>
     
   </article><article class="item" data-search="renderExportAccordion src/render/renderers/markdown.ts Renders one README-promoted non-component export.">
     <h3>renderExportAccordion</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:262:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:263:1</code></p>
     <p>Renders one README-promoted non-component export.</p>
     
   </article><article class="item" data-search="renderSignature src/render/renderers/markdown.ts Renders the primary signature for a README public API entry.">
     <h3>renderSignature</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:284:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:285:1</code></p>
     <p>Renders the primary signature for a README public API entry.</p>
     
   </article><article class="item" data-search="renderStructuredRows src/render/renderers/markdown.ts Renders structured const-array rows as a Markdown table.">
     <h3>renderStructuredRows</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:295:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:296:1</code></p>
     <p>Renders structured const-array rows as a Markdown table.</p>
     
   </article><article class="item" data-search="getStructuredColumns src/render/renderers/markdown.ts Returns stable structured-row columns.">
     <h3>getStructuredColumns</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:320:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:321:1</code></p>
     <p>Returns stable structured-row columns.</p>
     
   </article><article class="item" data-search="formatStructuredColumnHeader src/render/renderers/markdown.ts Formats one structured-row column header.">
     <h3>formatStructuredColumnHeader</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:331:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:332:1</code></p>
     <p>Formats one structured-row column header.</p>
     
   </article><article class="item" data-search="formatStructuredCell src/render/renderers/markdown.ts Formats one structured-row table cell.">
     <h3>formatStructuredCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:338:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:339:1</code></p>
     <p>Formats one structured-row table cell.</p>
     
   </article><article class="item" data-search="getReadmeGroups src/render/renderers/markdown.ts Groups README-promoted API entries by presentation category.">
     <h3>getReadmeGroups</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:349:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:350:1</code></p>
     <p>Groups README-promoted API entries by presentation category.</p>
     
   </article><article class="item" data-search="addReadmeItem src/render/renderers/markdown.ts Adds one public API item to a README category.">
     <h3>addReadmeItem</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:381:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:382:1</code></p>
     <p>Adds one public API item to a README category.</p>
     
   </article><article class="item" data-search="sortReadmeItems src/render/renderers/markdown.ts Sorts README category items by symbol name.">
     <h3>sortReadmeItems</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:388:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:389:1</code></p>
     <p>Sorts README category items by symbol name.</p>
     
   </article><article class="item" data-search="getReadmeItemName src/render/renderers/markdown.ts Returns one README item&#39;s source symbol name.">
     <h3>getReadmeItemName</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:397:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:398:1</code></p>
     <p>Returns one README item&#39;s source symbol name.</p>
     
   </article><article class="item" data-search="getReadmeCategory src/render/renderers/markdown.ts Derives a stable README public API category from a module path.">
     <h3>getReadmeCategory</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:404:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:405:1</code></p>
     <p>Derives a stable README public API category from a module path.</p>
     
   </article><article class="item" data-search="renderExports src/render/renderers/markdown.ts Renders the complete public API reference.">
     <h3>renderExports</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:420:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:421:1</code></p>
     <p>Renders the complete public API reference.</p>
     
   </article><article class="item" data-search="renderComponents src/render/renderers/markdown.ts Renders the complete component registry.">
     <h3>renderComponents</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:473:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:474:1</code></p>
     <p>Renders the complete component registry.</p>
     
   </article><article class="item" data-search="escapeTableCell src/render/renderers/markdown.ts Escapes one Markdown table cell.">
     <h3>escapeTableCell</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:512:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:513:1</code></p>
     <p>Escapes one Markdown table cell.</p>
     
   </article><article class="item" data-search="renderDefault src/render/renderers/markdown.ts Renders an optional default value.">
     <h3>renderDefault</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:519:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:520:1</code></p>
     <p>Renders an optional default value.</p>
     
   </article><article class="item" data-search="flattenConfigMembers src/render/renderers/markdown.ts Flattens nested configuration members into dot paths.">
     <h3>flattenConfigMembers</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:526:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:527:1</code></p>
     <p>Flattens nested configuration members into dot paths.</p>
     
   </article><article class="item" data-search="badgeLabel src/render/renderers/markdown.ts Returns the accessible badge label stored in a rendered badge artifact.">
     <h3>badgeLabel</h3>
-    <p class="muted"><code>src/render/renderers/markdown.ts:553:1</code></p>
+    <p class="muted"><code>src/render/renderers/markdown.ts:554:1</code></p>
     <p>Returns the accessible badge label stored in a rendered badge artifact.</p>
     
   </article>

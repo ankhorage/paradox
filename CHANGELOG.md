@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- 78b22c2: Use optional canonical repository metadata for generated introductions while preserving the existing
+  configuration and package-description fallback for third-party consumers.
+
 ## 0.4.1
 
 ### Patch Changes

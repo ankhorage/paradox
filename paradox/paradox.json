@@ -1,7 +1,8 @@
 {
-  "packageName": "@ankhorage/paradox",
+  "packageName": "Ankhorage Paradox",
   "packageId": "@ankhorage/paradox",
-  "description": "Deterministic documentation generator for TypeScript packages.",
+  "description": "Generates deterministic documentation for TypeScript packages from source declarations and canonical package structure.",
+  "purpose": "Keep package documentation derived from maintained source rather than manually duplicated README content.",
   "collaborators": true,
   "donation": {
     "account": "ankhorage"
@@ -16,7 +17,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.4.1",
+      "value": "v0.5.0",
       "color": "cb3837"
     },
     {
@@ -168,6 +169,7 @@
         "src/analyze/usage.ts",
         "src/config/utils/validateCollaborators.ts",
         "src/config/utils/validateDonationAccount.ts",
+        "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
         "src/types/analysis.ts",
         "src/types/config.ts"
       ],
@@ -639,6 +641,24 @@
       ],
       "exports": [
         "default"
+      ]
+    },
+    {
+      "path": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      ],
+      "exports": [
+        "readRepositoryMetadataAsync"
+      ]
+    },
+    {
+      "path": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "parseRepositoryMetadata"
       ]
     },
     {
@@ -1156,7 +1176,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 32,
+        "line": 33,
         "column": 1
       }
     },
@@ -1167,7 +1187,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 113,
+        "line": 116,
         "column": 1
       }
     },
@@ -1178,7 +1198,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 159,
+        "line": 162,
         "column": 1
       }
     },
@@ -1189,7 +1209,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/analyze/analyze.ts",
-        "line": 176,
+        "line": 179,
         "column": 1
       }
     },
@@ -2987,13 +3007,211 @@
       }
     },
     {
+      "name": "readRepositoryMetadataAsync",
+      "description": "Reads optional canonical repository metadata and rejects an invalid present document.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertValidMetadata",
+      "description": "Applies the published report-only metadata policy to one structurally decoded document.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "fileExistsAsync",
+      "description": "Returns whether a path exists as a regular file.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 63,
+        "column": 1
+      }
+    },
+    {
+      "name": "directoryExistsAsync",
+      "description": "Returns whether a path exists as a directory.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 68,
+        "column": 1
+      }
+    },
+    {
+      "name": "pathMatchesAsync",
+      "description": "Checks a local path without hiding filesystem failures other than absence.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 73,
+        "column": 1
+      }
+    },
+    {
+      "name": "isMissingPathError",
+      "description": "Identifies the only filesystem error that represents optional absence.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "line": 86,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseRepositoryMetadata",
+      "description": "Decodes one JSON value into the published repository-metadata contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "isMetadataKind",
+      "description": "Recognizes the closed metadata-kind vocabulary from the published contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 47,
+        "column": 1
+      }
+    },
+    {
+      "name": "requiredString",
+      "description": "Reads one required string field without accepting coercion.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 52,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalString",
+      "description": "Preserves one optional string field when it is contract-shaped.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalStringArray",
+      "description": "Preserves one optional string-array field when every entry is contract-shaped.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalArchitecture",
+      "description": "Decodes optional architecture facts without evaluating project code.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalImplementations",
+      "description": "Decodes optional explicit implementation relationships from authored JSON.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 95,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseImplementationReference",
+      "description": "Decodes one explicit implementation relationship.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 104,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalConstraints",
+      "description": "Decodes optional operational constraints from authored JSON.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 123,
+        "column": 1
+      }
+    },
+    {
+      "name": "constraintArray",
+      "description": "Preserves one optional constraint list after structural validation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 139,
+        "column": 1
+      }
+    },
+    {
+      "name": "isStringArray",
+      "description": "Recognizes a JSON-compatible array containing only strings.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 151,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidMetadata",
+      "description": "Creates one stable structural metadata error.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "line": 156,
+        "column": 1
+      }
+    },
+    {
       "name": "buildModel",
       "description": "Converts analysis output into a serializable documentation model.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 143,
+        "line": 144,
         "column": 1
       }
     },
@@ -3004,7 +3222,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 204,
+        "line": 206,
         "column": 1
       }
     },
@@ -3015,7 +3233,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 239,
+        "line": 241,
         "column": 1
       }
     },
@@ -3026,7 +3244,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/model/buildModel.ts",
-        "line": 260,
+        "line": 262,
         "column": 1
       }
     },
@@ -3510,7 +3728,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 218,
+        "line": 219,
         "column": 1
       }
     },
@@ -3521,7 +3739,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 268,
+        "line": 269,
         "column": 1
       }
     },
@@ -3532,7 +3750,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 300,
+        "line": 301,
         "column": 1
       }
     },
@@ -3543,7 +3761,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 321,
+        "line": 322,
         "column": 1
       }
     },
@@ -3554,7 +3772,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 345,
+        "line": 346,
         "column": 1
       }
     },
@@ -3565,7 +3783,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 357,
+        "line": 358,
         "column": 1
       }
     },
@@ -3576,7 +3794,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 371,
+        "line": 372,
         "column": 1
       }
     },
@@ -3587,7 +3805,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 391,
+        "line": 392,
         "column": 1
       }
     },
@@ -3598,7 +3816,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 400,
+        "line": 401,
         "column": 1
       }
     },
@@ -3609,7 +3827,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 414,
+        "line": 415,
         "column": 1
       }
     },
@@ -3620,7 +3838,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 443,
+        "line": 444,
         "column": 1
       }
     },
@@ -3631,7 +3849,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 479,
+        "line": 480,
         "column": 1
       }
     },
@@ -3642,7 +3860,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 501,
+        "line": 502,
         "column": 1
       }
     },
@@ -3653,7 +3871,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 538,
+        "line": 539,
         "column": 1
       }
     },
@@ -3664,7 +3882,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 553,
+        "line": 554,
         "column": 1
       }
     },
@@ -3675,7 +3893,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 575,
+        "line": 576,
         "column": 1
       }
     },
@@ -3686,7 +3904,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 586,
+        "line": 587,
         "column": 1
       }
     },
@@ -3697,7 +3915,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 595,
+        "line": 596,
         "column": 1
       }
     },
@@ -3708,7 +3926,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 614,
+        "line": 615,
         "column": 1
       }
     },
@@ -3719,7 +3937,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/html.ts",
-        "line": 626,
+        "line": 627,
         "column": 1
       }
     },
@@ -3752,7 +3970,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 77,
+        "line": 78,
         "column": 1
       }
     },
@@ -3763,7 +3981,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 97,
+        "line": 98,
         "column": 1
       }
     },
@@ -3774,7 +3992,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 112,
+        "line": 113,
         "column": 1
       }
     },
@@ -3785,7 +4003,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 139,
+        "line": 140,
         "column": 1
       }
     },
@@ -3796,7 +4014,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 146,
+        "line": 147,
         "column": 1
       }
     },
@@ -3807,7 +4025,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 180,
+        "line": 181,
         "column": 1
       }
     },
@@ -3818,7 +4036,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 195,
+        "line": 196,
         "column": 1
       }
     },
@@ -3829,7 +4047,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 206,
+        "line": 207,
         "column": 1
       }
     },
@@ -3840,7 +4058,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 226,
+        "line": 227,
         "column": 1
       }
     },
@@ -3851,7 +4069,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 262,
+        "line": 263,
         "column": 1
       }
     },
@@ -3862,7 +4080,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 284,
+        "line": 285,
         "column": 1
       }
     },
@@ -3873,7 +4091,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 295,
+        "line": 296,
         "column": 1
       }
     },
@@ -3884,7 +4102,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 320,
+        "line": 321,
         "column": 1
       }
     },
@@ -3895,7 +4113,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 331,
+        "line": 332,
         "column": 1
       }
     },
@@ -3906,7 +4124,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 338,
+        "line": 339,
         "column": 1
       }
     },
@@ -3917,7 +4135,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 349,
+        "line": 350,
         "column": 1
       }
     },
@@ -3928,7 +4146,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 381,
+        "line": 382,
         "column": 1
       }
     },
@@ -3939,7 +4157,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 388,
+        "line": 389,
         "column": 1
       }
     },
@@ -3950,7 +4168,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 397,
+        "line": 398,
         "column": 1
       }
     },
@@ -3961,7 +4179,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 404,
+        "line": 405,
         "column": 1
       }
     },
@@ -3972,7 +4190,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 420,
+        "line": 421,
         "column": 1
       }
     },
@@ -3983,7 +4201,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 473,
+        "line": 474,
         "column": 1
       }
     },
@@ -3994,7 +4212,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 512,
+        "line": 513,
         "column": 1
       }
     },
@@ -4005,7 +4223,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 519,
+        "line": 520,
         "column": 1
       }
     },
@@ -4016,7 +4234,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 526,
+        "line": 527,
         "column": 1
       }
     },
@@ -4027,7 +4245,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/markdown.ts",
-        "line": 553,
+        "line": 554,
         "column": 1
       }
     },
@@ -4208,6 +4426,11 @@
       {
         "fromPath": "src/analyze/analyze.ts",
         "toPath": "src/config/utils/validateDonationAccount.ts",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromPath": "src/analyze/analyze.ts",
+        "toPath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -4789,6 +5012,11 @@
         "fromPath": "src/render/renderers/markdown.ts",
         "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromPath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts",
+        "toPath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
       }
     ],
     "calls": [
@@ -4856,6 +5084,12 @@
         "fromSymbol": "analyze",
         "toSymbol": "readPackageJson",
         "callExpression": "readPackageJson",
+        "sourcePath": "src/analyze/analyze.ts"
+      },
+      {
+        "fromSymbol": "analyze",
+        "toSymbol": "readRepositoryMetadataAsync",
+        "callExpression": "readRepositoryMetadataAsync",
         "sourcePath": "src/analyze/analyze.ts"
       },
       {
@@ -7869,6 +8103,228 @@
         "toSymbol": "readFile",
         "callExpression": "readFile",
         "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "directoryExistsAsync",
+        "callExpression": "directoryExistsAsync",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "fileExistsAsync",
+        "callExpression": "fileExistsAsync",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "parseRepositoryMetadata",
+        "callExpression": "parseRepositoryMetadata",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "readRepositoryMetadataAsync",
+        "toSymbol": "assertValidMetadata",
+        "callExpression": "assertValidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "assertValidMetadata",
+        "toSymbol": "evaluateRepositoryMetadataPreflight",
+        "callExpression": "evaluateRepositoryMetadataPreflight",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "fileExistsAsync",
+        "toSymbol": "pathMatchesAsync",
+        "callExpression": "pathMatchesAsync",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "directoryExistsAsync",
+        "toSymbol": "pathMatchesAsync",
+        "callExpression": "pathMatchesAsync",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "pathMatchesAsync",
+        "toSymbol": "predicate",
+        "callExpression": "predicate",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "pathMatchesAsync",
+        "toSymbol": "stat",
+        "callExpression": "stat",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "pathMatchesAsync",
+        "toSymbol": "isMissingPathError",
+        "callExpression": "isMissingPathError",
+        "sourcePath": "src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "isMetadataKind",
+        "callExpression": "isMetadataKind",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "requiredString",
+        "callExpression": "requiredString",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "optionalString",
+        "callExpression": "optionalString",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "optionalStringArray",
+        "callExpression": "optionalStringArray",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "optionalArchitecture",
+        "callExpression": "optionalArchitecture",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "optionalImplementations",
+        "callExpression": "optionalImplementations",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseRepositoryMetadata",
+        "toSymbol": "optionalConstraints",
+        "callExpression": "optionalConstraints",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "requiredString",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalString",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalStringArray",
+        "toSymbol": "isStringArray",
+        "callExpression": "isStringArray",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalStringArray",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalArchitecture",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalArchitecture",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalArchitecture",
+        "toSymbol": "isStringArray",
+        "callExpression": "isStringArray",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalImplementations",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseImplementationReference",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseImplementationReference",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "parseImplementationReference",
+        "toSymbol": "requiredString",
+        "callExpression": "requiredString",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalConstraints",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalConstraints",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "optionalConstraints",
+        "toSymbol": "constraintArray",
+        "callExpression": "constraintArray",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "constraintArray",
+        "toSymbol": "isStringArray",
+        "callExpression": "isStringArray",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
+      },
+      {
+        "fromSymbol": "constraintArray",
+        "toSymbol": "invalidMetadata",
+        "callExpression": "invalidMetadata",
+        "sourcePath": "src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"
       }
     ],
     "typeReferences": [
