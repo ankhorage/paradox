@@ -194,7 +194,7 @@ function renderReferences(lines: string[], metadata: ReferenceMetadata): void {
  */
 function renderDocumentation(lines: string[], outputDir: string): void {
   lines.push('## Documentation', '');
-  lines.push(`Open \`\${outputDir}/index.html\` locally in your browser to browse the complete documentation.`, '');
+  lines.push(`Open \`${outputDir}/index.html\` locally in your browser to browse the complete documentation.`, '');
 }
 
 /***
