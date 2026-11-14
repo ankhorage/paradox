@@ -9,11 +9,11 @@
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';
 
-  /** Enables canonical direct-collaborator documentation and workflow integration. */
-  collaborators?: true;
+  /** Enables the Contributors README and workflow integration (enabled by default). */
+  collaborators?: boolean;
 
-  /** Enables canonical GitHub Sponsors integration for generated repository documentation. */
-  donation?: {
+  /** Enables GitHub Sponsors integration (defaults to @ankhorage, false disables it). */
+  donation?: false | {
     /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
     account: string;
   };
