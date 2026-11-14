@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "tooling",
+  "title": "Ankhorage Paradox",
+  "summary": "Generates deterministic documentation for TypeScript packages from source declarations and canonical package structure.",
+  "purpose": "Keep package documentation derived from maintained source rather than manually duplicated README content.",
+  "domain": "developer documentation tooling",
+  "responsibilities": [
+    "Generate deterministic package documentation from TypeScript source.",
+    "Provide CLI and capability entrypoints for documentation generation.",
+    "Project canonical documentation tags into generated package artifacts."
+  ],
+  "boundaries": [
+    "Does not own package runtime behavior or product documentation outside generated package artifacts.",
+    "Does not require consumers to import repository-local source files.",
+    "Does not manually maintain generated README or documentation output."
+  ],
+  "audience": [
+    "TypeScript package maintainers.",
+    "Tooling hosts that invoke documentation generation."
+  ],
+  "useCases": [
+    "Generate README and browsable documentation from a package checkout.",
+    "Discover and invoke documentation generation through the Ankh capability provider."
+  ],
+  "architecture": {
+    "role": "A standalone TypeScript documentation generator with explicit CLI and capability delivery entrypoints.",
+    "invariants": [
+      "Generated documentation is derived from canonical source declarations and package structure.",
+      "Public consumers use published package entrypoints rather than repository-local source."
+    ]
+  },
+  "constraints": {
+    "limitations": [
+      "Documentation output reflects the supported source declaration and tag vocabulary."
+    ]
+  }
+}
