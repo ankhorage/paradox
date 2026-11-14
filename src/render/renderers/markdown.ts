@@ -62,6 +62,7 @@ function renderReadme(
   }
 
   if (model.description) lines.push(model.description, '');
+  if (model.purpose) lines.push(model.purpose, '');
 
   renderUsage(lines, model);
   renderConfiguration(lines, model);

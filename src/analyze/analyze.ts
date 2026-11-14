@@ -5,6 +5,7 @@ import { toPortablePath } from '@ankhorage/utility/node/path';
 
 import { validateCollaborators } from '../config/utils/validateCollaborators.js';
 import { validateDonationAccount } from '../config/utils/validateDonationAccount.js';
+import { readRepositoryMetadataAsync } from '../features/repositoryMetadata/adapters/readRepositoryMetadataAsync.js';
 import type { AnalysisResult } from '../types/analysis.js';
 import type { ParadoxConfig } from '../types/config.js';
 import { analyzeBadges } from './badges.js';
@@ -35,6 +36,7 @@ export async function analyze(
 ): Promise<AnalysisResult> {
   const root = runtime.packageRoot;
   const pkg = await readPackageJson(root);
+  const repositoryMetadata = await readRepositoryMetadataAsync(root);
   const collaborators = validateCollaborators(config.collaborators);
   const donation =
     config.donation === false
@@ -75,9 +77,10 @@ export async function analyze(
   const badges = await analyzeBadges(root, pkg, documentationRules.status);
 
   return {
-    packageName: config.docs?.title ?? pkg.name,
+    packageName: config.docs?.title ?? repositoryMetadata?.title ?? pkg.name,
     packageId: pkg.name,
-    description: config.docs?.description ?? pkg.description ?? null,
+    description: repositoryMetadata?.summary ?? config.docs?.description ?? pkg.description ?? null,
+    ...(repositoryMetadata === null ? {} : { purpose: repositoryMetadata.purpose }),
     collaborators,
     donation,
     exports,
