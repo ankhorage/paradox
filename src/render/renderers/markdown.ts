@@ -26,12 +26,11 @@ interface ReferenceMetadata {
  */
 export function renderMarkdown({
   badges,
-  diagrams,
   model,
   outputDir,
 }: RenderContext): Pick<RenderContext['result'], 'components' | 'exportsMarkdown' | 'readme'> {
   return {
-    readme: renderReadme(model, outputDir, badges, diagrams),
+    readme: renderReadme(model, outputDir, badges),
     exportsMarkdown: renderExports(model),
     components: renderComponents(model),
   };
@@ -44,7 +43,6 @@ function renderReadme(
   model: DocumentationModel,
   outputDir: string,
   badges: RenderContext['badges'],
-  diagrams: RenderContext['diagrams'],
 ): string {
   const lines = [
     '<!-- markdownlint-disable MD013 MD033 -->',
@@ -67,7 +65,7 @@ function renderReadme(
 
   renderUsage(lines, model);
   renderConfiguration(lines, model);
-  renderGeneratedDocumentation(lines, outputDir, diagrams);
+  renderDocumentation(lines, outputDir);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
@@ -192,21 +190,11 @@ function renderReferences(lines: string[], metadata: ReferenceMetadata): void {
 }
 
 /***
- * Renders links to generated documentation artifacts.
+ * Points README readers to the configured interactive documentation entrypoint.
  */
-function renderGeneratedDocumentation(
-  lines: string[],
-  outputDir: string,
-  diagrams: RenderContext['diagrams'],
-): void {
-  lines.push('## Generated documentation', '');
-  lines.push(`- [Interactive documentation app](./${outputDir}/index.html)`);
-  lines.push(`- [Public API reference](./${outputDir}/exports.md)`);
-  lines.push(`- [Component registry](./${outputDir}/components.md)`);
-  for (const diagram of diagrams) {
-    lines.push(`- [${diagram.title}](./${outputDir}/${diagram.path})`);
-  }
-  lines.push('');
+function renderDocumentation(lines: string[], outputDir: string): void {
+  lines.push('## Documentation', '');
+  lines.push(`Open \`\${outputDir}/index.html\` locally in your browser to browse the complete documentation.`, '');
 }
 
 /***
