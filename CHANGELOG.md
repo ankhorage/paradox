@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- 327df20: Add validated source-backed application and website documentation sections to generated README and Paradox output.
+
 ## 0.5.0
 
 ### Minor Changes
