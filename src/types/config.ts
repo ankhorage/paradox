@@ -23,6 +23,8 @@ export interface ParadoxConfig {
   docs?: {
     title?: string;
     description?: string;
+    /** Relative path to source-owned application or website documentation. */
+    productSource?: string;
   };
 
   package?: {

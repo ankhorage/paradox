@@ -107,6 +107,16 @@ interface AnalysisDonation {
   account: string;
 }
 
+interface AnalysisProductDocumentation {
+  kind: 'application' | 'website';
+  overview: string;
+  sections: {
+    title: string;
+    description: string | null;
+    entries: { title: string; description: string }[];
+  }[];
+}
+
 export interface AnalysisBadge {
   id: string;
   label: string;
@@ -189,6 +199,7 @@ export interface AnalysisResult {
   packageId: string;
   description: string | null;
   purpose?: string;
+  productDocumentation: AnalysisProductDocumentation | null;
   collaborators: true | null;
   donation: AnalysisDonation | null;
   exports: AnalysisExport[];

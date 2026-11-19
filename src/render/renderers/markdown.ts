@@ -64,12 +64,28 @@ function renderReadme(
   if (model.description) lines.push(model.description, '');
   if (model.purpose) lines.push(model.purpose, '');
 
+  renderProductDocumentation(lines, model);
   renderUsage(lines, model);
   renderConfiguration(lines, model);
   renderDocumentation(lines, outputDir);
   renderReadmeApi(lines, model);
 
   return `${lines.join('\n').trimEnd()}\n`;
+}
+
+/*** Renders source-owned application or website information without package API framing. */
+function renderProductDocumentation(lines: string[], model: DocumentationModel): void {
+  const { productDocumentation } = model;
+  if (productDocumentation === null) return;
+
+  lines.push('## Overview', '', productDocumentation.overview, '');
+  for (const section of productDocumentation.sections) {
+    lines.push(`### ${section.title}`, '');
+    if (section.description !== null) lines.push(section.description, '');
+    for (const entry of section.entries) {
+      lines.push(`#### ${entry.title}`, '', entry.description, '');
+    }
+  }
 }
 
 /***

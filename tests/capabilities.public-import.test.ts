@@ -1,10 +1,14 @@
+import { isRecord } from '@ankhorage/utility/object';
 import { describe, expect, test } from 'bun:test';
 
 describe('public capabilities export', () => {
   test('imports the published capability catalog', async () => {
-    const { CAPABILITIES } = await import('@ankhorage/paradox/capabilities');
+    const capabilityModule: unknown = await import('@ankhorage/paradox/capabilities');
+    if (!isRecord(capabilityModule) || !Array.isArray(capabilityModule.CAPABILITIES)) {
+      throw new Error('Expected the public capabilities module to export a capability array.');
+    }
 
-    expect(CAPABILITIES).toEqual([
+    expect(capabilityModule.CAPABILITIES).toEqual([
       {
         id: 'docs.generate',
         owner: '@ankhorage/paradox',
