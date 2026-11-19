@@ -8,6 +8,7 @@ export interface DocumentationModel {
   packageId: string;
   description: string | null;
   purpose?: string;
+  productDocumentation: ProductDocumentationModel | null;
   collaborators: true | null;
   donation: DonationModel | null;
   badges: GeneratedBadge[];
@@ -23,6 +24,23 @@ export interface DocumentationModel {
   sourceFunctions: SourceFunctionModel[];
   sequenceScenarios: SequenceScenarioModel[];
   graphs: GraphModel;
+}
+
+interface ProductDocumentationModel {
+  kind: 'application' | 'website';
+  overview: string;
+  sections: ProductDocumentationSectionModel[];
+}
+
+interface ProductDocumentationSectionModel {
+  title: string;
+  description: string | null;
+  entries: ProductDocumentationEntryModel[];
+}
+
+interface ProductDocumentationEntryModel {
+  title: string;
+  description: string;
 }
 
 interface DonationModel {

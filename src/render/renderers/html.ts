@@ -235,6 +235,7 @@ function renderHomeView(
         ${model.entrypoints.map((entrypoint) => `<li><code>${escapeHtml(entrypoint)}</code></li>`).join('')}
       </ul>
     </section>
+${renderProductDocumentationPanel(model)}
     ${renderUsagePanel(model)}
     ${renderFindingsPanel(model)}
     <section class="panel">
@@ -260,6 +261,34 @@ function renderHomeView(
     <section class="panel">
       <h2>Diagrams</h2>
       ${diagrams.map(renderDiagramCard).join('')}
+    </section>`;
+}
+
+/*** Renders source-owned product documentation on the technical documentation home page. */
+function renderProductDocumentationPanel(model: DocumentationModel): string {
+  const { productDocumentation } = model;
+  if (productDocumentation === null) return '';
+  return `<section class="panel">
+      <h2>Product overview</h2>
+      <p>${escapeHtml(productDocumentation.overview)}</p>
+      ${productDocumentation.sections
+        .map(
+          (section) => `<section>
+          <h3>${escapeHtml(section.title)}</h3>
+          ${section.description === null ? '' : `<p>${escapeHtml(section.description)}</p>`}
+          ${section.entries
+            .map(
+              (
+                entry,
+              ) => `<article class="item" data-search="${escapeAttribute(`${section.title} ${entry.title} ${entry.description}`)}">
+                <h4>${escapeHtml(entry.title)}</h4>
+                <p>${escapeHtml(entry.description)}</p>
+              </article>`,
+            )
+            .join('')}
+        </section>`,
+        )
+        .join('')}
     </section>`;
 }
 
@@ -370,6 +399,7 @@ function renderSourceAreaView(area: SourceArea): string {
  * Renders one source function card in a source-area view.
  */
 function renderSourceFunctionCard(item: SourceFunctionEntry): string {
+  const references = renderReferenceMetadata(item);
   return `<article class="item" data-search="${escapeAttribute(
     [
       item.name,
@@ -382,8 +412,7 @@ function renderSourceFunctionCard(item: SourceFunctionEntry): string {
     <h3>${escapeHtml(item.name)}</h3>
     <p class="muted"><code>${escapeHtml(item.sourceLocation.filePath)}:${item.sourceLocation.line}:${item.sourceLocation.column}</code></p>
     ${item.description === null ? '<p class="empty">No description available.</p>' : `<p>${escapeHtml(item.description)}</p>`}
-    ${renderReferenceMetadata(item)}
-  </article>`;
+${references}</article>`;
 }
 
 /***

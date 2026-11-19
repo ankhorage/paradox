@@ -183,7 +183,7 @@
       {
         "name": "docs",
         "kind": "property",
-        "type": "{ title?: string; description?: string; } | undefined",
+        "type": "{ title?: string; description?: string; productSource?: string; } | undefined",
         "required": false,
         "description": null
       },

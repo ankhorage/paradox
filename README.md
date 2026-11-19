@@ -54,7 +54,7 @@ Configures Paradox documentation generation for a package.
         /** GitHub Sponsors account login used for the Sponsor button and Donation chapter. */
         account: string;
       } \| undefined` | no | — |  |
-| docs | `{ title?: string; description?: string; } \| undefined` | no | — |  |
+| docs | `{ title?: string; description?: string; productSource?: string; } \| undefined` | no | — |  |
 | package | `{ root?: string; entrypoints?: string[]; } \| undefined` | no | — |  |
 | output | `{ dir?: string; } \| undefined` | no | — |  |
 

@@ -28,6 +28,7 @@ interface BuildModelInput {
   packageId: string;
   description: string | null;
   purpose?: string;
+  productDocumentation: DocumentationModel['productDocumentation'];
   collaborators: true | null;
   donation: { account: string } | null;
   badges: { id: string; label: string; value: string; color: string }[];
@@ -152,6 +153,16 @@ export function buildModel(analysis: BuildModelInput): DocumentationModel {
     packageId: analysis.packageId,
     description: analysis.description,
     ...(analysis.purpose === undefined ? {} : { purpose: analysis.purpose }),
+    productDocumentation:
+      analysis.productDocumentation === null
+        ? null
+        : {
+            ...analysis.productDocumentation,
+            sections: analysis.productDocumentation.sections.map((section) => ({
+              ...section,
+              entries: section.entries.map((entry) => ({ ...entry })),
+            })),
+          },
     collaborators: analysis.collaborators,
     donation: analysis.donation === null ? null : { account: analysis.donation.account },
     badges: analysis.badges.map((badge) => ({ ...badge })),

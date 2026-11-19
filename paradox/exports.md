@@ -71,7 +71,7 @@ Configures Paradox documentation generation for a package.
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | collaborators | property | `boolean \| undefined` | no |  |
-| docs | property | `{ title?: string; description?: string; } \| undefined` | no |  |
+| docs | property | `{ title?: string; description?: string; productSource?: string; } \| undefined` | no |  |
 | donation | property | `false \| { account: string; } \| undefined` | no |  |
 | mode | property | `"safe" \| "write" \| undefined` | no |  |
 | output | property | `{ dir?: string; } \| undefined` | no |  |

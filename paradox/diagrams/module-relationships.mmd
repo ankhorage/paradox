@@ -43,6 +43,8 @@ graph LR
   module_src_doc_tags_registry_ts["src/doc-tags/registry.ts"]
   module_src_docsSurface_handlers_test_ts["src/docsSurface.handlers.test.ts"]
   module_src_docsSurface_ts["src/docsSurface.ts"]
+  module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts["src/features/productDocumentation/adapters/readProductDocumentationAsync.ts"]
+  module_src_features_productDocumentation_domain_parseProductDocumentation_ts["src/features/productDocumentation/domain/parseProductDocumentation.ts"]
   module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts["src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"]
   module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts["src/features/repositoryMetadata/domain/parseRepositoryMetadata.ts"]
   module_src_index_ts["src/index.ts"]
@@ -82,6 +84,7 @@ graph LR
   module_src_analyze_analyze_ts --> module_src_analyze_usage_ts
   module_src_analyze_analyze_ts --> module_src_config_utils_validateCollaborators_ts
   module_src_analyze_analyze_ts --> module_src_config_utils_validateDonationAccount_ts
+  module_src_analyze_analyze_ts --> module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts
   module_src_analyze_analyze_ts --> module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts
   module_src_analyze_analyze_ts --> module_src_types_analysis_ts
   module_src_analyze_analyze_ts --> module_src_types_config_ts
@@ -161,6 +164,7 @@ graph LR
   module_src_docsSurface_handlers_test_ts --> module_src_docsSurface_ts
   module_src_docsSurface_ts --> module_package_json
   module_src_docsSurface_ts --> module_src_capabilities_index_ts
+  module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts --> module_src_features_productDocumentation_domain_parseProductDocumentation_ts
   module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --> module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_model_buildModel_ts --> module_src_model_types_ts
   module_src_packageMetadata_capabilities_test_ts --> module_src_packageMetadata_ts
