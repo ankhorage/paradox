@@ -61,7 +61,7 @@ function renderCollaboratorsWorkflowYaml(): string {
     '          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}',
     '        run: |',
     '          if git diff --quiet -- README.md; then exit 0; fi',
-    '          if [ "$(gh pr list --state open --search "in:title docs(contributors): refresh avatar list" --json number --jq length)" != "0" ]; then',
+    '          if gh pr list --state open --limit 100 --json title --jq ".[] | .title" | grep -Fqx "docs(contributors): refresh avatar list"; then',
     '            echo "Contributor update PR already open; avoiding duplicates."',
     '            exit 0',
     '          fi',
