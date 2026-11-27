@@ -43,6 +43,7 @@ graph LR
   module_src_doc_tags_registry_ts["src/doc-tags/registry.ts"]
   module_src_docsSurface_handlers_test_ts["src/docsSurface.handlers.test.ts"]
   module_src_docsSurface_ts["src/docsSurface.ts"]
+  module_src_features_contributors_adapters_readGitHubContributorsAsync_ts["src/features/contributors/adapters/readGitHubContributorsAsync.ts"]
   module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts["src/features/productDocumentation/adapters/readProductDocumentationAsync.ts"]
   module_src_features_productDocumentation_domain_parseProductDocumentation_ts["src/features/productDocumentation/domain/parseProductDocumentation.ts"]
   module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts["src/features/repositoryMetadata/adapters/readRepositoryMetadataAsync.ts"]
@@ -64,8 +65,9 @@ graph LR
   module_src_render_renderers_markdown_ts["src/render/renderers/markdown.ts"]
   module_src_types_analysis_ts["src/types/analysis.ts"]
   module_src_types_config_ts["src/types/config.ts"]
+  module_src_types_contributors_ts["src/types/contributors.ts"]
   module_src_types_render_ts["src/types/render.ts"]
-  module_src_write_utils_syncCollaboratorsWorkflowAsync_ts["src/write/utils/syncCollaboratorsWorkflowAsync.ts"]
+  module_src_write_utils_removeParadoxCollaboratorsWorkflowAsync_ts["src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts"]
   module_src_write_utils_syncFundingFileAsync_ts["src/write/utils/syncFundingFileAsync.ts"]
   module_src_write_write_ts["src/write/write.ts"]
   module_src_analyze_analyze_ts --> module_src_analyze_badges_ts
@@ -154,6 +156,7 @@ graph LR
   module_src_analyze_utils_parseParadoxComment_ts --> module_src_doc_tags_registry_ts
   module_src_capabilities_index_test_ts --> module_src_capabilities_index_ts
   module_src_cli_standalone_ts --> module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --> module_src_features_contributors_adapters_readGitHubContributorsAsync_ts
   module_src_cli_standalone_ts --> module_src_model_buildModel_ts
   module_src_cli_standalone_ts --> module_src_paths_policy_ts
   module_src_cli_standalone_ts --> module_src_render_render_ts
@@ -164,6 +167,7 @@ graph LR
   module_src_docsSurface_handlers_test_ts --> module_src_docsSurface_ts
   module_src_docsSurface_ts --> module_package_json
   module_src_docsSurface_ts --> module_src_capabilities_index_ts
+  module_src_features_contributors_adapters_readGitHubContributorsAsync_ts --> module_src_types_contributors_ts
   module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts --> module_src_features_productDocumentation_domain_parseProductDocumentation_ts
   module_src_features_repositoryMetadata_adapters_readRepositoryMetadataAsync_ts --> module_src_features_repositoryMetadata_domain_parseRepositoryMetadata_ts
   module_src_model_buildModel_ts --> module_src_model_types_ts
@@ -178,6 +182,7 @@ graph LR
   module_src_render_render_ts --> module_src_render_renderers_funding_ts
   module_src_render_render_ts --> module_src_render_renderers_html_ts
   module_src_render_render_ts --> module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --> module_src_types_contributors_ts
   module_src_render_render_ts --> module_src_types_render_ts
   module_src_render_renderers_badges_ts --> module_src_model_types_ts
   module_src_render_renderers_badges_ts --> module_src_types_render_ts
@@ -191,7 +196,8 @@ graph LR
   module_src_render_renderers_markdown_ts --> module_src_model_types_ts
   module_src_render_renderers_markdown_ts --> module_src_types_render_ts
   module_src_types_render_ts --> module_src_model_types_ts
+  module_src_types_render_ts --> module_src_types_contributors_ts
   module_src_write_write_ts --> module_src_types_config_ts
   module_src_write_write_ts --> module_src_types_render_ts
-  module_src_write_write_ts --> module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
+  module_src_write_write_ts --> module_src_write_utils_removeParadoxCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --> module_src_write_utils_syncFundingFileAsync_ts

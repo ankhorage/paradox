@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+### Patch Changes
+
+- 3e52e1e: Render real linked GitHub contributor avatars during README generation and retire the separate Paradox-generated contributors workflow.
+
 ## 0.6.0
 
 ### Minor Changes

@@ -6,6 +6,7 @@ sequenceDiagram
   participant participant_findParadoxConfigFile as findParadoxConfigFile
   participant participant_loadParadoxConfig as loadParadoxConfig
   participant participant_main as main
+  participant participant_readGitHubContributorsAsync as readGitHubContributorsAsync
   participant participant_render as render
   participant participant_resolveOutputRoot as resolveOutputRoot
   participant participant_resolvePackageRoot as resolvePackageRoot
@@ -26,6 +27,8 @@ sequenceDiagram
   participant_assertNoDocumentationErrors-->>participant_main: return
   participant_main->>participant_buildModel: buildModel()
   participant_buildModel-->>participant_main: return
+  participant_main->>participant_readGitHubContributorsAsync: readGitHubContributorsAsync()
+  participant_readGitHubContributorsAsync-->>participant_main: return
   participant_main->>participant_render: render()
   participant_render-->>participant_main: return
   participant_main->>participant_write: write()

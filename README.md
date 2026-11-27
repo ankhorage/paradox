@@ -3,7 +3,7 @@
 
 # Ankhorage Paradox
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.6.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.6.1](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: canonical](./paradox/badges/docs.svg)
 
 Generates deterministic documentation for TypeScript packages from source declarations and canonical package structure.
 
@@ -109,8 +109,7 @@ Source: `src/types/config.ts:9:1`
 
 ## Contributors
 
-<!-- readme: contributors -start -->
-<!-- readme: contributors -end -->
+<a href="https://github.com/artiphishle"><img src="https://avatars.githubusercontent.com/u/137318798?s=64" width="40" height="40" alt="artiphishle" /></a>
 
 ## Donation
 
