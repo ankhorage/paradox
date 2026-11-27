@@ -1,4 +1,5 @@
 import type { DocumentationModel } from '../model/types.js';
+import type { Contributor } from './contributors.js';
 
 /***
  * Rendered documentation files ready to be written to disk.
@@ -21,7 +22,6 @@ export interface RenderResult {
   exportsJson: string;
   paradoxJson: string;
   indexHtml: string;
-  collaboratorsWorkflowYaml: string | null;
   fundingYaml: string | null;
   diagrams: DiagramArtifact[];
   badges: BadgeArtifact[];
@@ -29,6 +29,7 @@ export interface RenderResult {
 
 export interface RenderContext {
   model: DocumentationModel;
+  contributors: readonly Contributor[];
   outputDir: string;
   diagrams: DiagramArtifact[];
   badges: BadgeArtifact[];

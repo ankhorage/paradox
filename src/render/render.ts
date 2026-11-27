@@ -1,4 +1,5 @@
 import type { DocumentationModel } from '../model/types.js';
+import type { Contributor } from '../types/contributors.js';
 import type { RenderContext, RenderResult } from '../types/render.js';
 import { renderBadgeArtifacts } from './renderers/badges.js';
 import { renderCollaborators } from './renderers/collaborators.js';
@@ -15,6 +16,7 @@ export function render(
   model: DocumentationModel,
   options: {
     outputDir?: string;
+    contributors?: readonly Contributor[];
   } = {},
 ): RenderResult {
   const badges = renderBadgeArtifacts(model);
@@ -27,13 +29,13 @@ export function render(
     exportsJson: `${JSON.stringify(model.exports, null, 2)}\n`,
     paradoxJson: `${JSON.stringify(model, null, 2)}\n`,
     indexHtml: '',
-    collaboratorsWorkflowYaml: null,
     fundingYaml: renderFundingYaml(model),
     badges,
     diagrams,
   };
   const context: RenderContext = {
     model,
+    contributors: options.contributors ?? [],
     outputDir,
     badges,
     diagrams,

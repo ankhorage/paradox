@@ -9,7 +9,7 @@
 export interface ParadoxConfig {
   mode?: 'safe' | 'write';
 
-  /** Enables the Contributors README and workflow integration (enabled by default). */
+  /** Enables linked GitHub contributor avatars in the generated README (enabled by default). */
   collaborators?: boolean;
 
   /** Enables GitHub Sponsors integration (defaults to @ankhorage, false disables it). */

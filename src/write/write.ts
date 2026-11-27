@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 
 import type { ParadoxConfig } from '../types/config.js';
 import type { RenderResult } from '../types/render.js';
-import { syncCollaboratorsWorkflowAsync } from './utils/syncCollaboratorsWorkflowAsync.js';
+import { removeParadoxCollaboratorsWorkflowAsync } from './utils/removeParadoxCollaboratorsWorkflowAsync.js';
 import { syncFundingFileAsync } from './utils/syncFundingFileAsync.js';
 
 /***
@@ -17,12 +17,6 @@ export async function write(
   const root = runtime.packageRoot;
   const { outputRoot } = runtime;
   const mode = config.mode ?? 'safe';
-
-  if (mode === 'write') {
-    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml, {
-      mode: 'check',
-    });
-  }
 
   await mkdir(outputRoot, { recursive: true });
 
@@ -46,7 +40,7 @@ export async function write(
 
   if (mode === 'write') {
     await writeFile(join(root, 'README.md'), result.readme);
-    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml);
+    await removeParadoxCollaboratorsWorkflowAsync(root);
     await syncFundingFileAsync(root, result.fundingYaml);
   }
 }
