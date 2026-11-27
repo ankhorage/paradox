@@ -4,6 +4,7 @@ import { dirname } from 'node:path';
 import type { RuleSeverity } from '@ankhorage/rules';
 
 import { analyze } from '../analyze/analyze.js';
+import { readGitHubContributorsAsync } from '../features/contributors/adapters/readGitHubContributorsAsync.js';
 import { buildModel } from '../model/buildModel.js';
 import {
   findParadoxConfigFile,
@@ -39,7 +40,13 @@ async function main(): Promise<void> {
   const analysis = await analyze(config, { packageRoot });
   assertNoDocumentationErrors(analysis.findings);
   const model = buildModel(analysis);
-  const result = render(model, { outputDir });
+  const contributors =
+    model.collaborators !== null && config.mode === 'write'
+      ? await readGitHubContributorsAsync(packageRoot, {
+          token: process.env.GH_TOKEN ?? process.env.GITHUB_TOKEN,
+        })
+      : [];
+  const result = render(model, { outputDir, contributors });
 
   await write(result, config, { packageRoot, outputRoot });
 }

@@ -1,5 +1,5 @@
 ---
-'@ankhorage/paradox': patch
+"@ankhorage/paradox": patch
 ---
 
-Render README contributors only when GitHub contributors exist, replace malformed table updates with avatar links, and preserve generated avatar sections across documentation releases.
+Render real linked GitHub contributor avatars during README generation and retire the separate Paradox-generated contributors workflow.

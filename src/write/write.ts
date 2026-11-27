@@ -1,10 +1,9 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
 import type { ParadoxConfig } from '../types/config.js';
 import type { RenderResult } from '../types/render.js';
-import { preserveContributorsSection } from './utils/preserveContributorsSection.js';
-import { syncCollaboratorsWorkflowAsync } from './utils/syncCollaboratorsWorkflowAsync.js';
+import { removeParadoxCollaboratorsWorkflowAsync } from './utils/removeParadoxCollaboratorsWorkflowAsync.js';
 import { syncFundingFileAsync } from './utils/syncFundingFileAsync.js';
 
 /***
@@ -18,12 +17,6 @@ export async function write(
   const root = runtime.packageRoot;
   const { outputRoot } = runtime;
   const mode = config.mode ?? 'safe';
-
-  if (mode === 'write') {
-    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml, {
-      mode: 'check',
-    });
-  }
 
   await mkdir(outputRoot, { recursive: true });
 
@@ -46,20 +39,8 @@ export async function write(
   }
 
   if (mode === 'write') {
-    const readmePath = join(root, 'README.md');
-    const previousReadme = await readExistingReadmeAsync(readmePath);
-    await writeFile(readmePath, preserveContributorsSection(result.readme, previousReadme));
-    await syncCollaboratorsWorkflowAsync(root, result.collaboratorsWorkflowYaml);
+    await writeFile(join(root, 'README.md'), result.readme);
+    await removeParadoxCollaboratorsWorkflowAsync(root);
     await syncFundingFileAsync(root, result.fundingYaml);
-  }
-}
-
-/*** Read an optional prior generated README without concealing other filesystem failures. */
-async function readExistingReadmeAsync(path: string): Promise<string> {
-  try {
-    return await readFile(path, 'utf8');
-  } catch (error: unknown) {
-    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return '';
-    throw error;
   }
 }
