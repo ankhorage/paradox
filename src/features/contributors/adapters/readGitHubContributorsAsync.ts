@@ -37,13 +37,14 @@ export async function readGitHubContributorsAsync(
 /*** Resolves only explicitly declared GitHub repositories, never arbitrary API destinations. */
 function resolveGitHubRepository(metadata: unknown): string | null {
   if (!isRecord(metadata)) return null;
-  const repository = metadata.repository;
+  const { repository } = metadata;
   const url = isRecord(repository) ? repository.url : repository;
   if (typeof url !== 'string') return null;
 
-  const match = /^(?:git\+)?(?:https:\/\/github\.com\/|ssh:\/\/git@github\.com\/|git@github\.com:|github:)([a-z\d-]+)\/([a-z\d_.-]+?)(?:\.git)?\/?$/iu.exec(
-    url,
-  );
+  const match =
+    /^(?:git\+)?(?:https:\/\/github\.com\/|ssh:\/\/git@github\.com\/|git@github\.com:|github:)([a-z\d-]+)\/([a-z\d_.-]+?)(?:\.git)?\/?$/iu.exec(
+      url,
+    );
   const owner = match?.[1];
   const name = match?.[2];
   if (!owner || !name || name === '.' || name === '..') return null;
@@ -69,10 +70,11 @@ async function fetchContributorsPageAsync(
     },
   );
   if (response.status === 204) return [];
-  if (!response.ok) throw new Error(`GitHub contributors request failed (HTTP ${response.status}).`);
+  if (!response.ok)
+    throw new Error(`GitHub contributors request failed (HTTP ${response.status}).`);
   const records: unknown = await response.json();
   if (!Array.isArray(records)) throw new Error('Invalid GitHub contributors response.');
-  return records;
+  return records.map((record: unknown) => record);
 }
 
 /*** Maps human account records to safe, canonical profile and avatar identifiers. */
