@@ -54,8 +54,8 @@
     {
       "id": "tests",
       "label": "tests",
-      "value": "checked",
-      "color": "0a7f3f"
+      "value": "configured",
+      "color": "6f42c1"
     },
     {
       "id": "docs",
@@ -579,6 +579,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/analyze/analyze.ts",
+        "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
         "src/model/buildModel.ts",
         "src/paths/policy.ts",
         "src/render/render.ts",
@@ -643,6 +644,16 @@
       ],
       "exports": [
         "default"
+      ]
+    },
+    {
+      "path": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/contributors.ts"
+      ],
+      "exports": [
+        "readGitHubContributorsAsync"
       ]
     },
     {
@@ -770,6 +781,7 @@
         "src/render/renderers/funding.ts",
         "src/render/renderers/html.ts",
         "src/render/renderers/markdown.ts",
+        "src/types/contributors.ts",
         "src/types/render.ts"
       ],
       "exports": [
@@ -881,10 +893,19 @@
       ]
     },
     {
+      "path": "src/types/contributors.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "Contributor"
+      ]
+    },
+    {
       "path": "src/types/render.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/model/types.ts"
+        "src/model/types.ts",
+        "src/types/contributors.ts"
       ],
       "exports": [
         "BadgeArtifact",
@@ -894,11 +915,11 @@
       ]
     },
     {
-      "path": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+      "path": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
-        "syncCollaboratorsWorkflowAsync"
+        "removeParadoxCollaboratorsWorkflowAsync"
       ]
     },
     {
@@ -915,7 +936,7 @@
       "dependencies": [
         "src/types/config.ts",
         "src/types/render.ts",
-        "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+        "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts",
         "src/write/utils/syncFundingFileAsync.ts"
       ],
       "exports": [
@@ -2946,7 +2967,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
-        "line": 24,
+        "line": 25,
         "column": 1
       }
     },
@@ -2957,7 +2978,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/cli/standalone.ts",
-        "line": 50,
+        "line": 57,
         "column": 1
       }
     },
@@ -3024,6 +3045,50 @@
       "sourceLocation": {
         "filePath": "src/doc-tags/registry.ts",
         "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "readGitHubContributorsAsync",
+      "description": "Reads real GitHub contributors for the declared package repository.\nMissing or non-GitHub repository metadata is not a contributor source.\nProvider failures stop generation instead of publishing an empty snapshot.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveGitHubRepository",
+      "description": "Resolves only explicitly declared GitHub repositories, never arbitrary API destinations.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "fetchContributorsPageAsync",
+      "description": "Fetches one page from the fixed GitHub API origin and rejects incomplete responses.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseContributor",
+      "description": "Maps human account records to safe, canonical profile and avatar identifiers.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "line": 81,
         "column": 1
       }
     },
@@ -3474,7 +3539,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/render.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       }
     },
@@ -3524,34 +3589,12 @@
     },
     {
       "name": "renderCollaborators",
-      "description": null,
+      "description": "Renders linked avatars directly into the README when eligible contributors exist.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/render/renderers/collaborators.ts",
-        "line": 3,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderCollaboratorsReadme",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/render/renderers/collaborators.ts",
-        "line": 27,
-        "column": 1
-      }
-    },
-    {
-      "name": "renderCollaboratorsWorkflowYaml",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/render/renderers/collaborators.ts",
-        "line": 31,
+        "line": 4,
         "column": 1
       }
     },
@@ -4392,35 +4435,13 @@
       }
     },
     {
-      "name": "syncCollaboratorsWorkflowAsync",
-      "description": null,
+      "name": "removeParadoxCollaboratorsWorkflowAsync",
+      "description": "Removes the superseded workflow only if it was generated by Paradox.",
       "see": [],
       "security": [],
       "sourceLocation": {
-        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
-        "line": 4,
-        "column": 1
-      }
-    },
-    {
-      "name": "isParadoxOwnedCollaboratorsWorkflow",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
-        "line": 34,
-        "column": 1
-      }
-    },
-    {
-      "name": "readCollaboratorsWorkflowAsync",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
-        "line": 38,
+        "filePath": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts",
+        "line": 5,
         "column": 1
       }
     },
@@ -4807,6 +4828,11 @@
       },
       {
         "fromPath": "src/cli/standalone.ts",
+        "toPath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromPath": "src/cli/standalone.ts",
         "toPath": "src/model/buildModel.ts",
         "sourcePath": "src/cli/standalone.ts"
       },
@@ -4843,6 +4869,11 @@
       {
         "fromPath": "src/render/render.ts",
         "toPath": "src/model/types.ts",
+        "sourcePath": "src/render/render.ts"
+      },
+      {
+        "fromPath": "src/render/render.ts",
+        "toPath": "src/types/contributors.ts",
         "sourcePath": "src/render/render.ts"
       },
       {
@@ -4891,6 +4922,11 @@
         "sourcePath": "src/types/render.ts"
       },
       {
+        "fromPath": "src/types/render.ts",
+        "toPath": "src/types/contributors.ts",
+        "sourcePath": "src/types/render.ts"
+      },
+      {
         "fromPath": "src/write/write.ts",
         "toPath": "src/types/config.ts",
         "sourcePath": "src/write/write.ts"
@@ -4902,7 +4938,7 @@
       },
       {
         "fromPath": "src/write/write.ts",
-        "toPath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts",
+        "toPath": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -5159,6 +5195,11 @@
         "fromPath": "src/render/renderers/markdown.ts",
         "toPath": "src/types/render.ts",
         "sourcePath": "src/render/renderers/markdown.ts"
+      },
+      {
+        "fromPath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts",
+        "toPath": "src/types/contributors.ts",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
       },
       {
         "fromPath": "src/features/productDocumentation/adapters/readProductDocumentationAsync.ts",
@@ -6134,6 +6175,12 @@
       },
       {
         "fromSymbol": "main",
+        "toSymbol": "readGitHubContributorsAsync",
+        "callExpression": "readGitHubContributorsAsync",
+        "sourcePath": "src/cli/standalone.ts"
+      },
+      {
+        "fromSymbol": "main",
         "toSymbol": "render",
         "callExpression": "render",
         "sourcePath": "src/cli/standalone.ts"
@@ -6350,12 +6397,6 @@
       },
       {
         "fromSymbol": "write",
-        "toSymbol": "syncCollaboratorsWorkflowAsync",
-        "callExpression": "syncCollaboratorsWorkflowAsync",
-        "sourcePath": "src/write/write.ts"
-      },
-      {
-        "fromSymbol": "write",
         "toSymbol": "mkdir",
         "callExpression": "mkdir",
         "sourcePath": "src/write/write.ts"
@@ -6376,6 +6417,12 @@
         "fromSymbol": "write",
         "toSymbol": "dirname",
         "callExpression": "dirname",
+        "sourcePath": "src/write/write.ts"
+      },
+      {
+        "fromSymbol": "write",
+        "toSymbol": "removeParadoxCollaboratorsWorkflowAsync",
+        "callExpression": "removeParadoxCollaboratorsWorkflowAsync",
         "sourcePath": "src/write/write.ts"
       },
       {
@@ -7411,18 +7458,6 @@
         "sourcePath": "src/render/renderers/badges.ts"
       },
       {
-        "fromSymbol": "renderCollaborators",
-        "toSymbol": "renderCollaboratorsWorkflowYaml",
-        "callExpression": "renderCollaboratorsWorkflowYaml",
-        "sourcePath": "src/render/renderers/collaborators.ts"
-      },
-      {
-        "fromSymbol": "renderCollaborators",
-        "toSymbol": "renderCollaboratorsReadme",
-        "callExpression": "renderCollaboratorsReadme",
-        "sourcePath": "src/render/renderers/collaborators.ts"
-      },
-      {
         "fromSymbol": "renderDiagramArtifacts",
         "toSymbol": "renderArchitectureOverview",
         "callExpression": "renderArchitectureOverview",
@@ -8185,52 +8220,22 @@
         "sourcePath": "src/render/renderers/markdown.ts"
       },
       {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
+        "fromSymbol": "removeParadoxCollaboratorsWorkflowAsync",
         "toSymbol": "join",
         "callExpression": "join",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+        "sourcePath": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts"
       },
       {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "readCollaboratorsWorkflowAsync",
-        "callExpression": "readCollaboratorsWorkflowAsync",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "isParadoxOwnedCollaboratorsWorkflow",
-        "callExpression": "isParadoxOwnedCollaboratorsWorkflow",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "unlink",
-        "callExpression": "unlink",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "mkdir",
-        "callExpression": "mkdir",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "dirname",
-        "callExpression": "dirname",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "syncCollaboratorsWorkflowAsync",
-        "toSymbol": "writeFile",
-        "callExpression": "writeFile",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
-      },
-      {
-        "fromSymbol": "readCollaboratorsWorkflowAsync",
+        "fromSymbol": "removeParadoxCollaboratorsWorkflowAsync",
         "toSymbol": "readFile",
         "callExpression": "readFile",
-        "sourcePath": "src/write/utils/syncCollaboratorsWorkflowAsync.ts"
+        "sourcePath": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts"
+      },
+      {
+        "fromSymbol": "removeParadoxCollaboratorsWorkflowAsync",
+        "toSymbol": "unlink",
+        "callExpression": "unlink",
+        "sourcePath": "src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts"
       },
       {
         "fromSymbol": "syncFundingFileAsync",
@@ -8279,6 +8284,54 @@
         "toSymbol": "readFile",
         "callExpression": "readFile",
         "sourcePath": "src/write/utils/syncFundingFileAsync.ts"
+      },
+      {
+        "fromSymbol": "readGitHubContributorsAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "readGitHubContributorsAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "readGitHubContributorsAsync",
+        "toSymbol": "resolveGitHubRepository",
+        "callExpression": "resolveGitHubRepository",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "readGitHubContributorsAsync",
+        "toSymbol": "fetchContributorsPageAsync",
+        "callExpression": "fetchContributorsPageAsync",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "readGitHubContributorsAsync",
+        "toSymbol": "parseContributor",
+        "callExpression": "parseContributor",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveGitHubRepository",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "fetchContributorsPageAsync",
+        "toSymbol": "fetchPage",
+        "callExpression": "fetchPage",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
+      },
+      {
+        "fromSymbol": "parseContributor",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/contributors/adapters/readGitHubContributorsAsync.ts"
       },
       {
         "fromSymbol": "readProductDocumentationAsync",

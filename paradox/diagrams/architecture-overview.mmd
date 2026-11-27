@@ -164,6 +164,7 @@ graph TD
   module_src_cli_standalone_ts["src/cli/standalone.ts"]
   package__ankhorage_paradox -.-> module_src_cli_standalone_ts
   module_src_cli_standalone_ts --> module_src_analyze_analyze_ts
+  module_src_cli_standalone_ts --> module_src_features_contributors_adapters_readGitHubContributorsAsync_ts
   module_src_cli_standalone_ts --> module_src_model_buildModel_ts
   module_src_cli_standalone_ts --> module_src_paths_policy_ts
   module_src_cli_standalone_ts --> module_src_render_render_ts
@@ -186,6 +187,9 @@ graph TD
   package__ankhorage_paradox -.-> module_src_docsSurface_ts
   module_src_docsSurface_ts --> module_package_json
   module_src_docsSurface_ts --> module_src_capabilities_index_ts
+  module_src_features_contributors_adapters_readGitHubContributorsAsync_ts["src/features/contributors/adapters/readGitHubContributorsAsync.ts"]
+  package__ankhorage_paradox -.-> module_src_features_contributors_adapters_readGitHubContributorsAsync_ts
+  module_src_features_contributors_adapters_readGitHubContributorsAsync_ts --> module_src_types_contributors_ts
   module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts["src/features/productDocumentation/adapters/readProductDocumentationAsync.ts"]
   package__ankhorage_paradox -.-> module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts
   module_src_features_productDocumentation_adapters_readProductDocumentationAsync_ts --> module_src_features_productDocumentation_domain_parseProductDocumentation_ts
@@ -223,6 +227,7 @@ graph TD
   module_src_render_render_ts --> module_src_render_renderers_funding_ts
   module_src_render_render_ts --> module_src_render_renderers_html_ts
   module_src_render_render_ts --> module_src_render_renderers_markdown_ts
+  module_src_render_render_ts --> module_src_types_contributors_ts
   module_src_render_render_ts --> module_src_types_render_ts
   module_src_render_renderers_badges_ts["src/render/renderers/badges.ts"]
   package__ankhorage_paradox -.-> module_src_render_renderers_badges_ts
@@ -253,16 +258,19 @@ graph TD
   package__ankhorage_paradox -.-> module_src_types_analysis_ts
   module_src_types_config_ts["src/types/config.ts"]
   package__ankhorage_paradox -.-> module_src_types_config_ts
+  module_src_types_contributors_ts["src/types/contributors.ts"]
+  package__ankhorage_paradox -.-> module_src_types_contributors_ts
   module_src_types_render_ts["src/types/render.ts"]
   package__ankhorage_paradox -.-> module_src_types_render_ts
   module_src_types_render_ts --> module_src_model_types_ts
-  module_src_write_utils_syncCollaboratorsWorkflowAsync_ts["src/write/utils/syncCollaboratorsWorkflowAsync.ts"]
-  package__ankhorage_paradox -.-> module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
+  module_src_types_render_ts --> module_src_types_contributors_ts
+  module_src_write_utils_removeParadoxCollaboratorsWorkflowAsync_ts["src/write/utils/removeParadoxCollaboratorsWorkflowAsync.ts"]
+  package__ankhorage_paradox -.-> module_src_write_utils_removeParadoxCollaboratorsWorkflowAsync_ts
   module_src_write_utils_syncFundingFileAsync_ts["src/write/utils/syncFundingFileAsync.ts"]
   package__ankhorage_paradox -.-> module_src_write_utils_syncFundingFileAsync_ts
   module_src_write_write_ts["src/write/write.ts"]
   package__ankhorage_paradox -.-> module_src_write_write_ts
   module_src_write_write_ts --> module_src_types_config_ts
   module_src_write_write_ts --> module_src_types_render_ts
-  module_src_write_write_ts --> module_src_write_utils_syncCollaboratorsWorkflowAsync_ts
+  module_src_write_write_ts --> module_src_write_utils_removeParadoxCollaboratorsWorkflowAsync_ts
   module_src_write_write_ts --> module_src_write_utils_syncFundingFileAsync_ts
